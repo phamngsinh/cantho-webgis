@@ -1,9 +1,0 @@
-!table
-!version 300
-!charset WindowsVietnamese
-
-Definition Table
-  Type NATIVE Charset "WindowsVietnamese"
-  Fields 2
-    Ma_TTVH_CV Char (4) ;
-    Ten_TTVH_CV Char (100) ;
