@@ -1,0 +1,12 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  File "tra_noc_map_18.bmp"
+  Type "RASTER"
+  (105.6962817,10.08134167) (4527,4049) Label "Pt 1",
+  (105.718882,10.09857505) (8740,786) Label "Pt 2",
+  (105.7305872,10.08089274) (10922,4134) Label "Pt 3"
+  CoordSys Earth Projection 1, 104
+  Units "degree"
