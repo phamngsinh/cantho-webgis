@@ -1,0 +1,9 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  Type NATIVE Charset "WindowsVietnamese"
+  Fields 2
+    Ma_Nha_Tho Char (4) ;
+    Ten_Nha_Tho Char (100) ;

@@ -1,0 +1,13 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  File "ninh_kieu_map.bmp"
+  Type "RASTER"
+  (105.7842421,10.03281603) (3439,1325) Label "Pt 1",
+  (105.7695007,10.05379698) (2752,332) Label "Pt 2",
+  (105.7702946,10.020941) (2789,1887) Label "Pt 3",
+  (105.8027815,10.02645597) (4303,1626) Label "Pt 4"
+  CoordSys Earth Projection 1, 104
+  Units "degree"
