@@ -1,0 +1,13 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  File "chau_van_liem_map_8_map.bmp"
+  Type "RASTER"
+  (105.7077777,10.10785418) (21774,4405) Label "Pt 1",
+  (105.6733059,10.10511853) (15348,4923) Label "Pt 2",
+  (105.6648141,10.10026507) (13765,5842) Label "Pt 3",
+  (105.6382334,10.11478229) (8810,3093) Label "Pt 4"
+  CoordSys Earth Projection 1, 104
+  Units "degree"

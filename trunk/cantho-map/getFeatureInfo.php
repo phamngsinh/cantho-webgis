@@ -65,7 +65,7 @@
 				"http://localhost:8080/geoserver/wms", {
 					height : '406',
 					width : '512',
-					layers : 'ws_CanTho:Quan huyen',
+					layers : 'ws_CanTho:giaothong',
 					styles : '',
 					srs : 'EPSG:4326',
 					format : format,
