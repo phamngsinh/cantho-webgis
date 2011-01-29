@@ -1,5 +1,5 @@
 <?php 
-include('../libs/nusoap.php'); 
+include('../nusoap/nusoap.php'); 
 $server = new soap_server(); 
 $server->configureWSDL('Reverse String', 'uri:http://snlibs.googlepages.com/schema.xml'); 
 function Reverse($s){ 
