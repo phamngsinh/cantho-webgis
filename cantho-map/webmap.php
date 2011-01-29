@@ -58,46 +58,12 @@
 
 		map=new OpenLayers.Map('map',options);
 		
-		giao_thong=new OpenLayers.Layer.WMS(
-										   "Gthong - Tiled", "http://localhost:8080/geoserver/wms",
-										   {
-												height: '406',
-												width: '512',
-												layers: 'ws_CanTho:Gthong,ws_CanTho:Quan huyen',
-												styles: '',
-												srs: 'EPSG:4326',
-												format: format,
-												isBaseLayer:'true',
-												tiled: 'true',
-												transparent:'false',
-												tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
-											}, 
-											{
-												buffer: 0,
-												displayOutsideMaxExtent: true
-											} 
-									   );
-		// setup single tiled layer
-			
-		untiled = new OpenLayers.Layer.WMS(
-												"Gthong - Untiled", "http://localhost:8080/geoserver/wms",
-												{
-												height: '406',
-												width: '512',
-												layers: 'ws_CanTho:Gthong',
-												styles: '',
-												
-												srs: 'EPSG:4326',
-												format: format
-												},
-												{singleTile: true, ratio: 1}
-										); 
 		base_layer=new OpenLayers.Layer.WMS(
 											"Quan_huyen","http://localhost:8080/geoserver/wms",
 											{
 												height: '406',
 												width: '512',
-												layers: 'ws_CanTho:Quan huyen,ws_CanTho:Gthong',
+												layers: 'ws_cantho:QuanHuyen',
 												styles:'',
 												srs: 'EPSG:4326',
 												format: format,
