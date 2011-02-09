@@ -58,11 +58,11 @@ A.ssmItems:visited	{color:black;text-decoration:none;}
                 <div class="taskbar_vip">
     	<div style="margin-left: 40px; margin-right: 3px;">
         	<marquee scrolldelay="1" scrollamount="1" behavior="scroll" onmouseout="this.start();" onmouseover="this.stop();">
-				<a title="ĐỔ Mực Máy Photo Xerox DC236,286,336,2005,2055,3005...." href="http://vinhlonginfo.com/ads/category/7/detail/1002" 
+				<a title="" href="http://vinhlonginfo.com/ads/category/7/detail/1002" 
 				class="menu_taskbar">• QUAN NINH KIEU</a>
-				<a title="cay canh dip tet. Lien he: Anh Loi. 0904258770." href="http://vinhlonginfo.com/ads/category/30/detail/986" 
+				<a title="" href="http://vinhlonginfo.com/ads/category/30/detail/986" 
 				class="menu_taskbar">• QUAN BINH THUY</a>
-				<a title="chuyên kinh doanh quà tặng" href="http://vinhlonginfo.com/ads/category/26/detail/405" 
+				<a title="" href="http://vinhlonginfo.com/ads/category/26/detail/405" 
 				class="menu_taskbar">• QUAN CAI RANG</a>
 				</marquee>
         </div>
