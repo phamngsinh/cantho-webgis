@@ -24,14 +24,14 @@ A.ssmItems:visited	{color:black;text-decoration:none;}
 </style>
 <SCRIPT SRC="ssm.js" language="JavaScript1.2"></SCRIPT>
 <SCRIPT SRC="ssmItems.js" language="JavaScript1.2"></SCRIPT
-</head>
+></head>
 
 <body>
 
 
 <div class="taskbar">
 	<div style="background: url('images/street1.png') no-repeat scroll left center transparent;" class="taskbar_title">
-    	<a href="http://localhost/cantho-map" onclick="ActionLink('http://www.ctu.edu.vn')" class="menu_taskbar">Đường Đi</a>
+    	<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">Đường Đi</a>
     </div>
    	<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_title">
     	<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">Cơ Quan</a>
