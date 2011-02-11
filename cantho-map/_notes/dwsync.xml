@@ -4,7 +4,9 @@
 <file name="rightclick.php" server="D:/Luan Van/cantho-webgis/" local="129407561015213848" remote="129407561010000000" />
 <file name="selection.php" server="D:/Luan Van/cantho-webgis/" local="129407562059173559" remote="129407562050000000" />
 <file name="map.php" server="D:/Luan Van/cantho-webgis/" local="129407565027073313" remote="129407565020000000" />
-<file name="maker.php" server="D:/Luan Van/cantho-webgis/" local="129407567665064197" remote="129407567660000000" />
 <file name="geojson.php" server="D:/Luan Van/cantho-webgis/" local="129407569276296355" remote="129407569270000000" />
-<file name="marker2.php" server="D:/Luan Van/cantho-webgis/" local="129407570480935256" remote="129407570480000000" />
+<file name="map.php" server="D:/Luan Van/cantho-webgis/cantho-map/" local="129410505624471291" remote="129410505620000000" />
+<file name="rightclick.php" server="D:/Luan Van/cantho-webgis/cantho-map/" local="129409651097220418" remote="129409651090000000" />
+<file name="selection.php" server="D:/Luan Van/cantho-webgis/cantho-map/" local="129407562059173559" remote="129407562050000000" />
+<file name="marker2.php" server="D:/Luan Van/cantho-webgis/cantho-map/" local="129418043038736750" remote="129418043030000000" />
 </dwsync>

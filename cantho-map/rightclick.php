@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>Filter Feature</title>
+<title>Right Click</title>
 <style type="text/css">
 #map {
 	border: 1px solid black;
@@ -53,7 +53,7 @@
 				"http://localhost:8080/geoserver/wms", {
 					height : '406',
 					width : '512',
-					layers : 'ws_cantho:QuanHuyen',
+					layers : 'ws_cantho:quanhuyen,ws_cantho:giaothong',
 					styles : '',
 					srs : 'EPSG:4326',
 					format : format,
@@ -86,14 +86,70 @@
 		map.addControl(new OpenLayers.Control.MousePosition({
 			element : $('location')
 		}));		
-		
+		/*
 		map.div.oncontextmenu = function noContextMenu(e) {
 			if (OpenLayers.Event.isRightClick(e)) {
 				alert("Right button click"); // Add the right click menu here
 			}
 			return false; //cancel the right click of brower
 		};
+		*/
+		// Get control of the right-click event:
+		document.getElementById('map').oncontextmenu = function(e){
+		 e = e ? e:window.event;
+		 if (e.preventDefault) e.preventDefault(); // For non-IE browsers.
+		 else return false; // For IE browsers.
+		};
 		
+		
+		// A control class for capturing click events...
+		OpenLayers.Control.Click = OpenLayers.Class(OpenLayers.Control, {                
+		
+		defaultHandlerOptions: {
+		'single': true,
+		'double': true,
+		'pixelTolerance': 0,
+		'stopSingle': false,
+		'stopDouble': false
+		},
+		handleRightClicks:true,
+		initialize: function(options) {
+		this.handlerOptions = OpenLayers.Util.extend(
+		{}, this.defaultHandlerOptions
+		);
+		OpenLayers.Control.prototype.initialize.apply(
+		this, arguments
+		); 
+		this.handler = new OpenLayers.Handler.Click(
+		this, this.eventMethods, this.handlerOptions
+		);
+		},
+		CLASS_NAME: "OpenLayers.Control.Click"
+		
+		});
+		
+		
+		// Add an instance of the Click control that listens to various click events:
+		var oClick = new OpenLayers.Control.Click({eventMethods:{
+		'rightclick': function(e) {
+		alert('rightclick at '+e.xy.x+','+e.xy.y);
+		},
+		'click': function(e) {
+		pixel=new OpenLayers.Pixel(e.xy.x,e.xy.y);
+		lonlat=map.getLonLatFromPixel(pixel);
+		//alert('click at '+e.xy.x+','+e.xy.y);
+		alert("click at (lonlat): "+lonlat.lon+','+lonlat.lat);
+		
+		},
+		'dblclick': function(e) {
+		alert('dblclick at '+e.xy.x+','+e.xy.y);
+		},
+		'dblrightclick': function(e) {
+		alert('dblrightclick at '+e.xy.x+','+e.xy.y);
+		}
+		}});
+		map.addControl(oClick);
+		oClick.activate();
 		var lonLat = new OpenLayers.LonLat(lon, lat).transform(
 				new OpenLayers.Projection("EPSG:4326"), map
 						.getProjectionObject());
