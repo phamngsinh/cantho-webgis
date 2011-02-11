@@ -1,0 +1,11 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  Type NATIVE Charset "WindowsVietnamese"
+  Fields 4
+    ma_duong Char (10) ;
+    ten_duong Char (30) ;
+    loai_duong Char (15) ;
+    mot_chieu Smallint ;
