@@ -22,11 +22,11 @@
 }
 </style>
 
-<script type="text/javascript" src="Libs/openlayers/OpenLayers.js"></script>
-<script type="text/javascript" src="Libs/jquery-1.4.4.js"></script>
+<script type="text/javascript" src="libs/openlayers/OpenLayers.js"></script>
+<script type="text/javascript" src="libs/jquery-1.4.4.js"></script>
 <script type="text/javascript" defer="defer">
 	var map;
-	OpenLayers.ProxyHost = "http://localhost/cantho-map/cgi-bin/proxy.cgi?url=";
+	//OpenLayers.ProxyHost = "http://localhost/cantho-map/cgi-bin/proxy.cgi?url=";
 	function init() {
 		format = 'image/png';
 
