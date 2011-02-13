@@ -1,9 +1,0 @@
-!table
-!version 300
-!charset WindowsVietnamese
-
-Definition Table
-  Type NATIVE Charset "WindowsVietnamese"
-  Fields 2
-    Ma_Ngan_Hang Char (4) ;
-    Ten_Ngan_Hang Char (10) ;
