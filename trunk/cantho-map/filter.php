@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -31,7 +31,8 @@
 		});
 	});
 
-	OpenLayers.ProxyHost = "http://localhost/cantho-map/cgi-bin/proxy.cgi?url=";
+	//OpenLayers.ProxyHost = "http://localhost/cantho-map/cgi-bin/proxy.cgi?url=";
+	OpenLayers.ProxyHost = "cgi-bin/proxy.cgi?url=";
 	var map, info, select_control;
 
 	function Filter(text) {
@@ -88,7 +89,7 @@
 		// setup tiled layer
 		uy_ban = new OpenLayers.Layer.WMS("Uy Ban",
 				"http://localhost:8080/geoserver/wms", {
-					layers : 'ws_cantho:UyBan',
+					layers : 'ws_cantho:uyban',
 					srs : 'EPSG:4326',
 					format : format,
 					transparent : true,
@@ -111,7 +112,7 @@
 			strategies : [ new OpenLayers.Strategy.BBOX() ],
 			protocol : new OpenLayers.Protocol.WFS({
 				url : "http://localhost:8080/geoserver/wfs",
-				featureType : "KhachSan",
+				featureType : "khachsan",
 				featureNS : "http://opengeo.org/ws_cantho"
 			}),
 			styleMap: khach_san_styles
@@ -146,7 +147,7 @@
 				INFO_FORMAT : 'application/vnd.ogc.gml',
 				QUERY_LAYERS : map.layers[0].params.LAYERS,
 				FEATURE_COUNT : 10,
-				Layers : 'ws_cantho:UyBan',
+				Layers : 'ws_cantho:uyban',
 				Styles : '',
 				Srs : 'EPSG:4326',
 				WIDTH : map.size.w,
