@@ -21,6 +21,7 @@
 	$startEdge = findNearestEdge($startPoint);
 	$endEdge = findNearestEdge($endPoint);
 	// FUNCTION findNearestEdge
+	
 	function findNearestEdge($lonlat) 
 	{
 		// Connect to database
@@ -44,6 +45,7 @@
 		pg_close($con);
 		return $edge;
 	}
+	
 	//print_r($startEdge);
 	
 	$sql = "SELECT rt.gid, ST_AsGeoJSON(rt.the_geom) AS geojson,
