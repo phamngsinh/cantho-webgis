@@ -63,8 +63,7 @@
 		$dbcon = pg_connect("dbname=".PG_DB." host=".PG_HOST." port=".PG_PORT." user=".PG_USER." password=".PG_PASSWORD);
 		// Perform database query
 		$query = pg_query($dbcon,$sql);
-		//echo pg_num_rows($query);
-		
+		//echo pg_num_rows($query);		
 	
 		// Return route as GeoJSON
 		$geojson = array(

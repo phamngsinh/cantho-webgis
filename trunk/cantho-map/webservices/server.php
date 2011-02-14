@@ -1,5 +1,5 @@
 <?php
-require_once('libs/nusoap.php'); 
+require_once('../php/nusoap/nusoap.php'); 
  
 $server = new nusoap_server;
  
