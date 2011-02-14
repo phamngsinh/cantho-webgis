@@ -11,10 +11,8 @@ $(document).ready(function(){
 															 callWebservice($("#txt_str").val());
 															 });
 						   });//end function $(document).ready(function()
-
-
 //var url = 'http://localhost/cantho-map/webservice/server.php?wsdl'; 
- var url = 'http://localhost/cantho-map/webservices/service.php?wsdl';
+var url = 'http://localhost/cantho-map/webservices/service.php?wsdl';
 function callWebservice(str) /*Add parameters and what not*/ { 
  /*
     //Example of a xml request probably put this is the parameter 
