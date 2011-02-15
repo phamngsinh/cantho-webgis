@@ -52,7 +52,7 @@ img, input {
 	float:left;
 	font-size:13px;
 	display:block;
-	padding:5px 19px;	
+	padding:5px 15px;	
 	text-decoration:none;
 	border:1px solid #666;	
 	border-bottom:0px;
@@ -103,7 +103,7 @@ img, input {
     left: 52px;
     padding: 3px 23px 4px 6px;
     position: absolute;
-    width: 190px;
+    width: 180px;
 }
 .del-timduong {
     background: url("images/del.png") no-repeat scroll 0 0 transparent;
@@ -115,10 +115,10 @@ img, input {
 }
 
 .btn-timduong {
-    background: url("images/s_but.png") no-repeat scroll 0 0 transparent;
+    background: url("images/search.png") no-repeat scroll 0 0 transparent;
     display: block;
     height: 13px;
-    left: 280px;
+    left: 267px;
     position: absolute;
 	text-indent: -9999px;
     width: 13px;
@@ -349,6 +349,7 @@ a {
     top: 6px;
     width: 8px;
 }
+
 </style>
 <script>
 function OnblurTextBoxAB(a){
@@ -414,63 +415,171 @@ function shrinkMap(){
 
 
 
+<script type="text/javascript" src="libs/jquery/contextmenu/jquery.contextMenu.js"></script>
+<link type="text/css" rel="stylesheet" href="libs/jquery/contextmenu/jquery.contextMenu.css"></link>
+<script type="text/javascript" src="libs/web/DrawPoints.js"></script>
 <script type="text/javascript" defer="defer">
-	var map;
-	//OpenLayers.ProxyHost = "http://localhost/cantho-map/cgi-bin/proxy.cgi?url=";
-	function init() {
-		format = 'image/png';
-		var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294,
-				1141760.714);
+	
+	$(document).ready(function(){
+							   $("#map").contextMenu({menu:'myMenu'},
+													 function(action,el,pos){contextMenuWork(action,el,pos);}
+													 );
+							   
+							   function contextMenuWork(action,el,pos)
+							   {
+									switch(action)
+									{
+										case "tu_day":
+										{
+											//alert("action firstpoint at position: X="+pos.x+': y='+pos.y+'\n'+'Element ID: '+$(el).attr('id'));
+											/*create marker for first point*/											
+											var pixel= new OpenLayers.Pixel(pos.x,pos.y);											
+											alert('position: '+pixel);
+											var lonlat = map.getLonLatFromViewPortPx(pixel);
+																																	
+											break;
+										}
+										case "den_day":
+										{
+											break;
+										}										
+									}
+							   }
+							   
+							   });//end $(document).ready(function()
+	
+	
+	function init()
+	{
+		//KHAI BAO MARKER
+		var SHADOW_Z_INDEX = 10;
+		var MARKER_Z_INDEX = 11;
+		var DIAMETER = 200;
+		var NUMBER_OF_FEATURES = 15;
+		var map;
+		OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
+		// make OL compute scale according to WMS spec
+		OpenLayers.DOTS_PER_INCH = 25.4 / 0.28; 
+		var format='image/png';
+		var bounds = new OpenLayers.Bounds(
+						524847.24, 1097030.63,
+						592626.076, 1142071.805
+					); 
 		var options = {
-			controls : [
-			//new OpenLayers.Control.PanZoom(),
-			//new OpenLayers.Control.Permalink(),
-			//new OpenLayers.Control.Navigation() 
-			],
-			maxExtent : bounds,
-			maxResolution : 205.84301171874995,
-			projection : "EPSG:4326",
-			units : 'degrees',
-			isBaselayer : 'true'
-		};
-		map = new OpenLayers.Map('map',options);
-		base_layer = new OpenLayers.Layer.WMS("Quan_huyen",
-				"http://localhost:8080/geoserver/wms", {
-					height : '406',
-					width : '512',
-					layers : 'ws_cantho:QuanHuyen',
-					styles : '',
-					srs : 'EPSG:4326',
-					format : format,
-					tiled : 'true',
-					transparent : 'false',
-					isBaselayer : 'true',
-					tilesOrigin : map.maxExtent.left + ','
-							+ map.maxExtent.bottom
-				}, {
-					buffer : 0,
-					displayOutsideMaxExtent : true
-				});
-		map.addLayers([ base_layer ]);
-		map.addControl(new OpenLayers.Control.PanZoomBar({
-			position : new OpenLayers.Pixel(15, 15)
+						controls: [],
+						maxExtent: bounds,
+						maxResolution: 264.76107812500004,
+						projection: "EPSG:4326",
+						units: 'degrees',
+						numZoomLevels: 11
+					}; 
+		map=new OpenLayers.Map('map',options);	
+		
+		// setup tiled layer
+		quan_huyen = new OpenLayers.Layer.WMS(
+				"quan huyen", 
+				"http://localhost:8080/geoserver/wms",
+				{
+					layers: 'ws_cantho:quanhuyen',
+					styles: '',
+					srs: 'EPSG:4326',
+					format: format,
+					tiled: 'true',
+					transparent: true,
+					tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
+				},
+				{
+					buffer: 0,
+					isBaseLayer:true
+					//displayOutsideMaxExtent: true
+				}
+		); 
+	giao_thong= new OpenLayers.Layer.WMS(
+					 "giao thong",
+					 "http://localhost:8080/geoserver/wms",
+					 {
+						 layers: 'ws_cantho:giaothong',
+						 styles:'',
+						 srs: 'EPSG:4326',
+						 tiled: true,
+						 transparent: true,
+						 tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
+					 },
+					 {
+						 buffer: 0,
+						 isBaseLayer: false
+					 }
+					 );
+		truong = new OpenLayers.Layer.WMS(
+					 "truong",
+					 "http://localhost:8080/geoserver/wms",
+					 {
+						 layers: 'ws_cantho:truong',
+						 styles:'',
+						 srs: 'EPSG:4326',
+						 tiled: true,
+						 transparent: true,
+						 tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
+					 },
+					 {
+						 buffer: 0,
+						 isBaseLayer: false
+					 }
+					 );
+		
+		map.addLayers([quan_huyen,giao_thong,truong]);
+		// build up all controls
+		var options = {mapOptions: {numZoomLevels: 1}};
+			map.addControl(new OpenLayers.Control.PanZoomBar({
+			position: new OpenLayers.Pixel(2, 15)
 		}));
+		map.addControl(new OpenLayers.Control.LayerSwitcher());
 		map.addControl(new OpenLayers.Control.Navigation());
 		map.addControl(new OpenLayers.Control.Scale($('scale')));
-		map.addControl(new OpenLayers.Control.MousePosition({
-			element : $('location')
-		}));		
-    	map.div.oncontextmenu = function noContextMenu(e) {
-			if (OpenLayers.Event.isRightClick(e)) {
-				alert("Right button click"); // Add the right click menu here
+		map.addControl(new OpenLayers.Control.MousePosition({element: $('location')}));		
+   		map.addControl(new OpenLayers.Control.OverviewMap(options));
+		map.zoomToMaxExtent(); 
+				
+		// create the layer where the route will be drawn
+		var route_layer = new OpenLayers.Layer.Vector("route", {
+			styleMap: new OpenLayers.StyleMap(new OpenLayers.Style({
+				strokeColor: "#ff9933",
+				strokeWidth: 3
+			}))
+		});
+		// create the layer where the start and final points will be drawn
+				
+		var points_layer = new OpenLayers.Layer.Vector("Points", {
+			styleMap : new OpenLayers.StyleMap({
+				externalGraphic : "images/marker-gold.png",
+				backgroundGraphic : "images/marker_shadow.png",
+				backgroundXOffset : 0,
+				backgroundYOffset : -7,
+				graphicZIndex : MARKER_Z_INDEX,
+				backgroundGraphicZIndex : SHADOW_Z_INDEX,
+				pointRadius : 10
+			}),
+			isBaseLayer : false,
+			rendererOptions : {
+				yOrdering : true
 			}
-			return false; //cancel the right click of brower
-		};
-		var lonLat = new OpenLayers.LonLat(lon, lat).transform(
-				new OpenLayers.Projection("EPSG:4326"), map
-						.getProjectionObject());
-		map.setCenter(lonLat, zoom);
-	}
+		});
+		
+		map.addLayers([route_layer,points_layer]);
+		
+		// create the control to draw the points (see the DrawPoints.js file)
+		//var draw_points = new DrawPoints(points_layer);		
+		// create the control to move the points
+		var drag_points = new OpenLayers.Control.DragFeature(points_layer, {
+		autoActivate: true
+		});
+		
+		// add the controls to the map
+		map.addControls([drag_points]);		
+		
+	}//end function inti();		
+	
+	
 </script>
 </head>
 <body  onload="init()">
@@ -543,7 +652,7 @@ function shrinkMap(){
                                     <div class="SWRight" style="z-index: 870;">
                                         <div class="SWContent" style="z-index: 868;">
                                             <div class="SWBut" style="z-index: 866;"><a onclick="LoadTree()">Tìm ở</a></div>
-                                            <div id="TreeFilter" style="z-index: 864;"><div style="display: inline; white-space: normal; z-index: 862;" id="map_path_div"><a onclick="TreeBinding.NavigatorClick(event,0,'Việt Nam','VN')">Việt Nam</a></div></div>
+                                            <div id="TreeFilter" style="z-index: 864;"><div style="display: inline; white-space: normal; z-index: 862;" id="map_path_div"><a onclick="TreeBinding.NavigatorClick(event,0,'Việt Nam','VN')">Cần Thơ</a></div></div>
                                             <br style="clear: both;">
                                         </div>
                                         <a onclick="TreeBinding.ResetTree()" style="display: none;" class="SWCloseArea"></a>
@@ -558,7 +667,10 @@ function shrinkMap(){
 			<div id="login">	
 					<a href="#" class="a_help" id="a_help">Hướng dẫn </a>	&nbsp;|	
 					<a href="#" class="a_login" id="a_login">Đăng nhập </a>				
-			</div>			
+			</div>	
+			<div id="centerSplit1" class="splExpand1">
+            <a id="moveicon1" class="moveicon1" onclick="moveIconClick1()"></a>
+        	</div>		
 	</div>                
 	<div class = "left_content"  id = "left_content"> 
 		<div class = "left_top_content" id = "left_top_content">
@@ -618,14 +730,24 @@ function shrinkMap(){
 
 	<div class = "right_content" id = "right_content"> 
    		<div class = "right_top_content" id = "right_top_content">
-			<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_title">
-							<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">In Bản Đồ</a>			</div>
-			<div style="background: url('images/hospital.gif') no-repeat scroll left center transparent;" class="taskbar_title">
-							<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">Thu Nhỏ</a>			</div>
-			<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_title">
-						<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">Phóng To</a>			</div>		
+		<div style="background: url('images/reverse.png') no-repeat scroll left center transparent;" class="taskbar_title">
+				<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">&nbsp;</a></div>
+			<div style="background: url('images/printIcon.gif') no-repeat scroll left center transparent;" class="taskbar_title">
+				<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">&nbsp;</a></div>
+			<div style="background: url('images/ZoomIn.png') no-repeat scroll left center transparent;" class="taskbar_title">
+				<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">&nbsp;</a>			</div>
+			<div style="background: url('images/ZoomOut.png') no-repeat scroll left center transparent;" class="taskbar_title">
+				<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">&nbsp;</a>			</div>		
 		</div>
 		<div class = "right_middle_content" id = "map"> </div>
+		<div id="wrapper"></div>
+		<div id="location"></div>
+		<div id="scale"></div>
+		<!-- Right Click Menu -->
+		<ul id="myMenu" class="contextMenu">    
+			<li class="tu_day"><a href="#tu_day">Từ đây</a></li>
+			<li class="den_day"><a href="#den_day">Đến đây</a></li>            
+		</ul>
 		<div class = "right_bottom_content" class = "right_bottom_content">
 					<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_title">
 						<a href="http://localhost/cantho-map" onclick="" class="menu_taskbar">Cơ Quan</a>

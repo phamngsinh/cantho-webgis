@@ -6,7 +6,7 @@ body {
 .header_content{
     background: url("../images/ab.png") repeat-x scroll left top transparent;
 	width:100%;
-	height: 12%;
+	height: 15%;
 	position: fixed;
 	top:0;
 	left:0;
@@ -21,11 +21,11 @@ body {
 }
 .left_content{
 	width:25%;
-	background-color: #CCCC00;
-	height:100%;
+	height:85%;
 	position:fixed;
 	left:0;
-	top:12%;
+	top:15%;
+	border-right:1px solid #CCCC33;
 }
 .splExpand {
     background: url("../images/bg-splExpand.png") repeat-y scroll 0 0 transparent;
@@ -42,7 +42,7 @@ body {
 	left:0;
 	position:absolute;
 	height:70%;
-	background-color:#66CC99;
+	background-color: #FFCCFF;
 }
 .left_bottom_content{
 	bottom:0;
@@ -61,12 +61,32 @@ body {
 	top:42%;
 	cursor:pointer;
 }
+.moveicon1 {
+    background: url("../images/moveicon1.png") no-repeat scroll bottom left transparent;
+    cursor: pointer;
+    height: 18px;
+    top: 4px;
+    position: absolute;
+    left: 60%;
+    width: 35px;
+    z-index: 10;
+}
+.splExpand1 {
+    background: url("../images/bg-splExpand1.png") repeat-x scroll 0 0 transparent;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    height: 9px;
+    z-index: 10;
+}
 .right_content{
 	/*background-color: #CCCC66;*/
-	height:100%;
+	height:81%;
 	right:0;
 	position: fixed;
-	top:12%;
+	top:15%;
 	width:75%;
 }
 .right_top_content {
@@ -75,13 +95,15 @@ body {
 	right:0;
     height: 25px;
     position: absolute;
-    width: 25%;
     z-index: 10;
+	border-left:1px solid #CCCC33;
+	border-bottom:1px solid #CCCC33;
 }
 .right_middle_content{
 	width:100%;
 	height:100%;
 	position:absolute;
+	border-top:1px solid #CCCC33;
 }
 .right_bottom_content {
     background: url("../images/bg_taskbar.gif") repeat-x scroll center top transparent;
@@ -111,7 +133,7 @@ body {
 }
 .menu_taskbar {
     color: #0066FF;
-    padding-left: 20px;
+    padding-left: 18px;
     text-decoration: none;
 	
 }
