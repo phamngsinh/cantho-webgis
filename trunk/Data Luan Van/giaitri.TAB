@@ -1,0 +1,12 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  Type NATIVE Charset "WindowsVietnamese"
+  Fields 5
+    magiaitri Char (10) ;
+    tengiaitri Char (100) ;
+    loaigiaitri Char (10) ;
+    diachi Char (100) ;
+    sodienthoai Char (15) ;
