@@ -1,0 +1,10 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  Type NATIVE Charset "WindowsVietnamese"
+  Fields 3
+    macongvien Char (10) ;
+    tencongvien Char (100) ;
+    mota Char (254) ;
