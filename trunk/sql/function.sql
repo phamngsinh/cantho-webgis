@@ -142,14 +142,17 @@ CREATE OR REPLACE FUNCTION split_multi_from_any_point( x float, y float)
 		nearest_edge_id integer;
 		point_text text;
 		result text;
+		max_id_dinh integer;
 	BEGIN
-		point_text='POINT(' || x || ' ' || y ||  ')';
+		max_id_dinh:= MAX(id) FROM vertices_tmp ;
+		max_id_dinh:= max_id_dinh+1;
+		point_text:='POINT(' || x || ' ' || y ||  ')';
 		nearest_edge:= find_nearest_edge(x,y);
 		nearest_edge_id:= gid from giaothong where astext(the_geom)= astext(nearest_edge);
 		nearest_point:= ST_ClosestPoint(nearest_edge, ST_GeomFromText(point_text,4326) );
 		nearest_point_text:=Astext(nearest_point);
 		result:=split_multilinestring(nearest_edge_id,ST_GeomFromText(nearest_point_text,4326));
-		result:=result || '$' || nearest_edge_id;
+		result:=result || '$' || nearest_edge_id || '$'|| max_id_dinh;
 		return result;
 	END;
 	$BODY$
