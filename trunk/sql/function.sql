@@ -74,10 +74,10 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 		--return end_point;
 		IF start_point=astext(point_click) THEN
 			result_id:= id FROM vertices_tmp WHERE astext(the_geom)=start_point;
-			return '_'||result_id;
+			return '_$'||result_id;
 		ELSIF end_point=astext(point_click) THEN
 			result_id:= id FROM vertices_tmp where astext(the_geom)=end_point;
-			return '_'||result_id;			
+			return '_$'||result_id;			
 		ELSE
 		   FOR j IN 1 .. num_of_point LOOP	
 			point_geom:= PointN(the_geom,j)from giaothong where gid=gid_a;
