@@ -20,14 +20,14 @@ $BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select astext(find_nearest_edge(586784.60011,1110326.84542));
-select gid from giaothong where astext(the_geom)='MULTILINESTRING((586600.75961377 1110703.82196152,586839.741299955 1110838.30070018,586883.099523724 1110772.02653712,586903.953707454 1110723.43615316,586940.498024672 1110615.38306177,586989.234780005 1110465.02092876,586993.9286212 1110430.69359287,586985.968064515 1110387.76441873,586962.523606381 1110316.75924463,586882.901540967 1110373.78143051))' 
+select astext(find_nearest_edge(586302.31032,1109833.62530));
+select gid from giaothong where astext(the_geom)='MULTILINESTRING((586227.009415082 1109865.85288409,586264.700382433 1109856.87096462,586325.390346716 1109809.93093334))' 
 
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --Tim diem gan nhat(tren canh gan nhat) cua mot diem duoc click tren ban do
-select Astext(ST_ClosestPoint( ST_GeomFromText('MULTILINESTRING((584378.469161413 1110202.504828,584431.94925363 1110238.10243535,584449.223249173 1110239.86281155,584463.057294314 1110234.74171715,584493.059931271 1110211.35671968,584529.365019324 1110202.85490281,584558.163261177 1110201.77467196,584586.367554759 1110209.84639692,584603.608553175 1110226.47995158,584613.862410128 1110272.71983323,584626.714790766 1110321.10017231,584639.616667093 1110344.87525314,584657.154639645 1110355.78758515,584678.743009433 1110360.7086368,584868.831203936 1110350.55646724,584928.448761618 1110346.11551819,585012.508940501 1110358.61819006,585033.528109862 1110361.52881207,585096.585617947 1110362.52902582,585134.342579551 1110350.31641594))',4326), 
-ST_GeomFromText('POINT(584965.92584 1110320.31818)',4326)))
+select Astext(ST_ClosestPoint( ST_GeomFromText('MULTILINESTRING((586227.009415082 1109865.85288409,586264.700382433 1109856.87096462,586325.390346716 1109809.93093334))',4326), 
+ST_GeomFromText('POINT(586302.31032 1109833.62530)',4326)))
 
 
 select ST_Intersects(ST_GeomFromText('MULTILINESTRING((584378.469161413 1110202.504828,584431.94925363 1110238.10243535,584449.223249173 1110239.86281155,584463.057294314 1110234.74171715,584493.059931271 1110211.35671968,584529.365019324 1110202.85490281,584558.163261177 1110201.77467196,584586.367554759 1110209.84639692,584603.608553175 1110226.47995158,584613.862410128 1110272.71983323,584626.714790766 1110321.10017231,584639.616667093 1110344.87525314,584657.154639645 1110355.78758515,584678.743009433 1110360.7086368,584868.831203936 1110350.55646724,584928.448761618 1110346.11551819,585012.508940501 1110358.61819006,585033.528109862 1110361.52881207,585096.585617947 1110362.52902582,585134.342579551 1110350.31641594))',4326),
@@ -67,7 +67,7 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 		result1:='';
 		result2:='';
 		len1:=0;
-		len1:=0;		
+		len2:=0;		
 		num_of_point:= ST_NumPoints(the_geom) FROM giaothong where gid=gid_a;
 		start_point:= astext(PointN(the_geom,1)) from giaothong where gid=gid_a;		
 		end_point:= astext(PointN(the_geom,num_of_point)) from giaothong where gid=gid_a;
@@ -91,10 +91,8 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 			END IF;   
 			SELECT INTO p ST_intersects(ST_GeomFromText(line,4326),ST_GeomFromText(AsText(ST_Buffer($2,0.001)),4326));-----------------------------------------------
 			IF p!= 't' THEN
-				    result1:= result1 ||X(temp[j])||' '||Y(temp[j])||', ';--chac chan la ko  tai j = 1 vi tai j=1 p =null  
-				   				    
+				    result1:= result1 ||X(temp[j])||' '||Y(temp[j])||', ';--chac chan la ko  tai j = 1 vi tai j=1 p =null  		   				    
 			END IF;
-			
 			IF p = 't' THEN
 			    result1:= result1 ||X(point_click)||' '||Y(point_click);
 			    result1:='MULTILINESTRING'||'((' || result1 || '))';
@@ -110,6 +108,8 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 			    END LOOP;
 				len1:=ST_Length(ST_GeomFromText(result1,4326));
 				len2:=ST_Length(ST_GeomFromText(result2,4326));
+				result1:=ST_AsGML(ST_GeomFromText(result1,4326));
+				result2:=ST_AsGML(ST_GeomFromText(result2,4326));
 				result:= result1||'$'||len1||'$'||result2||'$'||len2;
 				return result1||'$'||len1||'$'||result2||'$'||len2;
 			END IF;
@@ -142,27 +142,22 @@ CREATE OR REPLACE FUNCTION split_multi_from_any_point( x float, y float)
 		nearest_edge_id integer;
 		point_text text;
 		result text;
-		max_id_dinh integer;
 	BEGIN
-		max_id_dinh:= MAX(id) FROM vertices_tmp ;
-		max_id_dinh:= max_id_dinh+1;
 		point_text:='POINT(' || x || ' ' || y ||  ')';
 		nearest_edge:= find_nearest_edge(x,y);
 		nearest_edge_id:= gid from giaothong where astext(the_geom)= astext(nearest_edge);
 		nearest_point:= ST_ClosestPoint(nearest_edge, ST_GeomFromText(point_text,4326) );
 		nearest_point_text:=Astext(nearest_point);
 		result:=split_multilinestring(nearest_edge_id,ST_GeomFromText(nearest_point_text,4326));
-		result:=result || '$' || nearest_edge_id || '$'|| max_id_dinh;
+		result:=result || '$' || nearest_edge_id;
 		return result;
 	END;
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select split_multi_from_any_point(586801.20215,1110303.85798);
+select split_multi_from_any_point(585713.49659,1109864.59449);
 select astext(ST_GeomFromText('MULTILINESTRING((585699.6740927 1109929.70652988, 585699.6740927 1109929.70652988))',4326))
 
 
-"MULTILINESTRING((584378.469161413 1110202.504828, 584431.94925363 1110238.10243535, 584449.223249173 1110239.86281155, 584463.057294314 1110234.74171715, 584493.059931271 1110211.35671968, 584529.365019324 1110202.85490281, 584558.163261177 1110201.77467196, 584586.367554759 1110209.84639692, 584603.608553175 1110226.47995158, 584613.862410128 1110272.71983323, 584626.714790766 1110321.10017231, 584639.616667093 1110344.87525314, 584657.154639645 1110355.78758515, 584678.743009433 1110360.7086368, 584868.831203936 1110350.55646724, 584928.448761618 1110346.11551819, 584961.360797521 1110351.01068247))$704.483401894639$MULTILINESTRING((584961.360797521 1110351.01068247, 585012.508940501 1110358.61819006, 585033.528109862 1110361.52881207, 585096.585617947 1110362.52902582, 585134.342579551 1110350.31641594))$175.678918376048$106"
-
-
+"<gml:MultiLineString srsName="EPSG:4326"><gml:lineStringMember><gml:LineString><gml:coordinates>585687.37441392604,1109862.5721829899 585709.97744534304,1109865.5028092801 585713.08840868506,1109866.2635974099</gml:coordinates></gml:LineString></gml:lineStringMember></gml:MultiLineString>$25.9948649467137$<gml:MultiLineString srsName="EPSG:4326"><gml:lineStringMember><gml:LineString><gml:coordinates>585713.08840868506,1109866.2635974099 585731.40907878103,1109870.74392933 585747.89939257805,1109881.4362143199 585758.02126102604,1109890.6681872299 585762.93783282302,1109895.57923674</gml:coordinates></gml:LineString></gml:lineStringMember></gml:MultiLineString>$59.162801237367$122"
