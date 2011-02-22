@@ -270,17 +270,8 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				     return   result; 
 				END IF;	
 			END LOOP;
-
-
-
-
-
-
-
-
 			b1:='';
-			b2:='';
-			
+			b2:='';			
 			geom_a2:=ST_GeomFromText(a2,4326);
 			num_of_point:= ST_NumPoints(geom_a2);
 			start_point:= astext(PointN(geom_a2,1));		
@@ -322,7 +313,6 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				    
 				    lenb1:=ST_Length(ST_GeomFromText(b1,4326));
 				    lenb2:=ST_Length(ST_GeomFromText(b2,4326));
-				   
 				    result:=a1||'$'||lena1||'$'||id1||'$'||b1||'$'||lenb1||'$'||id2||'$'||b2||'$'||lenb2   ;
 				    RETURN  result  ;
 				END IF;	
@@ -360,10 +350,10 @@ CREATE OR REPLACE FUNCTION split_multi_from_two_point( x1 float, y1 float, x2 fl
 		end if;
 		nearest_point1:= ST_ClosestPoint(nearest_edge1, ST_GeomFromText(point_text1,4326) );
 		nearest_point_text1:=Astext(nearest_point1);
-		--nearest_point2:= ST_ClosestPoint(nearest_edge2, ST_GeomFromText(point_text2,4326) );
-		--nearest_point_text2:=Astext(nearest_point2);
-		--result:=split_multilinestring2(nearest_edge_id1,ST_GeomFromText(nearest_point_text1,4326),ST_GeomFromText(nearest_point_text2,4326));
-		return Astext(ST_ClosestPoint(nearest_edge1, ST_GeomFromText(point_text1,4326)));
+		nearest_point2:= ST_ClosestPoint(nearest_edge2, ST_GeomFromText(point_text2,4326) );
+		nearest_point_text2:=Astext(nearest_point2);
+		result:=split_multilinestring2(nearest_edge_id1,ST_GeomFromText(nearest_point_text1,4326),ST_GeomFromText(nearest_point_text2,4326));
+		return result;
 	END;
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
