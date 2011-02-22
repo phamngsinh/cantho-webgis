@@ -22,7 +22,7 @@ public class CanThoMap {
 	Statement s;  
 	ResultSet rs, rs_nut, rs_canh, rs_1, rs_2, rs_nut_moi;
 
-	public String getDuongDi(int param_source, int param_target) throws ClassNotFoundException {		
+	public String getDuongDi(double x1, double y1,double x2,double y2) throws ClassNotFoundException {		
 		try {								
 			this.openConnection();			
 			
@@ -105,10 +105,12 @@ public class CanThoMap {
 			double y2 = 1111764.69575;
 			*/
 			//hai diem nam tai hai dinh cua mot canh 
+			/*
 			double x1 = 586286.42664;
 			double y1 = 1111763.41867;
 			double x2 = 586281.79722;
 			double y2 = 1111536.85668;
+			*/
 			/***** Danh sach canh va nut *****/
 			List<Canh> edges = new ArrayList<Canh>();
 			List<Nut> nodes = new ArrayList<Nut>();
@@ -517,7 +519,7 @@ public class CanThoMap {
 			for (Nut vertex : path) {
 				System.out.println(vertex.getName());		
 			}					
-			Double chi_phi=dijkstra.getCost(nodes.get(param_target));
+			Double chi_phi=dijkstra.getCost(nodes.get(end_point-1));
 			this.closeConnection(); 
 			return gml;
 			//return "hoang";
@@ -580,7 +582,8 @@ public class CanThoMap {
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException, CloneNotSupportedException {
 		CanThoMap obj = new CanThoMap();
-		System.out.println(obj.getDuongDi(1, 2));
+
+		System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
 		//String coquan_gml=obj.getDiaDiem("coquan","can tho");
 		//System.out.println(coquan_gml);
 	}
