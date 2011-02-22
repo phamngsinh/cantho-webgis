@@ -20,23 +20,23 @@ $BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select astext(find_nearest_edge(586302.31032,1109833.62530));
-select gid from giaothong where astext(the_geom)='MULTILINESTRING((586227.009415082 1109865.85288409,586264.700382433 1109856.87096462,586325.390346716 1109809.93093334))' 
+--select astext(find_nearest_edge(586302.31032,1109833.62530));
+--select gid from giaothong where astext(the_geom)='MULTILINESTRING((586227.009415082 1109865.85288409,586264.700382433 1109856.87096462,586325.390346716 1109809.93093334))' 
 
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --Tim diem gan nhat(tren canh gan nhat) cua mot diem duoc click tren ban do
-select Astext(ST_ClosestPoint( ST_GeomFromText('MULTILINESTRING((586227.009415082 1109865.85288409,586264.700382433 1109856.87096462,586325.390346716 1109809.93093334))',4326), 
-ST_GeomFromText('POINT(586302.31032 1109833.62530)',4326)))
+--select Astext(ST_ClosestPoint( ST_GeomFromText('MULTILINESTRING((586227.009415082 1109865.85288409,586264.700382433 1109856.87096462,586325.390346716 1109809.93093334))',4326), 
+--ST_GeomFromText('POINT(586302.31032 1109833.62530)',4326)))
 
 
-select ST_Intersects(ST_GeomFromText('MULTILINESTRING((584378.469161413 1110202.504828,584431.94925363 1110238.10243535,584449.223249173 1110239.86281155,584463.057294314 1110234.74171715,584493.059931271 1110211.35671968,584529.365019324 1110202.85490281,584558.163261177 1110201.77467196,584586.367554759 1110209.84639692,584603.608553175 1110226.47995158,584613.862410128 1110272.71983323,584626.714790766 1110321.10017231,584639.616667093 1110344.87525314,584657.154639645 1110355.78758515,584678.743009433 1110360.7086368,584868.831203936 1110350.55646724,584928.448761618 1110346.11551819,585012.508940501 1110358.61819006,585033.528109862 1110361.52881207,585096.585617947 1110362.52902582,585134.342579551 1110350.31641594))',4326),
-ST_GeomFromtext(ASText(ST_Buffer(ST_GeomFromText('POINT(584961.360797522 1110351.01068248)',4326),0.001)),4326));
+--select ST_Intersects(ST_GeomFromText('MULTILINESTRING((584378.469161413 1110202.504828,584431.94925363 1110238.10243535,584449.223249173 1110239.86281155,584463.057294314 1110234.74171715,584493.059931271 1110211.35671968,584529.365019324 1110202.85490281,584558.163261177 1110201.77467196,584586.367554759 1110209.84639692,584603.608553175 1110226.47995158,584613.862410128 1110272.71983323,584626.714790766 1110321.10017231,584639.616667093 1110344.87525314,584657.154639645 1110355.78758515,584678.743009433 1110360.7086368,584868.831203936 1110350.55646724,584928.448761618 1110346.11551819,585012.508940501 1110358.61819006,585033.528109862 1110361.52881207,585096.585617947 1110362.52902582,585134.342579551 1110350.31641594))',4326),
+--ST_GeomFromtext(ASText(ST_Buffer(ST_GeomFromText('POINT(584961.360797522 1110351.01068248)',4326),0.001)),4326));
 
 
-select Astext(ST_buffer(ST_GeomFromText('POINT(586141.719585389 1109830.97332301)',4326),0.001))
-select ST_area(ST_buffer(ST_GeomFromText('POINT(585976.24584 1111636.34920)',4326),0.001))
-select astext(the_geom) from giaothong where gid = 184
+--select Astext(ST_buffer(ST_GeomFromText('POINT(586141.719585389 1109830.97332301)',4326),0.001))
+--select ST_area(ST_buffer(ST_GeomFromText('POINT(585976.24584 1111636.34920)',4326),0.001))
+--select astext(the_geom) from giaothong where gid = 184
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --Tach canh ra lam 2 doan tu mot dinh cho truoc tai 1 diem neu diem do ko trung voi 2 dau mut.
@@ -122,11 +122,11 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select split_multilinestring(106,ST_GeomFromText('POINT(584961.360797522 1110351.01068248)',4326))
-select ST_NumPoints(the_geom) FROM giaothong where gid=140;
-select astext(PointN(the_geom,3)) from giaothong where gid=140;
-select id FROM vertices_tmp where astext(the_geom)='POINT(586547.939464075 1109940.46882983)';
-Select astext(the_geom) from vertices_tmp where id=105;
+--select split_multilinestring(106,ST_GeomFromText('POINT(584961.360797522 1110351.01068248)',4326))
+--select ST_NumPoints(the_geom) FROM giaothong where gid=140;
+--select astext(PointN(the_geom,3)) from giaothong where gid=140;
+--select id FROM vertices_tmp where astext(the_geom)='POINT(586547.939464075 1109940.46882983)';
+--Select astext(the_geom) from vertices_tmp where id=105;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --Tim canh gan nhat cua 1 diem duoc click tren ban do, tach canh ra lam 2 doan neu diem gan nhat ko trung voi 1 trong 2 dinh cua canh gan nhat do
@@ -156,8 +156,8 @@ CREATE OR REPLACE FUNCTION split_multi_from_any_point( x float, y float)
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select split_multi_from_any_point(585713.49659,1109864.59449);
-select astext(ST_GeomFromText('MULTILINESTRING((585699.6740927 1109929.70652988, 585699.6740927 1109929.70652988))',4326))
+--select split_multi_from_any_point(585713.49659,1109864.59449);
+--select astext(ST_GeomFromText('MULTILINESTRING((585699.6740927 1109929.70652988, 585699.6740927 1109929.70652988))',4326))
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry, point2 geometry)
@@ -264,7 +264,7 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				    
 				     lenb1:=ST_Length(ST_GeomFromText(b1,4326));
 				     lenb2:=ST_Length(ST_GeomFromText(b2,4326));
-				     result:= b1||'$'||lenb1||'$'||id2||b2||'$'||lenb2||'$'||id1||'$'||a2||'$'||lena2   ; 
+				     result:= b1||'$'||lenb1||'$'||id2||'$'||b2||'$'||lenb2||'$'||id1||'$'||a2||'$'||lena2   ; 
 				     return   result; 
 				END IF;	
 			END LOOP;
@@ -356,4 +356,4 @@ CREATE OR REPLACE FUNCTION split_multi_from_two_point( x1 float, y1 float, x2 fl
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select split_multi_from_two_point(586302.31032,1109833.62530,586252.50420,1109866.19085);
+--select split_multi_from_two_point(586302.31032,1109833.62530,586252.50420,1109866.19085);
