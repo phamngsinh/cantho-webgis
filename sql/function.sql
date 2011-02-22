@@ -356,4 +356,19 @@ CREATE OR REPLACE FUNCTION split_multi_from_two_point( x1 float, y1 float, x2 fl
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
---select split_multi_from_two_point(586302.31032,1109833.62530,586252.50420,1109866.19085);
+--select split_multi_from_two_point(586302.31032,1109833.62530,586252.50420,1109866.19085) As result;
+CREATE OR REPLACE FUNCTION find_id_nearest_edge( x1 float, y1 float)
+        RETURNS text AS
+	$BODY$
+	DECLARE
+		result text;		
+		nearest_edge_text text;	
+	BEGIN		
+		nearest_edge_text := Astext(find_nearest_edge(x1,y1));
+		result := gid from giaothong where astext(the_geom) = nearest_edge_text;
+		return result;
+	END;
+	$BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+
+--Select find_id_nearest_edge(586099.65367,1111408.39041);
