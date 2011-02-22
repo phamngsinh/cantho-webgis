@@ -223,7 +223,6 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 			    END LOOP;
 			    lena1:=ST_Length(ST_GeomFromText(a1,4326));
 			    lena2:=ST_Length(ST_GeomFromText(a2,4326));
-			    return a2;
 			    EXIT;
 			END IF;	
 		    END LOOP;
@@ -265,8 +264,7 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				    
 				     lenb1:=ST_Length(ST_GeomFromText(b1,4326));
 				     lenb2:=ST_Length(ST_GeomFromText(b2,4326));
-				     result:= b1||'$'||lenb1||'$'||id2||b2||'$'||lenb2||'$'||id1||'$'||a2||'$'||lena2   ;
-				  
+				     result:= b1||'$'||lenb1||'$'||id2||b2||'$'||lenb2||'$'||id1||'$'||a2||'$'||lena2   ; 
 				     return   result; 
 				END IF;	
 			END LOOP;
@@ -301,7 +299,6 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				    b2:= b2 ||X(point2)||' '||Y(point2)||', ';
 				    
 				    FOR k IN j .. num_of_point LOOP
-						-- return j; 
 					 point_geom:=PointN(geom_a2,k);
 					 if astext(point_geom)=end_point then
 						b2:= b2 ||X(point_geom)||' '||Y(point_geom);
