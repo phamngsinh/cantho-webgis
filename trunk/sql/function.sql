@@ -158,6 +158,215 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 select split_multi_from_any_point(585713.49659,1109864.59449);
 select astext(ST_GeomFromText('MULTILINESTRING((585699.6740927 1109929.70652988, 585699.6740927 1109929.70652988))',4326))
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
+CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry, point2 geometry)
+            RETURNS text AS
+    $BODY$
+	    DECLARE
+		point1_text text;
+		point2_text text;
+		a1 text;a2 text;b1 text;b2 text;
+		lena1 float;lena2 float;lenb1 float;lenb2 float;
+		geom_a1 geometry;geom_a2 geometry;geom_b1 geometry;geom_b2 geometry;	
+		line text;
+		num_of_point integer;
+		j integer;
+		start_point text;
+		end_point text;
+		temp geometry[] := '{}';
+		point_geom geometry;
+		result_id integer;
+		p text;
+		id1 integer;
+		id2 integer;
+		result text;
+	    BEGIN	
+		id1:=Max(id) from vertices_tmp;
+		id1:=id1+1;
+		id2:=id1+1;
+		a1:='';
+		a2:='';
+		b1:='';
+		b2:='';
+		num_of_point:= ST_NumPoints(the_geom) FROM giaothong where gid=gid_a;
+		start_point:= astext(PointN(the_geom,1)) from giaothong where gid=gid_a;		
+		end_point:= astext(PointN(the_geom,num_of_point)) from giaothong where gid=gid_a;
+		FOR j IN 1 .. num_of_point LOOP	
+			point_geom:= PointN(the_geom,j)from giaothong where gid=gid_a;
+			temp[j]:=point_geom; 
+			line:='';
+			line:= line || X(temp[j])||' '||Y(temp[j])||', '||X(temp[j-1])||' '||Y(temp[j-1]);    
+			line:='LINESTRING'||'(' || line || ')';
+			IF j=1 THEN
+				   a1:= a1 ||X(temp[j])||' '||Y(temp[j])||', ';				   
+			END IF; 
+			p:=''; 
+			
+			SELECT INTO p ST_intersects(ST_GeomFromText(line,4326),ST_GeomFromText(AsText(ST_Buffer($2,0.001)),4326));-----------------------------------------------
+			IF p!= 't' THEN
+				    a1:= a1 ||X(temp[j])||' '||Y(temp[j])||', ';    				    
+			END IF;
+			IF p = 't' THEN
+			   
+			    a1:= a1 ||X(point1)||' '||Y(point1);
+			    a1:='MULTILINESTRING'||'((' || a1 || '))';
+			    a2:= a2 ||X(point1)||' '||Y(point1)||', ';
+			    FOR k IN j .. num_of_point LOOP	
+				 point_geom:=PointN(the_geom,k) from giaothong where gid=gid_a;
+				 if astext(point_geom)=end_point then
+					a2:= a2 ||X(point_geom)||' '||Y(point_geom);
+					a2:='MULTILINESTRING'||'((' || a2 || '))';
+				 else
+					a2:= a2 ||X(point_geom)||' '||Y(point_geom)||', ';
+				 end if;
+			    END LOOP;
+			    lena1:=ST_Length(ST_GeomFromText(a1,4326));
+			    lena2:=ST_Length(ST_GeomFromText(a2,4326));
+			    return a2;
+			    EXIT;
+			END IF;	
+		    END LOOP;
+		    geom_a1:=ST_GeomFromText(a1,4326);
+		    num_of_point:= ST_NumPoints(geom_a1);
+		    start_point:= astext(PointN(geom_a1,1));		
+		    end_point:= astext(PointN(geom_a1,num_of_point));
+		    FOR j IN 1 .. num_of_point LOOP	
+				point_geom:= PointN(geom_a1,j);
+				temp[j]:=point_geom; 
+				line:='';
+				line:= line || X(temp[j])||' '||Y(temp[j])||', '||X(temp[j-1])||' '||Y(temp[j-1]);    
+				line:='LINESTRING'||'(' || line || ')';
+				IF j=1 THEN
+					   b1:= b1 ||X(temp[j])||' '||Y(temp[j])||', ';				   
+				END IF;   
+				p:=''; 
+				
+				SELECT INTO p ST_intersects(ST_GeomFromText(line,4326),ST_GeomFromText(AsText(ST_Buffer($3,0.001)),4326));-----------------------------------------------
+
+				IF p!= 't' THEN
+					    b1:= b1 ||X(temp[j])||' '||Y(temp[j])||', ';
+				END IF;
+				
+				IF p = 't' THEN
+	
+				    b1:= b1 ||X(point2)||' '||Y(point2);
+				    b1:='MULTILINESTRING'||'((' || b1 || '))';
+				    b2:= b2 ||X(point2)||' '||Y(point2)||', ';
+				    FOR k IN j .. num_of_point LOOP	
+					 point_geom:=PointN(geom_a1,k);
+					 if astext(point_geom)=end_point then
+						b2:= b2 ||X(point_geom)||' '||Y(point_geom);
+						b2:='MULTILINESTRING'||'((' || b2 || '))';
+					 else
+						b2:= b2||X(point_geom)||' '||Y(point_geom)||', ';
+					 end if;
+				    END LOOP;
+				    
+				     lenb1:=ST_Length(ST_GeomFromText(b1,4326));
+				     lenb2:=ST_Length(ST_GeomFromText(b2,4326));
+				     result:= b1||'$'||lenb1||'$'||id2||b2||'$'||lenb2||'$'||id1||'$'||a2||'$'||lena2   ;
+				  
+				     return   result; 
+				END IF;	
+			END LOOP;
 
 
-"<gml:MultiLineString srsName="EPSG:4326"><gml:lineStringMember><gml:LineString><gml:coordinates>585687.37441392604,1109862.5721829899 585709.97744534304,1109865.5028092801 585713.08840868506,1109866.2635974099</gml:coordinates></gml:LineString></gml:lineStringMember></gml:MultiLineString>$25.9948649467137$<gml:MultiLineString srsName="EPSG:4326"><gml:lineStringMember><gml:LineString><gml:coordinates>585713.08840868506,1109866.2635974099 585731.40907878103,1109870.74392933 585747.89939257805,1109881.4362143199 585758.02126102604,1109890.6681872299 585762.93783282302,1109895.57923674</gml:coordinates></gml:LineString></gml:lineStringMember></gml:MultiLineString>$59.162801237367$122"
+
+
+
+
+
+
+			b1:='';
+			b2:='';
+			
+			geom_a2:=ST_GeomFromText(a2,4326);
+			num_of_point:= ST_NumPoints(geom_a2);
+			start_point:= astext(PointN(geom_a2,1));		
+			end_point:= astext(PointN(geom_a2,num_of_point)); 
+			FOR j IN 1 .. num_of_point LOOP	
+			 
+				point_geom:= PointN(geom_a2,j);
+				temp[j]:=point_geom; 
+				line:='';
+				line:= line || X(temp[j])||' '||Y(temp[j])||', '||X(temp[j-1])||' '||Y(temp[j-1]);    
+				line:='LINESTRING'||'(' || line || ')';
+				IF j=1 THEN
+					   b1:= b1 ||X(temp[j])||' '||Y(temp[j])||', ';	
+					  			   
+				END IF;
+				p:='';    
+				
+				SELECT INTO p ST_intersects(ST_GeomFromText(line,4326),ST_GeomFromText(AsText(ST_Buffer($3,0.001)),4326));-----------------------------------------------
+				IF p!= 't' THEN
+					    b1:= b1 ||X(temp[j])||' '||Y(temp[j])||', ';
+				END IF;
+				
+				IF p = 't' THEN
+					
+				    b1:= b1 ||X(point2)||' '||Y(point2);
+				    b1:='MULTILINESTRING'||'((' || b1 || '))';
+				    b2:= b2 ||X(point2)||' '||Y(point2)||', ';
+				    
+				    FOR k IN j .. num_of_point LOOP
+						-- return j; 
+					 point_geom:=PointN(geom_a2,k);
+					 if astext(point_geom)=end_point then
+						b2:= b2 ||X(point_geom)||' '||Y(point_geom);
+						b2:='MULTILINESTRING'||'((' || b2 || '))';
+					 else
+						b2:= b2||X(point_geom)||' '||Y(point_geom)||', ';
+					 end if;
+				    END LOOP;
+				    
+				    lenb1:=ST_Length(ST_GeomFromText(b1,4326));
+				    lenb2:=ST_Length(ST_GeomFromText(b2,4326));
+				   
+				    result:=a1||'$'||lena1||'$'||id1||'$'||b1||'$'||lenb1||'$'||id2||'$'||b2||'$'||lenb2   ;
+				    RETURN  result  ;
+				END IF;	
+			END LOOP;
+	    END;
+    $BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
+CREATE OR REPLACE FUNCTION split_multi_from_two_point( x1 float, y1 float, x2 float, y2 float)
+        RETURNS text AS
+	$BODY$
+	DECLARE
+		nearest_edge1 geometry;
+		nearest_edge2 geometry;
+		nearest_point1 geometry;
+		nearest_point2 geometry;
+		nearest_point_text1 text;
+		nearest_point_text2 text;
+		nearest_edge_id1 integer;
+		nearest_edge_id2 integer;
+		point_text1 text;
+		point_text2 text;
+		result text;
+		
+	BEGIN
+		point_text1:='POINT(' || x1 || ' ' || y1 ||  ')';
+		point_text2:='POINT(' || x2 || ' ' || y2 ||  ')';
+		nearest_edge1:= find_nearest_edge(x1,y1);
+		nearest_edge2:= find_nearest_edge(x2,y2);
+		nearest_edge_id1:= gid from giaothong where astext(the_geom)= astext(nearest_edge1);
+		nearest_edge_id2:= gid from giaothong where astext(the_geom)= astext(nearest_edge2);
+		if nearest_edge_id1 != nearest_edge_id2 then
+			return '0';
+		end if;
+		nearest_point1:= ST_ClosestPoint(nearest_edge1, ST_GeomFromText(point_text1,4326) );
+		nearest_point_text1:=Astext(nearest_point1);
+		--nearest_point2:= ST_ClosestPoint(nearest_edge2, ST_GeomFromText(point_text2,4326) );
+		--nearest_point_text2:=Astext(nearest_point2);
+		--result:=split_multilinestring2(nearest_edge_id1,ST_GeomFromText(nearest_point_text1,4326),ST_GeomFromText(nearest_point_text2,4326));
+		return Astext(ST_ClosestPoint(nearest_edge1, ST_GeomFromText(point_text1,4326)));
+	END;
+	$BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
+select split_multi_from_two_point(586302.31032,1109833.62530,586252.50420,1109866.19085);
