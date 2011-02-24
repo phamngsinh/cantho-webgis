@@ -108,8 +108,8 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 			    END LOOP;
 				len1:=ST_Length(ST_GeomFromText(result1,4326));
 				len2:=ST_Length(ST_GeomFromText(result2,4326));
-				result1:=ST_AsGML(ST_GeomFromText(result1,4326));
-				result2:=ST_AsGML(ST_GeomFromText(result2,4326));
+				--result1:=ST_AsGML(ST_GeomFromText(result1,4326));
+				--result2:=ST_AsGML(ST_GeomFromText(result2,4326));
 				result:= result1||'$'||len1||'$'||result2||'$'||len2;
 				return result1||'$'||len1||'$'||result2||'$'||len2;
 			END IF;
@@ -264,9 +264,9 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				    
 				     lenb1:=ST_Length(ST_GeomFromText(b1,4326));
 				     lenb2:=ST_Length(ST_GeomFromText(b2,4326));
-				     b1:=ST_AsGML(ST_GeomFromText(b1,4326));
-				     b2:=ST_AsGML(ST_GeomFromText(b2,4326));
-				     a2:=ST_AsGML(ST_GeomFromText(a2,4326));
+				     --b1:=ST_AsGML(ST_GeomFromText(b1,4326));
+				     --b2:=ST_AsGML(ST_GeomFromText(b2,4326));
+				     --a2:=ST_AsGML(ST_GeomFromText(a2,4326));
 				     result:= b1||'$'||lenb1||'$'||id2||'$'||b2||'$'||lenb2||'$'||id1||'$'||a2||'$'||lena2   ; 
 				     return   result; 
 				END IF;	
@@ -313,9 +313,9 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 				    
 				    lenb1:=ST_Length(ST_GeomFromText(b1,4326));
 				    lenb2:=ST_Length(ST_GeomFromText(b2,4326));
-				    a1:=ST_AsGML(ST_GeomFromText(a1,4326));
-				    b1:=ST_AsGML(ST_GeomFromText(b1,4326));
-				    b2:=ST_AsGML(ST_GeomFromText(b2,4326)); 
+				    --a1:=ST_AsGML(ST_GeomFromText(a1,4326));
+				    --b1:=ST_AsGML(ST_GeomFromText(b1,4326));
+				    --b2:=ST_AsGML(ST_GeomFromText(b2,4326)); 
 				    result:=a1||'$'||lena1||'$'||id1||'$'||b1||'$'||lenb1||'$'||id2||'$'||b2||'$'||lenb2   ;
 				    RETURN  result  ;
 				END IF;	
