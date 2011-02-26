@@ -1,0 +1,13 @@
+@CHARSET "UTF-8";
+#map {
+	border: 1px solid black;
+	clear: both; height : 547px;
+	width: 712px;
+	height: 547px;
+}
+#wrapper {
+	width: 500px;
+}
+#location {
+	float: right;
+}
