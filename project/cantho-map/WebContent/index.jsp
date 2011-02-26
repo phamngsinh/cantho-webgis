@@ -13,6 +13,11 @@
 <script type="text/javascript" src="js/events.js"></script>
 <script type="text/javascript" src="js/services.js"></script>
 <link type="text/css" rel="stylesheet" href="css/style.css"></link>
+<link type="text/css" rel="stylesheet" href="css/bottom_content.css"></link>
+<link type="text/css" rel="stylesheet" href="css/header_content.css"></link>
+<link type="text/css" rel="stylesheet" href="css/left_content.css"></link>
+<link type="text/css" rel="stylesheet" href="css/center_content.css"></link>
+<link type="text/css" rel="stylesheet" href="css/right_content.css"></link>
 <link type="text/css" rel="stylesheet" href="css/popup.css"></link>
 <script type="text/javascript" defer="defer">
 $(document).ready(function() {
@@ -138,7 +143,60 @@ function OnforcusTextBoxAB(a){
 		<div class="splExpand" id="centerSplit">
             <a onclick="moveIconClick()" class="moveicon" id="moveicon"></a>        </div>
 	</div>
-<div class = "map" id = "map"> </div>
+<div class = "map" id = "map"> 
+
+</div>
+<div class = "right_content"  id = "right_content"> 
+	<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_right">
+				<a href=#" onclick="" class="menu_taskbar">Cơ Quan</a>
+	</div>
+	<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_right">
+				<a href="#" onclick="" class="menu_taskbar">Khách Sạn</a>			
+	</div>
+	<div style="background: url('images/school.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Trường Học</a>			
+	</div>
+	<div style="background: url('images/company.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Công Ty</a>			
+	</div>
+	<div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Chợ</a>			
+	</div>		
+	<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Bến Tàu Xe</a>			
+    </div>
+    	<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_right">
+				<a href=#" onclick="" class="menu_taskbar">Cơ Quan</a>
+	</div>
+	<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_right">
+				<a href="#" onclick="" class="menu_taskbar">Khách Sạn</a>			
+	</div>
+	<div style="background: url('images/school.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Trường Học</a>			
+	</div>
+	<div style="background: url('images/company.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Công Ty</a>			
+	</div>
+	<div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Chợ</a>			
+	</div>		
+	<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Bến Tàu Xe</a>			
+    </div>
+    <div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Bến Tàu Xe</a>			
+    </div>
+    <div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Chợ</a>			
+	</div>		
+	<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Bến Tàu Xe</a>			
+    </div>
+    <div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
+		<a href="#" onclick="" class="menu_taskbar">Bến Tàu Xe</a>			
+    </div>
+	
+</div>
 <div class = "bottom_content" class = "bottom_content">
 			<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_title">
 				<a href=#" onclick="" class="menu_taskbar">Cơ Quan</a>
