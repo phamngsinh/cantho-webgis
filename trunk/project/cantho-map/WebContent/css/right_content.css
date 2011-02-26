@@ -1,0 +1,51 @@
+#right_content{
+	top:15%;
+	left:90%;
+	width:10%;
+	height:81%;
+	position:fixed;
+	border:1px #00CC66 solid;
+	}
+.taskbar_right {
+    color: #0066FF;
+    float: left;
+    font-size: 12px;
+    font-weight: bold;
+    height: 23px;
+    margin-left: 10px;
+    margin-top: 7px;
+}
+
+.right_content .topLeft   
+ {  
+  background: url(images2/balloon_topLeft.png) no-repeat;  
+   }      
+ .right_content .bottomLeft   
+  {  
+   background: url(images2/balloon_bottomLeft.png) no-repeat;  
+}         
+ .right_content .left   
+ {  
+      background: url(images2/balloon_left.png) repeat-y;  
+}        
+  .right_content .right   
+ {  
+     background: url(images2/balloon_right.png) repeat-y;  
+ }       
+ .right_content .topRight   
+  {  
+     background: url(images2/balloon_topRight.png) no-repeat;  
+ }       
+.right_content .bottomRight   
+ {  
+     background: url(images2/balloon_bottomRight.png) no-repeat;  
+}         
+ .right_content .top   
+ {  
+     background: url(images2/balloon_top.png) repeat-x;  
+ }        
+.right_content .bottom   
+{  
+      background: url(images2/balloon_bottom.png) repeat-x;  
+       text-align: center;  
+}  
