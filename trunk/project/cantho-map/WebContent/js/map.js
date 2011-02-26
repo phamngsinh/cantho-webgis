@@ -78,12 +78,11 @@ function init() {
 
 	// control_ve_diem.activate();
 	// build up all controls
-	map.addControl(new OpenLayers.Control.PanZoomBar({
-		position : new OpenLayers.Pixel(5, 10)
-	}));
+	
+	//map.addControl(new OpenLayers.Control.PanZoomBar({position : new OpenLayers.Pixel(5, 10)}));
 	map.addControl(new OpenLayers.Control.Navigation());
-	map.addControl(new OpenLayers.Control.LayerSwitcher());
-	map.addControl(new OpenLayers.Control.Scale($('scale')));
+	//map.addControl(new OpenLayers.Control.LayerSwitcher());
+	//map.addControl(new OpenLayers.Control.Scale($('scale')));
 	map.addControl(new OpenLayers.Control.MousePosition({
 		element : $('location')
 	}));
@@ -145,44 +144,5 @@ function drag_Completed() {
 		var end_point = lop_diem_chon.features[1].geometry.clone();
 		// goi webservice tra ve duong di giau hai diem
 		callService(start_point.x, start_point.y, end_point.x, end_point.y);
-	}
-	
-	function reset_DuongDi() {
-		alert("sdgsd");
-		list_layer_diem_chon = map.getLayersByName('diem_chon');
-		lop_diem_chon = list_layer_diem_chon[0];
-		lop_diem_chon.destroyFeatures();
-		checked = $("#chk_timduong").attr("checked");
-		if (checked == true) {
-			//alert("Activate olDrawFeature, Deactivate olNavigation");
-			for ( var i = 0; i < map.controls.length; i++) {
-				if (map.controls[i].displayClass == "olControlDrawFeature") {
-					map.controls[i].activate();
-				}
-				if (map.controls[i].displayClass == "olControlDragFeature") {
-					map.controls[i].activate();
-				}
-				if (map.controls[i].displayClass == "olControlNavigation") {
-					map.controls[i].deactivate();
-				}
-			}
-		} else {
-			//alert("Deactivate olDrawFeature, Activate olNavigation");
-			for ( var i = 0; i < map.controls.length; i++) {
-				if (map.controls[i].displayClass == "olControlDrawFeature") {
-					map.controls[i].deactivate();
-				}
-				if (map.controls[i].displayClass == "olControlDragFeature") {
-					map.controls[i].deactivate();
-				}
-				if (map.controls[i].displayClass == "olControlNavigation") {
-					map.controls[i].activate();
-				}
-			}
-		}
-		//xoa lop duong di
-		list_layer_duong_di = map.getLayersByName('duong_di');
-		lop_duong_di=list_layer_duong_di[0];
-		lop_duong_di.destroyFeatures();
 	}
 }
