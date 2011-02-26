@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+  xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NamedLayer>
+    <Name>Simple Roads</Name>
+    <UserStyle>
+      <Title>Default Styler for simple road segments</Title>
+      <Abstract>Light red line, 2px wide</Abstract>   	
+		<FeatureTypeStyle>
+		 <Rule>
+			 <LineSymbolizer>
+				 <Stroke>
+				 	<CssParameter name="stroke">#FF0000</CssParameter>
+				 </Stroke>
+				 </LineSymbolizer>
+				 <TextSymbolizer>
+				 <Label>
+				 	<ogc:PropertyName>ten_duong</ogc:PropertyName>
+				 </Label>
+				 <Fill>
+				 	<CssParameter name="fill">#000000</CssParameter>
+				 </Fill>
+				 <VendorOption name="followLine">true</VendorOption>
+				 <VendorOption name="repeat">150</VendorOption>
+
+			 </TextSymbolizer>
+		 </Rule>
+	 </FeatureTypeStyle>      
+
+	<FeatureTypeStyle>
+	<Rule>
+	  <ogc:Filter>
+	    <ogc:PropertyIsEqualTo>
+	      <ogc:PropertyName>mot_chieu</ogc:PropertyName>
+	      <ogc:Literal>1</ogc:Literal>
+	    </ogc:PropertyIsEqualTo>
+	  </ogc:Filter>
+	  <TextSymbolizer>
+		<Label>&#x2192;</Label>
+			<Font>
+				<CssParameter name="font-family">OpenSymbol</CssParameter>
+				<CssParameter name="font-size">12</CssParameter>
+				<CssParameter name="font-weight">bold</CssParameter>
+			</Font>
+		<LabelPlacement>
+			<LinePlacement>
+			</LinePlacement>
+		</LabelPlacement>
+		<Halo>
+			<Radius>
+				<ogc:Literal>mot_chieu</ogc:Literal>
+			</Radius>
+			<Fill>
+				<CssParameter name="fill">#FFFFFF</CssParameter>
+				<CssParameter name="fill-opacity">0.85</CssParameter>
+			</Fill>
+		</Halo>
+		<Fill>
+			<CssParameter name="fill">#225486</CssParameter>
+		</Fill>
+		<VendorOption name="maxDisplacement">100</VendorOption>
+		<VendorOption name="forceLeftToRight">false</VendorOption>
+	  </TextSymbolizer>
+	</Rule>
+	 </FeatureTypeStyle> 
+
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>

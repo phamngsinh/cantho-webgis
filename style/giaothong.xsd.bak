@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<StyledLayerDescriptor version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"
+  xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <NamedLayer>
+    <Name>Simple Roads</Name>
+    <UserStyle>
+      <Title>Default Styler for simple road segments</Title>
+      <Abstract>Duong di o muc zoom lon hon hoac bang 2000</Abstract>           
+
+	<!--Begin Zoom Level Larger 2000000000-->	
+	<!--Duong vien ben ngoai 2000000000-->	
+	 <FeatureTypeStyle>              
+        <Rule>          
+        <Title>Mac Dinh</Title>     
+		<MinScaleDenominator>2000000000</MinScaleDenominator>		
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>              
+              <CssParameter name="stroke-width">3</CssParameter>
+            </Stroke>
+          </LineSymbolizer>    
+        </Rule>  		       
+      </FeatureTypeStyle>  
+
+      <FeatureTypeStyle>              
+       <Rule>
+        <Title>Tinh lo</Title>
+	 	<MinScaleDenominator>2000000000</MinScaleDenominator>		
+        <ogc:Filter>
+	 	    <ogc:PropertyIsEqualTo>
+	              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+	              <ogc:Literal>tinh lo</ogc:Literal>
+	 	    </ogc:PropertyIsEqualTo>
+		 </ogc:Filter>          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
+	      	  <CssParameter name="stroke-width">4</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+        </Rule>         
+      </FeatureTypeStyle>   
+	  <FeatureTypeStyle>              
+       <Rule>
+        <Title>Quoc lo</Title>
+        <MinScaleDenominator>2000000000</MinScaleDenominator>		
+		<ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>quoc lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  	</ogc:Filter>          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
+	      	  <CssParameter name="stroke-width">5</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+        </Rule>         
+      </FeatureTypeStyle>
+	<!--End Duong vien ben ngoai 2000000000-->
+	 <FeatureTypeStyle>              
+        <Rule>          
+        <Title>Mac Dinh</Title>     
+		<MinScaleDenominator>2000000000</MinScaleDenominator>		
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#BEBAED</CssParameter>              
+              <CssParameter name="stroke-width">2</CssParameter>
+            </Stroke>
+          </LineSymbolizer>    
+        </Rule>  		       
+      </FeatureTypeStyle>  
+
+      <FeatureTypeStyle>              
+       <Rule>
+        <Title>Tinh lo</Title>
+	 	<MinScaleDenominator>2000000000</MinScaleDenominator>		
+        <ogc:Filter>
+	 	    <ogc:PropertyIsEqualTo>
+	              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+	              <ogc:Literal>tinh lo</ogc:Literal>
+	 	    </ogc:PropertyIsEqualTo>
+		 </ogc:Filter>          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
+	      	  <CssParameter name="stroke-width">3</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+        </Rule>         
+      </FeatureTypeStyle>   
+	  <FeatureTypeStyle>              
+       <Rule>
+        <Title>Quoc lo</Title>
+        <MinScaleDenominator>2000000000</MinScaleDenominator>		
+		<ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>quoc lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  	</ogc:Filter>          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
+	      	  <CssParameter name="stroke-width">4</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+        </Rule>         
+      </FeatureTypeStyle>
+	<!--End Zoom Level Larger 2000000000-->	
+
+	<!--Begin Zoom Level 600000000-> 2000000000-->	
+		<!--Mau duong vien ben ngoai o muc nay-->	
+		<FeatureTypeStyle>              
+        <Rule>          
+          <Title>Mac dinh</Title>     
+		<MinScaleDenominator>600000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>        	       
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>              
+              <CssParameter name="stroke-width">10</CssParameter>
+            </Stroke>
+          </LineSymbolizer>                    
+        </Rule>         
+      </FeatureTypeStyle>
+      
+       <FeatureTypeStyle>              
+        <Rule>
+        <Title>Tinh lo</Title>
+	 	<MinScaleDenominator>600000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
+          <ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>tinh lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  </ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
+	      <CssParameter name="stroke-width">12</CssParameter>
+            </Stroke>
+          </LineSymbolizer>                   
+        </Rule>         
+      </FeatureTypeStyle>   
+		<FeatureTypeStyle>              
+        <Rule>
+        <Title>Quoc lo</Title>
+        <MinScaleDenominator>600000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
+		<ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>quoc lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  	</ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
+	      <CssParameter name="stroke-width">13</CssParameter>
+            </Stroke>
+          </LineSymbolizer>                  
+        </Rule>         
+      </FeatureTypeStyle>
+	<!--End Mau duong vien ben ngoai o muc nay-->	
+	<FeatureTypeStyle>              
+        <Rule>          
+          <Title>Mac dinh</Title>     
+		<MinScaleDenominator>600000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>        	       
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#BEBAED</CssParameter>              
+              <CssParameter name="stroke-width">9</CssParameter>
+            </Stroke>
+          </LineSymbolizer>                    
+        </Rule>         
+      </FeatureTypeStyle>
+      
+       <FeatureTypeStyle>              
+        <Rule>
+        <Title>Tinh lo</Title>
+	 	<MinScaleDenominator>600000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
+          <ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>tinh lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  </ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
+	      <CssParameter name="stroke-width">11</CssParameter>
+            </Stroke>
+          </LineSymbolizer>                   
+        </Rule>         
+      </FeatureTypeStyle>   
+		<FeatureTypeStyle>              
+        <Rule>
+        <Title>Quoc lo</Title>
+        <MinScaleDenominator>600000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
+		<ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>quoc lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  	</ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
+	      <CssParameter name="stroke-width">12</CssParameter>
+            </Stroke>
+          </LineSymbolizer>                  
+        </Rule>         
+      </FeatureTypeStyle>	
+	<!--End Zoom Level 600000000-> 2000000000-->
+	
+	<!--Begin Zoom Level 600000000-->	
+	   <!--Mau duong vien 600000000-->	  	
+		<FeatureTypeStyle>              
+        <Rule>          
+        <Title>Mac dinh</Title>     
+		<MaxScaleDenominator>600000000</MaxScaleDenominator>      
+	       
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>              
+              <CssParameter name="stroke-width">14</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+          
+        </Rule>         
+      </FeatureTypeStyle>
+      
+       <FeatureTypeStyle>              
+        <Rule>
+        <Title>Tinh lo</Title>
+	 <MaxScaleDenominator>600000000</MaxScaleDenominator>
+          <ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>tinh lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  </ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
+	      <CssParameter name="stroke-width">16</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+          
+        </Rule>         
+      </FeatureTypeStyle>      
+      
+      <FeatureTypeStyle>              
+        <Rule>
+        <Title>Quoc lo</Title>
+        <MaxScaleDenominator>600000000</MaxScaleDenominator>
+		<ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>quoc lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  	</ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
+	      <CssParameter name="stroke-width">17</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+          
+        </Rule>         
+      </FeatureTypeStyle>
+		  
+	<!--End Mau duong vien 600000000-->	  
+	    	
+		<FeatureTypeStyle>              
+        <Rule>          
+        <Title>Mac dinh</Title>     
+		<MaxScaleDenominator>600000000</MaxScaleDenominator>      
+	       
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#BEBAED</CssParameter>              
+              <CssParameter name="stroke-width">13</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+          
+        </Rule>         
+      </FeatureTypeStyle>
+      
+       <FeatureTypeStyle>              
+        <Rule>
+        <Title>Tinh lo</Title>
+	 <MaxScaleDenominator>600000000</MaxScaleDenominator>
+          <ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>tinh lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  </ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
+	      <CssParameter name="stroke-width">15</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+          
+        </Rule>         
+      </FeatureTypeStyle>      
+      
+      <FeatureTypeStyle>              
+        <Rule>
+        <Title>Quoc lo</Title>
+        <MaxScaleDenominator>600000000</MaxScaleDenominator>
+		<ogc:Filter>
+ 	    <ogc:PropertyIsEqualTo>
+              <ogc:PropertyName>loai_duong</ogc:PropertyName>
+              <ogc:Literal>quoc lo</ogc:Literal>
+ 	    </ogc:PropertyIsEqualTo>
+	  	</ogc:Filter>
+          
+          <LineSymbolizer>
+            <Stroke>
+              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
+	      <CssParameter name="stroke-width">16</CssParameter>
+            </Stroke>
+          </LineSymbolizer>          
+          
+        </Rule>         
+      </FeatureTypeStyle>
+		  
+	<!--End Zoom Level 600000000-->
+
+	<!--Ten Duong-->
+	<FeatureTypeStyle>              
+        <Rule>       
+          <TextSymbolizer>
+	 	    <Label>
+	   			<ogc:PropertyName>ten_duong</ogc:PropertyName>
+	 	    </Label>
+	 	    <Fill>
+	 			<CssParameter name="fill">#000</CssParameter>
+	 	    </Fill>
+	 	    <VendorOption name="followLine">true</VendorOption> 	 
+	 	  </TextSymbolizer>
+        </Rule>         
+      </FeatureTypeStyle>   
+	 <!--End Ten Duong-->
+
+	<FeatureTypeStyle>
+	<Rule>
+	  <ogc:Filter>
+	    <ogc:PropertyIsEqualTo>
+	      <ogc:PropertyName>mot_chieu</ogc:PropertyName>
+	      <ogc:Literal>1</ogc:Literal>
+	    </ogc:PropertyIsEqualTo>
+	  </ogc:Filter>
+	  <TextSymbolizer>
+		<Label>&#x2192;</Label>
+			<Font>
+				<CssParameter name="font-family">OpenSymbol</CssParameter>
+				<CssParameter name="font-size">12</CssParameter>
+				<CssParameter name="font-weight">bold</CssParameter>
+			</Font>
+		<LabelPlacement>
+			<LinePlacement>
+			</LinePlacement>
+		</LabelPlacement>
+		<Halo>
+			<Radius>
+				<ogc:Literal>mot_chieu</ogc:Literal>
+			</Radius>
+			<Fill>
+				<CssParameter name="fill">#FFFFFF</CssParameter>
+				<CssParameter name="fill-opacity">0.85</CssParameter>
+			</Fill>
+		</Halo>
+		<Fill>
+			<CssParameter name="fill">#225486</CssParameter>
+		</Fill>
+		<VendorOption name="maxDisplacement">100</VendorOption>
+		<VendorOption name="forceLeftToRight">false</VendorOption>
+	  </TextSymbolizer>
+	</Rule>
+	 </FeatureTypeStyle> 
+
+
+    </UserStyle>
+  </NamedLayer>
+</StyledLayerDescriptor>
