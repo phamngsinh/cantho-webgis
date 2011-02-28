@@ -518,12 +518,41 @@ public class CanThoMap {
 		String sql="SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sodienthoai FROM "+lop+" WHERE ten LIKE '%"+ten+"%'";
 		rs=s.executeQuery(sql);
 		ArrayList ds_diadiem=new  ArrayList();
+		
 		while (rs.next()){
-			String[] arr=new String[4]; 
-			arr[0]=rs.getString("the_geom");
-			arr[1]=rs.getString("ten");
-			arr[2]=rs.getString("diachi");
-			arr[3]=rs.getString("sodienthoai");
+			
+			String[] arr=new String[4];
+			//neu chuoi lay ra la null thi gan gia tri la chuoi rong
+			if (rs.getString("the_geom")==null){
+				arr[0]=" ";
+			}
+			else
+			{
+				arr[0]=rs.getString("the_geom");
+			}
+			
+			if (rs.getString("ten")==null){
+				arr[1]=" ";
+			}
+			else
+			{
+				arr[1]=rs.getString("ten");
+			}
+			
+			if (rs.getString("diachi")==null){
+				arr[2]=" ";
+			}	
+			else
+			{
+				arr[2]=rs.getString("diachi");
+			}
+			
+			if (rs.getString("sodienthoai")==null){
+				arr[3]=" ";
+			}
+			else{
+				arr[3]=rs.getString("sodienthoai");
+			}			
 			ds_diadiem.add(arr);
 		}		
 		this.closeConnection();
