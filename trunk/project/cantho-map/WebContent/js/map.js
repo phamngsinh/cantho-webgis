@@ -58,8 +58,8 @@ function init() {
 	var lop_dia_diem = new OpenLayers.Layer.Vector("lop_dia_diem", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : 'images/tick_1.png',
-			graphicWidth : 20,
-			graphicHeight : 20
+			graphicWidth : 25,
+			graphicHeight : 25
 		// strokeOpacity: 0.6
 		}))
 	});
@@ -73,7 +73,8 @@ function init() {
 		}))
 	});
 
-	map.addLayers([ lop_duong_di, lop_diem_chon, lop_dia_diem ]);
+	map.addLayers([ lop_duong_di, lop_dia_diem, lop_diem_chon ]);
+
 	/** tao control DrawFeature ve start_point va end_point* */
 	var control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
 			OpenLayers.Handler.Point, {
@@ -167,6 +168,9 @@ function point_Added() {
 			if (map.controls[i].displayClass == "olControlDrawFeature") {
 				map.controls[i].deactivate();
 			}
+			if (map.controls[i].displayClass == "olControlDragFeature") {
+				map.controls[i].activate();
+			}
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
 			}
@@ -188,6 +192,7 @@ function begin_Drag() {
 function Draging() {
 	alert("Dang drag");
 }
+
 function drag_Completed() {
 	// alert("Hoan thanh drag");
 	// goi webservice o day
@@ -213,8 +218,21 @@ function handleMeasurements(event) {
 	// element.innerHTML = out;
 }
 function onSelectFeature(e) {
-	alert("Fearture da duoc chon! tai vi tri: " + e.geometry);
+
+	// goi webservice o day de hien thi thong tin cua diem vua chon
+	getDiaDiemTheoViTri(e.geometry);
+	/*	 
+	pixel = new OpenLayers.Pixel(e.geometry.x, e.geometry.y);
+	alert("Fearture da duoc chon! tai vi tri: " + pixel);
+	var lonlat = map.getLonLatFromPixel(pixel);
+	popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat, 
+			new OpenLayers.Size(100, 100),
+			"tran van hoang", null, true, onPopupClose);
+	*/
+
 }
+
+
 function onUnSelectFeature(e) {
 	alert("Feature duoc bo chon");
 }

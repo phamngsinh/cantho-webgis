@@ -19,6 +19,9 @@ function reset_DuongDi() {
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].deactivate();
 			}
+			if (map.controls[i].displayClass == "olControlSelectFeature") {
+				map.controls[i].deactivate();
+			}
 		}
 	} else {
 		//alert("Deactivate olDrawFeature, Activate olNavigation");
@@ -30,6 +33,9 @@ function reset_DuongDi() {
 				map.controls[i].deactivate();
 			}
 			if (map.controls[i].displayClass == "olControlNavigation") {
+				map.controls[i].activate();
+			}
+			if (map.controls[i].displayClass == "olControlSelectFeature") {
 				map.controls[i].activate();
 			}
 		}
@@ -55,7 +61,6 @@ function doKhoangCach(){
 		
 	}
 }
-
 $(document).ready(function() {
 	// Code that uses jQuery's $ can follow here.
 	// alert('hoang');
