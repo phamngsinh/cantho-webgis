@@ -384,7 +384,6 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
         RETURNS text AS
 	$BODY$
 	DECLARE	
-		result text;
 		ma1 text;
 		ten1 text;
 		diachi1 text;	
@@ -397,6 +396,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		if(ten1!='') then 
 		return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 		end if;
+		return '';
 		
 	END;
 	$BODY$
