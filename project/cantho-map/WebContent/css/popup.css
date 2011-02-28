@@ -1,0 +1,102 @@
+ #searchPopupContainer  
+ {  
+   	position:absolute;  
+    left:0;  
+ 	top:0;  
+    display:none;  
+    z-index: 20000;  
+}   
+.searchPopupPopup  
+ {  
+ 
+ }   
+ #searchPopupContent  
+{  
+    background-color: #FFF;  
+    min-width: 175px;  
+    min-height: 300px;  
+ }   
+ .searchPopupPopup .searchPopupImage  
+ {  
+     margin: 5px;  
+     margin-right: 15px;  
+ }   
+.searchPopupPopup .corner   
+  {  
+      width: 19px;  
+      height: 15px;  
+  }        
+ .searchPopupPopup .topLeft   
+ {  
+  background: url(images2/balloon_topLeft.png) no-repeat;  
+   }      
+ .searchPopupPopup .bottomLeft   
+  {  
+   background: url(images2/balloon_bottomLeft.png) no-repeat;  
+}         
+ .searchPopupPopup .left   
+ {  
+      background: url(images2/balloon_left.png) repeat-y;  
+}        
+  .searchPopupPopup .right   
+ {  
+     background: url(images2/balloon_right.png) repeat-y;  
+ }       
+ .searchPopupPopup .topRight   
+  {  
+     background: url(images2/balloon_topRight.png) no-repeat;  
+ }       
+.searchPopupPopup .bottomRight   
+ {  
+     background: url(images2/balloon_bottomRight.png) no-repeat;  
+}         
+ .searchPopupPopup .top   
+ {  
+     background: url(images2/balloon_top.png) repeat-x;  
+ }        
+.searchPopupPopup .bottom   
+{  
+      background: url(images2/balloon_bottom.png) repeat-x;  
+       text-align: center;  
+}
+
+.SelectPlaceTitle {
+    height: 38px;
+    text-align: center;
+    vertical-align: middle;
+}
+.SelectPlaceTitle h3 {
+    color: #E37833;
+    float: left;
+    font-size: 17px;
+    font-weight: bold;
+    position: absolute;
+    margin-top: 5px;
+    left: 30px;
+}
+.idiem-a-icon {
+    -moz-user-select: none;
+    background: url("../images/Pins.png") no-repeat scroll left top transparent;
+    color: #154600;
+    display: block;
+    font-size: 10px;
+    font-weight: bold;
+    height: 29px;
+    padding: 6px 6px 0 0;
+    text-align: center;
+    text-shadow: 0 1px #B4DC34;
+    text-transform: uppercase;
+    width: 26px;
+}
+.TitFlag {
+    float: right;
+}
+.SelectPlaceContent {
+    background: url("../images/SPshadow-inset.png") no-repeat scroll left top transparent;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    height: 260px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 260px;
+}

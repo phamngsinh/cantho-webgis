@@ -14,6 +14,7 @@
     height: 23px;
     margin-left: 10px;
     margin-top: 7px;
+    width: 100px;
 }
 
 .right_content .topLeft   
@@ -48,4 +49,4 @@
 {  
       background: url(images2/balloon_bottom.png) repeat-x;  
        text-align: center;  
-}  
+}
