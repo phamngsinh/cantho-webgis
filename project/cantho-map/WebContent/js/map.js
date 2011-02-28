@@ -38,7 +38,7 @@ function init() {
 				transparent : 'true',
 				tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {
-				buffer : 0,
+				buffer : 1,
 				isBaseLayer : true,
 				displayOutsideMaxExtent : true
 			});
@@ -53,8 +53,16 @@ function init() {
 		// strokeOpacity: 0.6
 		}))
 	});
+
 	/** Lop chua tat ca cac dia diem duoc tim* */
-	var lop_dia_diem = new OpenLayers.Layer.Vector("lop_dia_diem");
+	var lop_dia_diem = new OpenLayers.Layer.Vector("lop_dia_diem", {
+		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
+			externalGraphic : 'images/tick_1.png',
+			graphicWidth : 20,
+			graphicHeight : 20
+		// strokeOpacity: 0.6
+		}))
+	});
 	/** Lop chua hai diem duoc chon, de tim duong di* */
 	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
@@ -66,19 +74,28 @@ function init() {
 	});
 
 	map.addLayers([ lop_duong_di, lop_diem_chon, lop_dia_diem ]);
-	// gan control chon diem cho lop diem_chon
+	/** tao control DrawFeature ve start_point va end_point* */
 	var control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
 			OpenLayers.Handler.Point, {
 				featureAdded : point_Added
 			});
-	map.addControl(control_ve_diem);
+	/** tao control DragFeature de drag hai diem start_point va end_point* */
 	var control_drag = new OpenLayers.Control.DragFeature(lop_diem_chon, {
 		// onStart: begin_Drag(),
 		// onDrag: Draging(),
 		onComplete : drag_Completed
+	// duoc kich hoat khi su kien drag ket thuc
 	});
-	map.addControl(control_drag);
+	/** tao control SelectFeature de chon cac diem tren lop_dia_diem* */
+	var control_select = new OpenLayers.Control.SelectFeature(lop_dia_diem, {
+		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
+		onUnSelect : onUnSelectFeature,//
+		clickout : true
+	});
 
+	/** Them cac controls vua tao vao ban do* */
+	map.addControls([ control_drag, control_ve_diem, control_select ]);
+	control_select.activate();
 	/** ************************ Style cho lop controlmeasure******************* */
 	// style the sketch fancy
 	var sketchSymbolizers = {
@@ -116,35 +133,29 @@ function init() {
 	});
 	control_measure.events.on({
 		"measure" : handleMeasurements,// kich hoat khi ket thuc viec ve
-										// linestring
+		// linestring
 		"measurepartial" : handleMeasurements
 	// kich hoat khi co them mot diem duoc ve
 	});
 	map.addControl(control_measure);
-	
+
 	// build up all controls
-	map.addControl(new OpenLayers.Control.PanZoomBar({position : new
-	OpenLayers.Pixel(5, 10)}));
+	map.addControl(new OpenLayers.Control.PanZoomBar({
+		position : new OpenLayers.Pixel(5, 10)
+	}));
 	map.addControl(new OpenLayers.Control.Navigation());
-	//map.addControl(new OpenLayers.Control.LayerSwitcher());
-	 map.addControl(new OpenLayers.Control.Scale($('scale')));
+	// map.addControl(new OpenLayers.Control.LayerSwitcher());
+	map.addControl(new OpenLayers.Control.Scale($('scale')));
 	map.addControl(new OpenLayers.Control.MousePosition({
 		element : $('location')
 	}));
-	map.zoomToMaxExtent();
-
-	// map.addControl(new OpenLayers.Control.OverviewMap());
-	// alert("So lop hien tai: "+map.getNumLayers());
-	/*
-	 * control.events.register("hoverfeature", this, function(e) {
-	 * hover.addFeatures([ e.feature ]); });
-	 * 
-	 * control.events.register("outfeature", this, function(e) {
-	 * hover.removeFeatures([ e.feature ]); });
-	 */
-	map.zoomToExtent(bounds);
+	map.zoomToMaxExtent(bounds);
 }
-/**********Goi Webservice sau khi hai diem da duoc them vao lop_diem_chon**********/
+/** **************CAC SU KIEN************************ */
+/**
+ * ********Goi Webservice sau khi hai diem da duoc them vao
+ * lop_diem_chon*********
+ */
 function point_Added() {
 	// alert("Diem da duoc ve ! ");
 	// kiem tra neu da chon du hai diem thi goi webservice de lay duong di
@@ -166,14 +177,14 @@ function point_Added() {
 		// goi webservice tra ve duong di giau hai diem
 		// alert("Bat dau goi webservice");
 		callService(start_point.x, start_point.y, end_point.x, end_point.y);
-		// dong thoi diactivate olControlDrawFeature va activate control		
+		// dong thoi diactivate olControlDrawFeature va activate control
 	}
 }
-/**********Su kien cac feature tren lop_diem_chon duoc drag**********/
+/** ********Su kien cac feature tren lop_diem_chon duoc drag********* */
 function begin_Drag() {
 	alert("Bat dau drag");
 }
-/**********Su kien cac feature tren lop_diem_chon dang duoc drag**********/
+/** ********Su kien cac feature tren lop_diem_chon dang duoc drag********* */
 function Draging() {
 	alert("Dang drag");
 }
@@ -200,4 +211,10 @@ function handleMeasurements(event) {
 	alert("khoang cach = " + measure.toFixed(3) + " " + units);
 	var do_dai = "measure: " + measure.toFixed(3) + " " + units;
 	// element.innerHTML = out;
+}
+function onSelectFeature(e) {
+	alert("Fearture da duoc chon! tai vi tri: " + e.geometry);
+}
+function onUnSelectFeature(e) {
+	alert("Feature duoc bo chon");
 }
