@@ -14,6 +14,7 @@
 <script type="text/javascript" src="js/services.js"></script>
 <script type="text/javascript" src="js/popup.js"></script>
 <script type="text/javascript" src="js/effect.js"></script>
+<script type="text/javascript" src="js/functions.js"></script>
 <link type="text/css" rel="stylesheet" href="css/style.css"></link>
 <link type="text/css" rel="stylesheet" href="css/bottom_content.css"></link>
 <link type="text/css" rel="stylesheet" href="css/header_content.css"></link>
