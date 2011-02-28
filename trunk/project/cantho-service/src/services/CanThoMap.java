@@ -558,7 +558,27 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_diadiem;
 	}		
-	
+	public String[] getDiaDiemTheoViTri(String the_geom_point) throws SQLException, ClassNotFoundException{
+		this.openConnection();
+		String[] arr= new String[4];
+		rs= s.executeQuery("Select ten, diachi, sodienthoai From coquan Where ST_Astext(the_geom)='"+the_geom_point+"'");
+		
+		this.closeConnection();
+		return arr;
+	}
+	public ArrayList getLop(String ten_lop) throws SQLException, ClassNotFoundException{
+			this.openConnection();
+			ArrayList ds_dia_diem = new ArrayList();
+			String sql = "Select ST_Astext(the_geom) As the_geom From '" + ten_lop + "'";
+			rs = s.executeQuery(sql);
+			String the_geom="";
+			while (rs.next()){
+				the_geom = rs.getString("the_geom");
+				ds_dia_diem.add(the_geom);
+			}
+			this.closeConnection();
+			return ds_dia_diem;
+	}
 	private void openConnection() throws SQLException, ClassNotFoundException{
 		conn=null;
 		if (conn==null){
