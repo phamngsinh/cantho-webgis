@@ -509,39 +509,25 @@ public class CanThoMap {
 		}	
 	}	
 	
-	
-	
 	/***********************DANH SACH CAC DIA DIEM THEO LOP
 	 * @throws ClassNotFoundException 
 	 * @throws SQLException ****************************************************/
 	
-	public String getDiaDiem(String lop,String ten) throws SQLException, ClassNotFoundException{
+	public ArrayList getDiaDiem(String lop,String ten) throws SQLException, ClassNotFoundException{
 		this.openConnection();
-		String sql="SELECT ten,ST_AsGML(the_geom) As the_geom FROM "+lop+" WHERE ten LIKE '%"+ten+"%'";
+		String sql="SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sodienthoai FROM "+lop+" WHERE ten LIKE '%"+ten+"%'";
 		rs=s.executeQuery(sql);
-		//phan dau cua chuoi GML
-		String gml="<?xml version='1.0' encoding='utf-8'?>";
-		 		gml+="\n<wfs:FeatureCollection xmlns:ms='http://mapserver.gis.umn.edu/mapserver' xmlns:wfs='http://www.opengis.net/wfs' xmlns:gml='http://www.opengis.net/gml' xmlns:ogc='http://www.opengis.net/ogc' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation=' http://www.opengis.net/wfs http://schemas.opengis.net/wfs/1.0.0/WFS-basic.xsd                         http://mapserver.gis.umn.edu/mapserver http://aneto.oco/cgi-bin/worldwfs?SERVICE=WFS&amp;VERSION=1.0.0&amp;REQUEST=DescribeFeatureType&amp;TYPENAME=multipolygon&amp;OUTPUTFORMAT=XMLSCHEMA'>";
-				 		gml+="\n<gml:boundedBy>";
-					 		gml+="\n	<gml:null>unknown";
-					 		gml+="\n	</gml:null>";
-				 		gml+="\n</gml:boundedBy>";
-		int i=1;
+		ArrayList ds_diadiem=new  ArrayList();
 		while (rs.next()){
-			gml+="\n<gml:featureMember>";
-			gml+="\n<ms:Point fid='"+i+"'>";
-				gml+="\n<ms:msGeometry>";
-					gml+=rs.getString("the_geom");
-			//System.out.println(rs.getString("the_geom"));
-				gml+="\n</ms:msGeometry>";
-					//cac thuoc tinh khac o day
-				gml+="\n</ms:Point>";
-			gml+="\n</gml:featureMember>";
-			i++;//tang bien id
-		}
-		gml+="\n</wfs:FeatureCollection>";		
+			String[] arr=new String[4]; 
+			arr[0]=rs.getString("the_geom");
+			arr[1]=rs.getString("ten");
+			arr[2]=rs.getString("diachi");
+			arr[3]=rs.getString("sodienthoai");
+			ds_diadiem.add(arr);
+		}		
 		this.closeConnection();
-		return gml;
+		return ds_diadiem;
 	}		
 	
 	private void openConnection() throws SQLException, ClassNotFoundException{
