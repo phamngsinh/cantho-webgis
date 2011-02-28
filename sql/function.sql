@@ -380,28 +380,137 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 --Select find_id_nearest_edge(586099.65367,1111408.39041);
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
+--Ket qua tra ve: ten$diachi$sdt$x$y
+--Neu ko tim thay tra ve 'nodata'
 CREATE OR REPLACE FUNCTION find_info_of_point( t text)
         RETURNS text AS
 	$BODY$
 	DECLARE	
+		result text;
 		ma1 text;
 		ten1 text;
 		diachi1 text;	
 		sdt1 text;
 	BEGIN	
 		ma1='';ten1='';diachi1='';sdt1='';
-		ten1:= ten from coquan where Astext(the_geom)= t; 
+		--1 coquan
+		ten1:= ten       from coquan where Astext(the_geom)= t; 
 		diachi1:= diachi from coquan where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
-		sdt1:= sdt from coquan where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
-		if(ten1!='') then 
-		return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		sdt1:= sdt       from coquan where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 		end if;
-		return '';
 		
+		--2 truong
+		ten1:= ten       from truong where Astext(the_geom)= t; 
+		diachi1:= diachi from truong where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from truong where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		
+		--3 benhvien
+		ten1:= ten       from benhvien where Astext(the_geom)= t; 
+		diachi1:= diachi from benhvien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from benhvien where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		
+		--4  cho
+		ten1:= ten       from cho where Astext(the_geom)= t; 
+		diachi1:= diachi from cho where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= '';
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		
+		--5  ben
+		ten1:= ten       from ben where Astext(the_geom)= t; 
+		diachi1:= diachi from ben where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= '';
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+
+		--6  khachsan
+		ten1:= ten       from khachsan where Astext(the_geom)= t; 
+		diachi1:= diachi from khachsan where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from khachsan where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		
+		--7  congty
+		ten1:= ten       from congty where Astext(the_geom)= t; 
+		diachi1:= diachi from congty where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from congty where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		
+		--8   giaitri
+		ten1:= ten       from giaitri where Astext(the_geom)= t; 
+		diachi1:= diachi from giaitri where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from giaitri where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--9   denchua
+		ten1:= ten       from denchua where Astext(the_geom)= t; 
+		diachi1:= diachi from denchua where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from denchua where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--10   truyenhinhbaochi
+		ten1:= ten       from truyenhinhbaochi where Astext(the_geom)= t; 
+		diachi1:= diachi from truyenhinhbaochi where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from truyenhinhbaochi where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--11  nganhang
+		ten1:= ten       from nganhang where Astext(the_geom)= t; 
+		diachi1:= diachi from nganhang where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from nganhang where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--12    congvien
+		ten1:= ten       from congvien where Astext(the_geom)= t; 
+		diachi1:= diachi from congvien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= '';
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--13   cau
+		ten1:= ten       from cau where Astext(the_geom)= t; 
+		diachi1:= diachi from cau where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= '';
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--14   thuvien
+		ten1:= ten       from thuvien where Astext(the_geom)= t; 
+		diachi1:= diachi from thuvien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from thuvien where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		--15 trungtam
+		ten1:= ten       from trungtam where Astext(the_geom)= t; 
+		diachi1:= diachi from trungtam where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from trungtam where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		if(ten1 is not null) then 
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+		end if;
+		return 'nodata';
 	END;
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
---select find_info_of_point('POINT(586343.109803462 1110015.0947777)');
---select astext(the_geom) from coquan where gid =1;
+--select find_info_of_point('POINT(586026.386888053 1109704.73845328)');
+--select * from cau;
+--select astext(the_geom) from cho where gid =1;
