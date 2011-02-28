@@ -4,7 +4,8 @@
 
 Definition Table
   Type NATIVE Charset "WindowsVietnamese"
-  Fields 3
-    maben Char (10) ;
-    tenben Char (100) ;
-    mota Char (254) ;
+  Fields 4
+    ma Char (10) ;
+    ten Char (254) ;
+    diachi Char (254) ;
+    sdt Char (15) ;
