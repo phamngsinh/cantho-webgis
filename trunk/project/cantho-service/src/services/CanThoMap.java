@@ -145,7 +145,7 @@ public class CanThoMap {
 				int target = rs_canh.getInt("target") - 1;
 				String ten_duong = rs_canh.getString("ten_duong");
 				if (ten_duong == null) {
-					ten_duong = "Đường không tên";
+					ten_duong = "Ä�Æ°á»�ng khÃ´ng tÃªn";
 				}
 				int mot_chieu = rs_canh.getInt("mot_chieu");
 				String the_geom = rs_canh.getString("the_geom");
@@ -515,7 +515,7 @@ public class CanThoMap {
 	
 	public ArrayList getDiaDiem(String lop,String ten) throws SQLException, ClassNotFoundException{
 		this.openConnection();
-		String sql="SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sodienthoai FROM "+lop+" WHERE ten LIKE '%"+ten+"%'";
+		String sql="SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt FROM "+lop+" WHERE ten LIKE '%"+ten+"%'";
 		rs=s.executeQuery(sql);
 		ArrayList ds_diadiem=new  ArrayList();
 		
@@ -547,11 +547,11 @@ public class CanThoMap {
 				arr[2]=rs.getString("diachi");
 			}
 			
-			if (rs.getString("sodienthoai")==null){
+			if (rs.getString("sdt")==null){
 				arr[3]=" ";
 			}
 			else{
-				arr[3]=rs.getString("sodienthoai");
+				arr[3]=rs.getString("sdt");
 			}			
 			ds_diadiem.add(arr);
 		}		
@@ -561,7 +561,7 @@ public class CanThoMap {
 	public String[] getDiaDiemTheoViTri(String the_geom_point) throws SQLException, ClassNotFoundException{
 		this.openConnection();
 		String[] arr= new String[4];
-		rs= s.executeQuery("Select ten, diachi, sodienthoai From coquan Where ST_Astext(the_geom)='"+the_geom_point+"'");
+		rs= s.executeQuery("Select ten, diachi, sdt From coquan Where ST_Astext(the_geom)='"+the_geom_point+"'");
 		
 		this.closeConnection();
 		return arr;
