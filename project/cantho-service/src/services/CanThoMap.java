@@ -145,7 +145,7 @@ public class CanThoMap {
 				int target = rs_canh.getInt("target") - 1;
 				String ten_duong = rs_canh.getString("ten_duong");
 				if (ten_duong == null) {
-					ten_duong = "Ä�Æ°á»�ng khÃ´ng tÃªn";
+					ten_duong = "Đường không tên";
 				}
 				int mot_chieu = rs_canh.getInt("mot_chieu");
 				String the_geom = rs_canh.getString("the_geom");
@@ -646,16 +646,22 @@ public class CanThoMap {
 	public ArrayList find_Place_By_Text(String text) throws SQLException, ClassNotFoundException{		
 		
 		ArrayList ds_dia_diem = new ArrayList();
+		String the_geom = "";
 		String ten = "";
 		String diachi = "";
-		String sdt = "";
-		String the_geom = "";
+		String sdt = "";	
 		
 		this.openConnection();
+		
 		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text +"')");
-		while (rs.next()){
-			
+		while (rs.next()){			
 			String[] arr = new String[4];
+			if (rs.getString("the_geom")==null){
+				the_geom = " ";
+			}
+			else{
+				the_geom = rs.getString("the_geom");
+			}
 			if (rs.getString("ten")==null){
 				ten = " ";
 			}
@@ -668,22 +674,17 @@ public class CanThoMap {
 			else{
 				diachi = rs.getString("diachi");
 			}
-			if (rs.getString("sdt")==null){
-				sdt = " ";
+			if (rs.getString("sdt")==null){				
+				sdt = " ";				
 			}
 			else{
 				sdt = rs.getString("sdt");
 			}
-			if (rs.getString("the_geom")==null){
-				the_geom = " ";
-			}
-			else{
-				the_geom = rs.getString("the_geom");
-			}
-			arr[0]=ten;
-			arr[1]=diachi;
-			arr[2]=sdt;
-			arr[3]=the_geom;
+			
+			arr[0]=the_geom;
+			arr[1]=ten;
+			arr[2]=diachi;
+			arr[3]=sdt;
 			ds_dia_diem.add(arr);
 		}
 		this.closeConnection();
@@ -708,7 +709,8 @@ public class CanThoMap {
 			SQLException, CloneNotSupportedException {
 		CanThoMap obj = new CanThoMap();
 		//System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
-		obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
+		//obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
+		obj.find_Place_By_Text("can tho");
 		//String coquan_gml=obj.getDiaDiem("coquan","can tho");
 		//System.out.println(coquan_gml);
 	}
