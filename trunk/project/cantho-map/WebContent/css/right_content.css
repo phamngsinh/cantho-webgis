@@ -16,37 +16,23 @@
     margin-top: 7px;
     width: 100px;
 }
-
-.right_content .topLeft   
- {  
-  background: url(images2/balloon_topLeft.png) no-repeat;  
-   }      
- .right_content .bottomLeft   
-  {  
-   background: url(images2/balloon_bottomLeft.png) no-repeat;  
-}         
- .right_content .left   
- {  
-      background: url(images2/balloon_left.png) repeat-y;  
-}        
-  .right_content .right   
- {  
-     background: url(images2/balloon_right.png) repeat-y;  
- }       
- .right_content .topRight   
-  {  
-     background: url(images2/balloon_topRight.png) no-repeat;  
- }       
-.right_content .bottomRight   
- {  
-     background: url(images2/balloon_bottomRight.png) no-repeat;  
-}         
- .right_content .top   
- {  
-     background: url(images2/balloon_top.png) repeat-x;  
- }        
-.right_content .bottom   
-{  
-      background: url(images2/balloon_bottom.png) repeat-x;  
-       text-align: center;  
+.right-item {
+    color: #0066FF;
+    padding-left: 20px;
+    text-decoration: none;
+    font-size: 12px;
+    width: 100px;
+	
+}
+#right_content table{
+	width: 100%;
+	position: absolute;
+}
+#right_content table tr{
+	height: 33px;
+}
+#right_content table tr td{
+	border-top: 1px solid  threedshadow;
+	padding-left: 7px;
+	background-color: #CCFFCC;
 }
