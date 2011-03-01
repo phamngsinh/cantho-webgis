@@ -71,7 +71,7 @@
     font-size: 17px;
     font-weight: bold;
     position: absolute;
-    margin-top: 5px;
+    margin-top: 15px;
     left: 30px;
 }
 .idiem-a-icon {
@@ -82,11 +82,12 @@
     font-size: 10px;
     font-weight: bold;
     height: 29px;
-    padding: 6px 6px 0 0;
+    padding: 7px 15px 0 0;
     text-align: center;
     text-shadow: 0 1px #B4DC34;
     text-transform: uppercase;
     width: 26px;
+    margin-top: 10px;
 }
 .TitFlag {
     float: right;
@@ -100,3 +101,7 @@
     overflow-y: auto;
     width: 260px;
 }
+.name-popup{
+	width: 20px;
+	color:red;
+	}
