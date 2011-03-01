@@ -558,11 +558,75 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_diadiem;
 	}		
-	public String[] getDiaDiemTheoViTri(String the_geom_point) throws SQLException, ClassNotFoundException{
+	public ArrayList getDiaDiemTheoViTri(String wkt_point) throws SQLException, ClassNotFoundException{
 		this.openConnection();
-		String[] arr= new String[4];
-		rs= s.executeQuery("Select ten, diachi, sdt From coquan Where ST_Astext(the_geom)='"+the_geom_point+"'");
-		
+		ArrayList arr = new ArrayList();
+		String ten="";
+		String diachi="";
+		String sodienthoai="";
+		String x="";
+		String y="";
+		rs= s.executeQuery("Select find_info_of_point('"+wkt_point+"') As result");
+		String result = "";
+		while (rs.next()){
+			result = rs.getString("result");
+		}
+		/**
+		 * Ket qua tra ve: ten$diachi$sdt$x$y
+		 * Neu ko tim thay tra ve 'nodata'
+		**/
+		if (result.equalsIgnoreCase("nodata")){
+			//khong tim thay thong tin tai vi tri nay
+			ten="Không tìm thấy thông tin tại vị trí này...";
+			diachi=" ";
+			sodienthoai=" ";
+		}
+		else{
+			//tien hanh tach chuoi dua tren ky tu dac biet $
+			String[] temp = new String[5];
+			temp = result.split("\\$");
+			//lay ra ten
+			if (temp[0].equals("")){
+				ten = " ";
+			}
+			else{
+				ten = temp[0];
+			}
+			//lay ra dia chi
+			if (temp[1].equals("")){
+				diachi = " ";
+			}
+			else{
+				diachi = temp[1];
+			}
+			//lay ra so dien thoai
+			if (temp[2].equals("")){
+				sodienthoai = " ";
+			}
+			else{
+				sodienthoai = temp[2];
+			}
+			//lay ra toa do x
+			if (temp[3].equals("")){
+				x = " ";
+			}
+			else{
+				x = temp[3];
+			}
+			//lay ra toa do y
+			if (temp[4].equals("")){
+				y = " ";
+			}
+			else{
+				y = temp[4];
+			}			
+		}
+		arr.add(ten);
+		arr.add(diachi);
+		arr.add(sodienthoai);
+		arr.add(x);
+		arr.add(y);
+		//System.out.println("result: "+result);
 		this.closeConnection();
 		return arr;
 	}
@@ -597,7 +661,8 @@ public class CanThoMap {
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException, CloneNotSupportedException {
 		CanThoMap obj = new CanThoMap();
-		System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
+		//System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
+		obj.getDiaDiemTheoViTri("POINT(586026.386888053 1109704.73845328)");
 		//String coquan_gml=obj.getDiaDiem("coquan","can tho");
 		//System.out.println(coquan_gml);
 	}
