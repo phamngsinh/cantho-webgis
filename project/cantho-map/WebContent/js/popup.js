@@ -34,7 +34,7 @@
              top: pos.top - 5 + 'px'  
          });       
          
-         if($('.tim-a').val()!='Nhap vao �ia danh...'){
+         if($('.tim-a').val()!='Nhập vào địa danh...'){
         	 //alert($('.tim-a').val());
         	 var ten_lop="coquan";
              var ten_diadiem="can tho";
