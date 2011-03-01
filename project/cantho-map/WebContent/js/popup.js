@@ -36,9 +36,11 @@
          
          if($('.tim-a').val()!='Nhập vào địa danh...'){
         	 //alert($('.tim-a').val());
-        	 var ten_lop="coquan";
-             var ten_diadiem="can tho";
-             getDiaDiem(ten_lop,ten_diadiem);
+        	 
+             var ten_dia_diem= $(".tim-a").val();             
+             //getDiaDiem(ten_lop,ten_diadiem);
+             find_Place_By_Text(ten_dia_diem);          
+             
              container.css('display', 'block'); 
              
          }

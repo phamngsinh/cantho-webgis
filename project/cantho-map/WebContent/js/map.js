@@ -60,8 +60,8 @@ function init() {
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			strokeColor : "#8A2BE2",
-			strokeWidth : 5
-		// strokeOpacity: 0.6
+			strokeWidth : 5,
+		    strokeOpacity: 0.6
 		}))
 	});
 
@@ -166,22 +166,23 @@ function point_Added(point) {
 	// dinh nghia type moi cho diem chon
 	var lop_diem_chon = list_layer_diem_chon[0];	
 	num_points = lop_diem_chon.features.length;
-	//tao icon cho start_point
+	/***tao icon cho start_point****/
 	if (num_points==1){
 		// tao symbolizer tu stylemap cua lop_diem_chon
 		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
 		// thay doi icon cho feature
-		symbolizer['externalGraphic'] = 'images/tick_1.png';
+		symbolizer['externalGraphic'] = 'images/start_path.png';
 		// set the unique style to the feature
 		point.style = symbolizer;	
 		// ve lai diem voi style moi
 		point.layer.drawFeature(point,point.style);		
 	}
+	/***tao icon cho end_point****/
 	if (num_points==2){
 		// tao symbolizer tu stylemap cua lop_diem_chon
 		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
 		// thay doi icon cho feature
-		symbolizer['externalGraphic'] = 'images/tick_1.png';
+		symbolizer['externalGraphic'] = 'images/end_path.png';
 		// set the unique style to the feature
 		point.style = symbolizer;	
 		// ve lai diem voi style moi
@@ -253,7 +254,6 @@ function onSelectFeature(e) {
 	 * OpenLayers.Popup.FramedCloud("chicken", lonlat, new OpenLayers.Size(100,
 	 * 100), "tran van hoang", null, true, onPopupClose);
 	 */
-
 }
 
 function onUnSelectFeature(e) {
