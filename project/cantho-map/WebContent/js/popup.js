@@ -1,9 +1,10 @@
  $(function()  
    {  
-     var hideDelay = 2500;    
+     var hideDelay = 500;    
      var currentID;  
      var hideTimer = null;   
-     var container = $('<div id="searchPopupContainer">'  
+     var container = $('<div id="searchPopupContainer"> '
+    	 + '	 <a onclick="" href="#" class="SelectPlaceCloseBut">Tat</a>'  
          + '<table width="" border="0" cellspacing="0" cellpadding="0" align="center" class="searchPopupPopup">'  
          + '<tr>'  
          + '   <td class="corner topLeft"></td>'  
@@ -33,11 +34,36 @@
              top: pos.top - 5 + 'px'  
          });       
          
-         var ten_lop="coquan";
-         var ten_diadiem="can tho";
-         getDiaDiem(ten_lop,ten_diadiem);
-       container.css('display', 'block');  
+         if($('.tim-a').val()!='Nhap vao ðia danh...'){
+        	 //alert($('.tim-a').val());
+        	 var ten_lop="coquan";
+             var ten_diadiem="can tho";
+             getDiaDiem(ten_lop,ten_diadiem);
+             container.css('display', 'block'); 
+             
+         }
+          
+        
      });  
-    
-     
+     $('.searchA').live('mouseout', function()  {  
+         if (hideTimer)  
+               clearTimeout(hideTimer);  
+           hideTimer = setTimeout(function()  {  
+               container.css('display', 'none');  
+           }, hideDelay);  
+      });  
+       $('#searchPopupContainer').mouseover(function() {  
+           if (hideTimer)  
+               clearTimeout(hideTimer);  
+       });  
+       $('#searchPopupContainer').mouseout(function()  {  
+           if (hideTimer)  
+              clearTimeout(hideTimer);  
+          hideTimer = setTimeout(function(){  
+              container.css('display', 'none');  
+          }, hideDelay);    
+    });  
+       $('.SelectPlaceCloseBut').live('click', function()  {  
+    	   container.css('display', 'none');   
+        });     
   });  

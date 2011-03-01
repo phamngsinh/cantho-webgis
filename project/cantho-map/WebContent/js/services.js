@@ -109,17 +109,20 @@ function callBackGetDuongDi(xml_result, status) {
 		dodai = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		tongdodai = (tongdodai * 1) + (dodai * 1);
 		lop_duong_di.addFeatures(wkt_format.read(wkt));
-		li = li + "<li id='li' class='li'>" + "<span class='instruction'>"
-				+ "<span>" + "<pan class='instructionKeyword'>" + tenduong
-				+ "</span>" + "</span" + "</span" + "<span class='distance'>"
-				+ Math.round(dodai) + " m</span>" + "</li>";
-		result = result + li;
+		li= li+ "<li id='li' class='li'>" +
+					"<span class='instruction'>" + 
+						"<span>" +
+							"<pan class='instructionKeyword'>" + tenduong +"</span>" +
+						"</span" +
+					"</span" +
+					"<span class='distance'>"+ Math.round(dodai)+" m</span>" +
+				"</li>";	
+		result= result + li;
 	}
-
-	result = result + "</ol>";
-	tongdodai = "<p class='total-length'>Tá»•ng Ä‘á»™ dÃ i: "
-			+ Math.round(tongdodai) + " m</p>";
-	result = tongdodai + result;
+	
+	result= result + "</ol>";
+	tongdodai= "<p class='total-length'>Tổng độ dài: "+ Math.round(tongdodai) + " m</p>";
+	result=tongdodai+result;
 	$('.search-result').html(result);
 	/*
 	 * var gml =

@@ -45,18 +45,19 @@
 						<div class="direction-item" id="direction0">
 							<div class="swrap-timduong">
 								<span class="a-z">a</span>
-								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong timduong-default">
+								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
 								<a onclick="" class="del-timduong" style="display: none;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
 							</div>
 						</div>
 						<div class="direction-item" id="direction1">
 								<div class="swrap-timduong">
 									<span class="a-z">b</span>
-									<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong timduong-default">
+									<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong timduong-b">
 									<a onclick="" class="del-timduong" style="display: none;">Xóa</a><a class="btn-timduong search1" id="">Tìm</a>
 								</div>
 						</div>
 						<div class="search-result"></div>
+						
 					</div>
 				</div>
 				<div class= "panes-div">
@@ -69,53 +70,24 @@
 		<div class="splExpand" id="centerSplit">
             <a onclick="moveIconClick()" class="moveicon" id="moveicon"></a>        </div>
 	</div>
-<div class = "right_content"  id = "right_content"> 				
-	<div style="background:  url('images/hotel.png') no-repeat scroll left center #FFDB69;" class="taskbar_right">
-		<a  id = "coquan" href="#" class="menu_taskbar coquan"  onclick="" onmouseover= "blinklink_coquan()" onmouseout= "stoptimer_coquan()">Cơ Quan</a>			
-	</div>
-	<div style="background: url('images/school.png') no-repeat scroll left center #FFDB69;" class="taskbar_right">
-		<a id = "truonghoc"  href="#" onclick=""  class="menu_taskbar truonghoc" onmouseover= "blinklink_truonghoc()" onmouseout= "stoptimer_truonghoc()">Trường Học</a>			
-	</div>
-	<div style="background: url('images/company.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "benhvien" href="#" onclick="" class="menu_taskbar benhvien" onmouseover= "blinklink_benhvien()" onmouseout= "stoptimer_benhvien()" >Bệnh Viện</a>			
-	</div>
-	<div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "cho" href="#" onclick="" class="menu_taskbar cho"  onmouseover= "blinklink_cho()" onmouseout= "stoptimer_cho()" >Chợ</a>			
-	</div>		
-	<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "bentauxe" href="#" onclick="" class="menu_taskbar bentauxe"  onmouseover= "blinklink_bentauxe()" onmouseout= "stoptimer_bentauxe()" >Bến Tàu Xe</a>			
-    </div>
-    <div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "khachsan" href=#" onclick="" class="menu_taskbar khachsan "  onmouseover= "blinklink_khachsan()" onmouseout= "stoptimer_khachsan()" >Khách Sạn</a>
-	</div>
-	<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "congty" href="#" onclick="" class="menu_taskbar congty"  onmouseover= "blinklink_congty()" onmouseout= "stoptimer_congty()" >Công Ty</a>			
-	</div>
-	<div style="background: url('images/school.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "giaitri" href="#" onclick="" class="menu_taskbar giaitri"  onmouseover= "blinklink_giaitri()" onmouseout= "stoptimer_giaitri()" >Giải Trí</a>			
-	</div>
-	<div style="background: url('images/company.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "denchua" href="#" onclick="" class="menu_taskbar denchua"  onmouseover= "blinklink_denchua()" onmouseout= "stoptimer_denchua()" >Đền Chùa</a>			
-	</div>
-	<div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "truyenthong" href="#" onclick="" class="menu_taskbar truyenthong"  onmouseover= "blinklink_truyenthong()" onmouseout= "stoptimer_truyenthong()" >Truyền Thông</a>			
-	</div>		
-	<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "nganhang" href="#" onclick="" class="menu_taskbar nganhang"  onmouseover= "blinklink_nganhang()" onmouseout= "stoptimer_nganhang()" >Ngân Hàng</a>			
-    </div>
-    <div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "congvien" href="#" onclick="" class="menu_taskbar congvien"  onmouseover= "blinklink_congvien()" onmouseout= "stoptimer_congvien()" >Công Viên</a>			
-    </div>
-    <div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "cau" href="#" onclick="" class="menu_taskbar cau"  onmouseover= "blinklink_cau()" onmouseout= "stoptimer_cau()" >Cầu</a>			
-	</div>		
-	<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "thuvien" href="#" onclick="" class="menu_taskbar thuvien"  onmouseover= "blinklink_thuvien()" onmouseout= "stoptimer_thuvien()" >Thư Viện</a>			
-    </div>
-    <div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_right">
-		<a id = "khac" href="#" onclick="" class="menu_taskbar khac"  onmouseover= "blinklink_khac()" onmouseout= "stoptimer_khac()" >Khác</a>			
-    </div>
-	
+<div class = "right_content"  id = "right_content">
+		<table cellpadding="0" cellspacing="0"> 					
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "coquan"      href="#" onclick="" class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "truonghoc"   href="#" onclick="" class="right-item truonghoc"    onmouseover= "blinklink_truonghoc()"   onmouseout= "stoptimer_truonghoc()"   >Trường Học</a>	</td></tr>			
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "benhvien"    href="#" onclick="" class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "cho"         href="#" onclick="" class="right-item cho"          onmouseover= "blinklink_cho()"         onmouseout= "stoptimer_cho()"         >Chợ</a>			</td></tr>	
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "bentauxe"    href="#" onclick="" class="right-item bentauxe"     onmouseover= "blinklink_bentauxe()"    onmouseout= "stoptimer_bentauxe()"    >Bến Tàu Xe</a>	</td></tr>			
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "khachsan"    href=#"  onclick="" class="right-item khachsan "    onmouseover= "blinklink_khachsan()"    onmouseout= "stoptimer_khachsan()"    >Khách Sạn</a>   </td></tr>	
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "congty"      href="#" onclick="" class="right-item congty"       onmouseover= "blinklink_congty()"      onmouseout= "stoptimer_congty()"      >Công Ty</a>		</td></tr>		
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "giaitri"     href="#" onclick="" class="right-item giaitri"      onmouseover= "blinklink_giaitri()"     onmouseout= "stoptimer_giaitri()"     >Giải Trí</a>	</td></tr>			
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "denchua"     href="#" onclick="" class="right-item denchua"      onmouseover= "blinklink_denchua()"     onmouseout= "stoptimer_denchua()"     >Đền Chùa</a>	</td></tr>			
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "truyenthong" href="#" onclick="" class="right-item truyenthong"  onmouseover= "blinklink_truyenthong()" onmouseout= "stoptimer_truyenthong()" >Truyền Thông</a></td></tr>				
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "nganhang"    href="#" onclick="" class="right-item nganhang"     onmouseover= "blinklink_nganhang()"    onmouseout= "stoptimer_nganhang()"    >Ngân Hàng</a>	</td></tr>			
+   		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "congvien"    href="#" onclick="" class="right-item congvien"     onmouseover= "blinklink_congvien()"    onmouseout= "stoptimer_congvien()"    >Công Viên</a>	</td></tr>			
+   		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "cau"         href="#" onclick="" class="right-item cau"          onmouseover= "blinklink_cau()"         onmouseout= "stoptimer_cau()"         >Cầu</a>			</td></tr>	
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "thuvien"     href="#" onclick="" class="right-item thuvien"      onmouseover= "blinklink_thuvien()"     onmouseout= "stoptimer_thuvien()"     >Thư Viện</a>	</td></tr>			
+   		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "khac"        href="#" onclick="" class="right-item khac"         onmouseover= "blinklink_khac()"        onmouseout= "stoptimer_khac()"        >Khác</a>		</td></tr>		
+		</table>
 </div>
 <div class = "bottom_content" class = "bottom_content">
 			<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_title">

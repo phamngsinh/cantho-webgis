@@ -181,3 +181,14 @@
 .stepsList li {
     cursor: pointer;
 }
+.SelectPlaceCloseBut {
+    background: url("../images/Icons.png") no-repeat scroll -2px -192px transparent;
+    cursor: pointer;
+    display: block;
+    height: 16px;
+    position: absolute;
+    right: 13px;
+    text-indent: -9999px;
+    top: 9px;
+    width: 16px;
+}
