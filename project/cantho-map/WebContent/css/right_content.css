@@ -30,9 +30,10 @@
 }
 #right_content table tr{
 	height: 33px;
+	 
 }
 #right_content table tr td{
 	border-top: 1px solid  threedshadow;
 	padding-left: 7px;
-	background-color: #CCFFCC;
+	background: url("../images/img09.gif") repeat-x scroll 0 0 #BCB39F;
 }
