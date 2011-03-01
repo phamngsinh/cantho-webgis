@@ -15,7 +15,6 @@ function init() {
 
 	var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294,
 			1141760.714);
-
 	var options = {
 		controls : [],
 		maxExtent : bounds,
@@ -28,8 +27,10 @@ function init() {
 
 	map = new OpenLayers.Map('map', options);
 	// lay ra quan huyen duoi dinh dang raster
-	lop_quan_huyen = new OpenLayers.Layer.WMS("Quan_huyen",
-			"http://localhost:8080/geoserver/wms", {
+	lop_nen = new OpenLayers.Layer.WMS(
+			"Quan_huyen",
+			"http://localhost:8080/geoserver/wms",
+			{
 				layers : 'ws_cantho:quanhuyen,ws_cantho:giaothong,ws_cantho:coquan',
 				styles : '',
 				srs : 'EPSG:4326',
@@ -43,7 +44,17 @@ function init() {
 				displayOutsideMaxExtent : true
 			});
 
-	map.addLayers([ lop_quan_huyen ]);
+	map.addLayers([ lop_nen ]);
+
+	/** Lop chua hai diem duoc chon, de tim duong di* */
+	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
+		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
+			externalGraphic : '',
+			graphicWidth : 20,
+			graphicHeight : 20
+		// strokeOpacity: 0.6
+		}))
+	});
 
 	/** Lop hien thi duong duong di ngan nhat* */
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
@@ -60,15 +71,6 @@ function init() {
 			externalGraphic : 'images/tick_1.png',
 			graphicWidth : 25,
 			graphicHeight : 25
-		// strokeOpacity: 0.6
-		}))
-	});
-	/** Lop chua hai diem duoc chon, de tim duong di* */
-	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
-		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
-			externalGraphic : 'images/Vietnam-icon.png',
-			graphicWidth : 20,
-			graphicHeight : 20
 		// strokeOpacity: 0.6
 		}))
 	});
@@ -157,12 +159,35 @@ function init() {
  * ********Goi Webservice sau khi hai diem da duoc them vao
  * lop_diem_chon*********
  */
-function point_Added() {
-	// alert("Diem da duoc ve ! ");
+function point_Added(point) {
+	//alert("Diem da duoc ve ! ");
 	// kiem tra neu da chon du hai diem thi goi webservice de lay duong di
-	list_layer_diem_chon = map.getLayersByName('lop_diem_chon');
-	lop_diem_chon = list_layer_diem_chon[0];
+	var list_layer_diem_chon = map.getLayersByName('lop_diem_chon');
+	// dinh nghia type moi cho diem chon
+	var lop_diem_chon = list_layer_diem_chon[0];	
 	num_points = lop_diem_chon.features.length;
+	//tao icon cho start_point
+	if (num_points==1){
+		// tao symbolizer tu stylemap cua lop_diem_chon
+		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
+		// thay doi icon cho feature
+		symbolizer['externalGraphic'] = 'images/tick_1.png';
+		// set the unique style to the feature
+		point.style = symbolizer;	
+		// ve lai diem voi style moi
+		point.layer.drawFeature(point,point.style);		
+	}
+	if (num_points==2){
+		// tao symbolizer tu stylemap cua lop_diem_chon
+		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
+		// thay doi icon cho feature
+		symbolizer['externalGraphic'] = 'images/tick_1.png';
+		// set the unique style to the feature
+		point.style = symbolizer;	
+		// ve lai diem voi style moi
+		point.layer.drawFeature(point,point.style);		
+	}
+	//tao icon cho end_point
 	if (num_points == 2) {
 		for ( var i = 0; i < map.controls.length; i++) {
 			if (map.controls[i].displayClass == "olControlDrawFeature") {
@@ -221,17 +246,15 @@ function onSelectFeature(e) {
 
 	// goi webservice o day de hien thi thong tin cua diem vua chon
 	getDiaDiemTheoViTri(e.geometry);
-	/*	 
-	pixel = new OpenLayers.Pixel(e.geometry.x, e.geometry.y);
-	alert("Fearture da duoc chon! tai vi tri: " + pixel);
-	var lonlat = map.getLonLatFromPixel(pixel);
-	popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat, 
-			new OpenLayers.Size(100, 100),
-			"tran van hoang", null, true, onPopupClose);
-	*/
+	/*
+	 * pixel = new OpenLayers.Pixel(e.geometry.x, e.geometry.y); alert("Fearture
+	 * da duoc chon! tai vi tri: " + pixel); var lonlat =
+	 * map.getLonLatFromPixel(pixel); popup = new
+	 * OpenLayers.Popup.FramedCloud("chicken", lonlat, new OpenLayers.Size(100,
+	 * 100), "tran van hoang", null, true, onPopupClose);
+	 */
 
 }
-
 
 function onUnSelectFeature(e) {
 	alert("Feature duoc bo chon");

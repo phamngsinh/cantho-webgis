@@ -68,10 +68,10 @@ function getDiaDiemTheoViTri(the_geom_point) {
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
 	soapMessage += "   <soapenv:Body>";
-	soapMessage += "      <ser:getDiaDiemTheoViTri>";
+	soapMessage += "      <ser:find_Info_Of_Point>";
 	soapMessage += "         <ser:the_geom_point>" + the_geom_point
 			+ "</ser:the_geom_point>";
-	soapMessage += "      </ser:getDiaDiemTheoViTri>";
+	soapMessage += "      </ser:find_Info_Of_Point>";
 	soapMessage += "   </soapenv:Body>";
 	soapMessage += "</soapenv:Envelope>";
 	$.ajax({
@@ -231,7 +231,7 @@ function onClosePopup(e){
 	alert(e);
 }
 function errorGetDiaDiemTheoViTri(xml_error) {
-	alert("Loi getDiaDiemTheoViTri");
+	alert("Loi find_Info_Of_Point");
 }
 function chonDiemA(d) {
 	alert(d);
