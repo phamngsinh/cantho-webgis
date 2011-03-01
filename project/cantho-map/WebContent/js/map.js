@@ -23,14 +23,14 @@ function init() {
 		projection : "EPSG:4326",
 		units : 'm',
 		isBaselayer : 'true',
-		numZoomLevels : 12
+		numZoomLevels : 11
 	};
 
 	map = new OpenLayers.Map('map', options);
 	// lay ra quan huyen duoi dinh dang raster
 	lop_quan_huyen = new OpenLayers.Layer.WMS("Quan_huyen",
 			"http://localhost:8080/geoserver/wms", {
-				layers : 'ws_cantho:quanhuyen,ws_cantho:giaothong',
+				layers : 'ws_cantho:quanhuyen,ws_cantho:giaothong,ws_cantho:coquan',
 				styles : '',
 				srs : 'EPSG:4326',
 				format : format,
