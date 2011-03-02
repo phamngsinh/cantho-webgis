@@ -85,9 +85,8 @@ function getDiaDiemTheoViTri(the_geom_point) {
 		// (request)
 		data : soapMessage
 	});
-
 }
-
+//function getLopDiaDiem()
 function find_Place_By_Text(ten_dia_diem){
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
@@ -144,7 +143,7 @@ function callBackGetDuongDi(xml_result, status) {
 	}
 	
 	result= result + "</ol>";
-	tongdodai= "<p class='total-length'>Tổng độ dài: "+ Math.round(tongdodai) + " m</p>";
+	tongdodai= "<p class='total-length'>Tá»•ng Ä‘á»™ dÃ i: "+ Math.round(tongdodai) + " m</p>";
 	result=tongdodai+result;
 	$('.search-result').html(result);
 	/*
@@ -158,8 +157,7 @@ function callBackGetDuongDi(xml_result, status) {
  * end_point Hien thi duong thang vua tao va tinh do dai cua no Xoa cac feature
  * tren lop_duong_di
  ******************************************************************************/
-function errorGetDuongDi(xml_error) {
-	// alert("Noi hai diem lai");
+function errorGetDuongDi(xml_error) {	
 	// lay ra hai diem duoc chon
 	lop_diem_chon = map.getLayersByName("lop_diem_chon")[0];
 	// lop_diem_chon = list_lop_diem_chon[0];
@@ -191,7 +189,7 @@ function callBackGetDiaDiem(xml_result, status) {
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm</h3>"
+			+ "<h3 class='SPTitText'>HÃ£y chá»�n vá»‹ trÃ­ cho Ä‘iá»ƒm</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -228,6 +226,7 @@ function errorGetDiaDiem(xml_error) {
 
 function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	//lay ra thong tin tu tap tin xml
+	
 	ten = xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
 	diachi = xml_result.getElementsByTagName('ns:return')[1].childNodes[0].nodeValue;
 	sodienthoai = xml_result.getElementsByTagName('ns:return')[2].childNodes[0].nodeValue;
@@ -238,16 +237,14 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	var lonlat = new OpenLayers.LonLat(x, y);
 	//khai bao popup--> cho nay co the thanh lap han createPopup(content,lolat);
 	var popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat,
-				new OpenLayers.Size(100, 100), content, null, true, onClosePopup);
+				new OpenLayers.Size(100, 100), content, null, true);
 	//them popup vao ban do
 	map.addPopup(popup, true);
 	//dich chuyen tam ban do ve diem duoc chon
 	map.setCenter(lonlat, 6, false, false);
+	
 }
-function onClosePopup(e){
-	//xoa popup tai day	
-	alert(e);
-}
+
 function errorGetDiaDiemTheoViTri(xml_error) {
 	alert("Loi find_Info_Of_Point");
 }
@@ -261,7 +258,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm</h3>"
+			+ "<h3 class='SPTitText'>HÃ£y chá»�n vá»‹ trÃ­ cho Ä‘iá»ƒm</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -276,7 +273,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
-		ten = i + xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		
@@ -288,9 +285,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	result = result + " </div>";
 	$('#searchPopupContent').html(result);
 	// dong controlDrawFeature va control DragFeature, setDuongDi, xoa duong di cu
-
 	reset_DuongDi();
-
 }
 function error_Find_Place_By_Text(xml_result){
 	alert("Loi: error_Find_Place_By_Text");
