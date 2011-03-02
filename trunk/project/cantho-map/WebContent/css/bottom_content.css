@@ -27,3 +27,8 @@
     padding-left: 20px;
     text-decoration: none;
 }
+#chk_timduong {
+    left: 3px;
+    position: absolute;
+    top: 5px;
+}

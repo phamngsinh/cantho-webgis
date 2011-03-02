@@ -101,7 +101,59 @@
     overflow-y: auto;
     width: 260px;
 }
-.name-popup{
-	width: 20px;
-	color:red;
+.maker-popup{
+		width: 200px;
+		height: 20px;
+	}
+.maker-popup-ten {
+    color: black;
+    font-size: 15px;
+    height: 35px;
+    margin-left: -5px;
+    margin-top: 5px;
+    text-align: center;
+    width: 245px;
+    font-weight: bold;
+}
+.maker-popup-diachi{
+	font-size: 13px;
+	height: 25px;
+}
+.maker-popup-sdt{
+	font-size: 13px;
+	height: 25px;
+}
+.maker-popup-footer{
+	font-size: 13px;
+	text-align: center;
+	height: 20px;
+	margin-left: -5px;
+}
+
+.maker-popup-footer a{
+	text-decoration: none;
+	}
+.maker-popup-tuday{
+
+}
+.maker-popup-denday{
+
+}
+.maker-popup-timxungquanh{
+
+}
+#chicken{
+	width: 270px !important;
+	}
+#chicken_FrameDecorationDiv_2{
+	 width: 250px !important;
+	}
+#chicken_FrameDecorationDiv_0{
+	 width: 250px !important;
+	}
+#chicken_FrameDecorationDiv_1{
+	 width: 24px !important;
+	}
+#chicken_FrameDecorationDiv_3{
+	 width: 24px !important;
 	}
