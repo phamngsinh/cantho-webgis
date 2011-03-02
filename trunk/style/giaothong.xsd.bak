@@ -359,7 +359,7 @@
         </Rule>         
       </FeatureTypeStyle>   
 	 <!--End Ten Duong-->
-
+	<!--Begin : Chieu cua duong (arrow)-->
 	<FeatureTypeStyle>
 	<Rule>
 	  <ogc:Filter>
@@ -396,7 +396,7 @@
 	  </TextSymbolizer>
 	</Rule>
 	 </FeatureTypeStyle> 
-
+	<!--End : Chieu cua duong (arrow)-->
 
     </UserStyle>
   </NamedLayer>

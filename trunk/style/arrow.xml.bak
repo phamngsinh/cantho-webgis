@@ -6,27 +6,7 @@
     <Name>Simple Roads</Name>
     <UserStyle>
       <Title>Default Styler for simple road segments</Title>
-      <Abstract>Light red line, 2px wide</Abstract>   	
-		<FeatureTypeStyle>
-		 <Rule>
-			 <LineSymbolizer>
-				 <Stroke>
-				 	<CssParameter name="stroke">#FF0000</CssParameter>
-				 </Stroke>
-				 </LineSymbolizer>
-				 <TextSymbolizer>
-				 <Label>
-				 	<ogc:PropertyName>ten_duong</ogc:PropertyName>
-				 </Label>
-				 <Fill>
-				 	<CssParameter name="fill">#000000</CssParameter>
-				 </Fill>
-				 <VendorOption name="followLine">true</VendorOption>
-				 <VendorOption name="repeat">150</VendorOption>
-
-			 </TextSymbolizer>
-		 </Rule>
-	 </FeatureTypeStyle>      
+      <Abstract>Light red line, 2px wide</Abstract>   
 
 	<FeatureTypeStyle>
 	<Rule>
