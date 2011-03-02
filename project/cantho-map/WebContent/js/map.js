@@ -50,8 +50,8 @@ function init() {
 	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : '',
-			graphicWidth : 20,
-			graphicHeight : 20
+			graphicWidth : 25,
+			graphicHeight : 30
 		// strokeOpacity: 0.6
 		}))
 	});
@@ -171,7 +171,7 @@ function point_Added(point) {
 		// tao symbolizer tu stylemap cua lop_diem_chon
 		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
 		// thay doi icon cho feature
-		symbolizer['externalGraphic'] = 'images/start_path.png';
+		symbolizer['externalGraphic'] = 'images/tuday.png';
 		// set the unique style to the feature
 		point.style = symbolizer;	
 		// ve lai diem voi style moi
@@ -182,7 +182,7 @@ function point_Added(point) {
 		// tao symbolizer tu stylemap cua lop_diem_chon
 		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
 		// thay doi icon cho feature
-		symbolizer['externalGraphic'] = 'images/end_path.png';
+		symbolizer['externalGraphic'] = 'images/denday.png';
 		// set the unique style to the feature
 		point.style = symbolizer;	
 		// ve lai diem voi style moi

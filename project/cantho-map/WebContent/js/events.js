@@ -57,8 +57,7 @@ function doKhoangCach(){
 		else {
 			//deactivate cac control con lai
 			map.controls[i].deactivate();
-		}
-		
+		}		
 	}
 }
 $(document).ready(function() {
@@ -126,11 +125,14 @@ function OnblurTextBoxAB(a){
 	var b=a.parent().parent()[0].id;
 	var c=parseInt(b.substring(9,b.length));
 	if(a.val()==""){
-		a.val("Nhập vào địa danh...");
+		a.val("Nhập vào danh sach...");
 	}
 }
 function OnforcusTextBoxAB(a){
 			a=$(a);
 			a.val("");
 			prev_selectedResAB_Text=selectedResAB_Text=a.val();
+}
+function getLopDiaDiem(ten_lop){
+	alert(ten_lop);	
 }
