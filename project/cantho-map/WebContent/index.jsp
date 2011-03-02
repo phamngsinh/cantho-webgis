@@ -72,7 +72,7 @@
 	</div>
 <div class = "right_content"  id = "right_content">
 		<table cellpadding="0" cellspacing="0"> 					
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "coquan"      href="#" onclick="" class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "coquan"      href="#" onclick="getLopDiaDiem('coquan')" class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
 		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "truonghoc"   href="#" onclick="" class="right-item truonghoc"    onmouseover= "blinklink_truonghoc()"   onmouseout= "stoptimer_truonghoc()"   >Trường Học</a>	</td></tr>			
 		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "benhvien"    href="#" onclick="" class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
 		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "cho"         href="#" onclick="" class="right-item cho"          onmouseover= "blinklink_cho()"         onmouseout= "stoptimer_cho()"         >Chợ</a>			</td></tr>	
@@ -109,7 +109,7 @@
 				<a href="#" onclick="" class="menu_taskbar">Chọn vùng</a>			
 			</div>
 			<input id="chk_timduong" type="checkbox" />
-	</div>
+</div>
 <!--  label>Tim Duong</label>
 <input id="chk_timduong" type="checkbox" />
 <input type="button" id="btn_getduongdi" value="Hien Thi" />
