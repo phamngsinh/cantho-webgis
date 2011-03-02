@@ -13,7 +13,6 @@ import dijkstra.Canh;
 import dijkstra.Nut;
 import dijkstra.DoThi;
 import dijkstra.Dijkstra;
-
 public class CanThoMap {	
 	
 	Connection conn;
@@ -22,92 +21,7 @@ public class CanThoMap {
 
 	public ArrayList getDuongDi(double x1, double y1,double x2,double y2) throws ClassNotFoundException {		
 		try {								
-			this.openConnection();					
-			/**** Cho toa do 4 diem *****/
-			/*
-			//OK
-			double x1 = 585953.10874;
-			double y1 = 1109793.52265;
-			double x2 = 585863.71313;
-			double y2 = 1110149.82799;
-			*/
-			/*
-			//OK
-			double x1 = 584321.00040;
-			double y1 = 1110220.06740;
-			double x2 = 585268.59381;
-			double y2 = 1110784.53679;
-			*/
-			/*
-			 //OK
-			double x1 = 586055.91368;
-			double y1 = 1111536.73696;
-			double x2 = 586199.90446;
-			double y2 = 1111469.37099;
-			*/
-			/*
-			 //Hai diem nam tren mot duong: hai diem tren mot duong
-			double x1 = 585899.47137;
-			double y1 = 1111277.80897;
-			double x2 = 586099.65367;
-			double y2 = 1111408.39041;
-			*/
-			/*
-			//di qua vong xoay: OK
-			double x1 = 586424.03201;
-			double y1 = 1110974.18319;
-			double x2 = 586406.15289;
-			double y2 = 1110178.56230;
-			*/
-			//di qua vong xoay(chieu nguoc lai): OK
-			/*
-			double x1 = 586406.15289;
-			double y1 = 1110178.56230;
-			double x2 = 586424.03201;
-			double y2 = 1110974.18319;
-			*/
-			/*
-			//hai diem nam tren cung mot duong hai chieu, cung thu tu tu nguon den dich: OK		
-			double x1 = 586153.61031;
-			double y1 = 1110998.44770;
-			double x2 = 586329.84736;
-			double y2 = 1111085.28915;
-			*/
-			/*
-			//hai diem nam tren cung mot duong hai chieu, khac tu tu nguon den dich: OK
-			double x1 = 586329.84736;
-			double y1 = 1111085.28915;
-			double x2 = 586153.61031;
-			double y2 = 1110998.44770;
-			*/
-			/*
-			//hai diem nam tren cung mot duong mot chieu, cung thu tu tu nguon den dich: OK (Tran Phu)
-			double x1 = 585887.01984;
-			double y1 = 1111296.32663;
-			double x2 = 585846.15328;
-			double y2 = 1111259.61058;
-			*/
-			/*
-			//hai diem nam tren cung mot duong mot chieu, khac thu tu tu nguon den dich: OK
-			double x1 = 585846.15328;
-			double y1 = 1111259.61058;
-			double x2 = 585887.01984;
-			double y2 = 1111296.32663;
-			*/
-			/*
-			//hai diem nam tai mot dinh cua mot canh OK
-			double x1 = 586286.42664;
-			double y1 = 1111763.41867;
-			double x2 = 586307.49846;
-			double y2 = 1111764.69575;
-			*/
-			//hai diem nam tai hai dinh cua mot canh 
-			/*
-			double x1 = 586286.42664;
-			double y1 = 1111763.41867;
-			double x2 = 586281.79722;
-			double y2 = 1111536.85668;
-			*/
+			this.openConnection();			
 			/***** Danh sach canh va nut *****/
 			List<Canh> edges = new ArrayList<Canh>();
 			List<Nut> nodes = new ArrayList<Nut>();
