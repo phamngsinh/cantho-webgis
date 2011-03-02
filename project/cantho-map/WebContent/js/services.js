@@ -143,7 +143,7 @@ function callBackGetDuongDi(xml_result, status) {
 	}
 	
 	result= result + "</ol>";
-	tongdodai= "<p class='total-length'>Tá»•ng Ä‘á»™ dÃ i: "+ Math.round(tongdodai) + " m</p>";
+	tongdodai= "<p class='total-length'>Tổng độ dài: "+ Math.round(tongdodai) + " m</p>";
 	result=tongdodai+result;
 	$('.search-result').html(result);
 	/*
@@ -189,7 +189,7 @@ function callBackGetDiaDiem(xml_result, status) {
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>HÃ£y chá»�n vá»‹ trÃ­ cho Ä‘iá»ƒm</h3>"
+			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm </h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -231,9 +231,20 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	diachi = xml_result.getElementsByTagName('ns:return')[1].childNodes[0].nodeValue;
 	sodienthoai = xml_result.getElementsByTagName('ns:return')[2].childNodes[0].nodeValue;
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
-	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;	
+	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
+	if(diachi==" " || diachi==null) {diachi = " đang cập nhật.";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = " đang cập nhật.";}
 	//tao noi dung cho popup
-	var content = "Ten : " + ten;	
+	ten = "<div class = 'maker-popup-ten'>" + ten +"</div>";
+	diachi= "<div class = 'maker-popup-diachi'> Địa chỉ : "+ diachi + "</div>";
+	sodienthoai= "<div class = 'maker-popup-sdt'> Số điện thoại : "+ sodienthoai + "</div>";
+	var content = ten + 
+			diachi + 
+			sodienthoai + 
+			"<div class = 'maker-popup-footer' ><a class='maker-popup-tuday' href='#'>Từ đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='#'>Đến đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='#'>Phóng to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='#'>Tìm xung quanh</a></div>";
 	var lonlat = new OpenLayers.LonLat(x, y);
 	//khai bao popup--> cho nay co the thanh lap han createPopup(content,lolat);
 	var popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat,
