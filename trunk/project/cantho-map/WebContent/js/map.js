@@ -6,7 +6,7 @@ var map;
 var untiled;
 var tiled;
 var pureCoverage = false;
-var selected_layer, control;
+var control_select, control_drag, control_ve_diem;
 var format = 'image/png';
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
@@ -49,13 +49,13 @@ function init() {
 	/** Lop chua hai diem duoc chon, de tim duong di* */
 	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
-			externalGraphic : '',
-			graphicWidth : 25,
-			graphicHeight : 30
-		// strokeOpacity: 0.6
+			externalGraphic : 'images/end_path.png',
+			graphicWidth : 30,
+			graphicHeight : 35
+		//strokeOpacity: 0.6
 		}))
 	});
-
+		
 	/** Lop hien thi duong duong di ngan nhat* */
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
@@ -74,23 +74,23 @@ function init() {
 		// strokeOpacity: 0.6
 		}))
 	});
-
+	//Them cac lop vua tao vao ban do
 	map.addLayers([ lop_duong_di, lop_dia_diem, lop_diem_chon ]);
 
 	/** tao control DrawFeature ve start_point va end_point* */
-	var control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
+	control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
 			OpenLayers.Handler.Point, {
 				featureAdded : point_Added
 			});
 	/** tao control DragFeature de drag hai diem start_point va end_point* */
-	var control_drag = new OpenLayers.Control.DragFeature(lop_diem_chon, {
+	control_drag = new OpenLayers.Control.DragFeature(lop_diem_chon, {
 		// onStart: begin_Drag(),
 		// onDrag: Draging(),
 		onComplete : drag_Completed
 	// duoc kich hoat khi su kien drag ket thuc
 	});
-	/** tao control SelectFeature de chon cac diem tren lop_dia_diem* */
-	var control_select = new OpenLayers.Control.SelectFeature(lop_dia_diem, {
+	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem* */
+	control_select = new OpenLayers.Control.SelectFeature(lop_dia_diem, {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
 		onUnSelect : onUnSelectFeature,//
 		clickout : true
@@ -98,7 +98,7 @@ function init() {
 
 	/** Them cac controls vua tao vao ban do* */
 	map.addControls([ control_drag, control_ve_diem, control_select ]);
-	control_select.activate();
+	control_select.activate();	
 	/** ************************ Style cho lop controlmeasure******************* */
 	// style the sketch fancy
 	var sketchSymbolizers = {
@@ -159,6 +159,7 @@ function init() {
  * ********Goi Webservice sau khi hai diem da duoc them vao
  * lop_diem_chon*********
  */
+
 function point_Added(point) {
 	//alert("Diem da duoc ve ! ");
 	// kiem tra neu da chon du hai diem thi goi webservice de lay duong di
@@ -190,6 +191,13 @@ function point_Added(point) {
 	}
 	//tao icon cho end_point
 	if (num_points == 2) {
+		
+		lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+		alert("Truoc Index lop_dia_diem: "+map.getLayerIndex(lop_dia_diem));
+		alert("Truoc index cua lop_diem_chon: "+map.getLayerIndex(lop_diem_chon));
+		//map.setLayerIndex(lop_diem_chon,3);
+		//alert("Sau Index lop_dia_diem: "+map.getLayerIndex(lop_dia_diem));
+		//alert("Sau index cua lop_diem_chon: "+map.getLayerIndex(lop_diem_chon));
 		for ( var i = 0; i < map.controls.length; i++) {
 			if (map.controls[i].displayClass == "olControlDrawFeature") {
 				map.controls[i].deactivate();
@@ -197,10 +205,15 @@ function point_Added(point) {
 			if (map.controls[i].displayClass == "olControlDragFeature") {
 				map.controls[i].activate();
 			}
+			if (map.controls[i].displayClass == "olControlSelectFeature") {
+				map.controls[i].activate();				
+			}
+			
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
 			}
 		}
+		control_select.setLayer(lop_dia_diem);
 		// lay toa do hai diem duoc chon
 		var start_point = lop_diem_chon.features[0].geometry.clone();
 		var end_point = lop_diem_chon.features[1].geometry.clone();
