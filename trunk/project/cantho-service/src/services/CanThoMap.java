@@ -59,7 +59,7 @@ public class CanThoMap {
 				int target = rs_canh.getInt("target") - 1;
 				String ten_duong = rs_canh.getString("ten_duong");
 				if (ten_duong == null) {
-					ten_duong = "Đường không tên";
+					ten_duong = "Duong Khong Ten";
 				}
 				int mot_chieu = rs_canh.getInt("mot_chieu");
 				String the_geom = rs_canh.getString("the_geom");
@@ -482,23 +482,31 @@ public class CanThoMap {
 		String y="";
 		rs= s.executeQuery("Select find_info_of_point('"+wkt_point+"') As result");
 		String result = "";
+		
 		while (rs.next()){
 			result = rs.getString("result");
 		}
 		/**
 		 * Ket qua tra ve: ten$diachi$sdt$x$y
-		 * Neu ko tim thay tra ve 'nodata'
+		 * Neu ko tim thay tra ve 'nodata$x$y'
 		**/
-		if (result.equalsIgnoreCase("nodata")){
+		//tien hanh tach chuoi dua tren ky tu dac biet $
+		String[] temp = new String[5];
+		temp = result.split("\\$");
+		/*
+		for (int i=0;i<temp.length;i++){
+			System.out.println("temp["+i+"]:"+temp[i]);
+		}
+		*/
+		if (temp[0].equalsIgnoreCase("nodata")){
 			//khong tim thay thong tin tai vi tri nay
-			ten="Không tìm thấy thông tin tại vị trí này...";
+			ten="Khong tim thay thong tin tai vi tri nay...";
 			diachi=" ";
 			sodienthoai=" ";
+			x=temp[1];
+			y=temp[2];
 		}
-		else{
-			//tien hanh tach chuoi dua tren ky tu dac biet $
-			String[] temp = new String[5];
-			temp = result.split("\\$");
+		else{			
 			//lay ra ten
 			if (temp[0].equals("")){
 				ten = " ";
@@ -623,8 +631,8 @@ public class CanThoMap {
 			SQLException, CloneNotSupportedException {
 		CanThoMap obj = new CanThoMap();
 		//System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
-		//obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
-		obj.find_Place_By_Text("can tho");
+		obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
+		//obj.find_Place_By_Text("can tho");
 		//String coquan_gml=obj.getDiaDiem("coquan","can tho");
 		//System.out.println(coquan_gml);
 	}
