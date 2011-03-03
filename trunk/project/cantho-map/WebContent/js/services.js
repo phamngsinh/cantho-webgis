@@ -21,8 +21,7 @@ function callService(x1, y1, x2, y2) {
 	soapMessage += "         <ser:y2>" + y2 + "</ser:y2>";
 	soapMessage += "      </ser:getDuongDi>";
 	soapMessage += "   </soapenv:Body>";
-	soapMessage += "</soapenv:Envelope>";
-	//alert('request: ' + soapMessage);
+	soapMessage += "</soapenv:Envelope>";	
 	$.ajax({
 		type : 'POST',
 		url : url,
@@ -35,7 +34,6 @@ function callService(x1, y1, x2, y2) {
 		data : soapMessage
 	});
 }
-
 function getDiaDiem(ten_lop, ten_diadiem) {
 	// alert("tenlop: "+ten_lop+"- ten_diadiem: "+ten_diadiem);
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
@@ -69,8 +67,7 @@ function getDiaDiemTheoViTri(the_geom_point) {
 	soapMessage += "   <soapenv:Header/>";
 	soapMessage += "   <soapenv:Body>";
 	soapMessage += "      <ser:find_Info_Of_Point>";
-	soapMessage += "         <ser:the_geom_point>" + the_geom_point
-			+ "</ser:the_geom_point>";
+	soapMessage += "         <ser:the_geom_point>" + the_geom_point + "</ser:the_geom_point>";
 	soapMessage += "      </ser:find_Info_Of_Point>";
 	soapMessage += "   </soapenv:Body>";
 	soapMessage += "</soapenv:Envelope>";
@@ -82,11 +79,10 @@ function getDiaDiemTheoViTri(the_geom_point) {
 		error : errorGetDiaDiemTheoViTri,
 		dataType : 'xml',// kieu du lieu tra ve (response)
 		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
-		// (request)
 		data : soapMessage
 	});
 }
-//function getLopDiaDiem()
+
 function find_Place_By_Text(ten_dia_diem){
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
@@ -112,8 +108,8 @@ function find_Place_By_Text(ten_dia_diem){
 
 function callBackGetDuongDi(xml_result, status) {
 
-	list_lop_duong = map.getLayersByName('lop_duong_di');
-	lop_duong_di = list_lop_duong[0];
+	//list_lop_duong = map.getLayersByName('lop_duong_di');
+	lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	// xoa cac feature cu tren lop duong di
 	lop_duong_di.destroyFeatures();// xoa di cac feature hien tai tren lop
 	// duong di
@@ -143,7 +139,7 @@ function callBackGetDuongDi(xml_result, status) {
 	}
 	
 	result= result + "</ol>";
-	tongdodai= "<p class='total-length'>Tổng độ dài: "+ Math.round(tongdodai) + " m</p>";
+	tongdodai= "<p class='total-length'>Tá»•ng Ä‘á»™ dÃ i: "+ Math.round(tongdodai) + " m</p>";
 	result=tongdodai+result;
 	$('.search-result').html(result);
 	/*
@@ -189,7 +185,7 @@ function callBackGetDiaDiem(xml_result, status) {
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm </h3>"
+			+ "<h3 class='SPTitText'>HÃ£y chá»�n vá»‹ trÃ­ cho Ä‘iá»ƒm </h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -279,7 +275,6 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
 	var wkt_format = new OpenLayers.Format.WKT();
-
 	//alert("status: "+status);
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		
