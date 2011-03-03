@@ -232,19 +232,19 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	sodienthoai = xml_result.getElementsByTagName('ns:return')[2].childNodes[0].nodeValue;
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
-	if(diachi==" " || diachi==null) {diachi = " đang cập nhật.";}
-	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = " đang cập nhật.";}
+	if(diachi==" " || diachi==null) {diachi = " Dang Cap Nhat.";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = " Dang Cap Nhat.";}
 	//tao noi dung cho popup
 	ten = "<div class = 'maker-popup-ten'>" + ten +"</div>";
-	diachi= "<div class = 'maker-popup-diachi'> Địa chỉ : "+ diachi + "</div>";
-	sodienthoai= "<div class = 'maker-popup-sdt'> Số điện thoại : "+ sodienthoai + "</div>";
+	diachi= "<div class = 'maker-popup-diachi'> Dia Chi : "+ diachi + "</div>";
+	sodienthoai= "<div class = 'maker-popup-sdt'> So Dien Thoai : "+ sodienthoai + "</div>";
 	var content = ten + 
 			diachi + 
-			sodienthoai + 
-			"<div class = 'maker-popup-footer' ><a class='maker-popup-tuday' href='#'>Từ đây</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-denday' href='#'>Đến đây</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-phongto' href='#'>Phóng to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='#'>Tìm xung quanh</a></div>";
+			sodienthoai +  
+			"<div class = 'maker-popup-footer' ><a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh("+ x +","+ y +")'>Tim xung quanh</a></div>";
 	var lonlat = new OpenLayers.LonLat(x, y);
 	//khai bao popup--> cho nay co the thanh lap han createPopup(content,lolat);
 	var popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat,
@@ -252,7 +252,7 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	//them popup vao ban do
 	map.addPopup(popup, true);
 	//dich chuyen tam ban do ve diem duoc chon
-	map.setCenter(lonlat, 6, false, false);
+	//map.setCenter(lonlat, 6, false, false);
 	
 }
 
@@ -269,7 +269,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>HÃ£y chá»�n vá»‹ trÃ­ cho Ä‘iá»ƒm</h3>"
+			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem/h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
