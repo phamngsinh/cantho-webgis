@@ -547,7 +547,7 @@ public class CanThoMap {
 	public ArrayList getLop(String ten_lop) throws SQLException, ClassNotFoundException{
 			this.openConnection();
 			ArrayList ds_dia_diem = new ArrayList();
-			String sql = "Select ST_Astext(the_geom) As the_geom From '" + ten_lop + "'";
+			String sql = "Select ST_Astext(the_geom) As the_geom From " + ten_lop ;
 			rs = s.executeQuery(sql);
 			String the_geom="";
 			while (rs.next()){
@@ -593,7 +593,7 @@ public class CanThoMap {
 			}
 			else{
 				sdt = rs.getString("sdt");
-			}
+			}			
 			
 			arr[0]=the_geom;
 			arr[1]=ten;
