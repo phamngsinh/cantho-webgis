@@ -59,9 +59,9 @@ function init() {
 	/** Lop hien thi duong duong di ngan nhat* */
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
-			strokeColor : "#8A2BE2",
+			strokeColor : "#FF000B",
 			strokeWidth : 5,
-		    strokeOpacity: 0.6
+		    strokeOpacity: 0.7
 		}))
 	});
 
@@ -90,10 +90,11 @@ function init() {
 	// duoc kich hoat khi su kien drag ket thuc
 	});
 	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem* */
-	control_select = new OpenLayers.Control.SelectFeature(lop_dia_diem, {
+	control_select = new OpenLayers.Control.SelectFeature([lop_dia_diem,lop_diem_chon], {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
 		onUnSelect : onUnSelectFeature,//
 		clickout : true
+		//hover: true
 	});
 
 	/** Them cac controls vua tao vao ban do* */
@@ -159,7 +160,6 @@ function init() {
  * ********Goi Webservice sau khi hai diem da duoc them vao
  * lop_diem_chon*********
  */
-
 function point_Added(point) {
 	//alert("Diem da duoc ve ! ");
 	// kiem tra neu da chon du hai diem thi goi webservice de lay duong di
@@ -190,37 +190,24 @@ function point_Added(point) {
 		point.layer.drawFeature(point,point.style);		
 	}
 	//tao icon cho end_point
-	if (num_points == 2) {
-		
-		lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
-		alert("Truoc Index lop_dia_diem: "+map.getLayerIndex(lop_dia_diem));
-		alert("Truoc index cua lop_diem_chon: "+map.getLayerIndex(lop_diem_chon));
-		//map.setLayerIndex(lop_diem_chon,3);
-		//alert("Sau Index lop_dia_diem: "+map.getLayerIndex(lop_dia_diem));
-		//alert("Sau index cua lop_diem_chon: "+map.getLayerIndex(lop_diem_chon));
+	if (num_points == 2) {		
+		lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];		
 		for ( var i = 0; i < map.controls.length; i++) {
 			if (map.controls[i].displayClass == "olControlDrawFeature") {
 				map.controls[i].deactivate();
 			}
-			if (map.controls[i].displayClass == "olControlDragFeature") {
+			if (map.controls[i].displayClass == "olControlDragFeature") {				
 				map.controls[i].activate();
 			}
 			if (map.controls[i].displayClass == "olControlSelectFeature") {
 				map.controls[i].activate();				
-			}
-			
+			}			
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
 			}
 		}
-		control_select.setLayer(lop_dia_diem);
-		// lay toa do hai diem duoc chon
-		var start_point = lop_diem_chon.features[0].geometry.clone();
-		var end_point = lop_diem_chon.features[1].geometry.clone();
-		// goi webservice tra ve duong di giau hai diem
-		// alert("Bat dau goi webservice");
-		callService(start_point.x, start_point.y, end_point.x, end_point.y);
-		// dong thoi diactivate olControlDrawFeature va activate control
+		//control_select.setLayer(lop_dia_diem);
+		getDuongDi();
 	}
 }
 /** ********Su kien cac feature tren lop_diem_chon duoc drag********* */
@@ -239,11 +226,7 @@ function drag_Completed() {
 	lop_diem_chon = list_layer_diem_chon[0];
 	num_points = lop_diem_chon.features.length;
 	if (num_points == 2) {
-		// lay toa do hai diem duoc chon
-		var start_point = lop_diem_chon.features[0].geometry.clone();
-		var end_point = lop_diem_chon.features[1].geometry.clone();
-		// goi webservice tra ve duong di giau hai diem
-		callService(start_point.x, start_point.y, end_point.x, end_point.y);
+		getDuongDi();
 	}
 }
 function handleMeasurements(event) {
@@ -259,6 +242,7 @@ function handleMeasurements(event) {
 function onSelectFeature(e) {
 
 	// goi webservice o day de hien thi thong tin cua diem vua chon
+	//alert("Da chon feature");
 	getDiaDiemTheoViTri(e.geometry);
 	/*
 	 * pixel = new OpenLayers.Pixel(e.geometry.x, e.geometry.y); alert("Fearture
@@ -268,7 +252,17 @@ function onSelectFeature(e) {
 	 * 100), "tran van hoang", null, true, onPopupClose);
 	 */
 }
-
-function onUnSelectFeature(e) {
+function onUnSelectFeature() {
 	alert("Feature duoc bo chon");
+}
+//Goi dich vu de lay ve duong di cua hai diem duoc chon
+function getDuongDi(){
+	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
+	// lay toa do hai diem duoc chon
+	var start_point = lop_diem_chon.features[0].geometry.clone();
+	var end_point = lop_diem_chon.features[1].geometry.clone();
+	// goi webservice tra ve duong di giau hai diem
+	// alert("Bat dau goi webservice");
+	callService(start_point.x, start_point.y, end_point.x, end_point.y);
+	// dong thoi diactivate olControlDrawFeature va activate control
 }
