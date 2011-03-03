@@ -139,7 +139,7 @@ function callBackGetDuongDi(xml_result, status) {
 	}
 	
 	result= result + "</ol>";
-	tongdodai= "<p class='total-length'>Tá»•ng Ä‘á»™ dÃ i: "+ Math.round(tongdodai) + " m</p>";
+	tongdodai= "<p class='total-length'>Tong do dai: "+ Math.round(tongdodai) + " m</p>";
 	result=tongdodai+result;
 	$('.search-result').html(result);
 	/*
@@ -185,7 +185,7 @@ function callBackGetDiaDiem(xml_result, status) {
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>HÃ£y chá»�n vá»‹ trÃ­ cho Ä‘iá»ƒm </h3>"
+			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem </h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
