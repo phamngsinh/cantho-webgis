@@ -21,7 +21,7 @@ function callService(x1, y1, x2, y2) {
 	soapMessage += "         <ser:y2>" + y2 + "</ser:y2>";
 	soapMessage += "      </ser:getDuongDi>";
 	soapMessage += "   </soapenv:Body>";
-	soapMessage += "</soapenv:Envelope>";	
+	soapMessage += "</soapenv:Envelope>";
 	$.ajax({
 		type : 'POST',
 		url : url,
@@ -67,7 +67,8 @@ function getDiaDiemTheoViTri(the_geom_point) {
 	soapMessage += "   <soapenv:Header/>";
 	soapMessage += "   <soapenv:Body>";
 	soapMessage += "      <ser:find_Info_Of_Point>";
-	soapMessage += "         <ser:the_geom_point>" + the_geom_point + "</ser:the_geom_point>";
+	soapMessage += "         <ser:the_geom_point>" + the_geom_point
+			+ "</ser:the_geom_point>";
 	soapMessage += "      </ser:find_Info_Of_Point>";
 	soapMessage += "   </soapenv:Body>";
 	soapMessage += "</soapenv:Envelope>";
@@ -83,13 +84,13 @@ function getDiaDiemTheoViTri(the_geom_point) {
 	});
 }
 
-function find_Place_By_Text(ten_dia_diem){
+function find_Place_By_Text(ten_dia_diem) {
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
 	soapMessage += "   <soapenv:Body>";
 	soapMessage += "      <ser:find_Place_By_Text>";
-	soapMessage += "         <ser:text>"+ ten_dia_diem +"</ser:text>";
+	soapMessage += "         <ser:text>" + ten_dia_diem + "</ser:text>";
 	soapMessage += "      </ser:find_Place_By_Text>";
 	soapMessage += "   </soapenv:Body>";
 	soapMessage += "</soapenv:Envelope>";
@@ -105,10 +106,33 @@ function find_Place_By_Text(ten_dia_diem){
 		data : soapMessage
 	});
 }
-
+/** *******Goi Dich Vu Tra Ve Danh Sach Cac Dia Diem Theo Ten Lop*********** */
+function getLopDiaDiem(ten_lop) {
+	// alert(ten_lop);
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:getLop>";
+	soapMessage += "         <ser:ten_lop>" + ten_lop + "</ser:ten_lop>";
+	soapMessage += "      </ser:getLop>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_getLopDiaDiem,
+		error : error_getLopDiaDiem,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
 function callBackGetDuongDi(xml_result, status) {
 
-	//list_lop_duong = map.getLayersByName('lop_duong_di');
+	// list_lop_duong = map.getLayersByName('lop_duong_di');
 	lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	// xoa cac feature cu tren lop duong di
 	lop_duong_di.destroyFeatures();// xoa di cac feature hien tai tren lop
@@ -270,8 +294,8 @@ function callBack_Find_Place_By_Text(xml_result,status){
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
 	// alert("getDiaDiem thanh cong");
-	list_lop_dia_diem = map.getLayersByName('lop_dia_diem');
-	lop_dia_diem = list_lop_dia_diem[0];
+	//list_lop_dia_diem = map.getLayersByName('lop_dia_diem');
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
 	var wkt_format = new OpenLayers.Format.WKT();
@@ -297,3 +321,18 @@ function error_Find_Place_By_Text(xml_result){
 	alert("Loi: error_Find_Place_By_Text");
 }
 
+function callBack_getLopDiaDiem(xml_result, status) {
+	var wkt = "";
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	// xoa di cac feature hien tai tren lop duong di
+	lop_dia_diem.destroyFeatures();
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+		
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].nodeValue;
+		lop_dia_diem.addFeatures(wkt_format.read(wkt));
+	}
+}
+function error_getLopDiaDiem(ml_result) {
+	//loi khong tim thay du lieu
+}
