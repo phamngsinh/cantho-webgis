@@ -139,9 +139,7 @@ function OnforcusTextBoxAB(a){
 			a.val("");
 			prev_selectedResAB_Text=selectedResAB_Text=a.val();
 }
-function getLopDiaDiem(ten_lop){
-	alert(ten_lop);	
-}
+
 /************POPUP EVENTS****************/
 function popup_TuDay(x,y){
 	//alert("x: "+x+"- y: "+y);
