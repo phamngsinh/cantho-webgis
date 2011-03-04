@@ -551,11 +551,12 @@ public class CanThoMap {
 		//System.out.println("result: "+result);
 		this.closeConnection();
 		return arr;
-	}
+	}	
+	/***Can sua lai tra ve them cac thuoc tinh cua dia diem**/
 	public ArrayList getLop(String ten_lop) throws SQLException, ClassNotFoundException{
 			this.openConnection();
 			ArrayList ds_dia_diem = new ArrayList();
-			String sql = "Select ST_Astext(the_geom) As the_geom From " + ten_lop ;
+			String sql = "Select ten, diachi, sdt, ST_Astext(the_geom) As the_geom From " + ten_lop ;
 			rs = s.executeQuery(sql);
 			String the_geom="";
 			while (rs.next()){
@@ -612,6 +613,51 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_dia_diem;
 	}
+	public ArrayList find_Place_Around_Point(double x, double y, String chuoi,double bankinh) throws SQLException, ClassNotFoundException{
+		ArrayList ds_dia_diem = new ArrayList();
+		String the_geom = "";
+		String ten = "";
+		String diachi = "";
+		String sdt = "";			
+		this.openConnection();
+		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point("+ x +","+ y +",'"+ chuoi +"',"+ bankinh +")");
+		//System.out.println("So mau tin hien tai(find_Place_Around_Point): ");
+		while (rs.next()){
+			String[] arr = new String[4];
+			if (rs.getString("the_geom")==null){
+				the_geom = " ";
+			}
+			else{
+				the_geom = rs.getString("the_geom");
+			}
+			if (rs.getString("ten")==null){
+				ten = " ";
+			}
+			else{
+				ten = rs.getString("ten");
+			}
+			if (rs.getString("diachi")==null){
+				diachi = " ";
+			}
+			else{
+				diachi = rs.getString("diachi");
+			}
+			if (rs.getString("sdt")==null){				
+				sdt = " ";				
+			}
+			else{
+				sdt = rs.getString("sdt");
+			}		
+			//System.out.println(ten);
+			arr[0]=the_geom;
+			arr[1]=ten;
+			arr[2]=diachi;
+			arr[3]=sdt;
+			ds_dia_diem.add(arr);
+		}
+		this.closeConnection();
+		return ds_dia_diem;
+	}
 	private void openConnection() throws SQLException, ClassNotFoundException{
 		conn=null;
 		if (conn==null){
@@ -631,10 +677,10 @@ public class CanThoMap {
 			SQLException, CloneNotSupportedException {
 		CanThoMap obj = new CanThoMap();
 		//System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
-		obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
+		//obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
+		obj.find_Place_Around_Point(583650.998019614, 1112232.66868234, "can tho", 2000);
 		//obj.find_Place_By_Text("can tho");
-		//String coquan_gml=obj.getDiaDiem("coquan","can tho");
-		//System.out.println(coquan_gml);
+		//String coquan_gml=obj.getDiaDiem("coquan","can tho");		
 	}
 }
 
