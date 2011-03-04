@@ -561,8 +561,7 @@ public class CanThoMap {
 		String diachi = "";
 		String sdt = "";
 		ArrayList ds_dia_diem = new ArrayList();
-		//System.out.println("-"+ten_lop+"-");
-		
+		//System.out.println("-"+ten_lop+"-");		
 		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") ||ten_lop.equalsIgnoreCase("cho") ||ten_lop.equalsIgnoreCase("ben")){
 			
 			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom From " + ten_lop ;
@@ -593,8 +592,7 @@ public class CanThoMap {
 				arr_1[0]=the_geom;
 				arr_1[1]=ten;
 				arr_1[2]=diachi;
-				arr_1[3]=sdt;
-				
+				arr_1[3]=sdt;				
 				ds_dia_diem.add(arr_1);				
 			}
 		}
@@ -603,8 +601,7 @@ public class CanThoMap {
 		
 			String sql_2 = "Select ten, diachi, sdt, ST_Astext(the_geom) As the_geom From " + ten_lop ;
 			rs = s.executeQuery(sql_2);
-			while (rs.next()){
-				
+			while (rs.next()){				
 				String[] arr_2 = new String[4];
 				
 				if (rs.getString("ten")==null){
@@ -637,8 +634,7 @@ public class CanThoMap {
 				arr_2[2]=diachi;
 				arr_2[3]=sdt;				
 				ds_dia_diem.add(arr_2);								
-			}
-		
+			}		
 		}			
 		this.closeConnection();
 		return ds_dia_diem;
