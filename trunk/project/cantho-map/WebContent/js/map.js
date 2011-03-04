@@ -13,8 +13,7 @@ OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
 function init() {
 
-	var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294,
-			1141760.714);
+	var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294, 1141760.714);
 	var options = {
 		controls : [],
 		maxExtent : bounds,
@@ -46,7 +45,7 @@ function init() {
 
 	map.addLayers([ lop_nen ]);
 
-	/** Lop chua hai diem duoc chon, de tim duong di* */
+	/** Lop chua hai diem duoc chon, de tim duong di**/
 	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : '',
@@ -56,7 +55,7 @@ function init() {
 		}))
 	});
 		
-	/** Lop hien thi duong duong di ngan nhat* */
+	/** Lop hien thi duong duong di ngan nhat**/
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			strokeColor : "#FF000B",
@@ -65,7 +64,7 @@ function init() {
 		}))
 	});
 
-	/** Lop chua tat ca cac dia diem duoc tim* */
+	/** Lop chua tat ca cac dia diem duoc tim**/
 	var lop_dia_diem = new OpenLayers.Layer.Vector("lop_dia_diem", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : 'images/tick_1.png',
@@ -77,24 +76,24 @@ function init() {
 	//Them cac lop vua tao vao ban do
 	map.addLayers([ lop_duong_di, lop_dia_diem, lop_diem_chon ]);
 
-	/** tao control DrawFeature ve start_point va end_point* */
+	/** tao control DrawFeature ve start_point va end_point**/
 	control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
 			OpenLayers.Handler.Point, {
 				featureAdded : point_Added
 			});
-	/** tao control DragFeature de drag hai diem start_point va end_point* */
+	/** tao control DragFeature de drag hai diem start_point va end_point**/
 	control_drag = new OpenLayers.Control.DragFeature(lop_diem_chon, {
 		// onStart: begin_Drag(),
 		// onDrag: Draging(),
 		onComplete : drag_Completed
 	// duoc kich hoat khi su kien drag ket thuc
 	});
-	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem* */
+	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem**/
 	control_select = new OpenLayers.Control.SelectFeature([lop_dia_diem,lop_diem_chon], {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
-		onUnSelect : onUnSelectFeature,//
-		clickout : true
-		//hover: true
+		onUnSelect : onUnSelectFeature
+		//clickout : true
+		,hover: true
 	});
 
 	/** Them cac controls vua tao vao ban do* */
