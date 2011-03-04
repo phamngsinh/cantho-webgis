@@ -1,9 +1,9 @@
 .left_content{
 	width:25%;
-	height:81%;
+	height:82%;
 	position:fixed;
 	left:0;
-	top:15%;
+	top:14%;
 	border-right:1px solid #CCCC33;
 	background-color: #CCFFCC;
 	z-index:1000;

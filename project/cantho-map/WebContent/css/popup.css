@@ -157,3 +157,39 @@
 #chicken_FrameDecorationDiv_3{
 	 width: 24px !important;
 	}*/
+.maker-popup-quaylai{
+	width: 94px;
+	background:  url(../images/lblue.png) no-repeat;  
+	height: 25px;
+	border: none;
+	cursor: pointer;
+	font-size: 11px;
+	color: white;
+	font-weight: bold;
+	vertical-align:middle;
+	font-family:"Times New Roman", Times, serif;
+	}
+.maker-popup-tim{
+	width: 94px ;
+	height: 25px;
+	background:  url(../images/lblue.png) no-repeat;  
+	border: none;
+	cursor: pointer;
+	font-size: 11px;
+	color: white;
+	font-weight: bold;
+	vertical-align:middle;
+	font-family:"Times New Roman", Times, serif;
+	}
+.maker-popup-quaylai:hover{
+	background:  url(../images/lblue-h.png) no-repeat;  
+	}
+.maker-popup-tim:hover{
+	background:  url(../images/lblue-h.png) no-repeat;  
+	}
+.maker-popup-div1{
+	}
+.maker-popup-div2{
+	display: none;
+	}
+	
