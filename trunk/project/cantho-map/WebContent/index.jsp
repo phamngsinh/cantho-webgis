@@ -90,7 +90,8 @@
 		</table>
 </div>
 <div class = "bottom_content" class = "bottom_content">
-			<div style="background: url('images/start.png') no-repeat scroll left center transparent;" class="taskbar_title">
+			<input id="chk_timduong" type="checkbox" />
+			<div class="taskbar_title">
 				<a href=#" onclick=""  class="menu_taskbar">Tìm đường</a>
 			</div>
 			<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_title">
@@ -108,8 +109,8 @@
 			<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_title">
 				<a href="#" onclick="" class="menu_taskbar">Chọn vùng</a>			
 			</div>
-			<input id="chk_timduong" type="checkbox" />
-</div>
+			
+	</div>
 <!--  label>Tim Duong</label>
 <input id="chk_timduong" type="checkbox" />
 <input type="button" id="btn_getduongdi" value="Hien Thi" />
