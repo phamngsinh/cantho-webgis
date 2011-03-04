@@ -258,7 +258,8 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	"<div class='maker-popup-div1'> " +
 		"<div class = 'maker-popup-diachi'> Dia chi : "+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'> So dien thoai : "+ sodienthoai + "</div>" +
-		"<div class = 'maker-popup-footer' ><a class='maker-popup-tuday' href='#'>Tu day</a>&nbsp&nbsp&nbsp" +
+		"<div class = 'maker-popup-footer' > " +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
 			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
 			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
 			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +

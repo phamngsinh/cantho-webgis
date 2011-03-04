@@ -49,7 +49,7 @@ function init() {
 	/** Lop chua hai diem duoc chon, de tim duong di* */
 	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
-			externalGraphic : 'images/end_path.png',
+			externalGraphic : '',
 			graphicWidth : 30,
 			graphicHeight : 35
 		//strokeOpacity: 0.6
