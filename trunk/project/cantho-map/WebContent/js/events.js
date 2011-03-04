@@ -3,7 +3,8 @@
  */
 $(document).ready(function() {
 	// Code that uses jQuery's $ can follow here.
-	//alert('hoang');		
+	//alert('hoang');	
+	
 	$("#chk_timduong").click(function() {
 		// kich hoat control ve diem chon
 		//kiem tra so feature hien tai tren lop_diem_chon
@@ -175,7 +176,9 @@ function popup_TuDay(x,y){
 		if (map.controls[i].displayClass == "olControlSelectFeature") {
 			map.controls[i].activate();
 		}
-	}	
+	}
+	//An popup 
+	$("#chicken").hide();
 }
 
 function popup_DenDay(x,y){
@@ -200,6 +203,8 @@ function popup_DenDay(x,y){
 		new_point.layer.drawFeature(new_point);
 		//Goi service tim duong sau khi diem cuoi duoc them vao lop_diem_chon
 		getDuongDi();
+		//An popup 
+		$("#chicken").hide();
 	}
 	else if (num_points == 2){
 		//xoa feature thu hai tren lop_diem_chon sau do them diem moi vao
@@ -232,6 +237,8 @@ function popup_DenDay(x,y){
 				map.controls[i].activate();
 			}
 		}	
+		//An popup 
+		$("#chicken").hide();
 	}	
 }
 function popup_PhongTo(x,y){
@@ -256,5 +263,7 @@ function popup_Tim(x,y){
 	//goi dich vu tai day
 	//alert(x+"-"+y+"-"+chuoi+"-"+bankinh);
 	find_Place_Around_Point(x, y, chuoi, bankinh);
+	//An popup 
+	$("#chicken").hide();	
 }
 /************END POPUP EVENTS****************/

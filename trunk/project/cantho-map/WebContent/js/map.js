@@ -1,12 +1,14 @@
 /**
  * 
  */
+var anh_dia_diem = 'images/tick_1.png';
+
 OpenLayers.ProxyHost = 'cgi-bin/proxy.cgi?url=';
 var map;
 var untiled;
 var tiled;
 var pureCoverage = false;
-var control_select, control_drag, control_ve_diem;
+var control_select, control_hover, control_drag, control_ve_diem;
 var format = 'image/png';
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
@@ -38,7 +40,7 @@ function init() {
 				transparent : 'true',
 				tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {
-				buffer : 1,
+				buffer : 0,
 				isBaseLayer : true,
 				displayOutsideMaxExtent : true
 			});
@@ -67,10 +69,9 @@ function init() {
 	/** Lop chua tat ca cac dia diem duoc tim**/
 	var lop_dia_diem = new OpenLayers.Layer.Vector("lop_dia_diem", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
-			externalGraphic : 'images/tick_1.png',
+			externalGraphic : anh_dia_diem,
 			graphicWidth : 25,
-			graphicHeight : 25
-		// strokeOpacity: 0.6
+			graphicHeight : 25		
 		}))
 	});
 	//Them cac lop vua tao vao ban do
@@ -91,13 +92,23 @@ function init() {
 	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem**/
 	control_select = new OpenLayers.Control.SelectFeature([lop_dia_diem,lop_diem_chon], {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
-		onUnSelect : onUnSelectFeature
-		//clickout : true
-		,hover: true
+		onUnSelect : onUnSelectFeature,
+		clickout : true,
+		toggle: false,
+		hover: false
 	});
-
+	/** Tao control SelectFeature de doi cursor khi hover feature**/
+	control_hover = new OpenLayers.Control.SelectFeature([lop_dia_diem,lop_diem_chon],
+						{
+							clickout: true,
+							toggle: true,
+							callbacks: {		
+							'over':feature_Hover,'out': feature_Out
+							}
+						});	
 	/** Them cac controls vua tao vao ban do* */
-	map.addControls([ control_drag, control_ve_diem, control_select ]);
+	map.addControls([ control_drag, control_ve_diem, control_hover, control_select]);
+	control_hover.activate();
 	control_select.activate();	
 	/** ************************ Style cho lop controlmeasure******************* */
 	// style the sketch fancy
@@ -264,4 +275,29 @@ function getDuongDi(){
 	// alert("Bat dau goi webservice");
 	callService(start_point.x, start_point.y, end_point.x, end_point.y);
 	// dong thoi diactivate olControlDrawFeature va activate control
+}
+/**Doi hinh cursor khi hover feature tren lop_dia_diem**/
+function feature_Hover(feature){
+	//alert("hover");
+	var hover_style = {
+			externalGraphic:anh_dia_diem,
+			graphicWidth: 32,
+			graphicHeight : 32,
+			graphicOpacity: 1,
+			cursor:'pointer'			
+	};
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	lop_dia_diem.drawFeature(feature,hover_style);
+}
+function feature_Out(feature){
+	//alert("out");
+	var out_style = {
+			externalGraphic:anh_dia_diem,
+			graphicWidth: 25,
+			graphicHeight : 25,
+			graphicOpacity: 1,
+			cursor:'default'			
+	};
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	lop_dia_diem.drawFeature(feature,out_style);
 }
