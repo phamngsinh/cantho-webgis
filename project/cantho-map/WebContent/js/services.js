@@ -106,7 +106,34 @@ function find_Place_By_Text(ten_dia_diem) {
 		data : soapMessage
 	});
 }
-/** *******Goi Dich Vu Tra Ve Danh Sach Cac Dia Diem Theo Ten Lop*********** */
+
+function find_Place_Around_Point(x, y, chuoi, bankinh) {			
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";	
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:find_Place_Around_Point>";
+	soapMessage += "         <ser:x>"+ x +"</ser:x>";
+	soapMessage += "         <ser:y>"+ y +"</ser:y>";
+	soapMessage += "         <ser:text>"+ chuoi +"</ser:text>";
+	soapMessage += "         <ser:radius>"+ bankinh +"</ser:radius>";
+	soapMessage += "      </ser:find_Place_Around_Point>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	//alert("Bat dau goi dich vu...");
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_Find_Place_Around_Point,
+		error : error_Find_Place_Around_Point,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
+/*********Goi Dich Vu Tra Ve Danh Sach Cac Dia Diem Theo Ten Lop************/
 function getLopDiaDiem(ten_lop) {
 	// alert(ten_lop);
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
@@ -344,11 +371,32 @@ function callBack_getLopDiaDiem(xml_result, status) {
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
-		
-		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].nodeValue;
+
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 	}
 }
 function error_getLopDiaDiem(ml_result) {
 	//loi khong tim thay du lieu
+}
+function callBack_Find_Place_Around_Point(xml_result, status){
+	var wkt = "";
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	// xoa di cac feature hien tai tren lop duong di
+	lop_dia_diem.destroyFeatures();
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		
+		lop_dia_diem.addFeatures(wkt_format.read(wkt));
+	}
+}
+function error_Find_Place_Around_Point(xml_result, status){
+	alert("Find_Place_Around_Point "+xml_result);
 }

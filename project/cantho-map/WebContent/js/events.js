@@ -166,7 +166,6 @@ function popup_TuDay(x,y){
 	//Ve lai diem voi style moi
 	new_point.layer.drawFeature(new_point);	
 	for ( var i = 0; i < map.controls.length; i++) {		
-		
 		if (map.controls[i].displayClass == "olControlNavigation") {
 			map.controls[i].activate();
 		}				
@@ -242,7 +241,7 @@ function popup_PhongTo(x,y){
 }
 function popup_TimXungQuanh(){
 	$(".maker-popup-div1").hide();
-	$(".maker-popup-div2").show();
+	$(".maker-popup-div2").show();	
 }
 function popup_QuayLai(){
 	$(".maker-popup-div2").hide();
@@ -251,6 +250,11 @@ function popup_QuayLai(){
 function popup_Tim(x,y){
 	var chuoi = $(".maker-popup-textdichvu").val();
 	var bankinh = $(".maker-popup-textbankinh").val();
-	alert(x+ " " + y + " " + chuoi + " " + bankinh);
+	if (bankinh==""){
+		bankinh = 0;
+	}
+	//goi dich vu tai day
+	//alert(x+"-"+y+"-"+chuoi+"-"+bankinh);
+	find_Place_Around_Point(x, y, chuoi, bankinh);
 }
 /************END POPUP EVENTS****************/
