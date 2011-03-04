@@ -1,11 +1,11 @@
 function blinklink_coquan(){
 	if (!document.getElementById("coquan").style.color){
-		document.getElementById("coquan").style.color="red";
+		document.getElementById("coquan").style.color="white";
 		}
-	if (document.getElementById("coquan").style.color=="red"){
+	if (document.getElementById("coquan").style.color=="white"){
 		document.getElementById("coquan").style.color="black";
 	}else{
-		document.getElementById("coquan").style.color="red";
+		document.getElementById("coquan").style.color="white";
 	}
 	timer_coquan=setTimeout("blinklink_coquan()",100);
 }
@@ -16,12 +16,12 @@ function stoptimer_coquan(){
 
 function blinklink_truonghoc(){
 	if (!document.getElementById("truonghoc").style.color){
-		document.getElementById("truonghoc").style.color="red";
+		document.getElementById("truonghoc").style.color="white";
 		}
-	if (document.getElementById("truonghoc").style.color=="red"){
+	if (document.getElementById("truonghoc").style.color=="white"){
 		document.getElementById("truonghoc").style.color="black";
 	}else{
-		document.getElementById("truonghoc").style.color="red";
+		document.getElementById("truonghoc").style.color="white";
 	}
 	timer_truonghoc=setTimeout("blinklink_truonghoc()",100);
 }
@@ -32,12 +32,12 @@ function stoptimer_truonghoc(){
 
 function blinklink_benhvien(){
 	if (!document.getElementById("benhvien").style.color){
-		document.getElementById("benhvien").style.color="red";
+		document.getElementById("benhvien").style.color="white";
 		}
-	if (document.getElementById("benhvien").style.color=="red"){
+	if (document.getElementById("benhvien").style.color=="white"){
 		document.getElementById("benhvien").style.color="black";
 	}else{
-		document.getElementById("benhvien").style.color="red";
+		document.getElementById("benhvien").style.color="white";
 	}
 	timer_benhvien=setTimeout("blinklink_benhvien()",100);
 }
@@ -48,12 +48,12 @@ function stoptimer_benhvien(){
 
 function blinklink_cho(){
 	if (!document.getElementById("cho").style.color){
-		document.getElementById("cho").style.color="red";
+		document.getElementById("cho").style.color="white";
 		}
-	if (document.getElementById("cho").style.color=="red"){
+	if (document.getElementById("cho").style.color=="white"){
 		document.getElementById("cho").style.color="black";
 	}else{
-		document.getElementById("cho").style.color="red";
+		document.getElementById("cho").style.color="white";
 	}
 	timer_cho=setTimeout("blinklink_cho()",100);
 }
@@ -64,12 +64,12 @@ function stoptimer_cho(){
 
 function blinklink_bentauxe(){
 	if (!document.getElementById("bentauxe").style.color){
-		document.getElementById("bentauxe").style.color="red";
+		document.getElementById("bentauxe").style.color="white";
 		}
-	if (document.getElementById("bentauxe").style.color=="red"){
+	if (document.getElementById("bentauxe").style.color=="white"){
 		document.getElementById("bentauxe").style.color="black";
 	}else{
-		document.getElementById("bentauxe").style.color="red";
+		document.getElementById("bentauxe").style.color="white";
 	}
 	timer_bentauxe=setTimeout("blinklink_bentauxe()",100);
 }
@@ -80,12 +80,12 @@ function stoptimer_bentauxe(){
 
 function blinklink_khachsan(){
 	if (!document.getElementById("khachsan").style.color){
-		document.getElementById("khachsan").style.color="red";
+		document.getElementById("khachsan").style.color="white";
 		}
-	if (document.getElementById("khachsan").style.color=="red"){
+	if (document.getElementById("khachsan").style.color=="white"){
 		document.getElementById("khachsan").style.color="black";
 	}else{
-		document.getElementById("khachsan").style.color="red";
+		document.getElementById("khachsan").style.color="white";
 	}
 	timer_khachsan=setTimeout("blinklink_khachsan()",100);
 }
@@ -96,12 +96,12 @@ function stoptimer_khachsan(){
 
 function blinklink_congty(){
 	if (!document.getElementById("congty").style.color){
-		document.getElementById("congty").style.color="red";
+		document.getElementById("congty").style.color="white";
 		}
-	if (document.getElementById("congty").style.color=="red"){
+	if (document.getElementById("congty").style.color=="white"){
 		document.getElementById("congty").style.color="black";
 	}else{
-		document.getElementById("congty").style.color="red";
+		document.getElementById("congty").style.color="white";
 	}
 	timer_congty=setTimeout("blinklink_congty()",100);
 }
@@ -112,12 +112,12 @@ function stoptimer_congty(){
 
 function blinklink_giaitri(){
 	if (!document.getElementById("giaitri").style.color){
-		document.getElementById("giaitri").style.color="red";
+		document.getElementById("giaitri").style.color="white";
 		}
-	if (document.getElementById("giaitri").style.color=="red"){
+	if (document.getElementById("giaitri").style.color=="white"){
 		document.getElementById("giaitri").style.color="black";
 	}else{
-		document.getElementById("giaitri").style.color="red";
+		document.getElementById("giaitri").style.color="white";
 	}
 	timer_giaitri=setTimeout("blinklink_giaitri()",100);
 }
@@ -128,12 +128,12 @@ function stoptimer_giaitri(){
 
 function blinklink_denchua(){
 	if (!document.getElementById("denchua").style.color){
-		document.getElementById("denchua").style.color="red";
+		document.getElementById("denchua").style.color="white";
 		}
-	if (document.getElementById("denchua").style.color=="red"){
+	if (document.getElementById("denchua").style.color=="white"){
 		document.getElementById("denchua").style.color="black";
 	}else{
-		document.getElementById("denchua").style.color="red";
+		document.getElementById("denchua").style.color="white";
 	}
 	timer_denchua=setTimeout("blinklink_denchua()",100);
 }
@@ -144,12 +144,12 @@ function stoptimer_denchua(){
 
 function blinklink_truyenthong(){
 	if (!document.getElementById("truyenthong").style.color){
-		document.getElementById("truyenthong").style.color="red";
+		document.getElementById("truyenthong").style.color="white";
 		}
-	if (document.getElementById("truyenthong").style.color=="red"){
+	if (document.getElementById("truyenthong").style.color=="white"){
 		document.getElementById("truyenthong").style.color="black";
 	}else{
-		document.getElementById("truyenthong").style.color="red";
+		document.getElementById("truyenthong").style.color="white";
 	}
 	timer_truyenthong=setTimeout("blinklink_truyenthong()",100);
 }
@@ -160,12 +160,12 @@ function stoptimer_truyenthong(){
 
 function blinklink_nganhang(){
 	if (!document.getElementById("nganhang").style.color){
-		document.getElementById("nganhang").style.color="red";
+		document.getElementById("nganhang").style.color="white";
 		}
-	if (document.getElementById("nganhang").style.color=="red"){
+	if (document.getElementById("nganhang").style.color=="white"){
 		document.getElementById("nganhang").style.color="black";
 	}else{
-		document.getElementById("nganhang").style.color="red";
+		document.getElementById("nganhang").style.color="white";
 	}
 	timer_nganhang=setTimeout("blinklink_nganhang()",100);
 }
@@ -176,12 +176,12 @@ function stoptimer_nganhang(){
 
 function blinklink_congvien(){
 	if (!document.getElementById("congvien").style.color){
-		document.getElementById("congvien").style.color="red";
+		document.getElementById("congvien").style.color="white";
 		}
-	if (document.getElementById("congvien").style.color=="red"){
+	if (document.getElementById("congvien").style.color=="white"){
 		document.getElementById("congvien").style.color="black";
 	}else{
-		document.getElementById("congvien").style.color="red";
+		document.getElementById("congvien").style.color="white";
 	}
 	timer_congvien=setTimeout("blinklink_congvien()",100);
 }
@@ -192,12 +192,12 @@ function stoptimer_congvien(){
 
 function blinklink_cau(){
 	if (!document.getElementById("cau").style.color){
-		document.getElementById("cau").style.color="red";
+		document.getElementById("cau").style.color="white";
 		}
-	if (document.getElementById("cau").style.color=="red"){
+	if (document.getElementById("cau").style.color=="white"){
 		document.getElementById("cau").style.color="black";
 	}else{
-		document.getElementById("cau").style.color="red";
+		document.getElementById("cau").style.color="white";
 	}
 	timer_cau=setTimeout("blinklink_cau()",100);
 }
@@ -208,12 +208,12 @@ function stoptimer_cau(){
 
 function blinklink_thuvien(){
 	if (!document.getElementById("thuvien").style.color){
-		document.getElementById("thuvien").style.color="red";
+		document.getElementById("thuvien").style.color="white";
 		}
-	if (document.getElementById("thuvien").style.color=="red"){
+	if (document.getElementById("thuvien").style.color=="white"){
 		document.getElementById("thuvien").style.color="black";
 	}else{
-		document.getElementById("thuvien").style.color="red";
+		document.getElementById("thuvien").style.color="white";
 	}
 	timer_thuvien=setTimeout("blinklink_thuvien()",100);
 }
@@ -224,12 +224,12 @@ function stoptimer_thuvien(){
 
 function blinklink_khac(){
 	if (!document.getElementById("khac").style.color){
-		document.getElementById("khac").style.color="red";
+		document.getElementById("khac").style.color="white";
 		}
-	if (document.getElementById("khac").style.color=="red"){
+	if (document.getElementById("khac").style.color=="white"){
 		document.getElementById("khac").style.color="black";
 	}else{
-		document.getElementById("khac").style.color="red";
+		document.getElementById("khac").style.color="white";
 	}
 	timer_khac=setTimeout("blinklink_khac()",100);
 }

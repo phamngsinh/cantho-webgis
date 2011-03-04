@@ -240,7 +240,17 @@ function popup_PhongTo(x,y){
 	var lonlat = new OpenLayers.LonLat(x,y);
 	map.setCenter(lonlat, 7 , false, false);
 }
-function popup_TimXungQuanh(x,y){
-	
+function popup_TimXungQuanh(){
+	$(".maker-popup-div1").hide();
+	$(".maker-popup-div2").show();
+}
+function popup_QuayLai(){
+	$(".maker-popup-div2").hide();
+	$(".maker-popup-div1").show();
+}
+function popup_Tim(x,y){
+	var chuoi = $(".maker-popup-textdichvu").val();
+	var bankinh = $(".maker-popup-textbankinh").val();
+	alert(x+ " " + y + " " + chuoi + " " + bankinh);
 }
 /************END POPUP EVENTS****************/

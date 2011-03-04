@@ -246,25 +246,41 @@ function errorGetDiaDiem(xml_error) {
 
 function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	//lay ra thong tin tu tap tin xml
-	
 	ten = xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
 	diachi = xml_result.getElementsByTagName('ns:return')[1].childNodes[0].nodeValue;
 	sodienthoai = xml_result.getElementsByTagName('ns:return')[2].childNodes[0].nodeValue;
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
-	if(diachi==" " || diachi==null) {diachi = " Dang Cap Nhat.";}
-	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = " Dang Cap Nhat.";}
+	if(diachi==" " || diachi==null) {diachi = " dang cap nhat.";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = " dang cap nhat.";}
 	//tao noi dung cho popup
-	ten = "<div class = 'maker-popup-ten'>" + ten +"</div>";
-	diachi= "<div class = 'maker-popup-diachi'> Dia Chi : "+ diachi + "</div>";
-	sodienthoai= "<div class = 'maker-popup-sdt'> So Dien Thoai : "+ sodienthoai + "</div>";
-	var content = ten + 
-			diachi + 
-			sodienthoai +  
-			"<div class = 'maker-popup-footer' ><a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
+	var content= "<div class = 'maker-popup-ten'>" + ten +"</div>" + 	
+	"<div class='maker-popup-div1'> " +
+		"<div class = 'maker-popup-diachi'> Dia chi : "+ diachi + "</div>"+
+		"<div class = 'maker-popup-sdt'> So dien thoai : "+ sodienthoai + "</div>" +
+		"<div class = 'maker-popup-footer' ><a class='maker-popup-tuday' href='#'>Tu day</a>&nbsp&nbsp&nbsp" +
 			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
 			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh("+ x +","+ y +")'>Tim xung quanh</a></div>";
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +
+		"</div>"+
+	"</div> " +
+	"<div class='maker-popup-div2'> " +
+		"<div  class  = 'maker-popup-timdv'>Tim dich vu o gan vi tri nay</div>" +
+		"<table>" +
+			"<tr>" +
+				"<td>Ten</td>" +
+				"<td   class = 'maker-popup-tendv'><input class = 'maker-popup-textdichvu' name='textdichvu' type='text' value='' /></td>" +
+			"</tr>" +
+			"<tr>" +
+				"<td>Ban kinh</td>" +
+				"<td   class = 'maker-popup-bankinh' ><input class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /></td>" +
+			"</tr>" +
+		"</table>" +
+		"<div class = 'maker-popup-footer' >" +
+			"<input class = 'maker-popup-quaylai' name='buttonquaylai'     type='button' value='Quai lai' onclick='popup_QuayLai()' />" +
+			"<input class = 'maker-popup-tim'     name='buttonTim'         type='button' value='Tim' onclick='popup_Tim("+ x +","+ y +")'/>" +
+		"</div>" +
+	"</div>" ;
 	var lonlat = new OpenLayers.LonLat(x, y);
 	//khai bao popup--> cho nay co the thanh lap han createPopup(content,lolat);
 	var popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat,
@@ -275,7 +291,6 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	//map.setCenter(lonlat, 6, false, false);
 	
 }
-
 function errorGetDiaDiemTheoViTri(xml_error) {
 	alert("Loi find_Info_Of_Point");
 }
