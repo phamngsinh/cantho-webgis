@@ -554,18 +554,96 @@ public class CanThoMap {
 	}	
 	/***Can sua lai tra ve them cac thuoc tinh cua dia diem**/
 	public ArrayList getLop(String ten_lop) throws SQLException, ClassNotFoundException{
-			this.openConnection();
-			ArrayList ds_dia_diem = new ArrayList();
-			String sql = "Select ten, diachi, sdt, ST_Astext(the_geom) As the_geom From " + ten_lop ;
-			rs = s.executeQuery(sql);
-			String the_geom="";
+		//Cac lop khong co sdt: cau, congvien, cho, ben	
+		this.openConnection();
+		String the_geom = "";
+		String ten = "";
+		String diachi = "";
+		String sdt = "";
+		ArrayList ds_dia_diem = new ArrayList();
+		//System.out.println("-"+ten_lop+"-");
+		
+		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") ||ten_lop.equalsIgnoreCase("cho") ||ten_lop.equalsIgnoreCase("ben")){
+			
+			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom From " + ten_lop ;
+			rs = s.executeQuery(sql_1);
+			sdt =" ";
 			while (rs.next()){
-				the_geom = rs.getString("the_geom");
-				ds_dia_diem.add(the_geom);
+				String[] arr_1 = new String[4];
+				
+				if (rs.getString("ten")==null){
+					ten = " ";
+				}
+				else{
+					ten = rs.getString("ten");
+				}
+				if (rs.getString("diachi")==null){
+					diachi = " ";
+				}
+				else{
+					diachi = rs.getString("diachi");
+				}
+				if (rs.getString("the_geom")==null){
+					the_geom = " ";
+				}
+				else{
+					the_geom = rs.getString("the_geom");
+				}
+				//System.out.println("1-Ten: "+ten);
+				arr_1[0]=the_geom;
+				arr_1[1]=ten;
+				arr_1[2]=diachi;
+				arr_1[3]=sdt;
+				
+				ds_dia_diem.add(arr_1);				
 			}
-			this.closeConnection();
-			return ds_dia_diem;
+		}
+		else{	
+			//System.out.println("Kiem tra dung");
+		
+			String sql_2 = "Select ten, diachi, sdt, ST_Astext(the_geom) As the_geom From " + ten_lop ;
+			rs = s.executeQuery(sql_2);
+			while (rs.next()){
+				
+				String[] arr_2 = new String[4];
+				
+				if (rs.getString("ten")==null){
+					ten = " ";
+				}
+				else{
+					ten = rs.getString("ten");
+				}
+				if (rs.getString("diachi")==null){
+					diachi = " ";
+				}
+				else{
+					diachi = rs.getString("diachi");
+				}
+				if (rs.getString("sdt")==null){
+					sdt = " ";
+				}
+				else{
+					sdt = rs.getString("sdt");
+				}
+				if (rs.getString("the_geom")==null){
+					the_geom = " ";
+				}
+				else{
+					the_geom = rs.getString("the_geom");
+				}
+				//System.out.println("2-Ten: "+ten);
+				arr_2[0]=the_geom;
+				arr_2[1]=ten;
+				arr_2[2]=diachi;
+				arr_2[3]=sdt;				
+				ds_dia_diem.add(arr_2);								
+			}
+		
+		}			
+		this.closeConnection();
+		return ds_dia_diem;
 	}
+	
 	public ArrayList find_Place_By_Text(String text) throws SQLException, ClassNotFoundException{		
 		
 		ArrayList ds_dia_diem = new ArrayList();
@@ -678,9 +756,9 @@ public class CanThoMap {
 		CanThoMap obj = new CanThoMap();
 		//System.out.println(obj.getDuongDi(586286.42664, 1111763.41867,586281.79722,1111536.85668));
 		//obj.find_Info_Of_Point("POINT(586026.386888053 1109704.73845328)");
-		obj.find_Place_Around_Point(583650.998019614, 1112232.66868234, "can tho", 2000);
+		//obj.find_Place_Around_Point(583650.998019614, 1112232.66868234, "can tho", 2000);
+		//obj.getLop("ben");
 		//obj.find_Place_By_Text("can tho");
 		//String coquan_gml=obj.getDiaDiem("coquan","can tho");		
 	}
 }
-
