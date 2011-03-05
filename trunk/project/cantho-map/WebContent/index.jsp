@@ -85,29 +85,28 @@
 		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "nganhang"    href="#" onclick="getLopDiaDiem('nganhang')" class="right-item nganhang"     onmouseover= "blinklink_nganhang()"    onmouseout= "stoptimer_nganhang()"    >Ngân Hàng</a>	</td></tr>			
    		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "congvien"    href="#" onclick="getLopDiaDiem('congvien')" class="right-item congvien"     onmouseover= "blinklink_congvien()"    onmouseout= "stoptimer_congvien()"    >Công Viên</a>	</td></tr>			
    		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "cau"         href="#" onclick="getLopDiaDiem('cau')" class="right-item cau"          onmouseover= "blinklink_cau()"         onmouseout= "stoptimer_cau()"         >Cầu</a>			</td></tr>	
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "thuvien"     href="#" onclick="getLopDiaDiem('thuvien')" class="right-item thuvien"      onmouseover= "blinklink_thuvien()"     onmouseout= "stoptimer_thuvien()"     >Thư Viện</a>	</td></tr>	
-   				
-		</table>
+		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "thuvien"     href="#" onclick="getLopDiaDiem('thuvien')" class="right-item thuvien"      onmouseover= "blinklink_thuvien()"     onmouseout= "stoptimer_thuvien()"     >Thư Viện</a>	</td></tr>
+   		</table>
 </div>
 <div class = "bottom_content" class = "bottom_content">
-			<input id="chk_timduong" type="checkbox" />
+			
 			<div class="taskbar_title">
-				<a href=#" onclick=""  class="menu_taskbar">Tìm đường</a>
+				<a href="javascript:timDuong()" onclick=""  class="menu_taskbar">Tìm đường</a>
 			</div>
 			<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="#" onclick="" class="menu_taskbar">Tìm địa điểm</a>			
+				<a href="javascript:timDiaDiem()" onclick="" class="menu_taskbar">Tìm địa điểm</a>			
 			</div>
 			<div style="background: url('images/school.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="#" onclick="" class="menu_taskbar">Hướng dẫn</a>			
+				<a href="javascript:huongDan()" onclick="" class="menu_taskbar">Hướng dẫn</a>			
 			</div>
 			<div style="background: url('images/company.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="#" onclick="" class="menu_taskbar">In bản đồ</a>			
+				<a href="javascript:inBanDo()" onclick="" class="menu_taskbar">In bản đồ</a>			
 			</div>
 			<div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="javascript:doKhoangCach()" class="menu_taskbar">Đo khoảng cách</a>			
+				<a href="javascript:doKhoangCach()" onclick="" class="menu_taskbar">Đo khoảng cách</a>			
 			</div>		
 			<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="#" onclick="" class="menu_taskbar">Chọn vùng</a>			
+				<a href="javascript:chonVung()" onclick="" class="menu_taskbar">Chọn vùng</a>			
 			</div>
 			
 	</div>
