@@ -6,28 +6,29 @@
     <Name>Simple Roads</Name>
     <UserStyle>
       <Title>Default Styler for simple road segments</Title>
-      <Abstract>Light red line, 2px wide</Abstract>     
-	  <!--Begin Zoom Level 600000000-->	
-	   <!--Mau duong vien 600000000-->	  	
+      <Abstract>Light red line, 2px wide</Abstract>           
+      
+	<!--Begin Zoom Level 800000000-> 2000000000-->	
+		<!--Mau duong vien ben ngoai o muc nay-->	
 		<FeatureTypeStyle>              
         <Rule>          
-        <Title>Mac dinh</Title>     
-		<MaxScaleDenominator>600000000</MaxScaleDenominator>      
-	       
+          <Title>Mac dinh</Title>     
+		<MinScaleDenominator>800000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>        	       
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#FFDB00</CssParameter>              
-              <CssParameter name="stroke-width">14</CssParameter>
+              <CssParameter name="stroke">#5C89A2</CssParameter>              
+              <CssParameter name="stroke-width">5.5</CssParameter>
             </Stroke>
-          </LineSymbolizer>          
-          
+          </LineSymbolizer>                    
         </Rule>         
       </FeatureTypeStyle>
       
        <FeatureTypeStyle>              
         <Rule>
         <Title>Tinh lo</Title>
-	 <MaxScaleDenominator>600000000</MaxScaleDenominator>
+	 	<MinScaleDenominator>800000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
           <ogc:Filter>
  	    <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>loai_duong</ogc:PropertyName>
@@ -37,18 +38,17 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
-	      <CssParameter name="stroke-width">16</CssParameter>
+              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+	      <CssParameter name="stroke-width">10.5</CssParameter>
             </Stroke>
-          </LineSymbolizer>          
-          
+          </LineSymbolizer>                   
         </Rule>         
-      </FeatureTypeStyle>      
-      
-      <FeatureTypeStyle>              
+      </FeatureTypeStyle>   
+		<FeatureTypeStyle>              
         <Rule>
         <Title>Quoc lo</Title>
-        <MaxScaleDenominator>600000000</MaxScaleDenominator>
+        <MinScaleDenominator>800000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
 		<ogc:Filter>
  	    <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>loai_duong</ogc:PropertyName>
@@ -58,35 +58,32 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#FFDB00</CssParameter>             	     
-	      <CssParameter name="stroke-width">17</CssParameter>
+              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+	      <CssParameter name="stroke-width">13.5</CssParameter>
             </Stroke>
-          </LineSymbolizer>          
-          
+          </LineSymbolizer>                  
         </Rule>         
       </FeatureTypeStyle>
-		  
-	<!--End Mau duong vien 600000000-->	  
-	    	
-		<FeatureTypeStyle>              
+	<!--End Mau duong vien ben ngoai o muc nay-->	
+	<FeatureTypeStyle>              
         <Rule>          
-        <Title>Mac dinh</Title>     
-		<MaxScaleDenominator>600000000</MaxScaleDenominator>      
-	       
+          <Title>Mac dinh</Title>     
+		<MinScaleDenominator>800000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>        	       
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#BEBAED</CssParameter>              
-              <CssParameter name="stroke-width">13</CssParameter>
+              <CssParameter name="stroke">#FFFFFF</CssParameter>              
+              <CssParameter name="stroke-width">5</CssParameter>
             </Stroke>
-          </LineSymbolizer>          
-          
+          </LineSymbolizer>                    
         </Rule>         
       </FeatureTypeStyle>
       
        <FeatureTypeStyle>              
         <Rule>
         <Title>Tinh lo</Title>
-	 <MaxScaleDenominator>600000000</MaxScaleDenominator>
+	 	<MinScaleDenominator>800000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
           <ogc:Filter>
  	    <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>loai_duong</ogc:PropertyName>
@@ -96,18 +93,17 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
-	      <CssParameter name="stroke-width">15</CssParameter>
+              <CssParameter name="stroke">#FFFA51</CssParameter>             	     
+	      <CssParameter name="stroke-width">10</CssParameter>
             </Stroke>
-          </LineSymbolizer>          
-          
+          </LineSymbolizer>                   
         </Rule>         
-      </FeatureTypeStyle>      
-      
-      <FeatureTypeStyle>              
+      </FeatureTypeStyle>   
+		<FeatureTypeStyle>              
         <Rule>
         <Title>Quoc lo</Title>
-        <MaxScaleDenominator>600000000</MaxScaleDenominator>
+        <MinScaleDenominator>800000000</MinScaleDenominator>
+		<MaxScaleDenominator>2000000000</MaxScaleDenominator>
 		<ogc:Filter>
  	    <ogc:PropertyIsEqualTo>
               <ogc:PropertyName>loai_duong</ogc:PropertyName>
@@ -117,16 +113,13 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#C0E0E6</CssParameter>             	     
-	      <CssParameter name="stroke-width">16</CssParameter>
+              <CssParameter name="stroke">#FFC800</CssParameter>             	     
+	      <CssParameter name="stroke-width">13</CssParameter>
             </Stroke>
-          </LineSymbolizer>          
-          
+          </LineSymbolizer>                  
         </Rule>         
-      </FeatureTypeStyle>
-		  
-	<!--End Zoom Level 600000000-->
-		
+      </FeatureTypeStyle>	
+	<!--End Zoom Level 800000000-> 2000000000-->			
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
