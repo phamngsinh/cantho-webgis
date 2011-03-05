@@ -8,7 +8,7 @@ var map;
 var untiled;
 var tiled;
 var pureCoverage = false;
-var control_select, control_hover, control_drag, control_ve_diem;
+var control_select, control_hover, control_drag, control_ve_diem, control_measure, control_click;
 var format = 'image/png';
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
@@ -98,7 +98,7 @@ function init() {
 		hover: false
 	});
 	/** Tao control SelectFeature de doi cursor khi hover feature**/
-	control_hover = new OpenLayers.Control.SelectFeature([lop_dia_diem,lop_diem_chon],
+	control_hover = new OpenLayers.Control.SelectFeature([lop_dia_diem],
 						{
 							clickout: true,
 							toggle: true,
