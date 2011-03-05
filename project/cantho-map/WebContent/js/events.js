@@ -13,6 +13,7 @@ $(document).ready(function() {
 		var num_points = lop_diem_chon.features.length;
 		//alert("num_points=" + num_points);
 		checked = $("#chk_timduong").attr("checked");
+		
 		if (checked == true ) {
 			// alert("Activate olDrawFeature, Deactivate olNavigation");
 			if (num_points < 2){
@@ -102,21 +103,101 @@ function reset_DuongDi() {
 	lop_duong_di=map.getLayersByName('lop_duong_di')[0];
 	lop_duong_di.destroyFeatures();
 }
+/*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
 /*******Do Khoang Do Nguoi Duong Ve: ControlMeasure**********/
-function doKhoangCach(){
-	for ( var i = 0; i < map.controls.length; i++) {
-		if (map.controls[i].displayClass == "olControlMeasure") {
-			map.controls[i].activate();
-		}
-		else if (map.controls[i].displayClass == "olControlNavigation") {
-			map.controls[i].activate();
-		}
-		else {
-			//deactivate cac control con lai
-			map.controls[i].deactivate();
+function timDuong(){
+	//alert("Bat dau tim duong");
+
+	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
+	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
+	var num_points = lop_diem_chon.features.length;
+	if (num_points == 2){
+		lop_duong_di.destroyFeatures();
+		lop_diem_chon.destroyFeatures();
+	}	
+	if (control_ve_diem.active) {		
+		//alert("Deactivate olDrawFeature, Activate olNavigation");
+		//Xoa duong di va cac diem duoc ve tren lop_duong_di va lop_diem_chon
+		for ( var i = 0; i < map.controls.length; i++) {
+			if (map.controls[i].displayClass == "olControlDrawFeature") {
+				map.controls[i].deactivate();
+			}				
+			if (map.controls[i].displayClass == "olControlDragFeature") {
+				map.controls[i].activate();
+			}			
+			if (map.controls[i].displayClass == "olControlSelectFeature") {
+				map.controls[i].activate();
+			}
+			if (map.controls[i].displayClass == "olControlNavigation") {
+				map.controls[i].activate();
+			}				
+		}			
+	} 
+	else {
+		//alert("active");
+		// alert("Activate olDrawFeature, Deactivate olNavigation");
+		if (num_points < 2){
+			for ( var i = 0; i < map.controls.length; i++) {
+				if (map.controls[i].displayClass == "olControlDrawFeature") {
+					map.controls[i].activate();
+				}
+				if (map.controls[i].displayClass == "olControlDragFeature") {
+					map.controls[i].activate();
+				}
+				if (map.controls[i].displayClass == "olControlSelectFeature") {
+					map.controls[i].activate();
+				}
+				if (map.controls[i].displayClass == "olControlNavigation") {
+					map.controls[i].activate();
+				}	
+				if (map.controls[i].displayClass == "olControlMeasure") {
+					map.controls[i].deactivate();
+				}
+			}
 		}		
 	}
+
 }
+
+function timDiaDiem(){
+	alert("Tim dia diem");
+}
+
+function huongDan(){
+	alert("Huong dan");
+}
+
+function inBanDo(){
+	alert("In ban do");
+}
+
+function chonVung(){
+	alert("Chon vung");
+}
+
+function doKhoangCach(){
+	if (control_measure.active){
+		//alert("da duoc active");
+		for ( var i = 0; i < map.controls.length; i++) {
+			if (map.controls[i].displayClass == "olControlMeasure") {
+				map.controls[i].deactivate();
+			}			
+		}
+	}
+	else{
+		//alert("da duoc deactive");
+		for ( var i = 0; i < map.controls.length; i++) {
+			if (map.controls[i].displayClass == "olControlMeasure") {
+				map.controls[i].activate();
+			}
+			if (map.controls[i].displayClass == "olControlDrawFeature") {
+				map.controls[i].deactivate();
+			}
+		}
+	}
+	
+}
+/*******************END: DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
 
 function moveIconClick(){
 	  //alert($("#left_content").css("left").replace("px",""));
