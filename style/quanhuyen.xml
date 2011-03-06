@@ -12,8 +12,8 @@
           <Title>Polygon</Title>
           <PolygonSymbolizer>
             <Fill>
-		 		<CssParameter name="fill">#FAEBD7</CssParameter>
-		 		<CssParameter name="fill-opacity">0.5</CssParameter>
+		 		<CssParameter name="fill">#DDDDDD</CssParameter>
+		 		<CssParameter name="fill-opacity">0.4</CssParameter>
 		    </Fill>        
 			<Stroke>
 				<CssParameter name="stroke">#696969</CssParameter>

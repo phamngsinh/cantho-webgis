@@ -17,7 +17,7 @@
 		<MaxScaleDenominator>800000000</MaxScaleDenominator>        	       
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>              
+              <CssParameter name="stroke">#696969</CssParameter>              
               <CssParameter name="stroke-width">7.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                    
@@ -38,7 +38,7 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      <CssParameter name="stroke-width">12.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                   
@@ -58,7 +58,7 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      <CssParameter name="stroke-width">14.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                  
@@ -130,7 +130,7 @@
 		<MaxScaleDenominator>2000000000</MaxScaleDenominator>        	       
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>              
+              <CssParameter name="stroke">#696969</CssParameter>              
               <CssParameter name="stroke-width">5.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                    
@@ -151,7 +151,7 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      <CssParameter name="stroke-width">10.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                   
@@ -171,7 +171,7 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      <CssParameter name="stroke-width">13.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                  
@@ -242,7 +242,7 @@
 		<MaxScaleDenominator>7000000000</MaxScaleDenominator>        	       
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>              
+              <CssParameter name="stroke">#696969</CssParameter>              
               <CssParameter name="stroke-width">3.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                    
@@ -263,7 +263,7 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      <CssParameter name="stroke-width">7.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                   
@@ -283,7 +283,7 @@
           
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      <CssParameter name="stroke-width">10.5</CssParameter>
             </Stroke>
           </LineSymbolizer>                  
@@ -360,7 +360,7 @@
 	  	</ogc:Filter>          
           <LineSymbolizer>
             <Stroke>
-              <CssParameter name="stroke">#5C89A2</CssParameter>             	     
+              <CssParameter name="stroke">#696969</CssParameter>             	     
 	      	  <CssParameter name="stroke-width">4</CssParameter>
             </Stroke>
           </LineSymbolizer>          
@@ -427,13 +427,16 @@
 	 	    <Label>
 	   			<ogc:PropertyName>ten_duong</ogc:PropertyName>
 	 	    </Label>
+
 	 	    <Fill>
-	 			<CssParameter name="fill">#000</CssParameter>
+	 			<CssParameter name="fill">#000000</CssParameter>
 	 	    </Fill>
 	 	    <VendorOption name="followLine">true</VendorOption> 	 
 	 	  </TextSymbolizer>
         </Rule>         
-      </FeatureTypeStyle>   
+      </FeatureTypeStyle>
+	
+	   
 	 <!--End Ten Duong-->
 	<!--Begin : Chieu cua duong (arrow)-->
 	<FeatureTypeStyle>
@@ -473,7 +476,6 @@
 	</Rule>
 	 </FeatureTypeStyle> 
 	<!--End : Chieu cua duong (arrow)-->
-
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
