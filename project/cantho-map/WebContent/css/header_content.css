@@ -1,7 +1,240 @@
-#header{
+#header {
+	top:0;
+    height: 85px;
+    margin: 0 auto;
+    position: absolute;
+    width: 100%;
+    left:0;
+}
+#search {
+    left: 300px;
+    position: absolute;
+    top:10px;
+}
+.SLeft {
+    background: url("../images/SLeft.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 47px;
+    width: 7px;
+}
+.SCenter {
+    background: url("../images/bg-SCenter.png") repeat-x scroll 0 0 transparent;
+    float: left;
+    padding: 10px 4px;
+}
+.SBox {
+    background: url("../images/bg-SBox.png") repeat-x scroll 0 0 transparent;
+    height: 27px;
+    width: 403px;
+}
+.SBoxLeft {
+    background: url("../images/SBoxLeft.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 27px;
+    width: 7px;
+}
+.AvimOff {
+    background: url("../images/bogo.png") no-repeat scroll left top transparent;
+    cursor: pointer;
+    float: left;
+    height: 17px;
+    margin-top: 5px;
+    width: 17px;
+}
+.SText {
+    background: none repeat scroll 0 0 transparent;
+    color: #111111;
+    float: left;
+    font-size: 12px;
+    height: 14px;
+    padding: 6px;
+    text-decoration: none;
+    width: 262px;
+    border: none;
+}
+.keyboardInputInitiator {
+    cursor: pointer;
+    float: left;
+    margin: 6px 5px 0;
+    vertical-align: middle;
+}
+.SHelpClose, .SHelpOpen {
+    display: block;
+    float: left;
+    font-size: 0;
+    height: 17px;
+    line-height: 0;
+    margin: 5px 0 0;
+    width: 17px;
+}
+.SHelpClose a, .SHelpOpen a {
+    background: url("../images/SHelp0.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 17px;
+    text-indent: -9999px;
+    width: 17px;
+}
+.SButton {
+    background: url("../images/btn-search.png") no-repeat scroll 0 0 transparent;
+    color: #254401;
+    cursor: pointer;
+    float: right;
+    font-family: Tahoma,Verdana,Geneva,sans-serif;
+    font-size: 12px;
+    height: 27px;
+    padding: 6px 0 7px;
+    text-decoration: none;
+    text-shadow: 0 1px 0 #DDEA8F;
+    width: 56px;
+    border: none;
+}
+.SHelpDiv {
+    -moz-border-radius-bottomleft: 10px;
+    -moz-border-radius-bottomright: 10px;
+    -moz-box-shadow: 0 0 5px #333333;
+    background-color: #F0F0F0;
+    border: 1px solid #C1C1C1;
+    color: #111111;
+    display: none;
+    font-size: 12px;
+    left: 18px;
+    overflow: hidden;
+    position: absolute;
+    top: 37px;
+}
+.SRight {
+    background: url("../images/SRight.png") no-repeat scroll 0 0 transparent;
+    float: left;
+    height: 47px;
+    width: 7px;
+}
+.dTreeNode {
+	padding: 0 0 0 50px;
+}
+.SWTrans {
+    float: left;
+    left: 0;
+    position: absolute;
+    top: 40px;
+    font-size: 11px;
+}
+.boundTree {
+    background: url("../images/SWTrShadow.png") repeat scroll 0 0 transparent;
+    display: inline-block;
+    overflow: hidden;
+    position: relative;
+    width: 409px;
+}
+#Tree {
+    background: -moz-linear-gradient(center top , #F6F6F6, #FFFFFF) repeat scroll 0 0 #F6F6F6;
+    color: #333333;
+    display: none;
+    font-family: Tahoma,Verdana,Geneva,sans-serif;
+    height: 0;
+    overflow: auto;
+    width: 393px;
+}
+.SWRight-bgShadow {
+    background: url("../images/s-shadow.png") no-repeat scroll right bottom transparent;
+    padding: 0 0px 7px;
+    position: relative;
+}
+.SWRight-bg {
+    background: url("../images/SWRight-bg.png") no-repeat scroll right bottom transparent;
+    display: inline-block;
+    height: 10px;
+    width: 425px;
+}
+.SWCenter-bg {
+    background: url("../images/SWCenter-bg.png") repeat-x scroll center bottom transparent;
+    height: 10px;
+    margin-right: 7px;
+}
+.SWLeft {
+    background: url("../images/SWLeft.png") no-repeat scroll left top transparent;
+    display: inline-block;
+    height: 31px;
+    position: absolute;
+}
+.SWRight {
+    background: url("../images/SWRight.png") no-repeat scroll right top transparent;
+    height: 31px;
+}
+.SWCenter-bg {
+    background: url("../images/SWCenter-bg.png") repeat-x scroll center bottom transparent;
+    height: 10px;
+    margin-right: 7px;
+}
+.SWContent {
+    background: url("../images/bg-SW.png") repeat-x scroll center top transparent;
+    height: 31px;
+    margin: 0 18px 0 6px;
+    position: relative;
+}
+a {
+    cursor: pointer;
+    outline-style: none;
+}
+.SWBut {
+    background: url("../images/bg-SWBut.png") no-repeat scroll right center transparent;
+    bottom: 0;
+    float: left;
+    height: 23px;
+    position: relative;
+    width: 51px;
+}
+.SWBut a {
+    -moz-user-select: none;
+    color: #FFFFFF;
+    display: block;
+    font-size: 11px;
+    padding: 4px 0 2px 4px;
+    text-shadow: 0 1px 0 #005AE7;
+}
+.SWBut a:hover {
+    background: url("../images/bg-SWBut-hover.png") no-repeat scroll 4px 3px transparent;
+    text-shadow: 0 1px 0 #000000;
+}
+#TreeFilter {
+    color: #FFFFFF;
+    display: inline;
+    float: left;
+    font-size: 9px;
+    padding: 4px 0 0 9px;
+    white-space: normal;
+}
+#TreeFilter a {
+    -moz-user-select: none;
+    color: #FFFFFF;
+    font-size: 11px;
+}
+.SWCloseArea {
+    background: url("../images/closeArea.png") no-repeat scroll 0 0 transparent;
+    display: block;
+    height: 8px;
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    width: 8px;
+}
+.dTreeNode a {
+    display: block;
+    padding: 11px 0 11px 37px;
+}
+.dTreeNav {
+    line-height: 15px;
+    padding: 20px 0 20px 40px;
+}
+.a-logo{
 	top:0;
 	left:0;
-	height:15%;
-	width:100%;
-	position:fixed;
-}
+	width:300px;
+	height:90px;
+	}
+.image-logo{
+	top:0;
+	left:0;
+	width:300px;
+	height:90px;
+	border: none;
+	}

@@ -1,10 +1,11 @@
 #right_content{
-	top:14%;
-	right:-10px;
-	width:157px;
-	height:81%;
+	top:86px;
+	right:0;
+	width:120px;
+	bottom:20px;
 	position:fixed;
-	/*border:1px #00CC66 solid;*/
+	border:1px #00CC66 solid;
+	overflow-y: auto; 
 	}
 .taskbar_right {
     color: #0066FF;
@@ -18,7 +19,7 @@
 }
 .right-item {
     color: blue;
-    padding-left: 20px;
+    padding-left: 19px;
     text-decoration: none;
     font-size: 12px;
     width: 100px;
@@ -31,11 +32,11 @@
 	border-right: 1px #00CC66 solid;
 }
 #right_content table tr{
-	height: 36px;
+	height: 27px;
 	 
 }
 #right_content table tr td{
 	/*border-top: 1px solid  threedshadow;*/
-	padding-left: 15px;
-	background: url("../images/collection.jpg") no-repeat 24% 4% #BCB39F;
+	padding-left: 4px;
+	background: url("../images/s.png") no-repeat;
 }
