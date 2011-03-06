@@ -23,9 +23,8 @@ function init() {
 		projection : "EPSG:4326",
 		units : 'm',
 		isBaselayer : 'true',
-		numZoomLevels : 11
+		numZoomLevels : 10
 	};
-
 	map = new OpenLayers.Map('map', options);
 	// lay ra quan huyen duoi dinh dang raster
 	lop_nen = new OpenLayers.Layer.WMS(
@@ -37,12 +36,13 @@ function init() {
 				srs : 'EPSG:4326',
 				format : format,
 				tiled : 'true',
-				transparent : 'true',
-				tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
+				transparent : 'true'//,
+				//tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {
 				buffer : 0,
 				isBaseLayer : true,
-				displayOutsideMaxExtent : true
+				displayOutsideMaxExtent : true,
+				transitionEffect: 'resize'
 			});
 
 	map.addLayers([ lop_nen ]);

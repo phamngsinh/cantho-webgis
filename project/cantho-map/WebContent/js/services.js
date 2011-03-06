@@ -257,8 +257,13 @@ function callBackGetDiaDiem(xml_result, status) {
 		diachi = "<br/>" + "<p> " + diachi + "</p>";
 		// sodienthoai=xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		result = result + ten + diachi + "<br/>";
-		lop_dia_diem.addFeatures(wkt_format.read(wkt));
+		lop_dia_diem.addFeatures(wkt_format.read(wkt));		
 	}
+	//dich chuyen ban do ve dia diem dau tien duoc tim thay
+	//di chuyen diem dau tien ve trung tam cua ban do	
+	var first_feature = lop_dia_diem.features[0].geometry;
+	var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
+	map.setCenter(lonlat);
 	result = result + " </div>";
 	$('#searchPopupContent').html(result);
 
@@ -354,7 +359,14 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		diachi = "<br/>" + "<p> " + diachi + "</p>";		
 		result = result + ten + diachi + "<br/>";
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
+		if (lop_dia_diem.features.length >0 ){
+			//di chuyen diem dau tien ve trung tam cua ban do	
+			var first_feature = lop_dia_diem.features[0].geometry;
+			var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
+			map.setCenter(lonlat);
+		}
 	}
+	
 	result = result + " </div>";
 	$('#searchPopupContent').html(result);
 	// dong controlDrawFeature va control DragFeature, setDuongDi, xoa duong di cu
@@ -377,7 +389,13 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
-	}
+		if (lop_dia_diem.features.length >0 ){
+			//di chuyen diem dau tien ve trung tam cua ban do	
+			var first_feature = lop_dia_diem.features[0].geometry;
+			var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
+			map.setCenter(lonlat);
+		}
+	}		
 }
 function error_getLopDiaDiem(ml_result) {
 	//loi khong tim thay du lieu
@@ -395,7 +413,7 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
-	}
+	}	
 }
 function error_Find_Place_Around_Point(xml_result, status){
 	alert("Find_Place_Around_Point "+xml_result);
