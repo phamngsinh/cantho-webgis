@@ -5,59 +5,10 @@ $(document).ready(function() {
 	// Code that uses jQuery's $ can follow here.
 	//alert('hoang');	
 	
-	$("#chk_timduong").click(function() {
-		// kich hoat control ve diem chon
-		//kiem tra so feature hien tai tren lop_diem_chon
-		var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
-		var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
-		var num_points = lop_diem_chon.features.length;
-		//alert("num_points=" + num_points);
-		checked = $("#chk_timduong").attr("checked");
-		
-		if (checked == true ) {
-			// alert("Activate olDrawFeature, Deactivate olNavigation");
-			if (num_points < 2){
-				for ( var i = 0; i < map.controls.length; i++) {
-					if (map.controls[i].displayClass == "olControlDrawFeature") {
-						map.controls[i].activate();
-					}
-					if (map.controls[i].displayClass == "olControlDragFeature") {
-						map.controls[i].activate();
-					}
-					if (map.controls[i].displayClass == "olControlSelectFeature") {
-						map.controls[i].activate();
-					}
-					if (map.controls[i].displayClass == "olControlNavigation") {
-						map.controls[i].activate();
-					}			
-				}
-			}			
-		} 
-		else {
-			// alert("Deactivate olDrawFeature, Activate olNavigation");
-			//Xoa duong di va cac diem duoc ve tren lop_duong_di va lop_diem_chon
-			lop_duong_di.destroyFeatures();
-			lop_diem_chon.destroyFeatures();			
-			for ( var i = 0; i < map.controls.length; i++) {
-				if (map.controls[i].displayClass == "olControlDrawFeature") {
-					map.controls[i].deactivate();
-				}				
-				if (map.controls[i].displayClass == "olControlDragFeature") {
-					map.controls[i].activate();
-				}			
-				if (map.controls[i].displayClass == "olControlSelectFeature") {
-					map.controls[i].activate();
-				}
-				if (map.controls[i].displayClass == "olControlNavigation") {
-					map.controls[i].activate();
-				}				
-			}
-		}
-	});
+	
 });
 
-function reset_DuongDi() {
-	
+function reset_DuongDi() {	
 	list_layer_diem_chon = map.getLayersByName('lop_diem_chon');
 	lop_diem_chon = list_layer_diem_chon[0];
 	lop_diem_chon.destroyFeatures();
