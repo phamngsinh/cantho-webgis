@@ -28,7 +28,7 @@
 </head>
 <body onload="init()">
 <div class="header" id="header">
-	<a class= 'a-logo' href='http://localhost/cantho-map/index.jsp'><img class='image-logo' src="images/logo.png" /></a>
+	<a class= 'a-logo' href='http://localhost:8888/cantho-map/index.jsp'><img class='image-logo' src="images/logo.png" /></a>
 	<div id="search" style="z-index: 916;">            	
 		    <div class="SLeft" style="z-index: 914;"></div>
             <div class="SCenter" style="z-index: 912;">
@@ -210,43 +210,29 @@
 	</div>
 <div class = "right_content"  id = "right_content">
 		<table cellpadding="0" cellspacing="0"> 					
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "coquan"      href="#" onclick="getLopDiaDiem('coquan')" class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "truonghoc"   href="#" onclick="getLopDiaDiem('truong')" class="right-item truonghoc"    onmouseover= "blinklink_truonghoc()"   onmouseout= "stoptimer_truonghoc()"   >Trường Học</a>	</td></tr>			
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "benhvien"    href="#" onclick="getLopDiaDiem('benhvien')" class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "cho"         href="#" onclick="getLopDiaDiem('cho')" class="right-item cho"          onmouseover= "blinklink_cho()"         onmouseout= "stoptimer_cho()"         >Chợ</a>			</td></tr>	
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "bentauxe"    href="#" onclick="getLopDiaDiem('ben')" class="right-item bentauxe"     onmouseover= "blinklink_bentauxe()"    onmouseout= "stoptimer_bentauxe()"    >Bến Tàu Xe</a>	</td></tr>			
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "khachsan"    href=#"  onclick="getLopDiaDiem('khachsan')" class="right-item khachsan "    onmouseover= "blinklink_khachsan()"    onmouseout= "stoptimer_khachsan()"    >Khách Sạn</a>   </td></tr>	
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "congty"      href="#" onclick="getLopDiaDiem('congty')" class="right-item congty"       onmouseover= "blinklink_congty()"      onmouseout= "stoptimer_congty()"      >Công Ty</a>		</td></tr>		
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "giaitri"     href="#" onclick="getLopDiaDiem('giaitri')" class="right-item giaitri"      onmouseover= "blinklink_giaitri()"     onmouseout= "stoptimer_giaitri()"     >Giải Trí</a>	</td></tr>			
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "denchua"     href="#" onclick="getLopDiaDiem('denchua')" class="right-item denchua"      onmouseover= "blinklink_denchua()"     onmouseout= "stoptimer_denchua()"     >Đền Chùa</a>	</td></tr>			
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "truyenthong" href="#" onclick="getLopDiaDiem('truyenhinhbaochi')" class="right-item truyenthong"  onmouseover= "blinklink_truyenthong()" onmouseout= "stoptimer_truyenthong()" >Truyền Thông</a></td></tr>				
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "nganhang"    href="#" onclick="getLopDiaDiem('nganhang')" class="right-item nganhang"     onmouseover= "blinklink_nganhang()"    onmouseout= "stoptimer_nganhang()"    >Ngân Hàng</a>	</td></tr>			
-   		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "congvien"    href="#" onclick="getLopDiaDiem('congvien')" class="right-item congvien"     onmouseover= "blinklink_congvien()"    onmouseout= "stoptimer_congvien()"    >Công Viên</a>	</td></tr>			
-   		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "cau"         href="#" onclick="getLopDiaDiem('cau')" class="right-item cau"          onmouseover= "blinklink_cau()"         onmouseout= "stoptimer_cau()"         >Cầu</a>			</td></tr>	
-		<tr><td><a style="background:url('images/hotel.png') no-repeat scroll left center" id = "thuvien"     href="#" onclick="getLopDiaDiem('thuvien')" class="right-item thuvien"      onmouseover= "blinklink_thuvien()"     onmouseout= "stoptimer_thuvien()"     >Thư Viện</a>	</td></tr>
+		<tr><td><a style="background:url('map-icon/coquan16.png') no-repeat scroll left center" id = "coquan"      href="#" onclick="getLopDiaDiem('coquan')" class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
+		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "truonghoc"   href="#" onclick="getLopDiaDiem('truong')" class="right-item truonghoc"    onmouseover= "blinklink_truonghoc()"   onmouseout= "stoptimer_truonghoc()"   >Trường Học</a>	</td></tr>			
+		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "benhvien"    href="#" onclick="getLopDiaDiem('benhvien')" class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
+		<tr><td><a style="background:url('map-icon/cho16.png') no-repeat scroll left center" id = "cho"         href="#" onclick="getLopDiaDiem('cho')" class="right-item cho"          onmouseover= "blinklink_cho()"         onmouseout= "stoptimer_cho()"         >Chợ</a>			</td></tr>	
+		<tr><td><a style="background:url('map-icon/ben16.png') no-repeat scroll left center" id = "bentauxe"    href="#" onclick="getLopDiaDiem('ben')" class="right-item bentauxe"     onmouseover= "blinklink_bentauxe()"    onmouseout= "stoptimer_bentauxe()"    >Bến Tàu Xe</a>	</td></tr>			
+		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "khachsan"    href=#"  onclick="getLopDiaDiem('khachsan')" class="right-item khachsan "    onmouseover= "blinklink_khachsan()"    onmouseout= "stoptimer_khachsan()"    >Khách Sạn</a>   </td></tr>	
+		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "congty"      href="#" onclick="getLopDiaDiem('congty')" class="right-item congty"       onmouseover= "blinklink_congty()"      onmouseout= "stoptimer_congty()"      >Công Ty</a>		</td></tr>		
+		<tr><td><a style="background:url('map-icon/giaitri16.png') no-repeat scroll left center" id = "giaitri"     href="#" onclick="getLopDiaDiem('giaitri')" class="right-item giaitri"      onmouseover= "blinklink_giaitri()"     onmouseout= "stoptimer_giaitri()"     >Giải Trí</a>	</td></tr>			
+		<tr><td><a style="background:url('map-icon/denchua16.png') no-repeat scroll left center" id = "denchua"     href="#" onclick="getLopDiaDiem('denchua')" class="right-item denchua"      onmouseover= "blinklink_denchua()"     onmouseout= "stoptimer_denchua()"     >Đền Chùa</a>	</td></tr>			
+		<tr><td><a style="background:url('map-icon/truyenthong16.png') no-repeat scroll left center" id = "truyenthong" href="#" onclick="getLopDiaDiem('truyenhinhbaochi')" class="right-item truyenthong"  onmouseover= "blinklink_truyenthong()" onmouseout= "stoptimer_truyenthong()" >Truyền Thông</a></td></tr>				
+		<tr><td><a style="background:url('map-icon/nganhang16.png') no-repeat scroll left center" id = "nganhang"    href="#" onclick="getLopDiaDiem('nganhang')" class="right-item nganhang"     onmouseover= "blinklink_nganhang()"    onmouseout= "stoptimer_nganhang()"    >Ngân Hàng</a>	</td></tr>			
+   		<tr><td><a style="background:url('map-icon/congvien16.png') no-repeat scroll left center" id = "congvien"    href="#" onclick="getLopDiaDiem('congvien')" class="right-item congvien"     onmouseover= "blinklink_congvien()"    onmouseout= "stoptimer_congvien()"    >Công Viên</a>	</td></tr>			
+   		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "cau"         href="#" onclick="getLopDiaDiem('cau')" class="right-item cau"          onmouseover= "blinklink_cau()"         onmouseout= "stoptimer_cau()"         >Cầu</a>			</td></tr>	
+		<tr><td><a style="background:url('map-icon/thuvien16.png')   no-repeat scroll left center" id = "thuvien"     href="#" onclick="getLopDiaDiem('thuvien')" class="right-item thuvien"      onmouseover= "blinklink_thuvien()"     onmouseout= "stoptimer_thuvien()"     >Thư Viện</a>	</td></tr>
    		</table>
 </div>
-<div class = "bottom_content" class = "bottom_content">
-			
-			<div class="taskbar_title">
-				<a href="javascript:timDuong()" onclick=""  class="menu_taskbar">Tìm đường</a>
-			</div>
-			<div style="background: url('images/hotel.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="javascript:timDiaDiem()" onclick="" class="menu_taskbar">Tìm địa điểm</a>			
-			</div>
-			<div style="background: url('images/school.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="javascript:huongDan()" onclick="" class="menu_taskbar">Hướng dẫn</a>			
-			</div>
-			<div style="background: url('images/company.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="javascript:inBanDo()" onclick="" class="menu_taskbar">In bản đồ</a>			
-			</div>
-			<div style="background: url('images/market.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="javascript:doKhoangCach()" onclick="" class="menu_taskbar">Đo khoảng cách</a>			
-			</div>		
-			<div style="background: url('images/car.png') no-repeat scroll left center transparent;" class="taskbar_title">
-				<a href="javascript:chonVung()" onclick="" class="menu_taskbar">Chọn vùng</a>			
-			</div>
-			
+<div class = "bottom_content" class = "bottom_content">	
+			<table><tr>
+			<td class = 'tim-duong not-clicked'> <a href="javascript:timDuong()" onclick=""  class="menu_taskbar">Tìm đường</a></td>			
+			<td class = 'in-ban-do not-clicked'> <a href="javascript:inBanDo()" onclick="" class="menu_taskbar">In bản đồ</a></td>		
+			<td class = 'do-khoang-cach not-clicked'> <a href="javascript:doKhoangCach()" onclick="" class="menu_taskbar">Đo khoảng cách</a></td>			
+		    <td class = 'chon-vung not-clicked'> <a href="javascript:chonVung()" onclick="" class="menu_taskbar">Chọn vùng</a></td>
+			</tr></table>	
 	</div>
 <!--  label>Tim Duong</label>
 <input id="chk_timduong" type="checkbox" />

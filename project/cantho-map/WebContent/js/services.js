@@ -337,7 +337,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem/h3>"
+			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -354,10 +354,9 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
-		
-		ten = "<a id ='" + wkt + "' href='javascript:chonDiemA(" + "wkt" + ")' onclick= ''>" + ten + "</a>";		
-		diachi = "<br/>" + "<p> " + diachi + "</p>";		
-		result = result + ten + diachi + "<br/>";
+		ten = "<div class= 'result-div'><a class = 'popup-result result_"+i+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
+		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>- Dia chi: dang cap nhat" + diachi + "</label>";		
+		result = result + ten + diachi + "<br/></div>";
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -375,7 +374,11 @@ function callBack_Find_Place_By_Text(xml_result,status){
 function error_Find_Place_By_Text(xml_result){
 	alert("Loi: error_Find_Place_By_Text");
 }
-
+function chonDiemA(i){
+	//i=document.getElementById(a);
+	a=$('.result_'+i);
+	alert(a.attr('id'));
+}
 function callBack_getLopDiaDiem(xml_result, status) {
 	var wkt = "";
 	var wkt_format = new OpenLayers.Format.WKT();

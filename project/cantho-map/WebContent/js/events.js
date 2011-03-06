@@ -1,6 +1,8 @@
 /**
  * 
  */
+var timduong_clicked=0;
+var dokhoangcach_clicked=0;
 $(document).ready(function() {
 	// Code that uses jQuery's $ can follow here.
 	//alert('hoang');	
@@ -58,7 +60,12 @@ function reset_DuongDi() {
 /*******Do Khoang Do Nguoi Duong Ve: ControlMeasure**********/
 function timDuong(){
 	//alert("Bat dau tim duong");
-
+	timduong_clicked =1;
+	dokhoangcach_clicked=0;
+	$(".tim-duong").removeClass("not-clicked");
+	$(".do-khoang-cach").removeClass("clicked");
+	$(".tim-duong").addClass("clicked");
+	$(".do-khoang-cach").addClass("not-clicked");
 	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	var num_points = lop_diem_chon.features.length;
@@ -127,6 +134,12 @@ function chonVung(){
 }
 
 function doKhoangCach(){
+	timduong_clicked =0;
+	dokhoangcach_clicked=1;
+	$(".tim-duong").removeClass("clicked");
+	$(".tim-duong").addClass("not-clicked");
+	$(".do-khoang-cach").removeClass("not-clicked");
+	$(".do-khoang-cach").addClass("clicked");
 	if (control_measure.active){
 		//alert("da duoc active");
 		for ( var i = 0; i < map.controls.length; i++) {
