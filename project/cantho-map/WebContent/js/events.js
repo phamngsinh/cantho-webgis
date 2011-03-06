@@ -347,4 +347,10 @@ function popup_Tim(x,y){
 	//An popup 
 	$("#chicken").hide();	
 }
+function HideMapList(){
+	$("#boundTree").hide();
+}
+function LoadTree(){
+	$("#boundTree").show();
+}
 /************END POPUP EVENTS****************/
