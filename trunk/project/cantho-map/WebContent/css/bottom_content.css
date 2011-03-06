@@ -2,19 +2,19 @@
 	left:0px;
     background: url(../images/bg_taskbar.gif) repeat-x scroll center top transparent;
     bottom: 0;
-    height: 4%;
+    height: 25px;
     position: fixed;
     width: 100%;
     z-index: 10;
+    border: none solid;
 }
 .taskbar_title {
     color: #0066FF;
     float: left;
     font-size: 11px;
     font-weight: bold;
-    height: 14px;
+    height: 25px;
     margin-left: 10px;
-    margin-top: 7px;
 }
 .menu_taskbar {
     color: #0066FF;
@@ -27,8 +27,21 @@
     padding-left: 20px;
     text-decoration: none;
 }
-#chk_timduong {
-    left: 3px;
-    position: absolute;
-    top: 5px;
-}
+.not-clicked{
+	background: url(../images/bottom-item.png) no-repeat scroll 0 0 transparent;
+	width: 95px;
+	font-size: 11px;
+	height: 24px;
+	}
+.not-clicked:hover{
+	background: url(../images/bottom-item-clicked.png) no-repeat scroll 0 0 transparent;
+	width: 95px;
+	font-size: 11px;
+	height: 24px;
+	}
+.clicked{
+	background: url(../images/bottom-item-clicked.png) no-repeat scroll 0 0 transparent !important;
+	width: 95px;
+	font-size: 11px;
+	height: 24px;
+	}
