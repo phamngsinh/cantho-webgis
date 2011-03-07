@@ -5,8 +5,11 @@ var timduong_clicked=0;
 var dokhoangcach_clicked=0;
 $(document).ready(function() {
 	// Code that uses jQuery's $ can follow here.
-	//alert('hoang');		
+	//alert('hoang');	
+	
+	
 });
+
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
 /*******Do Khoang Do Nguoi Duong Ve: ControlMeasure**********/
 function timDuong(){
