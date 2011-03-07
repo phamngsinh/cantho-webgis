@@ -1,5 +1,14 @@
  #searchPopupContainer  
  {  
+ 
+   	position:absolute;  
+    left:0;  
+ 	top:0;  
+    display:none;  
+    z-index: 20000;  
+}
+#searchPopupContainer2  
+ {  
    	position:absolute;  
     left:0;  
  	top:0;  
@@ -11,6 +20,12 @@
  
  }   
  #searchPopupContent  
+{  
+    background-color: #FFF;  
+    min-width: 175px;  
+    min-height: 300px;  
+ } 
+ #searchPopupContent2  
 {  
     background-color: #FFF;  
     min-width: 175px;  
@@ -93,6 +108,16 @@
     float: right;
 }
 .SelectPlaceContent {
+    background: url("../images/SPshadow-inset.png") no-repeat scroll left top transparent;
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    height: 250px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 250px;
+    padding: 10px 5px 0px 10px;
+}
+.SelectPlaceContent2 {
     background: url("../images/SPshadow-inset.png") no-repeat scroll left top transparent;
     border-bottom: 1px solid #FFFFFF;
     border-top: 1px solid #FFFFFF;
@@ -192,6 +217,7 @@
 	}
 .maker-popup-div2{
 	display: none;
+	font-size: 10px;
 	}
 .popup-result{
 	padding-left: 20px;
@@ -207,4 +233,8 @@
 	}
 .result-div:hover{
 	background-color: 	#FDF5E6;
+	}
+#chicken{
+	background-color: blue;
+	
 	}
