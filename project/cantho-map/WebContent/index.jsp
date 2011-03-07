@@ -174,29 +174,24 @@
 		<div class = "left_top_content" id = "left_top_content">	
 			<ul class="tabs">
 				<li><a href="#">Tìm đường</a></li>
-				<li><a href="#">Tìm địa điểm</a></li>
+				<li><a href="#">Tìm vị trí</a></li>
 				<li><a href="#">Hướng dẫn</a></li>
 			</ul>
 			<div class="panes">
 				<div class= "panes-div body-find-path">
 					<div id="listDirection">
-						<div class="direction-item" id="direction0">
 							<div class="swrap-timduong">
 								<span class="a-z">a</span>
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
 								<a onclick="" class="del-timduong" style="display: none;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
 							</div>
-						</div>
-						<div class="direction-item" id="direction1">
-								<div class="swrap-timduong">
-									<span class="a-z">b</span>
-									<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong timduong-b">
-									<a onclick="" class="del-timduong" style="display: none;">Xóa</a><a class="btn-timduong search1" id="">Tìm</a>
-								</div>
-						</div>
-						<div class="search-result"></div>
-						
+							<div class="swrap-timduong">
+								<span class="a-z">b</span>
+								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
+								<a onclick="" class="del-timduong" style="display: none;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
+							</div>
 					</div>
+					<div class="search-result"></div>
 				</div>
 				<div class= "panes-div">
 				
@@ -212,10 +207,10 @@
 		<table cellpadding="0" cellspacing="0"> 					
 		<tr><td><a style="background:url('map-icon/coquan16.png') no-repeat scroll left center" id = "coquan"      href="#" onclick="getLopDiaDiem('coquan')" class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
 		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "truonghoc"   href="#" onclick="getLopDiaDiem('truong')" class="right-item truonghoc"    onmouseover= "blinklink_truonghoc()"   onmouseout= "stoptimer_truonghoc()"   >Trường Học</a>	</td></tr>			
-		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "benhvien"    href="#" onclick="getLopDiaDiem('benhvien')" class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
+		<tr><td><a style="background:url('map-icon/benhvien16.png') no-repeat scroll left center" id = "benhvien"    href="#" onclick="getLopDiaDiem('benhvien')" class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
 		<tr><td><a style="background:url('map-icon/cho16.png') no-repeat scroll left center" id = "cho"         href="#" onclick="getLopDiaDiem('cho')" class="right-item cho"          onmouseover= "blinklink_cho()"         onmouseout= "stoptimer_cho()"         >Chợ</a>			</td></tr>	
 		<tr><td><a style="background:url('map-icon/ben16.png') no-repeat scroll left center" id = "bentauxe"    href="#" onclick="getLopDiaDiem('ben')" class="right-item bentauxe"     onmouseover= "blinklink_bentauxe()"    onmouseout= "stoptimer_bentauxe()"    >Bến Tàu Xe</a>	</td></tr>			
-		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "khachsan"    href=#"  onclick="getLopDiaDiem('khachsan')" class="right-item khachsan "    onmouseover= "blinklink_khachsan()"    onmouseout= "stoptimer_khachsan()"    >Khách Sạn</a>   </td></tr>	
+		<tr><td><a style="background:url('map-icon/khachsan16.png') no-repeat scroll left center" id = "khachsan"    href=#"  onclick="getLopDiaDiem('khachsan')" class="right-item khachsan "    onmouseover= "blinklink_khachsan()"    onmouseout= "stoptimer_khachsan()"    >Khách Sạn</a>   </td></tr>	
 		<tr><td><a style="background:url('map-icon/hotel.png') no-repeat scroll left center" id = "congty"      href="#" onclick="getLopDiaDiem('congty')" class="right-item congty"       onmouseover= "blinklink_congty()"      onmouseout= "stoptimer_congty()"      >Công Ty</a>		</td></tr>		
 		<tr><td><a style="background:url('map-icon/giaitri16.png') no-repeat scroll left center" id = "giaitri"     href="#" onclick="getLopDiaDiem('giaitri')" class="right-item giaitri"      onmouseover= "blinklink_giaitri()"     onmouseout= "stoptimer_giaitri()"     >Giải Trí</a>	</td></tr>			
 		<tr><td><a style="background:url('map-icon/denchua16.png') no-repeat scroll left center" id = "denchua"     href="#" onclick="getLopDiaDiem('denchua')" class="right-item denchua"      onmouseover= "blinklink_denchua()"     onmouseout= "stoptimer_denchua()"     >Đền Chùa</a>	</td></tr>			
