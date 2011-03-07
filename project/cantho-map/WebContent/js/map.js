@@ -23,7 +23,7 @@ function init() {
 		projection : "EPSG:4326",
 		units : 'm',
 		isBaselayer : 'true',
-		numZoomLevels : 10
+		numZoomLevels : 11
 	};
 	map = new OpenLayers.Map('map', options);
 	// lay ra quan huyen duoi dinh dang raster
