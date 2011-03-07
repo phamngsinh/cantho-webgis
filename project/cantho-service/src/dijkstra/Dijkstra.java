@@ -18,7 +18,7 @@ public class Dijkstra {
 	private double chiphi=0.0;
 	
 	public Dijkstra(DoThi graph) {
-		//Lay danh sach nut va canh de chay giai thuat
+		//Lay danh sach nut va canh de bat giai thuat
 		this.ds_nut = new ArrayList<Nut>(graph.getDanhSachSNut());
 		this.ds_canh = new ArrayList<Canh>(graph.getDanhSachCanh());
 	}

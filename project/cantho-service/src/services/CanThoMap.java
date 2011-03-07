@@ -24,8 +24,7 @@ public class CanThoMap {
 			this.openConnection();			
 			/***** Danh sach canh va nut *****/
 			List<Canh> edges = new ArrayList<Canh>();
-			List<Nut> nodes = new ArrayList<Nut>();
-			
+			List<Nut> nodes = new ArrayList<Nut>();			
 			// lay ra danh sach cac dinh
 			String sql_nut = "SELECT id, ST_AsText(the_geom) As the_geom FROM vertices_tmp Order By id";
 			rs_nut = s.executeQuery(sql_nut);
@@ -643,35 +642,35 @@ public class CanThoMap {
 	public ArrayList find_Place_By_Text(String text) throws SQLException, ClassNotFoundException{		
 		
 		ArrayList ds_dia_diem = new ArrayList();
-		String the_geom = "";
-		String ten = "";
-		String diachi = "";
-		String sdt = "";	
+		String the_geom = " ";
+		String ten = " ";
+		String diachi = " ";
+		String sdt = " ";	
 		
 		this.openConnection();
 		
 		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text +"')");
 		while (rs.next()){			
 			String[] arr = new String[4];
-			if (rs.getString("the_geom")==null){
+			if (rs.getString("the_geom")==null ){
 				the_geom = " ";
 			}
 			else{
 				the_geom = rs.getString("the_geom");
 			}
-			if (rs.getString("ten")==null){
+			if (rs.getString("ten")==null ){
 				ten = " ";
 			}
 			else{
 				ten = rs.getString("ten");
 			}
-			if (rs.getString("diachi")==null){
+			if (rs.getString("diachi")==null ){
 				diachi = " ";
 			}
 			else{
 				diachi = rs.getString("diachi");
 			}
-			if (rs.getString("sdt")==null){				
+			if (rs.getString("sdt")== null ){				
 				sdt = " ";				
 			}
 			else{
