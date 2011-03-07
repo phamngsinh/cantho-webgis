@@ -22,19 +22,13 @@
     text-decoration: none;
 	
 }
-.menu_taskbar: hover {
-    color: #FF0000;
+.menu_taskbar:hover {
+    color: red;
     padding-left: 20px;
     text-decoration: none;
 }
 .not-clicked{
 	background: url(../images/bottom-item.png) no-repeat scroll 0 0 transparent;
-	width: 95px;
-	font-size: 11px;
-	height: 24px;
-	}
-.not-clicked:hover{
-	background: url(../images/bottom-item-clicked.png) no-repeat scroll 0 0 transparent;
 	width: 95px;
 	font-size: 11px;
 	height: 24px;
