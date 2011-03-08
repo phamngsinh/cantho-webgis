@@ -321,7 +321,7 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
-		"<div  class  = 'maker-popup-timdv'>Tim dich vu o gan vi tri nay</div>" +
+		"<!--div  class  = 'maker-popup-timdv'>Tim dich vu o gan vi tri nay</div-->" +
 		"<table>" +
 			"<tr>" +
 				"<td>Ten</td>" +
@@ -394,7 +394,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	result = result + " </div>";
 	$('#searchPopupContent').html(result);
 	// dong controlDrawFeature va control DragFeature, setDuongDi, xoa duong di cu
-	//reset_DuongDi();
+	
 }
 function callBack_Find_Place_By_Text2(xml_result,status){
 	//alert("Thanh cong");	
