@@ -6,8 +6,10 @@ var dokhoangcach_clicked = 0;
 var flag_end = 0;// kiem tra: truong hop da co mot diem tren lop_diem_chon la
 // start hay end
 $(document).ready(function() {
-	// Code that uses jQuery's $ can follow here.
-	//alert('hoang');	
+	var a =$("#map").width()-20;
+	//var zoom=document.getElementById("OpenLayers.Control.PanZoomBar_60");
+	//zoom.style.left=a+"px";
+	//alert(a);
 	
 	
 });
@@ -285,6 +287,7 @@ function chonDiemA(i) {
 	// i=document.getElementById(a);
 	a = $('.result_' + i);
 	var wkt = a.attr('id');
+	//alert(a.attr('name'));
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	var num_points = lop_diem_chon.features.length;
