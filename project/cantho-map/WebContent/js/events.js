@@ -1,8 +1,10 @@
 /**
  * 
  */
-var timduong_clicked=0;
-var dokhoangcach_clicked=0;
+var timduong_clicked = 0;
+var dokhoangcach_clicked = 0;
+var flag_end = 0;// kiem tra: truong hop da co mot diem tren lop_diem_chon la
+// start hay end
 $(document).ready(function() {
 	// Code that uses jQuery's $ can follow here.
 	//alert('hoang');	
@@ -36,19 +38,18 @@ function timDuong(){
 			}				
 			if (map.controls[i].displayClass == "olControlDragFeature") {
 				map.controls[i].activate();
-			}			
-			if (map.controls[i].displayClass == "olControlSelectFeature") {
-				map.controls[i].activate();
 			}
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
-			}				
-		}			
-	} 
-	else {
-		//alert("active");
+			}
+			if (map.controls[i].displayClass == "olControlSelectFeature") {
+				map.controls[i].activate();
+			}
+		}
+	} else {
+		// alert("active");
 		// alert("Activate olDrawFeature, Deactivate olNavigation");
-		if (num_points < 2){
+		if (num_points < 2) {
 			for ( var i = 0; i < map.controls.length; i++) {
 				if (map.controls[i].displayClass == "olControlDrawFeature") {
 					map.controls[i].activate();
@@ -56,54 +57,53 @@ function timDuong(){
 				if (map.controls[i].displayClass == "olControlDragFeature") {
 					map.controls[i].activate();
 				}
-				if (map.controls[i].displayClass == "olControlSelectFeature") {
-					map.controls[i].activate();
-				}
 				if (map.controls[i].displayClass == "olControlNavigation") {
 					map.controls[i].activate();
-				}	
+				}
 				if (map.controls[i].displayClass == "olControlMeasure") {
 					map.controls[i].deactivate();
 				}
+				if (map.controls[i].displayClass == "olControlSelectFeature") {
+					map.controls[i].activate();
+				}
 			}
-		}		
+		}
 	}
 
 }
 
-function timDiaDiem(){
+function timDiaDiem() {
 	alert("Tim dia diem");
 }
 
-function huongDan(){
+function huongDan() {
 	alert("Huong dan");
 }
 
-function inBanDo(){
+function inBanDo() {
 	alert("In ban do");
 }
 
-function chonVung(){
+function chonVung() {
 	alert("Chon vung");
 }
 
-function doKhoangCach(){
-	timduong_clicked =0;
-	dokhoangcach_clicked=1;
+function doKhoangCach() {
+	timduong_clicked = 0;
+	dokhoangcach_clicked = 1;
 	$(".tim-duong").removeClass("clicked");
 	$(".tim-duong").addClass("not-clicked");
 	$(".do-khoang-cach").removeClass("not-clicked");
 	$(".do-khoang-cach").addClass("clicked");
-	if (control_measure.active){
-		//alert("da duoc active");
+	if (control_measure.active) {
+		// alert("da duoc active");
 		for ( var i = 0; i < map.controls.length; i++) {
 			if (map.controls[i].displayClass == "olControlMeasure") {
 				map.controls[i].deactivate();
-			}			
+			}
 		}
-	}
-	else{
-		//alert("da duoc deactive");
+	} else {
+		// alert("da duoc deactive");
 		for ( var i = 0; i < map.controls.length; i++) {
 			if (map.controls[i].displayClass == "olControlMeasure") {
 				map.controls[i].activate();
@@ -271,4 +271,212 @@ function HideMapList(){
 function LoadTree(){
 	$("#boundTree").show();
 }
-/************END POPUP EVENTS****************/
+/** **********END POPUP EVENTS*************** */
+
+/*******************************************************************************
+ * Neu so feature hien tai == 0 -> Them moi binh thuong Neu so feature hien tai ==
+ * 1 , kiem tra bien end_flag xem diem hien tai co phai la diem cuoi hay khong -
+ * Neu la diem cuoi thi lay ra va them theo thu tu diem_moi, diem_cuoi - Neu
+ * khong phai thi dich chuyen diem do den vi tri moi (vi tri nguoi dung chon)
+ * Neu so feature hien tai == 2, dich chuyen diem dau den vi tri moi(vi tri
+ * nguoi dung chon) Them phan tu duoc chon vao vao o nhap diem A
+ ******************************************************************************/
+function chonDiemA(i) {
+	// i=document.getElementById(a);
+	a = $('.result_' + i);
+	var wkt = a.attr('id');
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
+	var num_points = lop_diem_chon.features.length;
+	var point = wkt_format.read(wkt);
+	// alert("point: "+point.geometry);
+	if (num_points == 0) {
+		// alert("num_points= "+num_points);
+		lop_diem_chon.addFeatures(point);
+		// Dat lai gia tri cho end_flag
+		flag_end = 0;
+	} else if (num_points == 1) {
+		if (flag_end == 1) {
+			//alert("flag_end"+flag_end);
+			// lay diem dau tien ra
+			var wkt_point_end = lop_diem_chon.features[0].geometry;
+			//alert("point_end: "+wkt_point_end);
+			// xoa lop_diem_chon
+			lop_diem_chon.destroyFeatures();
+			// Them diem moi chon vao
+			lop_diem_chon.addFeatures(point);
+			// them diem thu hai
+			lop_diem_chon.addFeatures(wkt_format.read(wkt_point_end));			
+			/** *Tao icon cho end_point*** */
+			// Lay feature vua them vao lop lop_diem_chon ra
+			var e_point = lop_diem_chon.features[1];
+			// Tao symbolizer tu stylemap cua lop_diem_chon
+			var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+			// Thay doi icon cho feature
+			symbolizer['externalGraphic'] = 'images/denday.png';
+			// Set the unique style to the feature
+			e_point.style = symbolizer;
+			// Ve lai diem voi style moi
+			e_point.layer.drawFeature(e_point);
+			//alert("seconde feature : "+lop_diem_chon.features[1].geometry);
+		} else {
+			// di chuyen diem cu den vi tri moi
+			var first_point = lop_diem_chon.features[0];
+			var new_x = point.geometry.x;
+			var new_y = point.geometry.y;
+			var x = first_point.geometry.x;
+			var y = first_point.geometry.y;
+			// dich chuyen diem dau den vi tri moi
+			first_point.geometry.move(new_x - x, new_y - y);
+			first_point.layer.drawFeature(first_point);
+		}
+	} else if (num_points == 2) {
+		// di chuyen diem cu den vi tri moi
+		var first_point = lop_diem_chon.features[0];
+		var new_x = point.geometry.x;
+		var new_y = point.geometry.y;
+		var x = first_point.geometry.x;
+		var y = first_point.geometry.y;
+		// dich chuyen diem dau den vi tri moi
+		first_point.geometry.move(new_x - x, new_y - y);
+		first_point.layer.drawFeature(first_point);
+		// alert("num_points: "+num_points);
+		/** *Tao icon cho end_point*** */
+		// Lay feature vua them vao lop lop_diem_chon ra
+		var e_point = lop_diem_chon.features[1];
+		// Tao symbolizer tu stylemap cua lop_diem_chon
+		var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+		// Thay doi icon cho feature
+		symbolizer['externalGraphic'] = 'images/denday.png';
+		// Set the unique style to the feature
+		e_point.style = symbolizer;
+		// Ve lai diem voi style moi
+		e_point.layer.drawFeature(e_point);
+		// Dat lai gia tri cho end_flag
+		flag_end = 0;
+	}
+	/** Dich chuyen ban do lai vi tri cua diem do* */
+	var lonlat = new OpenLayers.LonLat(point.geometry.x, point.geometry.y);
+	map.setCenter(lonlat);
+	/** *Tao icon cho start_point*** */
+	// Lay feature vua them vao lop lop_diem_chon ra
+	var s_point = lop_diem_chon.features[0];
+	// Tao symbolizer tu stylemap cua lop_diem_chon
+	var symbolizer = s_point.layer.styleMap.createSymbolizer(s_point);
+	// Thay doi icon cho feature
+	symbolizer['externalGraphic'] = 'images/tuday.png';
+	// Set the unique style to the feature
+	s_point.style = symbolizer;
+	// Ve lai diem voi style moi
+	s_point.layer.drawFeature(s_point);
+	num_points = lop_diem_chon.features.length;	
+	if (num_points == 2) {
+		//alert("num_points: "+num_points+"- flag_end: "+flag_end);
+		// goi webservice cap nhat duong di moi
+		var start_point = lop_diem_chon.features[0].geometry.clone();
+		var end_point = lop_diem_chon.features[1].geometry.clone();
+		callService(start_point.x, start_point.y, end_point.x, end_point.y);
+	}	
+	/** *them chuoi vao o nhap lieu A** */
+	for ( var i = 0; i < map.controls.length; i++) {
+		if (map.controls[i].displayClass == "olControlNavigation") {
+			map.controls[i].activate();
+		}
+		if (map.controls[i].displayClass == "olControlDragFeature") {
+			map.controls[i].activate();
+		}
+		if (map.controls[i].displayClass == "olControlSelectFeature") {
+			map.controls[i].activate();
+		}
+	}
+	// alert(a.attr('id'));
+}
+/*******************************************************************************
+ * Neu so feature hien tai == 0, thi them vao binh thuong, dinh dang icon la
+ * diem cuoi, dong thoi gan bien end_flag =1 Neu so feature hien tai == 1, - Neu
+ * end_flag == 1 (end_point), dich chuyen diem do den vi tri moi - Neu end_flag ==
+ * 0 (start_point), them diem moi (end_point) vao binh thuong Neu so feature
+ * hien tai == 2, dich chuyen diem hai den vi tri moi (vi tri nguoi dung chon)
+ ******************************************************************************/
+function chonDiemB(i) {
+	// i=document.getElementById(a);
+	a = $('.result2_' + i);
+	var wkt = a.attr('id');
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
+	var num_points = lop_diem_chon.features.length;
+	var point = wkt_format.read(wkt);
+	if (num_points == 0) {
+		lop_diem_chon.addFeatures(point);
+		flag_end = 1;
+		/** *Tao icon cho end_point*** */
+		// Lay feature vua them vao lop lop_diem_chon ra
+		var e_point = lop_diem_chon.features[0];
+		// Tao symbolizer tu stylemap cua lop_diem_chon
+		var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+		// Thay doi icon cho feature
+		symbolizer['externalGraphic'] = 'images/denday.png';
+		// Set the unique style to the feature
+		e_point.style = symbolizer;
+		// Ve lai diem voi style moi
+		e_point.layer.drawFeature(e_point);
+		//alert("num_points sau khi them: "+lop_diem_chon.features.length);
+		alert("flag_end :"+flag_end);
+	} else if (num_points == 1) {
+		if (flag_end == 1) {
+			// dich chuyen end_point den vi tri moi
+			var first_point = lop_diem_chon.features[0];
+			var new_x = point.geometry.x;
+			var new_y = point.geometry.y;
+			var x = first_point.geometry.x;
+			var y = first_point.geometry.y;
+			// dich chuyen diem dau den vi tri moi
+			first_point.geometry.move(new_x - x, new_y - y);
+			first_point.layer.drawFeature(first_point);
+		} else {
+			// Them moi binh thuong
+			lop_diem_chon.addFeatures(point);
+			/** *Tao icon cho end_point*** */
+			// Lay feature vua them vao lop lop_diem_chon ra
+			var e_point = lop_diem_chon.features[1];
+			// Tao symbolizer tu stylemap cua lop_diem_chon
+			var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+			// Thay doi icon cho feature
+			symbolizer['externalGraphic'] = 'images/denday.png';
+			// Set the unique style to the feature
+			e_point.style = symbolizer;
+			// Ve lai diem voi style moi
+			e_point.layer.drawFeature(e_point);
+		}
+	} else if (num_points == 2) {
+		//dich chuyen end_point den vi tri moi
+		var second_point = lop_diem_chon.features[1];
+		var new_x = point.geometry.x;
+		var new_y = point.geometry.y;
+		var x = second_point.geometry.x;
+		var y = second_point.geometry.y;
+		// dich chuyen diem dau den vi tri moi
+		second_point.geometry.move(new_x - x, new_y - y);
+		second_point.layer.drawFeature(second_point);
+	}
+	//kiem tra la neu du hai diem thi goi webservices
+	num_points = lop_diem_chon.features.length;
+	if (num_points == 2) {
+		// goi webservice cap nhat duong di moi
+		var start_point = lop_diem_chon.features[0].geometry.clone();
+		var end_point = lop_diem_chon.features[1].geometry.clone();
+		callService(start_point.x, start_point.y, end_point.x, end_point.y);
+	}	
+	/** *them chuoi vao o nhap lieu A** */
+	for ( var i = 0; i < map.controls.length; i++) {
+		if (map.controls[i].displayClass == "olControlNavigation") {
+			map.controls[i].activate();
+		}
+		if (map.controls[i].displayClass == "olControlDragFeature") {
+			map.controls[i].activate();
+		}
+		if (map.controls[i].displayClass == "olControlSelectFeature") {
+			map.controls[i].activate();
+		}
+	}
+}
