@@ -134,40 +134,41 @@
 .maker-popup-ten {
     color: black;
     font-size: 15px;
-    height: 35px;
-    margin-left: -5px;
-    margin-top: 5px;
-    text-align: center;
-    width: 245px;
     font-weight: bold;
+    height: 45px;
+    margin-top: -5px;
+    padding: 0 0 0 15px;
+    text-align: center;
+    width: 240px;
 }
 .maker-popup-diachi{
 	font-size: 13px;
 	height: 25px;
+	padding-left:20px;
 }
 .maker-popup-sdt{
 	font-size: 13px;
 	height: 25px;
+	padding-left:20px;
 }
-.maker-popup-footer{
-	font-size: 13px;
-	text-align: center;
-	height: 20px;
-	margin-left: -5px;
+.maker-popup-div1 .maker-popup-footer {
+    font-size: 12px;
+    height: 20px;
+    text-align: center;
+    margin-left: 9px;
+    margin-top: 5px;
+}
+.maker-popup-div2 .maker-popup-footer {
+    font-size: 12px;
+    height: 20px;
+    text-align: center;
+    margin-left: -20px;
+    margin-top: 5px;
 }
 
 .maker-popup-footer a{
 	text-decoration: none;
 	}
-.maker-popup-tuday{
-
-}
-.maker-popup-denday{
-
-}
-.maker-popup-timxungquanh{
-
-}
 /*#chicken{
 	width: 270px !important;
 	}
@@ -213,11 +214,14 @@
 .maker-popup-tim:hover{
 	background:  url(../images/lblue-h.png) no-repeat;  
 	}
-.maker-popup-div1{
-	}
+.maker-popup-div1 {
+    padding-left: 15px;
+    width: 240px;
+}
 .maker-popup-div2{
 	display: none;
-	font-size: 10px;
+	font-size: 12px;
+	padding-left: 50px;
 	}
 .popup-result{
 	padding-left: 20px;
@@ -235,6 +239,16 @@
 	background-color: 	#FDF5E6;
 	}
 #chicken{
-	background-color: blue;
 	
+
+	}
+.maker-popup-textdichvu{
+	height: 15px;
+	font-size: 12px;
+	vertical-align: middle;
+	}
+.maker-popup-textbankinh{
+	height: 15px;
+	font-size: 12px;
+	vertical-align: middle;
 	}
