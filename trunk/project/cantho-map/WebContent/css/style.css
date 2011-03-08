@@ -2,3 +2,6 @@ body {
 	overflow: hidden;
 	background:url("../images/bg-cantho-map.png") repeat ;
 }
+.olControlPanZoomBar{
+	right:10px !important;
+	}
