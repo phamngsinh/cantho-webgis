@@ -379,7 +379,8 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
-		ten = "<div class= 'result-div'><a class = 'popup-result result_"+i+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
+		ten = "<div class= 'result-div'>" +
+				"<a name='"+ten+"' class = 'popup-result result_"+i+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
 		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>- Dia chi: dang cap nhat" + diachi + "</label>";		
 		result = result + ten + diachi + "<br/></div>";
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
@@ -420,7 +421,8 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
-		ten = "<div class= 'result-div'><a class = 'popup-result result2_"+i+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
+		ten = "<div class= 'result-div'>" +
+				"<a name='"+ten+"' class = 'popup-result result2_"+i+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
 		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>- Dia chi: dang cap nhat" + diachi + "</label>";		
 		result = result + ten + diachi + "<br/></div>";
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
