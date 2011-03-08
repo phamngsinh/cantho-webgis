@@ -57,11 +57,11 @@ function init() {
 		}))
 	});
 		
-	/** Lop hien thi duong duong di ngan nhat**/
+	/**Lop hien thi duong duong di ngan nhat**/
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			strokeColor : "#FF000B",
-			strokeWidth : 5,
+			strokeWidth : 3,
 		    strokeOpacity: 0.7
 		}))
 	});
@@ -158,11 +158,10 @@ function init() {
 		position : new OpenLayers.Pixel(5, 10)
 	}));
 	map.addControl(new OpenLayers.Control.Navigation());
+	map.addControl(new OpenLayers.Control.OverviewMap());
 	// map.addControl(new OpenLayers.Control.LayerSwitcher());
-	map.addControl(new OpenLayers.Control.Scale($('scale')));
-	map.addControl(new OpenLayers.Control.MousePosition({
-		element : $('location')
-	}));
+	//map.addControl(new OpenLayers.Control.Scale($('scale')));
+	//map.addControl(new OpenLayers.Control.MousePosition({element : $('location')}));
 	map.zoomToMaxExtent(bounds);
 }
 /** **************CAC SU KIEN************************ */
