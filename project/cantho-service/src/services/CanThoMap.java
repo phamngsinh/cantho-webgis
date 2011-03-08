@@ -731,6 +731,64 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_dia_diem;
 	}
+
+	public ArrayList getQuanHuyen() throws SQLException, ClassNotFoundException{
+		ArrayList ds_quanhuyen = new ArrayList();
+		String id = " ";
+		String ten = " ";
+		String dientich = " ";
+		String dan_so = " ";
+		String phuong_xa = " ";
+		String the_geom = " ";
+		
+		this.openConnection();
+		String sql = "Select id, ten, dientich, dan_so, phuong_xa, ST_Astext(the_geom) As the_geom From quanhuyen";
+		rs = s.executeQuery(sql);
+		
+		while (rs.next()){
+			String[] arr = new String[6];
+			if (rs.getString("id") == null){
+				id = " ";
+			}else{
+				id = rs.getString("id");
+			}
+			if (rs.getString("ten") == null){
+				ten = " ";
+			}else{
+				ten = rs.getString("ten");
+			}
+			if (rs.getString("dientich") == null){
+				dientich = " ";
+			}else{
+				dientich = rs.getString("dientich");
+			}
+			if (rs.getString("dan_so") == null){
+				dan_so = " ";
+			}else{
+				dan_so = rs.getString("dan_so");
+			}
+			if (rs.getString("phuong_xa") == null){
+				phuong_xa = " ";
+			}else{
+				phuong_xa = rs.getString("phuong_xa");
+			}
+			if (rs.getString("the_geom") == null){
+				the_geom = " ";
+			}else{
+				the_geom = rs.getString("the_geom");
+			}
+			arr[0] = id;
+			arr[1] = ten;
+			arr[2] = dientich;
+			arr[3] = dan_so;
+			arr[4] = phuong_xa;
+			arr[5] = the_geom;
+			ds_quanhuyen.add(arr);
+		}		
+		this.closeConnection();
+		return ds_quanhuyen;
+	}
+	
 	private void openConnection() throws SQLException, ClassNotFoundException{
 		conn=null;
 		if (conn==null){
@@ -740,7 +798,7 @@ public class CanThoMap {
 			s=conn.createStatement();
 		}
 	}
-	
+
 	private void closeConnection() throws SQLException{
 		if (!conn.isClosed()){
 			conn.close(); 
