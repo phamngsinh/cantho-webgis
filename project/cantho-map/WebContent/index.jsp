@@ -183,12 +183,12 @@
 							<div class="swrap-timduong">
 								<span class="a-z">a</span>
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
-								<a onclick="" class="del-timduong" style="display: none;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
+								<a onclick="" class="del-timduonga" style="display: block;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
 							</div>
 							<div class="swrap-timduong">
 								<span class="a-z">b</span>
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
-								<a onclick="" class="del-timduong" style="display: none;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
+								<a onclick="" class="del-timduongb" style="display: block;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
 							</div>
 					</div>
 					<div class="search-result"></div>

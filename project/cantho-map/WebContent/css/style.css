@@ -3,5 +3,6 @@ body {
 	background:url("../images/bg-cantho-map.png") repeat ;
 }
 .olControlPanZoomBar{
-	right:10px !important;
+	/*right:130px !important;
+	position: fixed;*/
 	}

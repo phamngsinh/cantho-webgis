@@ -6,12 +6,18 @@ var dokhoangcach_clicked = 0;
 var flag_end = 0;// kiem tra: truong hop da co mot diem tren lop_diem_chon la
 // start hay end
 $(document).ready(function() {
-	var a =$("#map").width()-20;
+	$('.del-timduonga').live('click', function()  {  
+        $(".tim-a").val("Nhap vao dia danh");
+     });  
+	$('.del-timduongb').live('click', function()  {  
+        $(".tim-b").val("Nhap vao dia danh");
+     });  
+	var map_width=$("#map").css("width").replace("px","")*1;
+	var s=document.getElementById("search");
 	//var zoom=document.getElementById("OpenLayers.Control.PanZoomBar_60");
-	//zoom.style.left=a+"px";
-	//alert(a);
-	
-	
+	if(map_width<700){	
+		s.style.left= "300px";
+	}
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
