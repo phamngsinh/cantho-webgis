@@ -179,6 +179,29 @@ function getLopDiaDiem(ten_lop) {
 		data : soapMessage
 	});
 }
+
+function getQuanHuyen(){
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:getQuanHuyen>";
+	soapMessage += "      </ser:getQuanHuyen>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	//alert(soapMessage);
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_getQuanHuyen,
+		error : error_getQuanHuyen,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
 function callBackGetDuongDi(xml_result, status) {
 
 	// list_lop_duong = map.getLayersByName('lop_duong_di');
@@ -449,6 +472,9 @@ function error_Find_Place_By_Text2(xml_result){
 
 function callBack_getLopDiaDiem(xml_result, status) {
 	var wkt = "";
+	var ten = "";
+	var diachi = "";
+	var sodienthoai = "";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
@@ -473,8 +499,11 @@ function error_getLopDiaDiem(ml_result) {
 }
 function callBack_Find_Place_Around_Point(xml_result, status){
 	var wkt = "";
+	var ten = "";
+	var diachi = "";
+	var sodienhoai = "";
 	var wkt_format = new OpenLayers.Format.WKT();
-	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];	
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
@@ -488,4 +517,28 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 }
 function error_Find_Place_Around_Point(xml_result, status){
 	alert("Find_Place_Around_Point "+xml_result);
+}
+function callBack_getQuanHuyen(xml_result, status){
+	var wkt = "";
+	var id = "";
+	var ten = "";
+	var dien_tich = 0;
+	var dan_so = 0;
+	var so_phuong_xa = 0;
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_quan_huyen = map.getLayersByName('lop_quan_huyen')[0];
+	// xoa di cac feature hien tai tren lop duong di
+	lop_quan_huyen.destroyFeatures();
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+		//lop_quan_huyen.addFeatures(wkt_format.read(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue));
+		id = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		dien_tich = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		dan_so = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
+		so_phuong_xa = xml_result.getElementsByTagName('ns:return')[i].childNodes[5].childNodes[0].nodeValue;		
+		//lop_quan_huyen.addFeatures(wkt_format.read(wkt));
+	}
+}
+function error_getQuanHuyen(xml_result, status){
+	alert("getQuanHuyen:  "+xml_result);
 }
