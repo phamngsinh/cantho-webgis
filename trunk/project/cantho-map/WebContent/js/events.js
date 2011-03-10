@@ -18,6 +18,21 @@ $(document).ready(function() {
 	if(map_width<700){	
 		s.style.left= "300px";
 	}
+	$("#btnTim").click(function() {
+		var ds_ma="";
+		$(".dTreeNode").each(function(){
+			  if ($(this).children(":first").attr("checked")==true)
+				  if(ds_ma==""){
+					  ds_ma=ds_ma + $(this).children(":first").val();
+				  }else{
+					  ds_ma=ds_ma+"$" + $(this).children(":first").val();
+				  }
+			  });
+		var ten=$("#mapinput").val();
+		find_Place_By_Text_And_Huyen(ten,ds_ma);
+		HideMapList();
+		//
+	});
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
@@ -733,4 +748,9 @@ function chonDiemB(i) {
 		callService(start_point.x, start_point.y, end_point.x, end_point.y);
 	}		
 
+}
+function tenHuyen(i){
+	a = $('.huyen_' + i);
+	var html="<a  onclick=''>Can Tho</a> &gt <a  onclick=''>"+a.attr("name")+"</a>";
+	$("#map_path_div").html(html);
 }
