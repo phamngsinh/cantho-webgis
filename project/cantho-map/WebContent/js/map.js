@@ -8,14 +8,15 @@ var map;
 var untiled;
 var tiled;
 var pureCoverage = false;
-var control_select, control_hover, control_drag, control_ve_diem, control_measure, control_click;
+var control_select, control_hover, control_drag, control_ve_diem, control_measure, control_click, control_select_quan_huyen;
 var format = 'image/png';
 OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
 function init() {
 
-	var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294, 1141760.714);
+	var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294,
+			1141760.714);
 	var options = {
 		controls : [],
 		maxExtent : bounds,
@@ -36,33 +37,33 @@ function init() {
 				srs : 'EPSG:4326',
 				format : format,
 				tiled : 'true',
-				transparent : 'true'//,
-				//tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
+				transparent : 'true'// ,
+			// tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {
 				buffer : 0,
 				isBaseLayer : true,
 				displayOutsideMaxExtent : true,
-				transitionEffect: 'resize'
+				transitionEffect : 'resize'
 			});
 
 	map.addLayers([ lop_nen ]);
 
-	/** Lop chua hai diem duoc chon, de tim duong di**/
+	/** Lop chua hai diem duoc chon, de tim duong di* */
 	var lop_diem_chon = new OpenLayers.Layer.Vector("lop_diem_chon", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : '',
 			graphicWidth : 30,
 			graphicHeight : 35
-		//strokeOpacity: 0.6
+		// strokeOpacity: 0.6
 		}))
 	});
-		
-	/**Lop hien thi duong duong di ngan nhat**/
+
+	/** Lop hien thi duong duong di ngan nhat* */
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			strokeColor : "#FF000B",
 			strokeWidth : 3,
-		    strokeOpacity: 0.7
+			strokeOpacity : 0.7
 		}))
 	});
 
@@ -74,8 +75,22 @@ function init() {
 			graphicHeight : 25		
 		}))
 	});
-	//Them cac lop vua tao vao ban do
-	map.addLayers([ lop_duong_di, lop_dia_diem, lop_diem_chon ]);
+	/** Lop chua quan huyen* */
+	// var lop_quan_huyen = new OpenLayers.Layer.Vector("lop_quan_huyen");
+	var lop_quan_huyen = new OpenLayers.Layer.Vector("lop_quan_huyen", {
+		strategies : [ new OpenLayers.Strategy.BBOX() ],
+		protocol : new OpenLayers.Protocol.WFS({
+			url : "http://localhost:8080/geoserver/wfs",
+			featureType : "quanhuyen",
+			featureNS : "http://opengeo.org/ws_cantho"
+		})
+	});
+
+	// Them cac lop vua tao vao ban do
+	map.addLayers([ lop_duong_di, lop_quan_huyen, lop_dia_diem,
+					lop_diem_chon]);
+	// hide lop_quan_huyen di
+	lop_quan_huyen.setVisibility(false);
 
 	/** tao control DrawFeature ve start_point va end_point**/
 	control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
@@ -89,27 +104,51 @@ function init() {
 		onComplete : drag_Completed
 	// duoc kich hoat khi su kien drag ket thuc
 	});
-	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem**/
-	control_select = new OpenLayers.Control.SelectFeature([lop_dia_diem,lop_diem_chon], {
+	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem* */
+	control_select = new OpenLayers.Control.SelectFeature([ lop_dia_diem, lop_quan_huyen, lop_diem_chon ], {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
 		onUnSelect : onUnSelectFeature,
 		clickout : true,
-		toggle: false,
-		hover: false
+		toggle : true,
+		hover : false
 	});
-	/** Tao control SelectFeature de doi cursor khi hover feature**/
-	control_hover = new OpenLayers.Control.SelectFeature([lop_dia_diem],
-						{
-							clickout: true,
-							toggle: true,
-							callbacks: {		
-							'over':feature_Hover,'out': feature_Out
-							}
-						});	
+	/** Tao control SelectFeature de doi cursor khi hover feature* */
+	control_hover = new OpenLayers.Control.SelectFeature([ lop_dia_diem ], {
+		clickout : true,
+		toggle : true,
+		callbacks : {
+			'over' : feature_Hover,
+			'out' : feature_Out
+		}
+	});
+	/** Tao control SelectFeature tren lop_quan_huyen* */
+	control_select_quan_huyen = new OpenLayers.Control.SelectFeature(
+			[lop_quan_huyen], {
+				clickout : true,
+				toggle : false,
+				multiple : false,
+				hover : false,
+				//toggleKey : "shiftKey", // shift key removes from selection
+				multipleKey : "ctrlKey" // ctrl key adds to selection
+				//box : true
+				//onSelect : onSelectQuanHuyen,// kick hoat khi click chuot tren feature
+				//onUnSelect : onUnSelectQuanHuyen
+			});
+	lop_quan_huyen.events.on({
+		featureselected: function(event){
+			var feature = event.feature;
+			alert("So feature duoc chon: "+lop_quan_huyen.selectedFeatures.length);
+			//alert("selecte: "+feature.attributes.ten);
+		},
+		featureunselected: function(event){
+			var feature = event.feature;
+			alert("Unselecte: "+feature.attributes.ten);
+		}
+	});
 	/** Them cac controls vua tao vao ban do* */
-	map.addControls([ control_drag, control_ve_diem, control_hover, control_select]);
+	map.addControls([ control_drag, control_ve_diem, control_hover, control_select, control_select_quan_huyen]);
 	control_hover.activate();
-	control_select.activate();	
+	control_select.activate();
 	/** ************************ Style cho lop controlmeasure******************* */
 	// style the sketch fancy
 	var sketchSymbolizers = {
@@ -160,8 +199,9 @@ function init() {
 	map.addControl(new OpenLayers.Control.Navigation());
 	map.addControl(new OpenLayers.Control.OverviewMap());
 	// map.addControl(new OpenLayers.Control.LayerSwitcher());
-	//map.addControl(new OpenLayers.Control.Scale($('scale')));
-	//map.addControl(new OpenLayers.Control.MousePosition({element : $('location')}));
+	// map.addControl(new OpenLayers.Control.Scale($('scale')));
+	// map.addControl(new OpenLayers.Control.MousePosition({element :
+	// $('location')}));
 	map.zoomToMaxExtent(bounds);
 }
 /** **************CAC SU KIEN************************ */
@@ -170,54 +210,98 @@ function init() {
  * lop_diem_chon*********
  */
 function point_Added(point) {
-	//alert("Diem da duoc ve ! ");
+	// alert("Diem da duoc ve ! ");
 	// kiem tra neu da chon du hai diem thi goi webservice de lay duong di
+	var wkt_format = new OpenLayers.Format.WKT();
 	var list_layer_diem_chon = map.getLayersByName('lop_diem_chon');
 	// dinh nghia type moi cho diem chon
-	var lop_diem_chon = list_layer_diem_chon[0];	
+	var lop_diem_chon = list_layer_diem_chon[0];
 	num_points = lop_diem_chon.features.length;
-	/***tao icon cho start_point****/
-	if (num_points==1){
+
+	if (num_points == 1) {
+		/** *tao icon cho start_point*** */
 		// tao symbolizer tu stylemap cua lop_diem_chon
-		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
+		var symbolizer = point.layer.styleMap.createSymbolizer(point);
 		// thay doi icon cho feature
 		symbolizer['externalGraphic'] = 'images/tuday.png';
 		// set the unique style to the feature
-		point.style = symbolizer;	
+		point.style = symbolizer;
 		// ve lai diem voi style moi
-		point.layer.drawFeature(point,point.style);		
+		point.layer.drawFeature(point, point.style);
 	}
-	/***tao icon cho end_point****/
-	if (num_points==2){
-		// tao symbolizer tu stylemap cua lop_diem_chon
-		var symbolizer = point.layer.styleMap.createSymbolizer(point);	
-		// thay doi icon cho feature
-		symbolizer['externalGraphic'] = 'images/denday.png';
-		// set the unique style to the feature
-		point.style = symbolizer;	
-		// ve lai diem voi style moi
-		point.layer.drawFeature(point,point.style);		
+	/** *tao icon cho end_point*** */
+	if (num_points == 2) {
+		if (flag_end == 1) {
+			// lay diem dau tien ra
+			var wkt_point_end = lop_diem_chon.features[0].geometry;
+			var wkt_point_start = lop_diem_chon.features[1].geometry;
+			// alert("point_end: "+wkt_point_end);
+			// xoa lop_diem_chon
+			lop_diem_chon.destroyFeatures();
+			// Them diem moi ve vao
+			lop_diem_chon.addFeatures(wkt_format.read(wkt_point_start));
+			// them diem thu hai
+			lop_diem_chon.addFeatures(wkt_format.read(wkt_point_end));
+			/** *Tao icon cho start_point*** */
+			// Lay feature vua them vao lop lop_diem_chon ra
+			var s_point = lop_diem_chon.features[0];
+			// Tao symbolizer tu stylemap cua lop_diem_chon
+			var symbolizer = s_point.layer.styleMap.createSymbolizer(s_point);
+			// Thay doi icon cho feature
+			symbolizer['externalGraphic'] = 'images/tuday.png';
+			// Set the unique style to the feature
+			s_point.style = symbolizer;
+			// Ve lai diem voi style moi
+			s_point.layer.drawFeature(s_point);
+			/** *Tao icon cho end_point*** */
+			// Lay feature vua them vao lop lop_diem_chon ra
+			var e_point = lop_diem_chon.features[1];
+			// Tao symbolizer tu stylemap cua lop_diem_chon
+			var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+			// Thay doi icon cho feature
+			symbolizer['externalGraphic'] = 'images/denday.png';
+			// Set the unique style to the feature
+			e_point.style = symbolizer;
+			// Ve lai diem voi style moi
+			e_point.layer.drawFeature(e_point);
+			// gan lai flag_end = 0
+			flag_end = 0;
+
+		} else {
+			// tao symbolizer tu stylemap cua lop_diem_chon
+			var symbolizer = point.layer.styleMap.createSymbolizer(point);
+			// thay doi icon cho feature
+			symbolizer['externalGraphic'] = 'images/denday.png';
+			// set the unique style to the feature
+			point.style = symbolizer;
+			// ve lai diem voi style moi
+			point.layer.drawFeature(point, point.style);
+		}
 	}
-	//tao icon cho end_point
-	if (num_points == 2) {		
-		lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];		
+	// tao icon cho end_point
+	if (num_points == 2) {
+		lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 		for ( var i = 0; i < map.controls.length; i++) {
 			if (map.controls[i].displayClass == "olControlDrawFeature") {
 				map.controls[i].deactivate();
 			}
-			if (map.controls[i].displayClass == "olControlDragFeature") {				
+			if (map.controls[i].displayClass == "olControlDragFeature") {
 				map.controls[i].activate();
 			}
+			/*
 			if (map.controls[i].displayClass == "olControlSelectFeature") {
-				map.controls[i].activate();				
-			}			
+				map.controls[i].activate();
+			}
+			*/
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
 			}
-		}
-		//control_select.setLayer(lop_dia_diem);
+		}	
+		control_select.activate();
+		// control_select.setLayer(lop_dia_diem);
 		getDuongDi();
 	}
+	//control_hover.activate();
 }
 /** ********Su kien cac feature tren lop_diem_chon duoc drag********* */
 function begin_Drag() {
@@ -249,9 +333,8 @@ function handleMeasurements(event) {
 	// element.innerHTML = out;
 }
 function onSelectFeature(e) {
-
 	// goi webservice o day de hien thi thong tin cua diem vua chon
-	//alert("Da chon feature");
+	// alert("Da chon feature");
 	getDiaDiemTheoViTri(e.geometry);
 	/*
 	 * pixel = new OpenLayers.Pixel(e.geometry.x, e.geometry.y); alert("Fearture
@@ -275,28 +358,34 @@ function getDuongDi(){
 	callService(start_point.x, start_point.y, end_point.x, end_point.y);
 	// dong thoi diactivate olControlDrawFeature va activate control
 }
-/**Doi hinh cursor khi hover feature tren lop_dia_diem**/
-function feature_Hover(feature){
-	//alert("hover");
+/** Doi hinh cursor khi hover feature tren lop_dia_diem* */
+function feature_Hover(feature) {
 	var hover_style = {
-			externalGraphic:anh_dia_diem,
-			graphicWidth: 32,
-			graphicHeight : 32,
-			graphicOpacity: 1,
-			cursor:'pointer'			
+		externalGraphic : anh_dia_diem,
+		graphicWidth : 32,
+		graphicHeight : 32,
+		graphicOpacity : 1,
+		cursor : 'pointer'
 	};
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
-	lop_dia_diem.drawFeature(feature,hover_style);
+	lop_dia_diem.drawFeature(feature, hover_style);
 }
-function feature_Out(feature){
-	//alert("out");
+function feature_Out(feature) {
+	// alert("out");
 	var out_style = {
-			externalGraphic:anh_dia_diem,
-			graphicWidth: 25,
-			graphicHeight : 25,
-			graphicOpacity: 1,
-			cursor:'default'			
+		externalGraphic : anh_dia_diem,
+		graphicWidth : 25,
+		graphicHeight : 25,
+		graphicOpacity : 1,
+		cursor : 'default'
 	};
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
-	lop_dia_diem.drawFeature(feature,out_style);
+	lop_dia_diem.drawFeature(feature, out_style);
+}
+
+function onSelectQuanHuyen(feature){
+	alert("Select quan huyen"+feature.attributes.ten);
+}
+function onUnSelectQuanHuyen(feature){
+	alert("UnSelect quan huyen"+feature.attributes.ten);
 }

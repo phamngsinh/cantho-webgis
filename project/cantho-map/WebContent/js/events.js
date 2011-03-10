@@ -44,10 +44,13 @@ function timDuong(){
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
 			}
+			/*
 			if (map.controls[i].displayClass == "olControlSelectFeature") {
 				map.controls[i].activate();
 			}
+			*/			
 		}
+		control_select.activate();
 	} else {
 		// alert("active");
 		// alert("Activate olDrawFeature, Deactivate olNavigation");
@@ -65,10 +68,14 @@ function timDuong(){
 				if (map.controls[i].displayClass == "olControlMeasure") {
 					map.controls[i].deactivate();
 				}
+				/*
 				if (map.controls[i].displayClass == "olControlSelectFeature") {
 					map.controls[i].activate();
 				}
+				*/
 			}
+			control_select.activate();
+			//control_hover.activate();
 		}
 	}
 
@@ -87,7 +94,24 @@ function inBanDo() {
 }
 
 function chonVung() {
-	alert("Chon vung");
+	//An/ hien lop_quan_huyen cho nguoi dung chon
+	var lop_quan_huyen = map.getLayersByName('lop_quan_huyen')[0];
+	var visibility = lop_quan_huyen.visibility;
+	//alert(lop_quan_huyen.visibility);
+	if (visibility == true){
+		lop_quan_huyen.setVisibility(false);
+		control_select_quan_huyen.deactivate();
+		//control_drag.activate();		
+		control_hover.activate();
+		//control_select.activate();		
+	}else{
+		lop_quan_huyen.setVisibility(true);
+		control_select_quan_huyen.activate();
+	}
+	//alert("So features hien tai: "+lop_quan_huyen.features.length);
+	//alert("Ten feature[0] : "+lop_quan_huyen.features[0].attributes.ten);
+	//alert("gidfeature[0] : "+lop_quan_huyen.features[0].attributes.id);
+	//alert("Area feature[0] : "+lop_quan_huyen.features[0].geometry.getArea());	
 }
 
 function doKhoangCach() {
@@ -184,7 +208,9 @@ function popup_TuDay(x,y){
 }
 */
 function popup_TuDay(x,y){
-	
+	//alert($(".maker-popup-ten").html());
+	//gan ten cho muc nhap A
+	$(".tim-a").val($(".maker-popup-ten").html());
 	var wkt = "POINT("+x+" "+y+")";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
@@ -258,8 +284,10 @@ function popup_TuDay(x,y){
 		flag_end = 0;
 	}
 	/** Dich chuyen ban do lai vi tri cua diem do* */
+	/*
 	var lonlat = new OpenLayers.LonLat(point.geometry.x, point.geometry.y);
 	map.setCenter(lonlat);
+	*/
 	/** *Tao icon cho start_point*** */
 	// Lay feature vua them vao lop lop_diem_chon ra
 	var s_point = lop_diem_chon.features[0];
@@ -287,11 +315,14 @@ function popup_TuDay(x,y){
 		if (map.controls[i].displayClass == "olControlDragFeature") {
 			map.controls[i].activate();
 		}
+		
+		/*
 		if (map.controls[i].displayClass == "olControlSelectFeature") {
 			map.controls[i].activate();
 		}
-	}
-	
+		*/
+		control_select.activate();
+	}	
 	$("#chicken").hide();
 }
 /*
@@ -357,6 +388,8 @@ function popup_DenDay(x,y){
 }
 */
 function popup_DenDay(x,y){
+	//gan ten cho muc nhap B
+	$(".tim-b").val($(".maker-popup-ten").html());
 	var wkt = "POINT("+x+" "+y+")";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
@@ -431,10 +464,13 @@ function popup_DenDay(x,y){
 		if (map.controls[i].displayClass == "olControlDragFeature") {
 			map.controls[i].activate();
 		}
+		/*
 		if (map.controls[i].displayClass == "olControlSelectFeature") {
 			map.controls[i].activate();
 		}
+		*/		
 	}
+	control_select.activate();
 	$("#chicken").hide();
 }
 function popup_PhongTo(x,y){
@@ -478,9 +514,10 @@ function LoadTree(){
  * Neu so feature hien tai == 2, dich chuyen diem dau den vi tri moi(vi tri
  * nguoi dung chon) Them phan tu duoc chon vao vao o nhap diem A
  ******************************************************************************/
-function chonDiemA(i) {
-	// i=document.getElementById(a);
+function chonDiemA(i) {	
 	a = $('.result_' + i);
+	//gan ten cho muc nhap A
+	$(".tim-a").val(a.attr('name'));
 	var wkt = a.attr('id');	
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
@@ -494,7 +531,6 @@ function chonDiemA(i) {
 		flag_end = 0;
 	} else if (num_points == 1) {
 		if (flag_end == 1) {
-			//alert("flag_end"+flag_end);
 			// lay diem dau tien ra
 			var wkt_point_end = lop_diem_chon.features[0].geometry;
 			//alert("point_end: "+wkt_point_end);
@@ -516,6 +552,7 @@ function chonDiemA(i) {
 			// Ve lai diem voi style moi
 			e_point.layer.drawFeature(e_point);
 			//alert("seconde feature : "+lop_diem_chon.features[1].geometry);
+			flag_end = 0;
 		} else {
 			// di chuyen diem cu den vi tri moi
 			var first_point = lop_diem_chon.features[0];
@@ -582,10 +619,13 @@ function chonDiemA(i) {
 		if (map.controls[i].displayClass == "olControlDragFeature") {
 			map.controls[i].activate();
 		}
+		/*
 		if (map.controls[i].displayClass == "olControlSelectFeature") {
 			map.controls[i].activate();
 		}
+		*/
 	}
+	control_select.activate();
 	// alert(a.attr('id'));
 }
 /*******************************************************************************
@@ -596,9 +636,11 @@ function chonDiemA(i) {
  * hien tai == 2, dich chuyen diem hai den vi tri moi (vi tri nguoi dung chon)
  ******************************************************************************/
 function chonDiemB(i) {
-	// i=document.getElementById(a);
+	// i=document.getElementById(a);	
 	a = $('.result2_' + i);
-	var wkt = a.attr('id');
+	//gan ten cho muc nhap A
+	$(".tim-b").val(a.attr('name'));
+	var wkt = a.attr('id');	
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	var num_points = lop_diem_chon.features.length;
@@ -619,7 +661,7 @@ function chonDiemB(i) {
 		e_point.layer.drawFeature(e_point);
 		//alert("num_points sau khi them: "+lop_diem_chon.features.length);
 		//alert("flag_end :"+flag_end);
-	} else if (num_points == 1) {
+	} else if (num_points == 1) {		
 		if (flag_end == 1) {
 			// dich chuyen end_point den vi tri moi
 			var first_point = lop_diem_chon.features[0];
@@ -630,10 +672,11 @@ function chonDiemB(i) {
 			// dich chuyen diem dau den vi tri moi
 			first_point.geometry.move(new_x - x, new_y - y);
 			first_point.layer.drawFeature(first_point);
-		} else {
-			// Them moi binh thuong
-			lop_diem_chon.addFeatures(point);
-			/** *Tao icon cho end_point*** */
+		} else if (flag_end == 0){
+			//alert("Them binh thuong");			
+			// Them moi binh thuong			
+			lop_diem_chon.addFeatures(point);			
+			//Tao icon cho end_point		
 			// Lay feature vua them vao lop lop_diem_chon ra
 			var e_point = lop_diem_chon.features[1];
 			// Tao symbolizer tu stylemap cua lop_diem_chon
@@ -644,6 +687,7 @@ function chonDiemB(i) {
 			e_point.style = symbolizer;
 			// Ve lai diem voi style moi
 			e_point.layer.drawFeature(e_point);
+		
 		}
 	} else if (num_points == 2) {
 		//dich chuyen end_point den vi tri moi
@@ -656,15 +700,11 @@ function chonDiemB(i) {
 		second_point.geometry.move(new_x - x, new_y - y);
 		second_point.layer.drawFeature(second_point);
 	}
-	//kiem tra la neu du hai diem thi goi webservices
-	num_points = lop_diem_chon.features.length;
-	if (num_points == 2) {
-		// goi webservice cap nhat duong di moi
-		var start_point = lop_diem_chon.features[0].geometry.clone();
-		var end_point = lop_diem_chon.features[1].geometry.clone();
-		callService(start_point.x, start_point.y, end_point.x, end_point.y);
-	}	
-	/** *them chuoi vao o nhap lieu A** */
+	/** Dich chuyen ban do lai vi tri cua diem do* */
+	var lonlat = new OpenLayers.LonLat(point.geometry.x, point.geometry.y);
+	map.setCenter(lonlat);
+	control_ve_diem.deactivate();
+	/*
 	for ( var i = 0; i < map.controls.length; i++) {
 		if (map.controls[i].displayClass == "olControlNavigation") {
 			map.controls[i].activate();
@@ -676,4 +716,15 @@ function chonDiemB(i) {
 			map.controls[i].activate();
 		}
 	}
+	*/
+	control_select.activate();
+	//kiem tra la neu du hai diem thi goi webservices
+	num_points = lop_diem_chon.features.length;
+	if (num_points == 2) {
+		// goi webservice cap nhat duong di moi
+		var start_point = lop_diem_chon.features[0].geometry.clone();
+		var end_point = lop_diem_chon.features[1].geometry.clone();
+		callService(start_point.x, start_point.y, end_point.x, end_point.y);
+	}		
+
 }
