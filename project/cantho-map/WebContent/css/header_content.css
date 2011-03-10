@@ -109,8 +109,14 @@
     width: 7px;
 }
 .dTreeNode {
-	padding: 0 0 0 50px;
+	padding: 6px 0 0 50px;
+	height: 30px;
+	font-size: 13px;
 }
+.dTreeNode:HOVER{
+	-moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
+    background: -moz-linear-gradient(center top , #FFF9D7, #FFF3B0) repeat scroll 0 0 #FFF3B0;
+	}
 .SWTrans {
     float: left;
     left: 0;
@@ -131,7 +137,7 @@
     display: none;
     font-family: Tahoma,Verdana,Geneva,sans-serif;
     height: 0;
-    overflow: auto;
+    overflow: hidden;
     width: 393px;
 }
 .SWRight-bgShadow {
@@ -218,12 +224,13 @@ a {
     width: 8px;
 }
 .dTreeNode a {
-    display: block;
-    padding: 11px 0 11px 37px;
+    display: inline;
+    padding: 11px 0 11px 0px;
 }
 .dTreeNav {
     line-height: 15px;
-    padding: 20px 0 20px 40px;
+    padding: 10px 0 10px 40px;
+    font-size: 13px;
 }
 .a-logo{
 	top:0;
@@ -237,4 +244,10 @@ a {
 	width:300px;
 	height:90px;
 	border: none;
+	}
+.check-item{
+	
+	}
+.tenhuyen-item{
+	
 	}
