@@ -123,15 +123,24 @@
     position: absolute;
     width: 180px;
 }
-.del-timduong {
+.del-timduonga {
     background: url("../images/del.png") no-repeat scroll 0 0 transparent;
     height: 16px;
-    left: 263px;
+    left: 224px;
     position: absolute;
     text-indent: -9999px;
+    top: 19px;
     width: 23px;
 }
-
+.del-timduongb {
+    background: url("../images/del.png") no-repeat scroll 0 0 transparent;
+    height: 16px;
+    left: 224px;
+    position: absolute;
+    text-indent: -9999px;
+    top: 54px;
+    width: 23px;
+}
 .btn-timduong {
     background: url("../images/search.png") no-repeat scroll 0 0 transparent;
     display: block;
