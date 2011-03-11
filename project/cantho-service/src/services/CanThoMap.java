@@ -747,6 +747,11 @@ public class CanThoMap {
 		
 		while (rs.next()){
 			String[] arr = new String[6];
+			if (rs.getString("the_geom") == null){
+				the_geom = " ";
+			}else{
+				the_geom = rs.getString("the_geom");
+			}
 			if (rs.getString("id") == null){
 				id = " ";
 			}else{
@@ -772,17 +777,12 @@ public class CanThoMap {
 			}else{
 				phuong_xa = rs.getString("phuong_xa");
 			}
-			if (rs.getString("the_geom") == null){
-				the_geom = " ";
-			}else{
-				the_geom = rs.getString("the_geom");
-			}
-			arr[0] = id;
-			arr[1] = ten;
-			arr[2] = dientich;
-			arr[3] = dan_so;
-			arr[4] = phuong_xa;
-			arr[5] = the_geom;
+			arr[0] = the_geom;
+			arr[1] = id;
+			arr[2] = ten;
+			arr[3] = dientich;
+			arr[4] = dan_so;
+			arr[5] = phuong_xa;			
 			ds_quanhuyen.add(arr);
 		}		
 		this.closeConnection();
