@@ -12,8 +12,8 @@
           <Title>Polygon</Title>
           <PolygonSymbolizer>
             <Fill>
-		 		<CssParameter name="fill">#DDDDDD</CssParameter>
-		 		<CssParameter name="fill-opacity">0.6</CssParameter>
+		 		<CssParameter name="fill">#DCDCDC</CssParameter>
+		 		<CssParameter name="fill-opacity">0.4</CssParameter>
 		    </Fill>        
 			<Stroke>
 				<CssParameter name="stroke">#696969</CssParameter>
@@ -27,11 +27,13 @@
 	 	    </Label>
 			<Font>
 				<CssParameter name="font-family">Arial</CssParameter>
-				<CssParameter name="font-size">12</CssParameter>
-				<CssParameter name="font-style">normal</CssParameter>				
+				<CssParameter name="font-size">14</CssParameter>
+				<CssParameter name="font-style">normal</CssParameter>	
+				<CssParameter name="font-weight">bold</CssParameter>			
 			</Font>
 			<Fill>
-		 		<CssParameter name="fill">#006400</CssParameter>		 		
+		 		<CssParameter name="fill">#006400</CssParameter>	
+				<CssParameter name="fill-opacity">0.6</CssParameter>	 		
 		    </Fill>
 	 	    <Halo>
 		 		<Radius>2</Radius>
