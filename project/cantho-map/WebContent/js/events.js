@@ -19,19 +19,31 @@ $(document).ready(function() {
 		s.style.left= "300px";
 	}
 	$("#btnTim").click(function() {
-		var ds_ma="";
-		$(".dTreeNode").each(function(){
-			  if ($(this).children(":first").attr("checked")==true)
-				  if(ds_ma==""){
-					  ds_ma=ds_ma + $(this).children(":first").val();
-				  }else{
-					  ds_ma=ds_ma+"$" + $(this).children(":first").val();
-				  }
-			  });
 		var ten=$("#mapinput").val();
-		find_Place_By_Text_And_Huyen(ten,ds_ma);
-		HideMapList();
-		//
+		if(ten!=""){
+			var ds_ma="";
+			$(".dTreeNode").each(function(){
+				  if ($(this).children(":first").attr("checked")==true)
+					  if(ds_ma==""){
+						  ds_ma=ds_ma + $(this).children(":first").val();
+					  }else{
+						  ds_ma=ds_ma+"$" + $(this).children(":first").val();
+					  }
+				  });
+			if($("#map_path_div").attr("name")=="huyen"){
+				find_Place_By_Text_And_Huyen(ten,ds_ma);
+			}else if($("#map_path_div").attr("name")=="xa"){
+				if(ds_ma==""){
+					var mahuyen_hientai=$("#path_huyen").attr("value");
+					find_Place_By_Text_And_Huyen(ten,mahuyen_hientai);
+				}else{
+					find_Place_By_Text_And_Xa(ten,ds_ma);
+				}
+			}
+			
+			HideMapList();
+		}
+		
 	});
 });
 
@@ -749,8 +761,15 @@ function chonDiemB(i) {
 	}		
 
 }
-function tenHuyen(i){
+function clickHuyen(i){
 	a = $('.huyen_' + i);
-	var html="<a  onclick=''>Can Tho</a> &gt <a  onclick=''>"+a.attr("name")+"</a>";
+	var mahuyen=a.attr("value");
+	getXaPhuong(mahuyen);
+	var html="    <a  href='javascript:getQuanHuyen()'>Can Tho</a> " +
+			 "&gt <a id='path_huyen' value='"+mahuyen+"' onclick=''>"+a.attr("name")+"</a>";
+	$("#map_path_div").attr("name","xa");
 	$("#map_path_div").html(html);
+}
+function clickXa(i){
+	$('input[name=check'+i +']').attr('checked',true);
 }
