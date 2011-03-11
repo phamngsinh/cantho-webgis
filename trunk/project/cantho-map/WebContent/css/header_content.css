@@ -232,6 +232,10 @@ a {
     padding: 10px 0 10px 40px;
     font-size: 13px;
 }
+.dTreeNav:HOVER{
+	-moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
+    background: -moz-linear-gradient(center top , #FFF9D7, #FFF3B0) repeat scroll 0 0 #FFF3B0;
+	}
 .a-logo{
 	top:0;
 	left:0;
