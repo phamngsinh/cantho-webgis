@@ -747,62 +747,6 @@ public class CanThoMap {
 		
 		while (rs.next()){
 			String[] arr = new String[6];
-			if (rs.getString("the_geom") == null){
-				the_geom = " ";
-			}else{
-				the_geom = rs.getString("the_geom");
-			}
-			if (rs.getString("id") == null){
-				id = " ";
-			}else{
-				id = rs.getString("id");
-			}
-			if (rs.getString("ten") == null){
-				ten = " ";
-			}else{
-				ten = rs.getString("ten");
-			}
-			if (rs.getString("dientich") == null){
-				dientich = " ";
-			}else{
-				dientich = rs.getString("dientich");
-			}
-			if (rs.getString("dan_so") == null){
-				dan_so = " ";
-			}else{
-				dan_so = rs.getString("dan_so");
-			}
-			if (rs.getString("phuong_xa") == null){
-				phuong_xa = " ";
-			}else{
-				phuong_xa = rs.getString("phuong_xa");
-			}
-			arr[0] = the_geom;
-			arr[1] = id;
-			arr[2] = ten;
-			arr[3] = dientich;
-			arr[4] = dan_so;
-			arr[5] = phuong_xa;			
-			ds_quanhuyen.add(arr);
-		}		
-		this.closeConnection();
-		return ds_quanhuyen;
-	}
-	/*public ArrayList getXaPhuong(int mahuyen) throws SQLException, ClassNotFoundException{
-		ArrayList ds_xaphuong = new ArrayList();
-		String id = " ";
-		String ten = " ";
-		String dientich = " ";
-		String dan_so = " ";
-		String phuong_xa = " ";
-		String the_geom = " ";
-		
-		this.openConnection();
-		String sql = "Select id, phuong_xa, ha, dan_so, ST_Astext(the_geom) As the_geom From quanhuyen";
-		rs = s.executeQuery(sql);
-		
-		while (rs.next()){
-			String[] arr = new String[6];
 			if (rs.getString("id") == null){
 				id = " ";
 			}else{
@@ -839,11 +783,60 @@ public class CanThoMap {
 			arr[3] = dan_so;
 			arr[4] = phuong_xa;
 			arr[5] = the_geom;
+			ds_quanhuyen.add(arr);
+		}		
+		this.closeConnection();
+		return ds_quanhuyen;
+	}
+	public ArrayList getXaPhuong(int mahuyen) throws SQLException, ClassNotFoundException{
+		ArrayList ds_xaphuong = new ArrayList();
+		String id = " ";
+		String ten = " ";
+		String dientich = " ";
+		String dan_so = " ";
+		String the_geom = " ";
+		
+		this.openConnection();
+		String sql = "Select id, phuong_xa as ten, ha as dientich, dan_so, ST_Astext(the_geom) As the_geom From xaphuong where id_huyen =" +mahuyen+ "";
+		rs = s.executeQuery(sql);
+		
+		while (rs.next()){
+			String[] arr = new String[5];
+			if (rs.getString("id") == null){
+				id = " ";
+			}else{
+				id = rs.getString("id");
+			}
+			if (rs.getString("ten") == null){
+				ten = " ";
+			}else{
+				ten = rs.getString("ten");
+			}
+			if (rs.getString("dientich") == null){
+				dientich = " ";
+			}else{
+				dientich = rs.getString("dientich");
+			}
+			if (rs.getString("dan_so") == null){
+				dan_so = " ";
+			}else{
+				dan_so = rs.getString("dan_so");
+			}
+			if (rs.getString("the_geom") == null){
+				the_geom = " ";
+			}else{
+				the_geom = rs.getString("the_geom");
+			}
+			arr[0] = id;
+			arr[1] = ten;
+			arr[2] = dientich;
+			arr[3] = dan_so;
+			arr[4] = the_geom;
 			ds_xaphuong.add(arr);
 		}		
 		this.closeConnection();
 		return ds_xaphuong;
-	}*/
+	}
 public ArrayList find_Place_By_Text_And_Huyen(String text,String str_id) throws SQLException, ClassNotFoundException{		
 		
 		ArrayList ds_dia_diem = new ArrayList();
@@ -855,6 +848,37 @@ public ArrayList find_Place_By_Text_And_Huyen(String text,String str_id) throws 
 		String [] temp;
 		this.openConnection();
 		temp = str_id.split("\\$");
+		if(str_id==""){
+			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text +"')");
+			while (rs.next()){
+				String[] arr = new String[4];
+				if (rs.getString("the_geom")==null ){
+					the_geom = " ";
+				}else{
+					the_geom = rs.getString("the_geom");
+				}
+				if (rs.getString("ten")==null ){
+					ten = " ";
+				}else{
+					ten = rs.getString("ten");
+				}
+				if (rs.getString("diachi")==null ){
+					diachi = " ";
+				}else{
+					diachi = rs.getString("diachi");
+				}
+				if (rs.getString("sdt")== null ){				
+					sdt = " ";				
+				}else{
+					sdt = rs.getString("sdt");
+				}			
+				arr[0]=the_geom;
+				arr[1]=ten;
+				arr[2]=diachi;
+				arr[3]=sdt;
+				ds_dia_diem.add(arr);
+			}
+		}
 		for (int i=0 ; i < temp.length ; i++){
 			//System.out.println("temp["+i+"] :"+temp[i]);
 			if (temp[i].equals("")){
@@ -901,6 +925,63 @@ public ArrayList find_Place_By_Text_And_Huyen(String text,String str_id) throws 
 		this.closeConnection();
 		return ds_dia_diem;
 	}
+public ArrayList find_Place_By_Text_And_Xa(String text,String str_id) throws SQLException, ClassNotFoundException{		
+	
+	ArrayList ds_dia_diem = new ArrayList();
+	String the_geom = " ";
+	String ten = " ";
+	String diachi = " ";
+	String sdt = " ";	
+	int ma = 0;
+	String [] temp;
+	this.openConnection();
+	temp = str_id.split("\\$");
+	for (int i=0 ; i < temp.length ; i++){
+		//System.out.println("temp["+i+"] :"+temp[i]);
+		if (temp[i].equals("")){
+			ma = 0;
+		}else{
+			ma = Integer.parseInt(temp[i]);
+		}		
+		
+		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_xa('"+ text +"',"+ma+")");
+		while (rs.next()){
+			String[] arr = new String[4];
+			if (rs.getString("the_geom")==null ){
+				the_geom = " ";
+			}
+			else{
+				the_geom = rs.getString("the_geom");
+			}
+			if (rs.getString("ten")==null ){
+				ten = " ";
+			}
+			else{
+				ten = rs.getString("ten");
+			}
+			if (rs.getString("diachi")==null ){
+				diachi = " ";
+			}
+			else{
+				diachi = rs.getString("diachi");
+			}
+			if (rs.getString("sdt")== null ){				
+				sdt = " ";				
+			}
+			else{
+				sdt = rs.getString("sdt");
+			}			
+			
+			arr[0]=the_geom;
+			arr[1]=ten;
+			arr[2]=diachi;
+			arr[3]=sdt;
+			ds_dia_diem.add(arr);
+		}
+	}		
+	this.closeConnection();
+	return ds_dia_diem;
+}
 	private void openConnection() throws SQLException, ClassNotFoundException{
 		conn=null;
 		if (conn==null){
