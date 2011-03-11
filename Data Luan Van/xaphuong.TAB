@@ -3,7 +3,7 @@
 !charset WindowsVietnamese
 
 Definition Table
-  Type NATIVE Charset "WindowsLatin1"
+  Type NATIVE Charset "WindowsVietnamese"
   Fields 12
     ID Smallint Index 1 ;
     Phuong_Xa Char (30) Index 2 ;
