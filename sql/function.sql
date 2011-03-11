@@ -524,28 +524,28 @@ RETURNS SETOF coquan AS
 	DECLARE
 	    r coquan%rowtype;
 	BEGIN
-	    FOR r IN SELECT *                       		 FROM coquan where ten like '%'||t||'%'           LOOP RETURN NEXT r; END LOOP;--1
-	    FOR r IN SELECT *                       		 FROM truong where ten like '%'||t||'%'           LOOP RETURN NEXT r; END LOOP;--2
-	    FOR r IN SELECT *                       		 FROM benhvien where ten like '%'||t||'%'         LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho where ten like '%'||t||'%'              LOOP RETURN NEXT r; END LOOP;--4
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben where ten like '%'||t||'%'              LOOP RETURN NEXT r; END LOOP;--5
-	    FOR r IN SELECT *                       		 FROM khachsan where ten like '%'||t||'%'         LOOP RETURN NEXT r; END LOOP;--6
-	    FOR r IN SELECT *                       		 FROM congty where ten like '%'||t||'%'           LOOP RETURN NEXT r; END LOOP;--7
-	    FOR r IN SELECT *                       		 FROM giaitri where ten like '%'||t||'%'          LOOP RETURN NEXT r; END LOOP;--8
-	    FOR r IN SELECT *                       		 FROM denchua where ten like '%'||t||'%'          LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		 FROM truyenhinhbaochi where ten like '%'||t||'%' LOOP RETURN NEXT r; END LOOP;--10
-	    FOR r IN SELECT *                       		 FROM nganhang where ten like '%'||t||'%'         LOOP RETURN NEXT r; END LOOP;--11
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien where ten like '%'||t||'%'         LOOP RETURN NEXT r; END LOOP;--12
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau where ten like '%'||t||'%'              LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT *                       		 FROM thuvien where ten like '%'||t||'%'          LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		 FROM trungtam where ten like '%'||t||'%'         LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--1
+	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--2
+	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--3
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--5
+	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--6
+	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--7
+	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--8
+	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--9
+	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--11
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--12
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-SELECT * FROM find_place_by_text('can tho');
+--SELECT * FROM find_place_by_text('CAN THO');
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 
@@ -559,28 +559,28 @@ CREATE OR REPLACE FUNCTION find_place_around_point(x float, y float, t text, rad
 	BEGIN
 	    point_text:='POINT(' || x || ' ' || y ||  ')';
 	    point_geometry := ST_GeomFromText(point_text,4326);
-	    FOR r IN SELECT *                       		 FROM coquan where ten like '%'||t||'%'    	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--1
-	    FOR r IN SELECT *                       		 FROM truong where ten like '%'||t||'%'   	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--2
-	    FOR r IN SELECT *                       		 FROM benhvien where ten like '%'||t||'%'  	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho where ten like '%'||t||'%'       	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--4
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben where ten like '%'||t||'%'       	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--5
-	    FOR r IN SELECT *                       		 FROM khachsan where ten like '%'||t||'%'  	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--6
-	    FOR r IN SELECT *                       		 FROM congty where ten like '%'||t||'%'    	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--7
-	    FOR r IN SELECT *                       		 FROM giaitri where ten like '%'||t||'%'   	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--8
-	    FOR r IN SELECT *                       		 FROM denchua where ten like '%'||t||'%'   	    and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		 FROM truyenhinhbaochi where ten like '%'||t||'%'   and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--10
-	    FOR r IN SELECT *                       		 FROM nganhang where ten like '%'||t||'%'           and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--11
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien where ten like '%'||t||'%'           and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--12
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau where ten like '%'||t||'%'                and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT *                       		 FROM thuvien where ten like '%'||t||'%'            and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		 FROM trungtam where ten like '%'||t||'%'           and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--1
+	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--2
+	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--3
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--5
+	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--6
+	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--7
+	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--8
+	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--9
+	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--11
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--12
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
---select * from find_place_around_point(586712.97138,1110501.66355,'can tho',1000);
+--select * from find_place_around_point(586712.97138,1110501.66355,'caN tho',1000);
 
 CREATE OR REPLACE FUNCTION find_place_by_text_and_huyen( t text,ma integer)
 RETURNS SETOF coquan AS
@@ -590,21 +590,21 @@ RETURNS SETOF coquan AS
 	    geom_qh geometry;
 	BEGIN
 	    geom_qh:=the_geom from quanhuyen where id=ma;
-	    FOR r IN SELECT *                       		 FROM coquan where ten like '%'||t||'%' 	  and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--1
-	    FOR r IN SELECT *                       		 FROM truong where ten like '%'||t||'%'           and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--2
-	    FOR r IN SELECT *                       		 FROM benhvien where ten like '%'||t||'%'         and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho where ten like '%'||t||'%'            and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--4
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben where ten like '%'||t||'%'            and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--5
-	    FOR r IN SELECT *                       		 FROM khachsan where ten like '%'||t||'%'         and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--6
-	    FOR r IN SELECT *                       		 FROM congty where ten like '%'||t||'%'           and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--7
-	    FOR r IN SELECT *                       		 FROM giaitri where ten like '%'||t||'%'          and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--8
-	    FOR r IN SELECT *                       		 FROM denchua where ten like '%'||t||'%'       	  and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		 FROM truyenhinhbaochi where ten like '%'||t||'%' and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--10
-	    FOR r IN SELECT *                       		 FROM nganhang where ten like '%'||t||'%'         and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--11
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien where ten like '%'||t||'%'       and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--12
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau where ten like '%'||t||'%'            and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT *                       		 FROM thuvien where ten like '%'||t||'%'          and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		 FROM trungtam where ten like '%'||t||'%'         and  st_contains(geom_qh, the_geom)          LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--1
+	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--2
+	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--3
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--5
+	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--6
+	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--7
+	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--8
+	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--9
+	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--11
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--12
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
@@ -618,21 +618,21 @@ RETURNS SETOF coquan AS
 	    geom_xp geometry;
 	BEGIN
 	    geom_xp:=the_geom from xaphuong where id=ma;
-	    FOR r IN SELECT *                       		 FROM coquan where ten like '%'||t||'%' 	  and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--1
-	    FOR r IN SELECT *                       		 FROM truong where ten like '%'||t||'%'           and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--2
-	    FOR r IN SELECT *                       		 FROM benhvien where ten like '%'||t||'%'         and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho where ten like '%'||t||'%'            and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--4
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben where ten like '%'||t||'%'            and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--5
-	    FOR r IN SELECT *                       		 FROM khachsan where ten like '%'||t||'%'         and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--6
-	    FOR r IN SELECT *                       		 FROM congty where ten like '%'||t||'%'           and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--7
-	    FOR r IN SELECT *                       		 FROM giaitri where ten like '%'||t||'%'          and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--8
-	    FOR r IN SELECT *                       		 FROM denchua where ten like '%'||t||'%'       	  and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		 FROM truyenhinhbaochi where ten like '%'||t||'%' and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--10
-	    FOR r IN SELECT *                       		 FROM nganhang where ten like '%'||t||'%'         and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--11
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien where ten like '%'||t||'%'       and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--12
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau where ten like '%'||t||'%'            and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT *                       		 FROM thuvien where ten like '%'||t||'%'          and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		 FROM trungtam where ten like '%'||t||'%'         and  st_contains(geom_xp, the_geom)          LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--1
+	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--2
+	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--3
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--5
+	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--6
+	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--7
+	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--8
+	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--9
+	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--11
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--12
+	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
+	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
