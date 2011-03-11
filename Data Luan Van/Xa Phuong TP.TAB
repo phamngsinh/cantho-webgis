@@ -1,0 +1,19 @@
+!table
+!version 300
+!charset WindowsVietnamese
+
+Definition Table
+  Type NATIVE Charset "WindowsLatin1"
+  Fields 12
+    ID Smallint Index 1 ;
+    Phuong_Xa Char (30) Index 2 ;
+    id_huyen Smallint ;
+    Dientich_ha Decimal (10, 2) ;
+    Dan_so Integer Index 3 ;
+    Bi_thu Char (50) ;
+    Chu_tich Char (50) ;
+    P_Chu_tich1 Char (50) ;
+    P_Chu_tich2 Char (50) ;
+    P_Chu_tich3 Char (50) ;
+    Dien_thoai Char (50) ;
+    Ghi_chu Char (50) ;
