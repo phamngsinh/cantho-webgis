@@ -1,0 +1,185 @@
+!Workspace
+!Version  950
+!Charset WindowsVietnamese
+Open Table "giaothong" As giaothong Interactive
+Open Table "D:\Luan Van\Data Luan Van\Anh\Ninh_Kieu2_Map_18\Ninh_Kieu2_Map_18.TAB" As Ninh_Kieu2_Map_18 Interactive
+Open Table "D:\Luan Van\Data Luan Van\Anh\NinhKieu_map_18\Ninh_Kieu_map_18.TAB" As Ninh_Kieu_map_18 Interactive
+Open Table "D:\Luan Van\Data Luan Van\Anh\Chau_Van_Liem_Map_18\Chau_Van_Liem_Map_8_map.TAB" As Chau_Van_Liem_Map_8_map Interactive
+Open Table "D:\Luan Van\Data Luan Van\Anh\can_tho_map_18\can_tho_map.TAB" As can_tho_map Interactive
+Open Table "D:\Luan Van\Data Luan Van\Anh\Tra_Noc_Map_18\Tra_Noc_map_18.TAB" As Tra_Noc_map_18 Interactive
+Open Table "D:\Luan Van\CSDL GIS TP Cantho\BD_TPCT\Rg thanh pho" As Rg_thanh_pho Interactive
+Open Table "D:\Luan Van\Data Luan Van\Anh\Quang_Trung_Map_18\Quang_Trung_Map_18.TAB" As Quang_Trung_Map_18 Interactive
+Map From giaothong,Rg_thanh_pho,Ninh_Kieu_map_18,Chau_Van_Liem_Map_8_map,Ninh_Kieu2_Map_18,Tra_Noc_map_18,Quang_Trung_Map_18,can_tho_map 
+  Position (0.0520833,0.0520833) Units "in"
+  Width 6.58333 Units "in" Height 3.54167 Units "in" 
+Set Window FrontWindow() ScrollBars Off Autoscroll On Snap Mode On Enhanced On Smooth Image High
+Set Map
+  CoordSys Earth Projection 1, 104
+  Center (105.6479367,10.12716408)
+  Zoom 29966.73463 Units "m"
+  Preserve Zoom Display Zoom
+  Distance Units "m" Area Units "sq mm" XY Units "m"
+Set Map
+  Layer 1
+    Display Graphic
+    Global Pen (1,2,0) Brush (2,16777215,16777215) Symbol (35,0,12) Line (1,2,0) Font ("Times New Roman",0,9,0)
+    Label Line Arrow Position Above Font ("Times New Roman",0,9,0) Pen (1,2,0) 
+      With ma_duong
+      Parallel On Auto Off Overlap Off Duplicates Off Offset 2
+      Visibility On
+  Layer 2
+    Display Off
+    Global Pen (4,7,0) Brush (1,16777215,16777215) Symbol (35,0,12) Line (1,2,0) Font ("Times New Roman",0,9,0)
+    Label Line None Position Center Font ("Times New Roman",0,9,0) Pen (1,2,0) 
+      With Ten
+      Parallel On Auto Off Overlap Off Duplicates On Offset 2
+      Visibility On
+  Layer 3
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+  Layer 4
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+  Layer 5
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+  Layer 6
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+  Layer 7
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+  Layer 8
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (470, 190000) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+Set Map Layer 1 Editable
+Set Window FrontWindow() Printer
+ Name "doPDF v6" Orientation Portrait Copies 1
+ Papersize 1
+Dim WorkspaceMaximizedWindow As Integer
+WorkspaceMaximizedWindow = Frontwindow()
+Map From Chau_Van_Liem_Map_8_map 
+  Position (0.0520833,0.0520833) Units "in"
+  Width 6.58333 Units "in" Height 3.54167 Units "in" 
+Set Window FrontWindow() ScrollBars Off Autoscroll On Enhanced On Smooth Image High
+Set Map
+  CoordSys Earth Projection 1, 104
+  Center (105.8451159,10.03098425)
+  Zoom 14435.38679 Units "m"
+  Preserve Zoom Display Zoom
+  Distance Units "m" Area Units "sq mm" XY Units "degree"
+Set Map
+  Layer 1
+    Display Off
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+Set Window FrontWindow() Printer
+ Name "doPDF v6" Orientation Portrait Copies 1
+ Papersize 1
+Map From Tra_Noc_map_18 
+  Position (0.833333,0.989583) Units "in"
+  Width 6.58333 Units "in" Height 3.54167 Units "in" 
+Set Window FrontWindow() ScrollBars Off Autoscroll On Enhanced On Smooth Image High
+Set Map
+  CoordSys Earth Projection 1, 104
+  Center (105.7618674,10.08089865)
+  Zoom 389695.8817 Units "m"
+  Preserve Zoom Display Zoom
+  Distance Units "m" Area Units "sq mm" XY Units "degree"
+Set Map
+  Layer 1
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+Set Window FrontWindow() Printer
+ Name "doPDF v6" Orientation Portrait Copies 1
+ Papersize 1
+Map From Quang_Trung_Map_18 
+  Position (1.09375,1.30208) Units "in"
+  Width 4.17708 Units "in" Height 2.36458 Units "in" 
+Set Window FrontWindow() ScrollBars Off Autoscroll On Enhanced On Smooth Image High
+Set Map
+  CoordSys Earth Projection 1, 104
+  Center (105.7811737,9.987785889)
+  Zoom 13384.58214 Units "m"
+  Preserve Zoom Display Zoom
+  Distance Units "m" Area Units "sq mm" XY Units "degree"
+Set Map
+  Layer 1
+    Display Graphic
+    Global Pen (1,2,0)  Brush (2,16777215,16777215)  Symbol (35,0,12)  Line (1,2,0)  Font ("Times New Roman",0,9,0)
+    Selectable Off
+    Zoom (15, 5900) Units "m" 
+  contrast 50 
+  brightness 50 
+  alpha 255 
+    transparency off 
+  color 0 
+    grayscale off 
+Set Window FrontWindow() Printer
+ Name "doPDF v6" Orientation Portrait Copies 1
+ Papersize 1
+Set Window WorkspaceMaximizedWindow Max
+Undim WorkspaceMaximizedWindow
