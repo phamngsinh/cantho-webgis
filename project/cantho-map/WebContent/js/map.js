@@ -15,12 +15,11 @@ OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
 function init() {
 
-	var bounds = new OpenLayers.Bounds(533665.483, 1099901.022, 586361.294,
-			1141760.714);
+	var bounds = new OpenLayers.Bounds(533665, 1099901, 586361, 1141760);
 	var options = {
 		controls : [],
 		maxExtent : bounds,
-		maxResolution : 205.84301171874995,
+		maxResolution : 305.84301171874995,
 		projection : "EPSG:4326",
 		units : 'm',
 		isBaselayer : 'true',
@@ -32,13 +31,13 @@ function init() {
 			"Quan_huyen",
 			"http://localhost:8080/geoserver/wms",
 			{
-				layers : 'ws_cantho:quanhuyen,ws_cantho:giaothong,ws_cantho:coquan',
+				layers : 'ws_cantho:quanhuyen,ws_cantho:xaphuong,ws_cantho:giaothong,ws_cantho:coquan',
 				styles : '',
 				srs : 'EPSG:4326',
 				format : format,
-				tiled : 'true',
-				transparent : 'true'// ,
-			// tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
+				tiled : 'false',
+				transparent : 'true' ,
+				tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {
 				buffer : 0,
 				isBaseLayer : true,
@@ -193,15 +192,31 @@ function init() {
 	map.addControl(control_measure);
 
 	// build up all controls
-	map.addControl(new OpenLayers.Control.PanZoomBar({
-		position : new OpenLayers.Pixel(5, 10)
-	}));
-	map.addControl(new OpenLayers.Control.Navigation());
-	map.addControl(new OpenLayers.Control.OverviewMap());
-	// map.addControl(new OpenLayers.Control.LayerSwitcher());
-	// map.addControl(new OpenLayers.Control.Scale($('scale')));
-	// map.addControl(new OpenLayers.Control.MousePosition({element :
-	// $('location')}));
+	
+	var external_panel = new OpenLayers.Control.Panel({
+		div : document.getElementById('overviewmap')
+	});
+	map.addControl(external_panel);
+	map.addControl(new OpenLayers.Control.PanZoomBar());	
+	//map.addControl(new OpenLayers.Control.OverviewMap());
+	map.addControl(new OpenLayers.Control.Navigation());	
+	map.addControl(new OpenLayers.Control.ScaleLine());
+	var ovControl = new OpenLayers.Control.OverviewMap();
+    ovControl.isSuitableOverview = function() {
+        return false;
+    };
+    map.addControl(ovControl);
+	/*
+	var control_zoom_in = new OpenLayers.Control.ZoomIn();
+	var control_zoom_out = new OpenLayers.Control.ZoomOut();
+	var control_panpanel = new OpenLayers.Control.PanPanel();
+	var control_panzoom = new OpenLayers.Control.PanZoomBar();
+	map.addControl(control_zoom_in);
+	map.addControl(control_zoom_out);
+	map.addControl(control_panpanel);
+	//map.addControl(control_panzoom);
+	external_panel.addControls([control_zoom_in, control_zoom_out,control_panpanel]);
+	*/
 	map.zoomToMaxExtent(bounds);
 }
 /** **************CAC SU KIEN************************ */
