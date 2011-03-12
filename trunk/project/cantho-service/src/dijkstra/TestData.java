@@ -143,7 +143,7 @@ public class TestData {
 			int target = rs_canh.getInt("target") - 1;
 			String ten_duong = rs_canh.getString("ten_duong");
 			if (ten_duong == null) {
-				ten_duong = "Đường không tên";
+				ten_duong = "Duong Khong Ten";
 			}
 			int mot_chieu = rs_canh.getInt("mot_chieu");
 			String the_geom = rs_canh.getString("the_geom");
@@ -469,7 +469,7 @@ public class TestData {
 		//System.out.println("End_point: "+end_point);
 		DoThi g = new DoThi(nodes, edges);
 		Dijkstra dijkstra = new Dijkstra(g);
-		dijkstra.execute(nodes.get(start_point - 1));
+		dijkstra.executeDijkstra(nodes.get(start_point - 1));
 		
 		LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point-1));
 		System.out.println("Size path: " + path.size());

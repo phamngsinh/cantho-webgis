@@ -381,7 +381,7 @@ public class CanThoMap {
 		    //System.out.print(nodes.get(3));		
 			DoThi g=new DoThi(nodes,edges);
 			Dijkstra dijkstra=new Dijkstra(g);
-			dijkstra.execute(nodes.get(start_point-1));
+			dijkstra.executeDijkstra(nodes.get(start_point-1));
 			LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point-1));
 			System.out.println("Size path: "+path.size());
 			//ton tai duong di			
@@ -425,7 +425,6 @@ public class CanThoMap {
 	/***********************DANH SACH CAC DIA DIEM THEO LOP
 	 * @throws ClassNotFoundException 
 	 * @throws SQLException ****************************************************/
-	
 	public ArrayList getDiaDiem(String lop,String ten) throws SQLException, ClassNotFoundException{
 		this.openConnection();
 		String sql="SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt FROM "+lop+" WHERE ten LIKE '%"+ten+"%'";

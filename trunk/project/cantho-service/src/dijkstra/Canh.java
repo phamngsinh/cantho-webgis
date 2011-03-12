@@ -26,7 +26,6 @@ public class Canh {
 	public Nut getDestination() {
 		return target;
 	}
-
 	public Nut getSource() {
 		return source;
 	}
@@ -41,9 +40,5 @@ public class Canh {
 	}
 	public int getDirect(){
 		return direct;
-	}
-	@Override
-	public String toString() {
-		return source + " " + target;
 	}	
 }
