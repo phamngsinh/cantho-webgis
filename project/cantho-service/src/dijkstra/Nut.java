@@ -16,7 +16,7 @@ public class Nut {
 	public String getName() {
 		return name;
 	}
-	
+	//hai nut duoc phan biet voi nhau nho thuoc tinh id
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -40,10 +40,5 @@ public class Nut {
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return name;
 	}
 }
