@@ -7,17 +7,19 @@
     <UserStyle>
       <Title>Quan Huyen</Title>
       <Abstract>Quan Huyen</Abstract>
+	  <!--Begin Zoom Level Larger 13000000000-->	
       <FeatureTypeStyle>
         <Rule>
           <Title>Polygon</Title>
+		  <MinScaleDenominator>13000000000</MinScaleDenominator>
           <PolygonSymbolizer>
             <Fill>
-		 		<CssParameter name="fill">#DCDCDC</CssParameter>
-		 		<CssParameter name="fill-opacity">0.4</CssParameter>
+		 		<CssParameter name="fill">#F5F5DC</CssParameter>
+		 		<CssParameter name="fill-opacity">1</CssParameter>
 		    </Fill>        
 			<Stroke>
 				<CssParameter name="stroke">#696969</CssParameter>
-				<CssParameter name="stroke-width">1</CssParameter>
+				<CssParameter name="stroke-width">0.7</CssParameter>
 				<CssParameter name="stroke-dasharray">5 2</CssParameter>
 			</Stroke>    
           </PolygonSymbolizer>
@@ -27,16 +29,15 @@
 	 	    </Label>
 			<Font>
 				<CssParameter name="font-family">Arial</CssParameter>
-				<CssParameter name="font-size">14</CssParameter>
-				<CssParameter name="font-style">normal</CssParameter>	
-				<CssParameter name="font-weight">bold</CssParameter>			
+				<CssParameter name="font-size">12</CssParameter>
+				<CssParameter name="font-style">normal</CssParameter>					
 			</Font>
 			<Fill>
-		 		<CssParameter name="fill">#006400</CssParameter>	
-				<CssParameter name="fill-opacity">0.6</CssParameter>	 		
+		 		<CssParameter name="fill">#000000</CssParameter>	
+				<CssParameter name="fill-opacity">1</CssParameter>	 		
 		    </Fill>
 	 	    <Halo>
-		 		<Radius>2</Radius>
+		 		<Radius>1.5</Radius>
 		 		<Fill>
 		 		   <CssParameter name="fill">#FFFFFF</CssParameter>
 		 		</Fill>
@@ -49,9 +50,62 @@
 					</AnchorPoint>
 				</PointPlacement>
 			</LabelPlacement>
+			<VendorOption name="maxDisplacement">700</VendorOption>
+			
 	 	  </TextSymbolizer>
         </Rule>
       </FeatureTypeStyle>
+	<!--End Zoom Level Larger 13000000000-->
+	<!--Begin Zoom Level Less 13000000000-->
+	  <FeatureTypeStyle>
+        <Rule>
+          <Title>Polygon</Title>
+		  <MaxScaleDenominator>13000000000</MaxScaleDenominator>
+          <PolygonSymbolizer>
+            <Fill>
+		 		<CssParameter name="fill">#F5F5DC</CssParameter>
+		 		<CssParameter name="fill-opacity">0.8</CssParameter>
+		    </Fill>        
+			<Stroke>
+				<CssParameter name="stroke">#696969</CssParameter>
+				<CssParameter name="stroke-width">0.7</CssParameter>
+				<CssParameter name="stroke-dasharray">5 2</CssParameter>
+			</Stroke>    
+          </PolygonSymbolizer>
+          <TextSymbolizer>
+	 	    <Label>
+	 			<ogc:PropertyName>ten</ogc:PropertyName>
+	 	    </Label>
+			<Font>
+				<CssParameter name="font-family">Arial</CssParameter>
+				<CssParameter name="font-size">17</CssParameter>
+				<CssParameter name="font-style">normal</CssParameter>					
+			</Font>
+			<Fill>
+		 		<CssParameter name="fill">#000000</CssParameter>	
+				<CssParameter name="fill-opacity">0.7</CssParameter>	
+				<CssParameter name="font-weight">bold</CssParameter> 		
+		    </Fill>
+	 	    <Halo>
+		 		<Radius>1.5</Radius>
+		 		<Fill>
+		 		   <CssParameter name="fill">#FFFFFF</CssParameter>
+		 		</Fill>
+	 	    </Halo>
+			<LabelPlacement>
+				<PointPlacement>
+					<AnchorPoint>
+						<AnchorPointX>0.5</AnchorPointX>
+						<AnchorPointY>0.5</AnchorPointY>
+					</AnchorPoint>
+				</PointPlacement>
+			</LabelPlacement>
+			<VendorOption name="maxDisplacement">700</VendorOption>
+			
+	 	  </TextSymbolizer>
+        </Rule>
+      </FeatureTypeStyle>
+	  <!--End Zoom Level Less 13000000000-->
     </UserStyle>
   </NamedLayer>
 </StyledLayerDescriptor>
