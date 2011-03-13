@@ -6,18 +6,15 @@ var dokhoangcach_clicked = 0;
 var flag_end = 0;// kiem tra: truong hop da co mot diem tren lop_diem_chon la
 // start hay end
 $(document).ready(function() {
+	
 	$('.del-timduonga').live('click', function()  {  
         $(".tim-a").val("Nhap vao dia danh");
      });  
 	$('.del-timduongb').live('click', function()  {  
         $(".tim-b").val("Nhap vao dia danh");
      });  
-	var map_width=$("#map").css("width").replace("px","")*1;
-	var s=document.getElementById("search");
-	//var zoom=document.getElementById("OpenLayers.Control.PanZoomBar_60");
-	if(map_width<700){	
-		s.style.left= "300px";
-	}
+	
+	
 	$("#btnTim").click(function() {
 		var ten=$("#mapinput").val();
 		if(ten!=""){
@@ -45,6 +42,7 @@ $(document).ready(function() {
 		}
 		
 	});
+	
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
@@ -177,12 +175,15 @@ function doKhoangCach() {
 /*******************END: DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
 
 function moveIconClick(){
-	  //alert($("#left_content").css("left").replace("px",""));
 		if($("#left_content").css("left").replace("px","")<0){
 			$("#left_content").stop().animate({left:0},350,"linear");
+			$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
 			}
 		else{
 			$("#left_content").stop().animate({left:-295},350,"linear");
+			$(".olControlPanZoomBar").stop().animate({left:5},350,"linear");
+		
+			
 		}
 	}	
 function OnblurTextBoxAB(a){
