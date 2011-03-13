@@ -178,10 +178,13 @@ function moveIconClick(){
 		if($("#left_content").css("left").replace("px","")<0){
 			$("#left_content").stop().animate({left:0},350,"linear");
 			$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
+			$(".olControlScaleLine").stop().animate({left:305},350,"linear");
+			
 			}
 		else{
 			$("#left_content").stop().animate({left:-295},350,"linear");
 			$(".olControlPanZoomBar").stop().animate({left:5},350,"linear");
+			$(".olControlScaleLine").stop().animate({left:10},350,"linear");
 		
 			
 		}
