@@ -226,6 +226,7 @@ a {
 .dTreeNode a {
     display: inline;
     padding: 11px 0 11px 0px;
+    text-decoration: none;
 }
 .dTreeNav {
     line-height: 15px;
@@ -255,3 +256,15 @@ a {
 .tenhuyen-item{
 	
 	}
+.tenxa-item{
+	text-decoration: none;
+	cursor: default;
+}
+.cantho{
+	text-decoration: none;
+	}
+#path_huyen{
+	text-decoration: none;
+	cursor: default;
+	}
+	

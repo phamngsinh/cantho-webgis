@@ -765,11 +765,16 @@ function clickHuyen(i){
 	a = $('.huyen_' + i);
 	var mahuyen=a.attr("value");
 	getXaPhuong(mahuyen);
-	var html="    <a  href='javascript:getQuanHuyen()'>Can Tho</a> " +
-			 "&gt <a id='path_huyen' value='"+mahuyen+"' onclick=''>"+a.attr("name")+"</a>";
+	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Can Tho</a> " +
+			 "&gt <a id='path_huyen' value='"+mahuyen+"' href='javascript:clickHuyen("+i+")'>"+a.attr("name")+"</a>";
 	$("#map_path_div").attr("name","xa");
 	$("#map_path_div").html(html);
 }
 function clickXa(i){
-	$('input[name=check'+i +']').attr('checked',true);
+	if($('input[name=check'+i +']').attr('checked')==true){
+		$('input[name=check'+i +']').attr('checked',false);
+	}else{
+		$('input[name=check'+i +']').attr('checked',true);
+	}
+		
 }

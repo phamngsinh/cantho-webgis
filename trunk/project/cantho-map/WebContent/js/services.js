@@ -666,7 +666,7 @@ function callBack_getQuanHuyen(xml_result, status){
 	}
 	$('#tree_Huyen').html(html);
 	$("#map_path_div").attr("name","huyen");
-	$("#map_path_div").html("<a  href='javascript:getQuanHuyen()'>Can Tho</a>");
+	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Can Tho</a>");
 }
 function callBack_getXaPhuong(xml_result, status){
 	var wkt = "";

@@ -53,7 +53,7 @@
 		                    <div class="dtree">
 								<div class="dTreeNav" style="background: url('images/ThanhPhoCanTho.png') no-repeat scroll 0% 0% transparent;">
 									<div id="map_path_div" style="display: inline; white-space: normal;" >
-									<a  onclick="">Cần Thơ</a>
+									<a class = "cantho">Cần Thơ</a>
 									</div>
 								</div>
 								<div style="display: block;" class="clip" id="tree_Huyen">
