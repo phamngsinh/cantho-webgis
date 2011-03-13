@@ -14,7 +14,13 @@ OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
 OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
 function init() {
-
+	moveIconClick();
+	var s1=document.getElementById("search");
+	var map_width=$("#map").css("width").replace("px","")*1;
+	if(map_width<700){	
+		s1.style.left= "300px";
+		
+	}
 	var bounds = new OpenLayers.Bounds(533665, 1099901, 586361, 1141760);
 	var options = {
 		controls : [],
