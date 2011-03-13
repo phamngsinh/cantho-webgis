@@ -43,13 +43,13 @@ div.olLayerDiv {
    font-size: xx-small;
 }
 .olControlScaleLineBottom {
-   border: solid 2px blue;
+   border: solid 2px #32CD32;
    border-bottom: none;
    margin-top:-2px;
    text-align: center;
 }
 .olControlScaleLineTop {
-   border: solid 2px blue;
+   border: solid 2px #32CD32;
    border-top: none;
    text-align: center;
 }
