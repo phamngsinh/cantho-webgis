@@ -307,7 +307,7 @@ function callBackGetDuongDi(xml_result, status) {
 	result= result + "</ol>";
 	tongdodai= "<div class='sumary'>" +
 			"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
-			"<div class='sumary-item'>Di qua: "+ (xml_result.getElementsByTagName('ns:return').length +1) + " con duong.</div>" +
+			"<div class='sumary-item'>Di qua: "+ (xml_result.getElementsByTagName('ns:return').length) + " con duong.</div>" +
 			"</div>";
 	result=tongdodai+result;
 	$('.search-result').html(result);
