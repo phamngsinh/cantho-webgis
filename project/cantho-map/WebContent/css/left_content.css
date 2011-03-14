@@ -125,9 +125,9 @@
     width: 180px;
 }
 .boxtimduong:HOVER{
-	-moz-box-shadow: 0 0 8px #FFFF00;
+	-moz-box-shadow: 0 0 8px #F5DEB3;
     background: none repeat scroll 0 0 #FFFFFF;
-    border: 1px solid #AEDEF2;
+    border: 1px solid #blue;
 	}
 .del-timduonga {
     background: url("../images/del.png") no-repeat scroll 0 0 transparent;

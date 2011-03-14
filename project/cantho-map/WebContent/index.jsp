@@ -48,7 +48,7 @@
                 <div onclick="" class="SWTrans" style="z-index: 886;">
 				    <div class="boundTree" id="boundTree" style="z-index: 884; padding: 8px; margin: 0px; border-bottom: 1px solid rgb(17, 99, 201); border-top: 1px solid rgb(0, 71, 124); display: none;">
 	                 <div id="Tree" style="overflow: auto; z-index: 882; height: 180px; padding: 5px 7px; border: 1px solid rgb(204, 204, 204); display: block;">
-	                    <div style="float: right;"><a onclick="HideMapList()" class="TreeClose">X</a></div>
+	                    
 		                <div style="padding: 0px 10px 10px;">
 		                    <div class="dtree">
 								<div class="dTreeNav" style="background: url('images/ThanhPhoCanTho.png') no-repeat scroll 0% 0% transparent;">
@@ -62,6 +62,7 @@
 						   </div>
 					   </div>
 					</div>
+	               	 <div class="div-TreeClose"><a title="Đóng" onclick="HideMapList()" class="TreeClose">X</a></div>
 	                <div class="SW-img" style="z-index: 880;"></div>
 	              </div>
 
