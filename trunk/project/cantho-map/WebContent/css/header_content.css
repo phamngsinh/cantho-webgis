@@ -46,8 +46,8 @@
     color: #111111;
     float: left;
     font-size: 12px;
-    height: 14px;
-    padding: 6px;
+    height: 18px;
+    padding: 3px;
     text-decoration: none;
     width: 262px;
     border: none;
@@ -267,4 +267,12 @@ a {
 	text-decoration: none;
 	cursor: default;
 	}
-	
+.div-TreeClose{
+	bottom: 15px;
+    float: right;
+    position: absolute;
+    right: 30px;
+	}
+.TreeClose{
+	font-size: 10px;
+	}
