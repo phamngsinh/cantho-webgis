@@ -108,6 +108,7 @@
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
 								<a onclick="" class="del-timduonga" style="display: block;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
 							</div>
+							<a onclick="" title="Click vào đây để đảo chiều đường đi." class="btn-refresh" style="display: block;">dc</a>
 							<div class="swrap-timduong">
 								<span class="a-z">b</span>
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">

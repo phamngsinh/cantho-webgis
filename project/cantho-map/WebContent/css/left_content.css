@@ -162,11 +162,11 @@
     padding-top: 10px;
     position: absolute;
     width: 100%;
-    background-color: 	#FDF5E6;
+    background:url("../images/bg-cantho-map.png") repeat ;
    
 }
 #listDirection:hover{
-	 background:url("../images/bg-cantho-map.png") repeat ;
+	
 }
 .body-find-path{
     padding: 10px 10px 10px -10px;
@@ -175,20 +175,20 @@
 	}
 .search-result {
     bottom: 10px;
-    left: 15px;
     overflow-x: hidden;
     overflow-y: auto;
     padding-top: 5px;
+    padding-left: 0px;
     position: absolute;
     top: 90px;
-    width: 275px;
+    width: 290px;
 }
 .stepsList {
     color: #333333;
     font-size: 12px;
     line-height: 18px;
     margin-left: -45px;
-    margin-right: 10px;
+    margin-right: 0px;
     margin-top: 0;
 }
 .distance {
@@ -203,7 +203,8 @@
      cursor: pointer;
 }
 .stepsList li:hover {
-	background-color: 	#FDF5E6;
+	-moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
+    background: -moz-linear-gradient(center top , #FFF9D7, #FFF3B0) repeat scroll 0 0 #FFF3B0;
 }
 .SelectPlaceCloseBut {
     background: url("../images/Icons.png") no-repeat scroll -2px -192px transparent;
@@ -235,13 +236,23 @@ ol, ul {
 }
 .sumary {
     font-size: 13px;
-    margin-right: 10px;
-    padding: 10px 5px;
-    border-bottom: 1px solid #C1C1C1;
+    margin-right: 0px;
+    padding: 10px 5px 10px 5px;
+    border-bottom: 1px solid #EFEFEF;
 }
 .sumary:hover{
-	background-color: 	#FDF5E6;
+	-moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
+    background: -moz-linear-gradient(center top , #FFF9D7, #FFF3B0) repeat scroll 0 0 #FFF3B0;
 	}
 .sumary-item{
 	height: 25px;
+	}
+.btn-refresh{
+	background: url("../images/refresh.gif") no-repeat scroll transparent;
+	 height: 16px;
+    left: 269px;
+    position: absolute;
+    text-indent: -9999px;
+    top: 37px;
+    width: 16px;
 	}
