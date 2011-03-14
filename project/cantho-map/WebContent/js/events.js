@@ -782,5 +782,48 @@ function clickXa(i){
 	}	
 }
 function daoChieu(){
-	alert("Ham nay nam o cuoi cung cua event.js");
+	//kiem tra xem neu tren lop_diem_chon co tu 2 diem tro len thi bat dau dao chieu
+	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
+	var num_points = lop_diem_chon.features.length;
+	var wkt_format = new OpenLayers.Format.WKT();
+	if (num_points == 2){		
+		//lay hai features tren lop_diem_chon, sau do doi thu tu
+		var first_point = lop_diem_chon.features[0].geometry.clone();
+		var last_point = lop_diem_chon.features[1].geometry.clone();
+		lop_diem_chon.destroyFeatures();
+		lop_diem_chon.addFeatures(wkt_format.read(last_point));
+		lop_diem_chon.addFeatures(wkt_format.read(first_point));
+		//Dinh dang cho start_point va end_point
+		/** *Tao icon cho start_point*** */
+		// Lay feature vua them vao lop lop_diem_chon ra
+		var s_point = lop_diem_chon.features[0];
+		// Tao symbolizer tu stylemap cua lop_diem_chon
+		var symbolizer = s_point.layer.styleMap.createSymbolizer(s_point);
+		// Thay doi icon cho feature
+		symbolizer['externalGraphic'] = 'images/tuday.png';
+		// Gan lai style moi feature
+		s_point.style = symbolizer;
+		//Ve lai diem voi style moi
+		s_point.layer.drawFeature(s_point);
+		/** *Tao icon cho end_point*** */
+		// Lay feature vua them vao lop lop_diem_chon ra
+		var e_point = lop_diem_chon.features[1];
+		// Tao symbolizer tu stylemap cua lop_diem_chon
+		var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+		// Thay doi icon cho feature
+		symbolizer['externalGraphic'] = 'images/denday.png';
+		// Gan lai style moi feature
+		e_point.style = symbolizer;
+		// Ve lai diem voi style moi
+		e_point.layer.drawFeature(e_point);		
+		/**Goi webservice**/
+		var start_point = lop_diem_chon.features[0].geometry.clone();
+		var end_point = lop_diem_chon.features[1].geometry.clone();
+		callService(start_point.x, start_point.y, end_point.x, end_point.y);
+		//Doi text trong textbox
+		var temp = '';
+		temp = $('.tim-a').val();
+		$('.tim-a').val($('.tim-b').val());
+		$('.tim-b').val(temp);
+	}
 }
