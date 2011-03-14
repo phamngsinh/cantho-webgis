@@ -779,6 +779,8 @@ function clickXa(i){
 		$('input[name=check'+i +']').attr('checked',false);
 	}else{
 		$('input[name=check'+i +']').attr('checked',true);
-	}
-		
+	}	
+}
+function daoChieu(){
+	alert("Ham nay nam o cuoi cung cua event.js");
 }
