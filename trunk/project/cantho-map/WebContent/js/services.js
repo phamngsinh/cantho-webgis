@@ -604,13 +604,13 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		if (lop_dia_diem.features.length >0 ){
-			//di chuyen diem dau tien ve trung tam cua ban do	
-			var first_feature = lop_dia_diem.features[0].geometry;
-			var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
-			map.setCenter(lonlat);
-		}
 	}		
+	if (lop_dia_diem.features.length >0 ){
+		//di chuyen diem dau tien ve trung tam cua ban do	
+		var first_feature = lop_dia_diem.features[0].geometry;
+		var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
+		map.setCenter(lonlat);
+	}
 }
 function error_getLopDiaDiem(ml_result) {
 	//loi khong tim thay du lieu
