@@ -422,7 +422,7 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 			"</tr>" +
 			"<tr>" +
 				"<td>Ban kinh</td>" +
-				"<td   class = 'maker-popup-bankinh' ><input class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /></td>" +
+				"<td   class = 'maker-popup-bankinh' ><input id='txt_bk' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /></td>" +
 			"</tr>" +
 		"</table>" +
 		"<div class = 'maker-popup-footer' >" +
@@ -438,6 +438,12 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	map.addPopup(popup, true);
 	//dich chuyen tam ban do ve diem duoc chon
 	//map.setCenter(lonlat, 6, false, false);
+	$('#txt_bk').bind("keypress",function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) {
+            return false;
+        }
+	});
 	
 }
 function errorGetDiaDiemTheoViTri(xml_error) {
