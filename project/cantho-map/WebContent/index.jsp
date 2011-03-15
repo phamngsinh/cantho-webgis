@@ -93,9 +93,13 @@
 <div id="wrapper"></div>
 <div id="location"></div>
 <div id="scale"></div>
-<a href="javascript:doKhoangCach()" id="toolDoKC" class="tool-dokc"> Đo khoảng cách
-</a>
-<div class="kq-doKC" ><div class="kq-doKC-content" ></div></div>
+<div class="kq-doKC" >
+<div class="kq-doKC-content" >
+	<label class= "kc-hienhanh">Khoang cach hien hanh : 0m</label>
+	<label class= "tong-kc"></label>
+	<label class= "note-kc">Nhấp đúp để kết thúc việc đo.</label>
+</div>
+</div>
 <div class = "map" id = "map">
  </div>
 <div class = "left_content"  id = "left_content"> 
