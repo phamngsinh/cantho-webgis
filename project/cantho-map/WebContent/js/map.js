@@ -2,6 +2,8 @@
  * 
  */
 var anh_dia_diem = 'images/tick_1.png';
+var anh_co_quan = 'map-icon/coquan16.png';
+var anh_benh_vien = 'map-icon/benhvien16.png';
 
 OpenLayers.ProxyHost = 'cgi-bin/proxy.cgi?url=';
 var map;
@@ -15,11 +17,11 @@ OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 
 function init() {
 	moveIconClick();
-	var s1=document.getElementById("search");
-	var map_width=$("#map").css("width").replace("px","")*1;
-	if(map_width<700){	
-		s1.style.left= "300px";
-		
+	var s1 = document.getElementById("search");
+	var map_width = $("#map").css("width").replace("px", "") * 1;
+	if (map_width < 700) {
+		s1.style.left = "300px";
+
 	}
 	var bounds = new OpenLayers.Bounds(533665, 1099901, 586361, 1141760);
 	var options = {
@@ -37,12 +39,12 @@ function init() {
 			"Quan_huyen",
 			"http://localhost:8080/geoserver/wms",
 			{
-				layers : 'ws_cantho:quanhuyen,ws_cantho:xaphuong,ws_cantho:giaothong,ws_cantho:coquan',
+				layers : 'ws_cantho:quanhuyen,ws_cantho:xaphuong,ws_cantho:giaothong,ws_cantho:coquan,ws_cantho:benhvien',
 				styles : '',
 				srs : 'EPSG:4326',
 				format : format,
 				tiled : 'false',
-				transparent : 'true' ,
+				transparent : 'true',
 				tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {
 				buffer : 0,
@@ -72,12 +74,12 @@ function init() {
 		}))
 	});
 
-	/** Lop chua tat ca cac dia diem duoc tim**/
+	/** Lop chua tat ca cac dia diem duoc tim* */
 	var lop_dia_diem = new OpenLayers.Layer.Vector("lop_dia_diem", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : anh_dia_diem,
 			graphicWidth : 25,
-			graphicHeight : 25		
+			graphicHeight : 25
 		}))
 	});
 	/** Lop chua quan huyen* */
@@ -90,19 +92,62 @@ function init() {
 			featureNS : "http://opengeo.org/ws_cantho"
 		})
 	});
-
+	/** Lop chua co quan* */
+	var style_co_quan = new OpenLayers.StyleMap({
+		"default" : {
+			externalGraphic : anh_co_quan,
+			graphicWidth : 12,
+			graphicHeight : 12,
+			cursor : 'pointer'
+		},
+		"select" : {
+			externalGraphic : anh_co_quan,
+			graphicWidth : 12,
+			graphicHeight : 12
+		}
+	});
+	var lop_co_quan = new OpenLayers.Layer.Vector("lop_co_quan", {
+		styleMap : style_co_quan
+	});
+	// kiem tra neu zoomlevel == 5 thi hien thi lop_co_quan
+	// map.events.register('zoomend', this, zoomChanged());
+	lop_co_quan.events.on({
+		moveend : function(e) {
+			if (e.zoomChanged) {
+				zoomChanged();
+			}
+		}
+	});
+	/** Lop chua benh vien* */
+	var style_benh_vien = new OpenLayers.StyleMap({
+		"default" : {
+			externalGraphic : anh_benh_vien,
+			graphicWidth : 12,
+			graphicHeight : 12,
+			cursor : 'pointer'
+		},
+		"select" : {
+			externalGraphic : anh_benh_vien,
+			graphicWidth : 12,
+			graphicHeight : 12
+		}
+	});
+	var lop_benh_vien = new OpenLayers.Layer.Vector("lop_benh_vien", {
+		styleMap : style_benh_vien
+	});
+	// kiem tra neu Zoomlevel == 5 thi hien thi lop_co_quan
 	// Them cac lop vua tao vao ban do
-	map.addLayers([ lop_duong_di, lop_quan_huyen, lop_dia_diem,
-					lop_diem_chon]);
+	map.addLayers([ lop_co_quan, lop_benh_vien, lop_duong_di, lop_quan_huyen,
+			lop_dia_diem, lop_diem_chon ]);
 	// hide lop_quan_huyen di
 	lop_quan_huyen.setVisibility(false);
 
-	/** tao control DrawFeature ve start_point va end_point**/
+	/** tao control DrawFeature ve start_point va end_point* */
 	control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
 			OpenLayers.Handler.Point, {
 				featureAdded : point_Added
 			});
-	/** tao control DragFeature de drag hai diem start_point va end_point**/
+	/** tao control DragFeature de drag hai diem start_point va end_point* */
 	control_drag = new OpenLayers.Control.DragFeature(lop_diem_chon, {
 		// onStart: begin_Drag(),
 		// onDrag: Draging(),
@@ -110,7 +155,8 @@ function init() {
 	// duoc kich hoat khi su kien drag ket thuc
 	});
 	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem* */
-	control_select = new OpenLayers.Control.SelectFeature([ lop_dia_diem, lop_quan_huyen, lop_diem_chon ], {
+	control_select = new OpenLayers.Control.SelectFeature([ lop_co_quan,
+			lop_benh_vien, lop_dia_diem, lop_quan_huyen, lop_diem_chon ], {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
 		onUnSelect : onUnSelectFeature,
 		clickout : true,
@@ -128,30 +174,33 @@ function init() {
 	});
 	/** Tao control SelectFeature tren lop_quan_huyen* */
 	control_select_quan_huyen = new OpenLayers.Control.SelectFeature(
-			[lop_quan_huyen], {
+			[ lop_quan_huyen ], {
 				clickout : true,
 				toggle : false,
 				multiple : false,
 				hover : false,
-				//toggleKey : "shiftKey", // shift key removes from selection
+				// toggleKey : "shiftKey", // shift key removes from selection
 				multipleKey : "ctrlKey" // ctrl key adds to selection
-				//box : true
-				//onSelect : onSelectQuanHuyen,// kick hoat khi click chuot tren feature
-				//onUnSelect : onUnSelectQuanHuyen
+			// box : true
+			// onSelect : onSelectQuanHuyen,// kick hoat khi click chuot tren
+			// feature
+			// onUnSelect : onUnSelectQuanHuyen
 			});
 	lop_quan_huyen.events.on({
-		featureselected: function(event){
+		featureselected : function(event) {
 			var feature = event.feature;
-			alert("So feature duoc chon: "+lop_quan_huyen.selectedFeatures.length);
-			//alert("selecte: "+feature.attributes.ten);
+			alert("So feature duoc chon: "
+					+ lop_quan_huyen.selectedFeatures.length);
+			// alert("selecte: "+feature.attributes.ten);
 		},
-		featureunselected: function(event){
+		featureunselected : function(event) {
 			var feature = event.feature;
-			alert("Unselecte: "+feature.attributes.ten);
+			alert("Unselecte: " + feature.attributes.ten);
 		}
 	});
 	/** Them cac controls vua tao vao ban do* */
-	map.addControls([ control_drag, control_ve_diem, control_hover, control_select, control_select_quan_huyen]);
+	map.addControls([ control_drag, control_ve_diem, control_hover,
+			control_select, control_select_quan_huyen ]);
 	control_hover.activate();
 	control_select.activate();
 	/** ************************ Style cho lop controlmeasure******************* */
@@ -198,31 +247,20 @@ function init() {
 	map.addControl(control_measure);
 
 	// build up all controls
-	
+
 	var external_panel = new OpenLayers.Control.Panel({
 		div : document.getElementById('overviewmap')
 	});
 	map.addControl(external_panel);
-	map.addControl(new OpenLayers.Control.PanZoomBar());	
-	//map.addControl(new OpenLayers.Control.OverviewMap());
-	map.addControl(new OpenLayers.Control.Navigation());	
+	map.addControl(new OpenLayers.Control.PanZoomBar());
+	// map.addControl(new OpenLayers.Control.OverviewMap());
+	map.addControl(new OpenLayers.Control.Navigation());
 	map.addControl(new OpenLayers.Control.ScaleLine());
 	var ovControl = new OpenLayers.Control.OverviewMap();
-    ovControl.isSuitableOverview = function() {
-        return false;
-    };
-    map.addControl(ovControl);
-	/*
-	var control_zoom_in = new OpenLayers.Control.ZoomIn();
-	var control_zoom_out = new OpenLayers.Control.ZoomOut();
-	var control_panpanel = new OpenLayers.Control.PanPanel();
-	var control_panzoom = new OpenLayers.Control.PanZoomBar();
-	map.addControl(control_zoom_in);
-	map.addControl(control_zoom_out);
-	map.addControl(control_panpanel);
-	//map.addControl(control_panzoom);
-	external_panel.addControls([control_zoom_in, control_zoom_out,control_panpanel]);
-	*/
+	ovControl.isSuitableOverview = function() {
+		return false;
+	};
+	map.addControl(ovControl);
 	map.zoomToMaxExtent(bounds);
 }
 /** **************CAC SU KIEN************************ */
@@ -310,19 +348,18 @@ function point_Added(point) {
 				map.controls[i].activate();
 			}
 			/*
-			if (map.controls[i].displayClass == "olControlSelectFeature") {
-				map.controls[i].activate();
-			}
-			*/
+			 * if (map.controls[i].displayClass == "olControlSelectFeature") {
+			 * map.controls[i].activate(); }
+			 */
 			if (map.controls[i].displayClass == "olControlNavigation") {
 				map.controls[i].activate();
 			}
-		}	
+		}
 		control_select.activate();
 		// control_select.setLayer(lop_dia_diem);
 		getDuongDi();
 	}
-	//control_hover.activate();
+	// control_hover.activate();
 }
 /** ********Su kien cac feature tren lop_diem_chon duoc drag********* */
 function begin_Drag() {
@@ -349,7 +386,7 @@ function handleMeasurements(event) {
 	var order = event.order;
 	var measure = event.measure;
 	// var element = document.getElementById('output');
-	//alert("khoang cach = " + measure.toFixed(3) + " " + units);
+	// alert("khoang cach = " + measure.toFixed(3) + " " + units);
 	var do_dai = measure.toFixed(3) + " " + units;
 	// element.innerHTML = out;
 	$(".tong-kc-m").html(do_dai);
@@ -369,8 +406,8 @@ function onSelectFeature(e) {
 function onUnSelectFeature() {
 	alert("Feature duoc bo chon");
 }
-//Goi dich vu de lay ve duong di cua hai diem duoc chon
-function getDuongDi(){
+// Goi dich vu de lay ve duong di cua hai diem duoc chon
+function getDuongDi() {
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	// lay toa do hai diem duoc chon
 	var start_point = lop_diem_chon.features[0].geometry.clone();
@@ -405,9 +442,28 @@ function feature_Out(feature) {
 	lop_dia_diem.drawFeature(feature, out_style);
 }
 
-function onSelectQuanHuyen(feature){
-	alert("Select quan huyen"+feature.attributes.ten);
+function onSelectQuanHuyen(feature) {
+	alert("Select quan huyen" + feature.attributes.ten);
 }
-function onUnSelectQuanHuyen(feature){
-	alert("UnSelect quan huyen"+feature.attributes.ten);
+function onUnSelectQuanHuyen(feature) {
+	alert("UnSelect quan huyen" + feature.attributes.ten);
+}
+// Xay ra khi zoom_level thay doi
+function zoomChanged() {
+	var zoom_level = map.getZoom();
+	if (zoom_level == 6) {
+		// alert("muc 6 ");
+		// goi lop co quan
+		getLopCoQuan();
+		getLopBenhVien();
+	} else if (zoom_level < 6) {
+		var lop_co_quan = map.getLayersByName('lop_co_quan')[0];
+		var lop_benh_vien = map.getLayersByName('lop_benh_vien')[0];
+		if (lop_co_quan.features.length > 0) {
+			lop_co_quan.destroyFeatures();
+		}
+		if (lop_benh_vien.features.length > 0) {
+			lop_benh_vien.destroyFeatures();
+		}
+	}
 }

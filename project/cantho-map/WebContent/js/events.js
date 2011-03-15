@@ -145,7 +145,7 @@ function doKhoangCach() {
 	$(".do-khoang-cach").addClass("clicked");
 	if($(".kq-doKC").css("right").replace("px","")<0){
 		$(".kq-doKC").stop().animate({right:115},350,"linear");
-		$(".tong-kc-m").html("0 km");
+		$(".tong-kc-m").html("0km");
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
@@ -510,8 +510,11 @@ function popup_DenDay(x,y){
 }
 function popup_PhongTo(x,y){
 	//dich chuyen tam ban do ve diem duoc chon
-	var lonlat = new OpenLayers.LonLat(x,y);
-	map.setCenter(lonlat, 7 , false, false);
+	var zoom_level = map.getZoom();
+	if (zoom_level < 7){
+		var lonlat = new OpenLayers.LonLat(x,y);
+		map.setCenter(lonlat, 7 , false, false);
+	}	
 }
 function popup_TimXungQuanh(){
 	$(".maker-popup-div1").hide();
