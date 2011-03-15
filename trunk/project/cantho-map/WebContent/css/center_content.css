@@ -32,6 +32,7 @@
     top: 87px;
     width: 199px;
     z-index: 0;
+    font-size: 12px;
 }
 .kq-doKC-content {
     background:url("../images/bg-cantho-map.png") repeat ;
@@ -40,4 +41,17 @@
     position: absolute;
     top: 0;
     width: 200px;
+    padding-left: 4px;
 }
+.kc-hienhanh{
+	position: absolute;
+	top:10px;
+	}
+.tong-kc{
+	position: absolute;
+	top:35px;
+	}
+.note-kc{
+	position: absolute;
+	top:60px;
+	}
