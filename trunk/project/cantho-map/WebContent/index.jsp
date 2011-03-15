@@ -9,6 +9,7 @@
 <script type="text/javascript" src="libs/jquery/jquery-1.4.4.js"></script>
 <script src="libs/jquery/jquery-1.4.4.js" language="javascript"></script>
 <script src="libs/jquery/jquery.tools.min.js" language="javascript"></script>
+<script type="text/javascript" src="js/styles.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript" src="js/events.js"></script>
 <script type="text/javascript" src="js/services.js"></script>
@@ -23,7 +24,6 @@
 <link type="text/css" rel="stylesheet" href="css/right_content.css"></link>
 <link type="text/css" rel="stylesheet" href="css/popup.css"></link>
 <script type="text/javascript" defer="defer">
-
 </script>
 </head>
 <body onload="init();javascript:getQuanHuyen();">
@@ -97,7 +97,7 @@
 <div class="kq-doKC-content" >
 	<!-- label class= "kc-hienhanh">Khoang cach hien hanh : 0m</label-->
 	<label class= "tong-kc">Tổng khoảng cách: </label>
-	<label class= "tong-kc-m">0 km.</label>
+	<label class= "tong-kc-m">0km.</label>
 	<label class= "note-kc">Nhấp đúp để kết thúc việc đo.</label>
 </div>
 </div>

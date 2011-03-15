@@ -272,6 +272,53 @@ function getXaPhuong(mahuyen){
 		data : soapMessage
 	});
 }
+function getLopCoQuan() {
+	// alert(ten_lop);
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:getLop>";
+	soapMessage += "         <ser:ten_lop>coquan</ser:ten_lop>";
+	soapMessage += "      </ser:getLop>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_getLopCoQuan,
+		error : error_getLopCoQuan,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
+function getLopBenhVien() {
+	// alert(ten_lop);
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:getLop>";
+	soapMessage += "         <ser:ten_lop>benhvien</ser:ten_lop>";
+	soapMessage += "      </ser:getLop>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_getLopBenhVien,
+		error : error_getLopBenhVien,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
+
 function callBackGetDuongDi(xml_result, status) {
 
 	// list_lop_duong = map.getLayersByName('lop_duong_di');
@@ -618,7 +665,7 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		map.setCenter(lonlat);
 	}
 }
-function error_getLopDiaDiem(ml_result) {
+function error_getLopDiaDiem(xml_result) {
 	//loi khong tim thay du lieu
 }
 function callBack_Find_Place_Around_Point(xml_result, status){
@@ -700,4 +747,55 @@ function error_getQuanHuyen(xml_result, status){
 }
 function error_getXaPhuong(xml_result, status){
 	alert("getXaPhuong:  "+xml_result);
+}
+function callBack_getLopCoQuan(xml_result, status) {
+	var wkt = "";
+	var ten = "";
+	var diachi = "";
+	var sodienthoai = "";
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_co_quan = map.getLayersByName('lop_co_quan')[0];
+	// xoa di cac feature hien tai tren lop duong di
+	lop_co_quan.destroyFeatures();
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
+		lop_co_quan.addFeatures(wkt_format.read(wkt));
+	}		
+}
+function error_getLopCoQuan(xml_result) {
+	//loi khong tim thay du lieu
+	alert("Error: Webservice - error_getLopCoQuan");
+}
+
+function callBack_getLopBenhVien(xml_result, status) {
+	var wkt = "";
+	var ten = "";
+	var diachi = "";
+	var sodienthoai = "";
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_benh_vien = map.getLayersByName('lop_benh_vien')[0];
+	// xoa di cac feature hien tai tren lop duong di
+	lop_benh_vien.destroyFeatures();
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		/*
+		var feature = new OpenLayers.Feature.Vector(wkt_format.read(wkt).geometry);
+        feature.attributes = {
+            name: ten
+        };
+        */
+		lop_benh_vien.addFeatures(wkt_format.read(wkt));
+	}		
+}
+function error_getLopBenhVien(xml_result) {
+	//loi khong tim thay du lieu
+	alert("Error: Webservice - error_getLopBenhVien");
 }
