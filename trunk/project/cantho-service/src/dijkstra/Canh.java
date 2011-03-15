@@ -2,14 +2,14 @@ package dijkstra;
 
 public class Canh {
 
-	private final String id; 
-	private final Nut source;
-	private final Nut target;
-	private final double weight;
-	private final String the_geom;
-	private final String name;
-	private final int direct;
-	
+	private final String id;//10 ky tu
+	private final Nut source;// 80 byte
+	private final Nut target;// 80 byte
+	private final double weight;//8 byte
+	private final String the_geom;//40 ky tu
+	private final String name;//30 ky tu
+	private final int direct;//4 byte
+	// size = 252 byte
 	public Canh(String id, Nut source, Nut target, double weight, String the_geom,String name,int direct) {
 		this.id = id;
 		this.source = source;
