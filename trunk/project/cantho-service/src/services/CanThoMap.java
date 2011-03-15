@@ -981,6 +981,62 @@ public ArrayList find_Place_By_Text_And_Xa(String text,String str_id) throws SQL
 	this.closeConnection();
 	return ds_dia_diem;
 }
+public ArrayList find_place_by_text_and_lop(String str_id, String ten_lop, String cap) throws SQLException, ClassNotFoundException{		
+	
+	ArrayList ds_dia_diem = new ArrayList();
+	String the_geom = " ";
+	String ten = " ";
+	String diachi = " ";
+	String sdt = " ";	
+	int ma = 0;
+	String [] temp;
+	this.openConnection();
+	temp = str_id.split("\\$");
+	for (int i=0 ; i < temp.length ; i++){
+		//System.out.println("temp["+i+"] :"+temp[i]);
+		if (temp[i].equals("")){
+			ma = 0;
+		}else{
+			ma = Integer.parseInt(temp[i]);
+		}				
+		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_lop("+ ma +",'"+ten_lop+"','"+cap+"')");
+		while (rs.next()){
+			String[] arr = new String[4];
+			if (rs.getString("the_geom")==null ){
+				the_geom = " ";
+			}
+			else{
+				the_geom = rs.getString("the_geom");
+			}
+			if (rs.getString("ten")==null ){
+				ten = " ";
+			}
+			else{
+				ten = rs.getString("ten");
+			}
+			if (rs.getString("diachi")==null ){
+				diachi = " ";
+			}
+			else{
+				diachi = rs.getString("diachi");
+			}
+			if (rs.getString("sdt")== null ){				
+				sdt = " ";				
+			}
+			else{
+				sdt = rs.getString("sdt");
+			}			
+			
+			arr[0]=the_geom;
+			arr[1]=ten;
+			arr[2]=diachi;
+			arr[3]=sdt;
+			ds_dia_diem.add(arr);
+		}
+	}		
+	this.closeConnection();
+	return ds_dia_diem;
+}
 	private void openConnection() throws SQLException, ClassNotFoundException{
 		conn=null;
 		if (conn==null){
