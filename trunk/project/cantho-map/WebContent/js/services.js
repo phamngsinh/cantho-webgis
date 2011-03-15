@@ -205,15 +205,58 @@ function find_Place_Around_Point(x, y, chuoi, bankinh) {
 /*********Goi Dich Vu Tra Ve Danh Sach Cac Dia Diem Theo Ten Lop************/
 function getLopDiaDiem(ten_lop) {
 	// alert(ten_lop);
+	//Kiem tra xem nguoi dung co chon vung hay chua
+	//neu co chon vung thi chi tim trong vung ma nguoi dung chon
+	//Lay ra danh sach cac vung duoc chon
+	var ds_ma="";
+	var cap ="";
+	$(".dTreeNode").each(function(){
+		  if ($(this).children(":first").attr("checked")==true)
+			  if(ds_ma==""){
+				  ds_ma=ds_ma + $(this).children(":first").val();
+			  }else{
+				  ds_ma=ds_ma+"$" + $(this).children(":first").val();
+			  }
+		  });
+	if($("#map_path_div").attr("name")=="huyen"){
+		//find_Place_By_Text_And_Huyen(ten,ds_ma);
+		cap = "huyen";
+	}else if($("#map_path_div").attr("name")=="xa"){
+		cap = "xa";
+		if(ds_ma==""){
+			//nguoi dung chon den cap xa nhung chua chon xa nao thi lay huyen hien tai cua no
+			var ds_ma=$("#path_huyen").attr("value");
+			cap = "huyen";
+			//find_Place_By_Text_And_Huyen(ten,mahuyen_hientai);
+		}
+	}	
+	HideMapList();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
-	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
-	soapMessage += "   <soapenv:Header/>";
-	soapMessage += "   <soapenv:Body>";
-	soapMessage += "      <ser:getLop>";
-	soapMessage += "         <ser:ten_lop>" + ten_lop + "</ser:ten_lop>";
-	soapMessage += "      </ser:getLop>";
-	soapMessage += "   </soapenv:Body>";
-	soapMessage += "</soapenv:Envelope>";
+	if (ds_ma == ""){
+		
+		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+		soapMessage += "   <soapenv:Header/>";
+		soapMessage += "   <soapenv:Body>";
+		soapMessage += "      <ser:getLop>";
+		soapMessage += "         <ser:ten_lop>" + ten_lop + "</ser:ten_lop>";
+		soapMessage += "      </ser:getLop>";
+		soapMessage += "   </soapenv:Body>";
+		soapMessage += "</soapenv:Envelope>";
+		
+	}else{
+		//alert("cap: "+cap+" - ds_ma: "+ds_ma+" -ten_lop: "+ten_lop);
+		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+		soapMessage += "   <soapenv:Header/>";
+		soapMessage += "   <soapenv:Body>";
+		soapMessage += "      <ser:find_place_by_text_and_lop>";
+		soapMessage += "         <ser:str_id>"+ds_ma+"</ser:str_id>";
+		soapMessage += "         <ser:ten_lop>"+ten_lop+"</ser:ten_lop>";
+		soapMessage += "         <ser:cap>"+cap+"</ser:cap>";
+		soapMessage += "      </ser:find_place_by_text_and_lop>";
+		soapMessage += "   </soapenv:Body>";
+		soapMessage += "</soapenv:Envelope>";
+	}	
+	
 	$.ajax({
 		type : 'POST',
 		url : url,
