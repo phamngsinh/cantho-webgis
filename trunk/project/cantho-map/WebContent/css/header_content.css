@@ -5,11 +5,14 @@
     position: absolute;
     width: 100%;
     left:0;
+    z-index: 5;
+    background: #F8F8FF;
 }
 #search {
     left: 340px;
     position: absolute;
     top:10px;
+     z-index: 6;
 }
 .SLeft {
     background: url("../images/SLeft.png") no-repeat scroll 0 0 transparent;
@@ -180,6 +183,7 @@
 a {
     cursor: pointer;
     outline-style: none;
+    text-decoration: none;
 }
 .SWBut {
     background: url("../images/bg-SWBut.png") no-repeat scroll right center transparent;

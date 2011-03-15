@@ -4,10 +4,40 @@
 	left:0;
 	bottom:25px;
 	position:fixed;
-	border:1px #00CC66 solid;
-	z-index: 0;
+	border-top:1px #00CC66 solid;
+	z-index: -1;
 	-moz-box-shadow: 0 0 7px #555555;
 }
 /*.olControlPanZoomBar{
 	left:300px!important;
 	}*/
+		
+.tool-dokc {
+    height: 25px;
+    position: fixed; 
+    width: 94px; 
+    right: 125px; 
+    top: 87px; 
+    z-index: 3;
+    background: url(../images/yellow-1.png) no-repeat scroll 0 0 transparent;
+    font-size: 11px;
+    text-align: center;
+    padding-top: 5px;
+}
+.kq-doKC {
+    background: url("../images/image-overlay.png") no-repeat scroll center bottom transparent;
+    height: 100px;
+    position: fixed;
+    right: 115px;
+    top: 87px;
+    width: 199px;
+    z-index: 0;
+}
+.kq-doKC-content {
+    background:url("../images/bg-cantho-map.png") repeat ;
+    height: 84px;
+    left: 16px;
+    position: absolute;
+    top: 0;
+    width: 200px;
+}

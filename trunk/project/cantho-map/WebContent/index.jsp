@@ -93,7 +93,11 @@
 <div id="wrapper"></div>
 <div id="location"></div>
 <div id="scale"></div>
-<div class = "map" id = "map"> </div>
+<a href="javascript:doKhoangCach()" id="toolDoKC" class="tool-dokc"> Đo khoảng cách
+</a>
+<div class="kq-doKC" ><div class="kq-doKC-content" ></div></div>
+<div class = "map" id = "map">
+ </div>
 <div class = "left_content"  id = "left_content"> 
 		<div class = "left_top_content" id = "left_top_content">	
 			<ul class="tabs">
@@ -119,7 +123,11 @@
 					<div class="search-result"></div>
 				</div>
 				<div class= "panes-div">
-				
+					<div class="swrap-timduong">
+								<span class="a-z">a</span>
+								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
+								<a onclick="" class="del-timduonga" style="display: block;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
+					</div>
 				</div>
 				<div class= "panes-div"></div>
 			</div>	

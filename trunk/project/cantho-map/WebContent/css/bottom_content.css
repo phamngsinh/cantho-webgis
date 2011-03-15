@@ -2,12 +2,11 @@
 	left:0px;
     background: url(../images/bg_taskbar.gif) repeat-x scroll center top transparent;
     bottom: 0;
-    height: 25px;
+    height: 24px;
     position: fixed;
     width: 100%;
     z-index: 10;
     border: none solid;
-    -moz-box-shadow: 0 0 7px #555555;
 }
 .taskbar_title {
     color: #0066FF;
@@ -18,25 +17,22 @@
     margin-left: 10px;
 }
 .menu_taskbar {
-    color: #0066FF;
-    padding-left: 18px;
-    text-decoration: none;
-	
+    color: #0066FF;	
 }
 .menu_taskbar:hover {
     color: red;
-    padding-left: 20px;
-    text-decoration: none;
 }
 .not-clicked{
-	background: url(../images/bottom-item.png) no-repeat scroll 0 0 transparent;
-	width: 95px;
+	background: url(../images/green-1.png) no-repeat scroll 0 0 transparent;
+	width: 93px;
 	font-size: 11px;
 	height: 24px;
+	text-align: center;
 	}
 .clicked{
-	background: url(../images/bottom-item-clicked.png) no-repeat scroll 0 0 transparent !important;
-	width: 95px;
+	background: url(../images/red-1.png) no-repeat scroll 0 0 transparent;
+	width: 93px;
 	font-size: 11px;
 	height: 24px;
+	text-align: center;
 	}

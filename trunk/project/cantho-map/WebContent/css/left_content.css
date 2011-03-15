@@ -6,7 +6,7 @@
 	top:86px;
 	border:1px #00CC66 solid;
 	background-color: #CCFFCC;
-	z-index:1000;
+	z-index:4;
 	-moz-box-shadow: 0 0 7px #555555;
 }
 .splExpand {
@@ -175,7 +175,7 @@
 }
 .body-find-path{
     padding: 10px 10px 10px -10px;
-    position: relative;
+    position: absolute;
     height: 100%;
 	}
 .search-result {
@@ -201,7 +201,7 @@
     right: 10px;
 }
 .stepsList li {
-    border-bottom: 1px solid #EFEFEF;
+    border-bottom: 1px solid #EFEFEF ;
     cursor: pointer;
     padding: 6px 0 6px 0;
     position: relative;
