@@ -5,16 +5,7 @@ var timduong_clicked = 0;
 var dokhoangcach_clicked = 0;
 var flag_end = 0;// kiem tra: truong hop da co mot diem tren lop_diem_chon la
 // start hay end
-$(document).ready(function() {
-	
-	$('.del-timduonga').live('click', function()  {  
-        $(".tim-a").val("Nhap vao dia danh");
-     });  
-	$('.del-timduongb').live('click', function()  {  
-        $(".tim-b").val("Nhap vao dia danh");
-     });  
-	
-	
+$(document).ready(function() {  
 	$("#btnTim").click(function() {
 		var ten=$("#mapinput").val();
 		if(ten!=""){
@@ -154,7 +145,7 @@ function doKhoangCach() {
 	$(".do-khoang-cach").addClass("clicked");
 	if($(".kq-doKC").css("right").replace("px","")<0){
 		$(".kq-doKC").stop().animate({right:115},350,"linear");
-		$(".tong-kc-m").html("0km");
+		$(".tong-kc-m").html("0 km");
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
