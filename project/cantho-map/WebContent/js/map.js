@@ -352,7 +352,7 @@ function handleMeasurements(event) {
 	//alert("khoang cach = " + measure.toFixed(3) + " " + units);
 	var do_dai = measure.toFixed(3) + " " + units;
 	// element.innerHTML = out;
-	$(".tong-kc").html("Tong khoang cach : "+ do_dai);
+	$(".tong-kc-m").html(do_dai);
 }
 function onSelectFeature(e) {
 	// goi webservice o day de hien thi thong tin cua diem vua chon

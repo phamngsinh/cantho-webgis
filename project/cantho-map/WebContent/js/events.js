@@ -152,6 +152,13 @@ function doKhoangCach() {
 	$(".tim-duong").addClass("not-clicked");
 	$(".do-khoang-cach").removeClass("not-clicked");
 	$(".do-khoang-cach").addClass("clicked");
+	if($(".kq-doKC").css("right").replace("px","")<0){
+		$(".kq-doKC").stop().animate({right:115},350,"linear");
+		$(".tong-kc-m").html("0km");
+		}
+	else{
+		$(".kq-doKC").stop().animate({right:-199},350,"linear");
+	}
 	if (control_measure.active) {
 		// alert("da duoc active");
 		for ( var i = 0; i < map.controls.length; i++) {

@@ -28,7 +28,8 @@
     background: url("../images/image-overlay.png") no-repeat scroll center bottom transparent;
     height: 100px;
     position: fixed;
-    right: 115px;
+    /* right: 115px;*/
+    right: -199px;
     top: 87px;
     width: 199px;
     z-index: 0;
@@ -43,15 +44,21 @@
     width: 200px;
     padding-left: 4px;
 }
-.kc-hienhanh{
+/*.kc-hienhanh{
 	position: absolute;
 	top:10px;
-	}
+	}*/
 .tong-kc{
 	position: absolute;
-	top:35px;
+	top:20px;
+	}
+.tong-kc-m{
+	color: red;
+	position: absolute;
+	top:20px;
+	left: 95px;
 	}
 .note-kc{
 	position: absolute;
-	top:60px;
+	top:50px;
 	}
