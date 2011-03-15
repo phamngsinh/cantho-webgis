@@ -84,7 +84,7 @@ public class Dijkstra {
 	private double getShortestDistance(Nut destination) {
 		Double d = distance.get(destination);
 		if (d == null) {
-			return Integer.MAX_VALUE;
+			return Integer.MAX_VALUE;//2^31-1 = 2.147.483.647 
 		} else {
 			return d;
 		}

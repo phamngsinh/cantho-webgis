@@ -2,17 +2,17 @@ package dijkstra;
 
 public class Nut {
 
-	final private String id;
-	final private String name;
-		
+	final private String id;//10 ky tu
+	final private String name;//30 ky tu
+	//size = 80 byte
 	public Nut(String id, String name) {
 		this.id = id;
 		this.name = name;
 	}
+	
 	public String getId() {
 		return id;
 	}
-
 	public String getName() {
 		return name;
 	}
