@@ -412,15 +412,23 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --select split_multi_from_two_point(586302.31032,1109833.62530,586252.50420,1109866.19085) As result;
-CREATE OR REPLACE FUNCTION find_id_nearest_edge( x1 float, y1 float)
+CREATE OR REPLACE FUNCTION find_id_nearest_edge( x float, y float)
         RETURNS text AS
 	$BODY$
 	DECLARE
 		result text;		
-		nearest_edge_text text;	
-	BEGIN		
-		nearest_edge_text := Astext(find_nearest_edge(x1,y1));
-		result := gid from giaothong where astext(the_geom) = nearest_edge_text;
+		point_text text;
+		dc text;
+		nearest_edge geometry;	
+	BEGIN	
+			
+		--nearest_edge_text := Astext(find_nearest_edge(x1,y1));
+		--result := gid from giaothong where astext(the_geom) = nearest_edge_text;
+		point_text:='POINT(' || x || ' ' || y ||  ')';
+		dc:=find_address_of_point(x,y);--tim dia chi cua diem nay
+		if dc =  'nodata' then nearest_edge:= find_nearest_edge(x,y); end if;-- neu dia chi ko ton tai thi tim theo ham find_nearest_edge(x,y)
+		if dc != 'nodata' then nearest_edge:= find_nearest_edge_with_address(x,y,dc); end if;--neu dc ton tai thi tim theo ham find_nearest_edge_with_address(x,y,dc)
+		result:= gid from giaothong where astext(the_geom)= astext(nearest_edge);
 		return result;
 	END;
 	$BODY$
