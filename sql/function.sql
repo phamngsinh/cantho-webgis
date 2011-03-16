@@ -39,6 +39,52 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 --select astext(the_geom) from giaothong where gid = 184
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
+--Tim dia chi cua mot diem duoc click tren ban do
+--Neu ton tai thi tra ve ket qua la dia chi do
+--Neu ko ton tai thi tra ve 'nodata'
+CREATE OR REPLACE FUNCTION find_address_of_point(x float , y float)
+	RETURNS text AS
+$BODY$
+	DECLARE
+	result text;
+	point_temp text;
+	BEGIN
+	    point_temp:='POINT(' || x || ' ' || y ||  ')';
+	    result= diachi from coquan   where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from benhvien where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    return 'nodata';
+	END;	
+$BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+
+--select find_address_of_point(586134.584464719, 1111436.85861446);
+--select *, astext(the_geom) from coquan;
+--select * from benhvien where astext(the_geom)='POINT(586070.669031354 1110229.39057359)'
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
+--Tim duong gan nhat cua mot diem co dia chi
+--Neu dia chi chua mot ten duong thi tra ve con duong gan nhat trong so cac doan duong chua ten duong do
+--Nguoc lai (dia chi ko chua mot ten duong) thi tra ve ket qua cua ham find_nearest_edge(x,y);
+CREATE OR REPLACE FUNCTION find_nearest_edge_with_address(x float , y float,dc text)
+	RETURNS geometry AS
+$BODY$
+	DECLARE
+	result geometry;
+	three_d_temp text;
+	point_temp text;
+	BEGIN
+	    three_d_temp:='BOX3D(' || (x-10000) || '  ' || (y-10000) || ' , ' || (x+10000) || ' ' || (y+10000) ||  ')';
+	    point_temp:='POINT(' || x || ' ' || y ||  ')';
+	    result:= the_geom FROM giaothong 
+	    WHERE (the_geom && setsrid(three_d_temp::box3d,4326)) and dc like '%'||ten_duong||'%'
+            ORDER BY distance(the_geom, GeometryFromText(point_temp, 4326)) LIMIT 1;
+            if result is not null then return result; end if;
+            return find_nearest_edge(x,y);	
+	END;	
+$BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
 --Tach canh ra lam 2 doan tu mot dinh cho truoc tai 1 diem neu diem do ko trung voi 2 dau mut.
 --Ko trung  return: doan1$dodai1$doan2$dodai2
 --Trung return : _id : id cua dinh trung
@@ -142,9 +188,12 @@ CREATE OR REPLACE FUNCTION split_multi_from_any_point( x float, y float)
 		nearest_edge_id integer;
 		point_text text;
 		result text;
+		dc text;
 	BEGIN
 		point_text:='POINT(' || x || ' ' || y ||  ')';
-		nearest_edge:= find_nearest_edge(x,y);
+		dc:=find_address_of_point(x,y);--tim dia chi cua diem nay
+		if dc =  'nodata' then nearest_edge:= find_nearest_edge(x,y); end if;-- neu dia chi ko ton tai thi tim theo ham find_nearest_edge(x,y)
+		if dc != 'nodata' then nearest_edge:= find_nearest_edge_with_address(x,y,dc); end if;--neu dc ton tai thi tim theo ham find_nearest_edge_with_address(x,y,dc)
 		nearest_edge_id:= gid from giaothong where astext(the_geom)= astext(nearest_edge);
 		nearest_point:= ST_ClosestPoint(nearest_edge, ST_GeomFromText(point_text,4326) );
 		nearest_point_text:=Astext(nearest_point);
