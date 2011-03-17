@@ -17,13 +17,20 @@
     margin-left: 10px;
 }
 .menu_taskbar {
-    color: #0066FF;	
+    color: red;	
 }
 .menu_taskbar:hover {
-    color: red;
+    color: white;
 }
 .not-clicked{
 	background: url(../images/green-1.png) no-repeat scroll 0 0 transparent;
+	width: 93px;
+	font-size: 11px;
+	height: 24px;
+	text-align: center;
+	}
+.not-clicked:HOVER{
+	background: url(../images/red-1.png) no-repeat scroll 0 0 transparent;
 	width: 93px;
 	font-size: 11px;
 	height: 24px;
@@ -35,4 +42,7 @@
 	font-size: 11px;
 	height: 24px;
 	text-align: center;
+	}
+.clicked .menu_taskbar{
+	color: white;
 	}
