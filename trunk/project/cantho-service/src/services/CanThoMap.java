@@ -16,7 +16,7 @@ import dijkstra.Dijkstra;
 public class CanThoMap {	
 	
 	Connection conn;
-	Statement s;  
+	Statement s, st;  
 	ResultSet rs, rs_nut, rs_canh, rs_1, rs_2, rs_nut_moi;
 
 	public ArrayList getDuongDi(double x1, double y1,double x2,double y2) throws ClassNotFoundException {		
@@ -75,12 +75,13 @@ public class CanThoMap {
 			/**Ket thuc Duyet qua tung mau tin de them canh vao danh sach canh**/
 			
 			/**** Lay du lieu giao cua Diem 1 ***********/
-			String sql1 = "SELECT split_multi_from_any_point(" + x1 + "," + y1 + ") AS result";
-			rs_1 = s.executeQuery(sql1);
+			String sql1 = "SELECT split_multi_from_any_point('" + x1 + "','" + y1 + "') AS result";
+			rs_1 = st.executeQuery(sql1);
 			String[] temp1;
 			String result1 = "";
 			while (rs_1.next()) {
 				result1 = rs_1.getString("result");
+				System.out.println(result1);
 				break;
 			}
 			temp1 = result1.split("\\$");
@@ -89,7 +90,7 @@ public class CanThoMap {
 			}
 			/**** Ket thuc lay du lieu giao cua Diem 1 ***********/
 			/**** Lay du lieu giao cua Diem 2 ***********/
-			String sql2 = "SELECT split_multi_from_any_point(" + x2 + "," + y2 + ") AS result";
+			String sql2 = "SELECT split_multi_from_any_point('" + x2 + "','" + y2 + "') AS result";
 			rs_2 = s.executeQuery(sql2);
 			String[] temp2;
 			String result2 = "";
@@ -112,7 +113,7 @@ public class CanThoMap {
 			 * Ket qua: 0 - Neu hai diem khong cung tren mot canh, nguoc lai ket qua tach canh co dang nhu:
 			 * 			<multilinestring_1>$<do_dai_1>$<id_nut_moi>$<multilinestring_2>$<do_dai_2>$<id_nut_moi>$<multilinestring_3>$<do_dai_3>			
 			 * **/
-			rs=s.executeQuery("SELECT split_multi_from_two_point("+ x1 +" , "+ y1 +" , "+x2+" , "+y2+" ) As result");
+			rs=s.executeQuery("SELECT split_multi_from_two_point('"+ x1 +"' , '"+ y1 +"' , '"+x2+"' , '"+y2+"' ) As result");
 			
 			/**Bat dau kiem tra tung diem giao de tach canh, neu diem giao khong trung voi cac dinh cua canh**/
 			String result="";
@@ -149,7 +150,7 @@ public class CanThoMap {
 				node = new Nut(end_point+"", end_point+ "_POINT(Nut Moi End Point)" );
 				nodes.add(node);
 				//lay ra id canh giao
-				rs=s.executeQuery("SELECT find_id_nearest_edge( "+x2+" , "+y2+" ) As edges_id");
+				rs=s.executeQuery("SELECT find_id_nearest_edge( '"+x2+"' , '"+y2+"' ) As edges_id");
 				String id_canh_giao="";
 				while(rs.next()){
 					id_canh_giao=rs.getString("edges_id");
@@ -1044,6 +1045,7 @@ public ArrayList find_place_by_text_and_lop(String str_id, String ten_lop, Strin
 		    String url = "jdbc:postgresql://localhost:5432/postgis"; 
 		    conn = DriverManager.getConnection(url, "postgres", "admin");		   
 			s=conn.createStatement();
+			st=conn.createStatement();
 		}
 	}
 
