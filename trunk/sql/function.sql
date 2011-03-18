@@ -186,7 +186,7 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-select split_multilinestring(850,ST_GeomFromText('POINT(582323.84913511 1109302.67514772)',4326))
+--select split_multilinestring(850,ST_GeomFromText('POINT(582323.84913511 1109302.67514772)',4326))
 --select ST_NumPoints(the_geom) FROM giaothong where gid=140;
 --select astext(PointN(the_geom,3)) from giaothong where gid=140;
 --select id FROM vertices_tmp where astext(the_geom)='POINT(586547.939464075 1109940.46882983)';
@@ -225,7 +225,7 @@ CREATE OR REPLACE FUNCTION split_multi_from_any_point( x text, y text)
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-SELECT split_multi_from_any_point('582282.615447204','1109253.5820393') AS result
+--SELECT split_multi_from_any_point('582282.615447204','1109253.5820393') AS result
 --select split_multi_from_any_point(585713.49659,1109864.59449);
 --select astext(ST_GeomFromText('MULTILINESTRING((585699.6740927 1109929.70652988, 585699.6740927 1109929.70652988))',4326))
 -----------------------OK---------------------------------
