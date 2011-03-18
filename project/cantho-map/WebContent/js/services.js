@@ -489,13 +489,13 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	sodienthoai = xml_result.getElementsByTagName('ns:return')[2].childNodes[0].nodeValue;
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
-	if(diachi==" " || diachi==null) {diachi = " dang cap nhat.";}
-	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = " dang cap nhat.";}
+	if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 	//tao noi dung cho popup
 	var content= "<div class = 'maker-popup-ten'>" + ten +"</div>" + 	
 	"<div class='maker-popup-div1'> " +
-		"<div class = 'maker-popup-diachi'> Dia chi : "+ diachi + "</div>"+
-		"<div class = 'maker-popup-sdt'> So dien thoai : "+ sodienthoai + "</div>" +
+		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
+		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
 		"<div class = 'maker-popup-footer' > " +
 			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
 			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +

@@ -97,7 +97,7 @@
 <div class="kq-doKC-content" >
 	<!-- label class= "kc-hienhanh">Khoang cach hien hanh : 0m</label-->
 	<label class= "tong-kc">Tổng khoảng cách: </label>
-	<label class= "tong-kc-m">0km.</label>
+	<label class= "tong-kc-m">0 km</label>
 	<label class= "note-kc">Nhấp đúp để kết thúc việc đo.</label>
 </div>
 </div>
@@ -162,9 +162,9 @@
 <div class = "bottom_content" class = "bottom_content">	
 			<table><tr>
 			<td class = 'tim-duong not-clicked'> <a href="javascript:timDuong()"   class="menu_taskbar">Tìm đường</a></td>			
-			<td class = 'in-ban-do not-clicked'> <a href="javascript:inBanDo()"  class="menu_taskbar">In bản đồ</a></td>		
+			<!-- td class = 'in-ban-do not-clicked'> <a href="javascript:inBanDo()"  class="menu_taskbar">In bản đồ</a></td-->		
 			<td class = 'do-khoang-cach not-clicked'> <a href="javascript:doKhoangCach()" class="menu_taskbar">Đo khoảng cách</a></td>			
-		    <td class = 'chon-vung not-clicked'> <a href="javascript:getQuanHuyen()"  class="menu_taskbar">Chọn vùng</a></td>
+		    <!-- td class = 'chon-vung not-clicked'> <a href="javascript:getQuanHuyen()"  class="menu_taskbar">Chọn vùng</a></td-->
 			</tr></table>	
 	</div>
 <!--  label>Tim Duong</label>

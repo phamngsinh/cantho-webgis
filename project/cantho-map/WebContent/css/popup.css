@@ -131,44 +131,7 @@
 		width: 200px;
 		height: 20px;
 	}
-.maker-popup-ten {
-    color: black;
-    font-size: 15px;
-    font-weight: bold;
-    height: 45px;
-    margin-top: -5px;
-    padding: 0 0 0 15px;
-    text-align: center;
-    width: 240px;
-}
-.maker-popup-diachi{
-	font-size: 13px;
-	height: 35px;
-	padding-left:0px;
-}
-.maker-popup-sdt{
-	font-size: 13px;
-	height: 25px;
-	padding-left:0px;
-}
-.maker-popup-div1 .maker-popup-footer {
-    font-size: 12px;
-    height: 20px;
-    text-align: center;
-    margin-left: 9px;
-    margin-top: 5px;
-}
-.maker-popup-div2 .maker-popup-footer {
-    font-size: 12px;
-    height: 20px;
-    text-align: center;
-    margin-left: -20px;
-    margin-top: 5px;
-}
 
-.maker-popup-footer a{
-	text-decoration: none;
-	}
 /*#chicken{
 	width: 270px !important;
 	}
@@ -184,6 +147,55 @@
 #chicken_FrameDecorationDiv_3{
 	 width: 24px !important;
 	}*/
+
+.maker-popup-div1 {
+    padding-left: 15px;
+    width: 260px;
+}
+.maker-popup-ten {
+    color: black;
+    font-size: 14px;
+    font-weight: bold;
+    height: auto;
+    padding: 0 0 0 15px;
+    text-align: center;
+    width: 227px;
+    margin-left: 20px
+}
+.maker-popup-diachi{
+	font-size: 12px;
+	height: auto;
+	padding-left:20px;
+	background: url("../images/address.png") no-repeat scroll left top transparent;
+	margin-top: 10px;
+}
+.maker-popup-sdt{
+	font-size: 12px;
+	height: auto;
+	padding-left:20px;
+	background: url("../images/phone.png") no-repeat scroll left top transparent;
+	margin-top: 10px;
+}
+.maker-popup-div1 .maker-popup-footer {
+    font-size: 12px;
+    height: 20px;
+    text-align: center;
+    margin-left: 9px;
+    margin-top: 10px;
+}
+
+.maker-popup-footer a{
+	text-decoration: none;
+	}
+.maker-popup-div2{
+	display: none;
+	font-size: 12px;
+	padding-left: 50px;
+	margin-top: 10px;
+	}
+.maker-popup-div2 table tr{
+	margin-bottom: 5px;
+	}
 .maker-popup-quaylai{
 	width: 94px;
 	background:  url(../images/lblue.png) no-repeat;  
@@ -214,15 +226,6 @@
 .maker-popup-tim:hover{
 	background:  url(../images/lblue-h.png) no-repeat;  
 	}
-.maker-popup-div1 {
-    padding-left: 15px;
-    width: 240px;
-}
-.maker-popup-div2{
-	display: none;
-	font-size: 12px;
-	padding-left: 50px;
-	}
 .popup-result{
 	padding-left: 20px;
 	background:  url(../map-icon/nganhang16.png) no-repeat; 
@@ -238,10 +241,7 @@
 .result-div:hover{
 	background-color: 	#FDF5E6;
 	}
-#chicken{
-	
 
-	}
 .maker-popup-textdichvu{
 	height: 15px;
 	font-size: 12px;
@@ -252,3 +252,11 @@
 	font-size: 12px;
 	vertical-align: middle;
 	}
+.maker-popup-div2 .maker-popup-footer {
+    font-size: 12px;
+    height: 20px;
+    text-align: center;
+    margin-left: -20px;
+    margin-top: 5px;
+}
+	
