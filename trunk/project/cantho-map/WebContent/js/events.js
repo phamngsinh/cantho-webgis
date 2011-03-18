@@ -42,6 +42,7 @@ function timDuong(){
 	//alert("Bat dau tim duong");
 	timduong_clicked =1;
 	dokhoangcach_clicked=0;
+	$(".kq-doKC").stop().animate({right:-199},350,"linear");
 	$(".tim-duong").removeClass("not-clicked");
 	$(".do-khoang-cach").removeClass("clicked");
 	$(".tim-duong").addClass("clicked");
@@ -145,7 +146,7 @@ function doKhoangCach() {
 	$(".do-khoang-cach").addClass("clicked");
 	if($(".kq-doKC").css("right").replace("px","")<0){
 		$(".kq-doKC").stop().animate({right:115},350,"linear");
-		$(".tong-kc-m").html("0km");
+		$(".tong-kc-m").html("0 km");
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
