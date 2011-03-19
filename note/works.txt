@@ -1,0 +1,5 @@
+1. Tim Vi Tri (hoan thien giao dien, goi ham co doi so la geometry cua diem)
+2. Giao dien duong di
+3. Hoan thanh du lieu Truyen Thong
+4. Su Kien Enter cua cac o nhap lieu
+5. Giao dien tim xung quanh
