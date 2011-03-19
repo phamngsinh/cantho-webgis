@@ -16,7 +16,7 @@ import dijkstra.Dijkstra;
 public class CanThoMap {	
 	
 	Connection conn;
-	Statement s, st;  
+	Statement s;  
 	ResultSet rs, rs_nut, rs_canh, rs_1, rs_2, rs_nut_moi;
 
 	public ArrayList getDuongDi(double x1, double y1,double x2,double y2) throws ClassNotFoundException {		
@@ -42,8 +42,7 @@ public class CanThoMap {
 			 * @Neu diem chon khong trung voi dinh nao, thi ket qua co dang:
 			 * <multilinestring1
 			 * >$<len1>$<multilinestring2>$<len2>$<id_canh_giao>$id_dinh_moi
-			 */
-			
+			 */			
 			/** Duyet qua tung canh trong danh sach de them vao do thi ****/
 			/*** Lay ds canh tu du lieu ***/
 			String sql3 = "SELECT gid As id, ma_duong, ten_duong, mot_chieu, source, target,length,"
@@ -76,12 +75,11 @@ public class CanThoMap {
 			
 			/**** Lay du lieu giao cua Diem 1 ***********/
 			String sql1 = "SELECT split_multi_from_any_point('" + x1 + "','" + y1 + "') AS result";
-			rs_1 = st.executeQuery(sql1);
+			rs_1 = s.executeQuery(sql1);
 			String[] temp1;
 			String result1 = "";
 			while (rs_1.next()) {
 				result1 = rs_1.getString("result");
-				System.out.println(result1);
 				break;
 			}
 			temp1 = result1.split("\\$");
@@ -102,7 +100,7 @@ public class CanThoMap {
 			for (int i = 0; i < temp2.length; i++) {
 				//System.out.println(temp2[i]);
 			}
-			/**** Ket thuc lay du lieu giao cua Diem 1 ***********/
+			/**** Ket thuc lay du lieu giao cua Diem 2 ***********/
 			/****/		
 			int start_point = 0;//nut bat dau trong thuat toan Dijkstra
 			int end_point = 0;//nut ket thuc trong thuat toan Dijkstra		
@@ -155,6 +153,7 @@ public class CanThoMap {
 				while(rs.next()){
 					id_canh_giao=rs.getString("edges_id");
 				}
+				//System.out.println("id_canh_giao: "+id_canh_giao);
 				int chieu_hien_tai = 0;
 				/** chieu cua canh gan nhat voi diem */
 				int id_nguon = 0;
@@ -205,8 +204,7 @@ public class CanThoMap {
 				*/
 				/*****KET THUC TRUONG HOP HAI DIEM NAM TREN CUNG MOT CANH******/
 			}else{
-				//hai diem nam tren hai canh khac nhau
-				//copy doan duoi bo vao cho nay
+				//hai diem nam tren hai canh khac nhau				
 				//System.out.println("Ket qua: khong trung - result= "+result);
 				/********BAT DAU TRUONG HOP HAI NAM TREN HAI CANH KHAC NHAU*******/
 				
@@ -231,8 +229,8 @@ public class CanThoMap {
 					double len2 = Double.parseDouble(temp1[3]);
 					/** do dai cua multilinestring 2 **/
 					String id_canh_giao = temp1[4];
+					//System.out.println("id_canh_giao: "+id_canh_giao);
 					/** id cua canh gan nhat voi diem **/
-
 					int chieu_hien_tai = 0;
 					/** chieu cua canh gan nhat voi diem */
 					int id_nguon = 0;
@@ -274,9 +272,7 @@ public class CanThoMap {
 							//System.out.println("Kich thuoc sau khi xoa: "+edges.size());
 							j++;//tang len de khong gan lai du lieu thuoc tinh cua chieu nguoc lai(sai nut nguon va dich) khi duong la 2 chieu
 						}
-					}
-
-					
+					}					
 					/** Them nut moi **/
 					id_nut_moi++;
 					Nut nut_moi = new Nut(id_nut_moi + "", id_nut_moi+"_POINT(Nut Moi Bat Dau)");
@@ -374,7 +370,7 @@ public class CanThoMap {
 					}
 					end_point = id_nut_moi;			
 				}			
-				/********BAT DAU TRUONG HOP HAI NAM TREN HAI CANH KHAC NHAU*******/			
+				/********KET THUC TRUONG HOP HAI NAM TREN HAI CANH KHAC NHAU*******/			
 			}			
 			
 			/************ BAT DAU THUAT TOAN Dijkstra ********************/
@@ -404,16 +400,15 @@ public class CanThoMap {
 					ds_canh.add(arr);/*Them ngay: 23/02/2011*/					
 					source=target;
 				}
-			}		
-							
-					
+			}							
 					
 			for (Nut vertex : path) {
 				System.out.println(vertex.getName());		
 			}					
 			Double chi_phi=dijkstra.getCost(nodes.get(end_point-1));
+			
 			this.closeConnection(); 			 
-					
+			//System.out.println("Integer.MAX_VALUE = "+Integer.MAX_VALUE);		
 			return ds_canh;/*Them ngay: 23/02/2011*/
 			
 		} catch (SQLException e) {
@@ -693,7 +688,7 @@ public class CanThoMap {
 		String diachi = "";
 		String sdt = "";			
 		this.openConnection();
-		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point("+ x +","+ y +",'"+ chuoi +"',"+ bankinh +")");
+		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point('"+ x +"','"+ y +"','"+ chuoi +"',"+ bankinh +")");
 		//System.out.println("So mau tin hien tai(find_Place_Around_Point): ");
 		while (rs.next()){
 			String[] arr = new String[4];
@@ -1045,7 +1040,6 @@ public ArrayList find_place_by_text_and_lop(String str_id, String ten_lop, Strin
 		    String url = "jdbc:postgresql://localhost:5432/postgis"; 
 		    conn = DriverManager.getConnection(url, "postgres", "admin");		   
 			s=conn.createStatement();
-			st=conn.createStatement();
 		}
 	}
 
