@@ -33,7 +33,7 @@
 			</Font>
 			<Fill>
 		 		<CssParameter name="fill">#800000</CssParameter>	
-				<CssParameter name="fill-opacity">0.7</CssParameter>	
+				<CssParameter name="fill-opacity">0.5</CssParameter>	
 				<CssParameter name="font-weight">bold</CssParameter> 		
 		    </Fill>
 	 	    <Halo>
