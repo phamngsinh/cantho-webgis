@@ -28,9 +28,9 @@
 	 			<ogc:PropertyName>ten</ogc:PropertyName>
 	 	    </Label>
 			<Font>
-				<CssParameter name="font-family">Arial</CssParameter>
+				<CssParameter name="font-family">Times New Roman</CssParameter>
 				<CssParameter name="font-size">12</CssParameter>
-				<CssParameter name="font-style">normal</CssParameter>					
+				<CssParameter name="font-style">italic</CssParameter>				
 			</Font>
 			<Fill>
 		 		<CssParameter name="fill">#000000</CssParameter>	
@@ -77,13 +77,13 @@
 	 			<ogc:PropertyName>ten</ogc:PropertyName>
 	 	    </Label>
 			<Font>
-				<CssParameter name="font-family">Arial</CssParameter>
+				<CssParameter name="font-family">Times New Roman</CssParameter>
 				<CssParameter name="font-size">17</CssParameter>
-				<CssParameter name="font-style">normal</CssParameter>					
+				<CssParameter name="font-style">italic</CssParameter>					
 			</Font>
 			<Fill>
 		 		<CssParameter name="fill">#000000</CssParameter>	
-				<CssParameter name="fill-opacity">0.7</CssParameter>	
+				<CssParameter name="fill-opacity">0.5</CssParameter>	
 				<CssParameter name="font-weight">bold</CssParameter> 		
 		    </Fill>
 	 	    <Halo>
@@ -100,8 +100,10 @@
 					</AnchorPoint>
 				</PointPlacement>
 			</LabelPlacement>
-			<VendorOption name="maxDisplacement">700</VendorOption>
-			
+			<!--Khoang cach toi da co the dich chuyen khi bi overlap-->
+			<VendorOption name="maxDisplacement">50</VendorOption>
+			<!--Khong cho overlap trong ban kinh 10 pixels-->
+			<VendorOption name="spaceAround">10</VendorOption>
 	 	  </TextSymbolizer>
         </Rule>
       </FeatureTypeStyle>

@@ -15,7 +15,7 @@
           <PolygonSymbolizer>
             <Fill>
 		 		<CssParameter name="fill">#F5F5DC</CssParameter>
-		 		<CssParameter name="fill-opacity">0.8</CssParameter>
+		 		<CssParameter name="fill-opacity">1</CssParameter>
 		    </Fill>        
 			<Stroke>
 				<CssParameter name="stroke">#696969</CssParameter>
@@ -64,7 +64,7 @@
           <PolygonSymbolizer>
             <Fill>
 		 		<CssParameter name="fill">#F5F5DC</CssParameter>
-		 		<CssParameter name="fill-opacity">0.8</CssParameter>
+		 		<CssParameter name="fill-opacity">1</CssParameter>
 		    </Fill>        
 			<Stroke>
 				<CssParameter name="stroke">#696969</CssParameter>
@@ -100,8 +100,10 @@
 					</AnchorPoint>
 				</PointPlacement>
 			</LabelPlacement>
-			<VendorOption name="maxDisplacement">700</VendorOption>
-			
+			<!--Khoang cach toi da co the dich chuyen khi bi overlap-->
+			<VendorOption name="maxDisplacement">50</VendorOption>
+			<!--Khong cho overlap trong ban kinh 10 pixels-->
+			<VendorOption name="spaceAround">10</VendorOption>
 	 	  </TextSymbolizer>
         </Rule>
       </FeatureTypeStyle>
