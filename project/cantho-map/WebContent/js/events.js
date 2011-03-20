@@ -67,6 +67,9 @@ $(document).ready(function() {
 	
 	$('#clearSearchResultText').live('click', function()  {  
 		$("#tab_content2").html("");
+		//xoa cac features tren lop_dia_diem khi nhan len nut X
+		var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+		lop_dia_diem.destroyFeatures();
      });
 });
 
@@ -816,9 +819,64 @@ function chonDiemB(i) {
 	 $('#searchPopupContainer2').css('display', 'none');
 }
 function chonViTri(i) {	
-	a = $('.result3_' + i);
+	//Lay ra cac element cua document
+	var a = $('.result3_' + i);
+	var class_dc = $('.diachi_'+i);
+	var class_sdt = $('.sodienthoai_'+i);
+	//Lay noi dung cua cac thanh phan element
 	var wkt = a.attr('id');	
-	alert(wkt);
+	var ten = a.html();
+	var diachi = class_dc.html();
+	var sodienthoai = class_sdt.html();		
+	//Tao doi tuong feature tu chuoi wkt
+	var wkt_format = new OpenLayers.Format.WKT();
+	var point_geometry = wkt_format.read(wkt);
+	var x = point_geometry.geometry.x;
+	var y = point_geometry.geometry.y;
+	//alert(point_geometry.geometry.x);
+	var lonlat = new OpenLayers.LonLat(x,y);
+	map.setCenter(lonlat , false, false);
+	/*****Hien thi Popup, cho biet thong tin cua vi tri duoc chon****/
+	//tao noi dung cho popup
+	var content= "<div class = 'maker-popup-ten'>" + ten +"</div>" + 	
+	"<div class='maker-popup-div1'> " +
+		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
+		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
+		"<div class = 'maker-popup-footer' > " +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +
+		"</div>"+
+	"</div> " +
+	"<div class='maker-popup-div2'> " +
+		"<!--div  class  = 'maker-popup-timdv'>Tim dich vu o gan vi tri nay</div-->" +
+		"<table>" +
+			"<tr>" +
+				"<td>Ten</td>" +
+				"<td   class = 'maker-popup-tendv'><input class = 'maker-popup-textdichvu' name='textdichvu' type='text' value='' /></td>" +
+			"</tr>" +
+			"<tr>" +
+				"<td>Ban kinh</td>" +
+				"<td   class = 'maker-popup-bankinh' ><input id='txt_bk' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> met </td>" +
+			"</tr>" +
+		"</table>" +
+		"<div class = 'maker-popup-footer' >" +
+			"<input class = 'maker-popup-quaylai' name='buttonquaylai'     type='button' value='Quai lai' onclick='popup_QuayLai()' />" +
+			"<input class = 'maker-popup-tim'     name='buttonTim'         type='button' value='Tim' onclick='popup_Tim("+ x +","+ y +")'/>" +
+		"</div>" +
+	"</div>" ;
+	//Tao popup voi noi dung tren
+	var popup = new OpenLayers.Popup.FramedCloud("chicken", lonlat,
+			new OpenLayers.Size(100, 100), content, null, true);
+	//them popup vao ban do
+	map.addPopup(popup, true);
+	$('#txt_bk').bind("keypress",function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) {
+            return false;
+        }
+	});	
 }
 function clickHuyen(i){
 	a = $('.huyen_' + i);
