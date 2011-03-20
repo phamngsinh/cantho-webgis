@@ -106,9 +106,9 @@
 <div class = "left_content"  id = "left_content"> 
 		<div class = "left_top_content" id = "left_top_content">	
 			<ul class="tabs">
-				<li><a href="#">Tìm đường</a></li>
-				<li><a href="#">Tìm vị trí</a></li>
-				<li><a href="#">Hướng dẫn</a></li>
+				<li><a id="tab1" href="#">Tìm đường</a></li>
+				<li><a id="tab2" href="#">Tìm vị trí</a></li>
+				<li><a id="tab3" href="#">Hướng dẫn</a></li>
 			</ul>
 			<div class="panes">
 				<div class= "panes-div body-find-path">
@@ -128,11 +128,8 @@
 					<div class="search-result"></div>
 				</div>
 				<div class= "panes-div">
-					<div class="swrap-timduong">
-								<span class="a-z">a</span>
-								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
-								<a onclick="" class="del-timduonga" style="display: block;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
-					</div>
+					<div class="result-diadiem"></div>
+				
 				</div>
 				<div class= "panes-div"></div>
 			</div>	

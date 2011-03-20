@@ -238,8 +238,7 @@ function stoptimer_khac(){
 	document.getElementById("khac").style.color="blue";
 }
 $(function() {
-	$(".tabs").tabs(".panes > div",{
-effect: 'fade',
-fadeOutSpeed: "slow",
-rotate: true});
+	$(".tabs").tabs(".panes > div",{effect:       'fade',
+		                            fadeOutSpeed: "slow",
+		                            rotate:       true});
 });

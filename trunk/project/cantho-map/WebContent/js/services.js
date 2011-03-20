@@ -512,7 +512,7 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 			"</tr>" +
 			"<tr>" +
 				"<td>Ban kinh</td>" +
-				"<td   class = 'maker-popup-bankinh' ><input id='txt_bk' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /></td>" +
+				"<td   class = 'maker-popup-bankinh' ><input id='txt_bk' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> met </td>" +
 			"</tr>" +
 		"</table>" +
 		"<div class = 'maker-popup-footer' >" +
@@ -563,15 +563,17 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	var wkt_format = new OpenLayers.Format.WKT();
 	//alert("status: "+status);
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
-		
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result_"+i+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>- Dia chi: dang cap nhat" + diachi + "</label>";		
-		result = result + ten + diachi + "<br/></div>";
+		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";
+		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
+		result = result + ten + diachi + sodienthoai + "<br/></div>";
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -588,15 +590,23 @@ function callBack_Find_Place_By_Text(xml_result,status){
 }
 function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 	//alert("Thanh cong");	
-	var wkt="";	
+	var wkt="";
+	var ten = "";
+	var diachi = "";
+	var sodienthoai = "";
+	var result = "";
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
 	var wkt_format = new OpenLayers.Format.WKT();
 	//alert("status: "+status);
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
-		
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -604,20 +614,35 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 			var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
 			map.setCenter(lonlat);
 		}
+		ten = "<div class= 'result-div'>" +
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";
+		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
+		result = result + ten + diachi + sodienthoai + "<br/></div>";
 	}
-	
+	//alert(result);
+	$(".result-diadiem").html(result);
+	showLeftContent2();
 }
 function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 	//alert("Thanh cong");	
 	var wkt="";	
+	var ten = "";
+	var diachi = "";
+	var sodienthoai = "";
+	var result = "";
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
 	var wkt_format = new OpenLayers.Format.WKT();
 	//alert("status: "+status);
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
-		
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -625,8 +650,14 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 			var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
 			map.setCenter(lonlat);
 		}
+		ten = "<div class= 'result-div'>" +
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";
+		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
+		result = result + ten + diachi + sodienthoai + "<br/></div>";
 	}
-	
+	$(".result-diadiem").html(result);
+	showLeftContent2();
 }
 function callBack_Find_Place_By_Text2(xml_result,status){
 	//alert("Thanh cong");	
@@ -652,10 +683,13 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result2_"+i+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>- Dia chi: dang cap nhat" + diachi + "</label>";		
-		result = result + ten + diachi + "<br/></div>";
+		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";		
+		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
+		result = result + ten + diachi + sodienthoai + "<br/></div>";
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -689,6 +723,7 @@ function callBack_getLopDiaDiem(xml_result, status) {
 	var ten = "";
 	var diachi = "";
 	var sodienthoai = "";
+	var result ="";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
@@ -700,7 +735,16 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
+		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
+		ten = "<div class= 'result-div'>" +
+				"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";
+		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
+		result = result + ten + diachi + sodienthoai + "<br/></div>";
 	}		
+	$(".result-diadiem").html(result);
+	showLeftContent2();
 	if (lop_dia_diem.features.length >0 ){
 		//di chuyen diem dau tien ve trung tam cua ban do	
 		var first_feature = lop_dia_diem.features[0].geometry;

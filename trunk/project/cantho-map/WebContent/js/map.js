@@ -416,6 +416,7 @@ function getDuongDi() {
 	// alert("Bat dau goi webservice");
 	callService(start_point.x, start_point.y, end_point.x, end_point.y);
 	// dong thoi diactivate olControlDrawFeature va activate control
+	showLeftContent1();
 }
 /** Doi hinh cursor khi hover feature tren lop_dia_diem* */
 function feature_Hover(feature) {
