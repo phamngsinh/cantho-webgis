@@ -127,8 +127,8 @@
 					</div>
 					<div class="search-result"></div>
 				</div>
-				<div class= "panes-div">
-					<div class="result-diadiem"></div>
+				<div id="tab_content2" class= "panes-div">
+				    
 				
 				</div>
 				<div class= "panes-div"></div>
