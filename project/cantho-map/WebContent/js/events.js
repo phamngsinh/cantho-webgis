@@ -64,6 +64,10 @@ $(document).ready(function() {
 	$('.del-timduongb').live('click', function()  {  
 		$('.tim-b').val('');
      });
+	
+	$('#clearSearchResultText').live('click', function()  {  
+		$("#tab_content2").html("");
+     });
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
@@ -229,6 +233,7 @@ function showLeftContent2(){
 	$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
 	$(".olControlScaleLine").stop().animate({left:305},350,"linear");
 	$("#tab2").click();
+	$("#clearSearchResultText").css("display","block");
 }
 function OnblurTextBoxAB(a){
 	a=$(a);

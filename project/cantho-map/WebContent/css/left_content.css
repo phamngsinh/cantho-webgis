@@ -274,3 +274,13 @@ ol, ul {
     border-bottom: 1px solid #FFFFFF;
     border-top: 1px solid #FFFFFF;
 	}
+#clearSearchResultText {
+    background: url("../images/Icons.png") no-repeat scroll -2px -192px transparent;
+    display: block;
+    height: 16px;
+    padding: 0 0 2px;
+    text-indent: -9999px;
+    width: 16px;
+    float: right;
+    display: none;
+}
