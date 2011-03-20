@@ -571,9 +571,9 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result_"+i+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";
-		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
-		result = result + ten + diachi + sodienthoai + "<br/></div>";
+		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";
+		sodienthoai = "<div class= 'sodienthoai-result'>" + sodienthoai + "</div>";
+		result = result + ten + diachi + sodienthoai + "</div>";
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -616,14 +616,15 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result diachi_"+i+"'>" + diachi + "</label>";
-		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</label>";
-		result = result + ten + diachi + sodienthoai + "<br/></div>";
+		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
+		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
+		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="	<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
-	"<div class='result-diadiem'>" +
-	result +
-	"</div>";
+	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " dia diem.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+			"<div class='result-diadiem'>" +
+			result +
+			"</div>";
 	$("#tab_content2").html(result);
 	showLeftContent2();
 }
@@ -655,11 +656,12 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result diachi_"+i+"'>" + diachi + "</label>";
-		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</label>";
-		result = result + ten + diachi + sodienthoai + "<br/></div>";
+		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
+		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
+		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="	<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " dia diem.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -694,9 +696,9 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result2_"+i+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result'>" + diachi + "</label>";		
-		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result'>" + sodienthoai + "</label>";
-		result = result + ten + diachi + sodienthoai + "<br/></div>";
+		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";		
+		sodienthoai = "<div class= 'sodienthoai-result'>" + sodienthoai + "</div>";
+		result = result + ten + diachi + sodienthoai + "</div>";
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -745,15 +747,16 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
-				"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
-		diachi = "<br/>" + "&nbsp &nbsp <label class= 'diachi-result diachi_"+i+"'>" + diachi + "</label>";
-		sodienthoai = "<br/>" + "&nbsp &nbsp <label class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</label>";
-		result = result + ten + diachi + sodienthoai + "<br/></div>";
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
+		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
+		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result="	<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
-	"<div class='result-diadiem'>" +
-	result +
-	"</div>";
+	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " dia diem.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+			"<div class='result-diadiem'>" +
+			result +
+			"</div>";
 	$("#tab_content2").html(result);
 	showLeftContent2();
 	if (lop_dia_diem.features.length >0 ){
