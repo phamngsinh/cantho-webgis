@@ -115,7 +115,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     width: 250px;
-    padding: 10px 5px 0px 10px;
+    padding: 1px 5px 0px 0px;
 }
 .SelectPlaceContent2 {
     background: url("../images/SPshadow-inset.png") no-repeat scroll left top transparent;
@@ -125,7 +125,7 @@
     overflow-x: hidden;
     overflow-y: auto;
     width: 250px;
-    padding: 10px 5px 0px 10px;
+    padding: 1px 5px 0px 0px;
 }
 .maker-popup{
 		width: 200px;
@@ -242,12 +242,14 @@
 	font-size: 12px;
 	padding-left:20px;
 	margin-top:10px;
+	margin-left:10px;
 	background: url("../images/address.png") no-repeat scroll left top transparent;
 	}
 .sodienthoai-result{
 	font-size: 12px;
 	padding-left:20px;
-	margin-top:10px;
+	margin-top:5px;
+	margin-left:10px;
 	background: url("../images/phone.png") no-repeat scroll left top transparent;
 	}
 .result-div:hover{
@@ -258,6 +260,7 @@
 	height: 15px;
 	font-size: 12px;
 	vertical-align: middle;
+	width: 100px;
 	}
 .maker-popup-textbankinh{
 	height: 15px;
@@ -269,7 +272,7 @@
     font-size: 12px;
     height: 20px;
     text-align: center;
-    margin-left: -20px;
+    margin-left: -40px;
     margin-top: 5px;
 }
 	

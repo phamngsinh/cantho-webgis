@@ -283,4 +283,13 @@ ol, ul {
     width: 16px;
     float: right;
     display: none;
+    margin-top: 5px;
 }
+.sodiadiem{
+	font-size: 14px;
+	position: absolute;
+	left: 0;
+	right: 20px;
+	margin-top: 5px;
+	margin-left:10px;
+	}
