@@ -28,12 +28,42 @@ $(document).ready(function() {
 					find_Place_By_Text_And_Xa(ten,ds_ma);
 				}
 			}
-			
 			HideMapList();
 		}
-		
 	});
-	
+	$('#mapinput').keyup(function(e) {
+	     if(e.keyCode == 13) {
+	    	    var ten=$("#mapinput").val();
+	    		if(ten!=""){
+	    			var ds_ma="";
+	    			$(".dTreeNode").each(function(){
+	    				  if ($(this).children(":first").attr("checked")==true)
+	    					  if(ds_ma==""){
+	    						  ds_ma=ds_ma + $(this).children(":first").val();
+	    					  }else{
+	    						  ds_ma=ds_ma+"$" + $(this).children(":first").val();
+	    					  }
+	    				  });
+	    			if($("#map_path_div").attr("name")=="huyen"){
+	    				find_Place_By_Text_And_Huyen(ten,ds_ma);
+	    			}else if($("#map_path_div").attr("name")=="xa"){
+	    				if(ds_ma==""){
+	    					var mahuyen_hientai=$("#path_huyen").attr("value");
+	    					find_Place_By_Text_And_Huyen(ten,mahuyen_hientai);
+	    				}else{
+	    					find_Place_By_Text_And_Xa(ten,ds_ma);
+	    				}
+	    			}
+	    			HideMapList();
+	    		}
+	     }
+	});
+	$('.del-timduonga').live('click', function()  {  
+		$('.tim-a').val('');
+     }); 
+	$('.del-timduongb').live('click', function()  {  
+		$('.tim-b').val('');
+     });
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
@@ -187,7 +217,19 @@ function moveIconClick(){
 		
 			
 		}
-	}	
+	}
+function showLeftContent1(){
+	$("#left_content").stop().animate({left:0},350,"linear");
+	$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
+	$(".olControlScaleLine").stop().animate({left:305},350,"linear");
+	$("#tab1").click();
+}
+function showLeftContent2(){
+	$("#left_content").stop().animate({left:0},350,"linear");
+	$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
+	$(".olControlScaleLine").stop().animate({left:305},350,"linear");
+	$("#tab2").click();
+}
 function OnblurTextBoxAB(a){
 	a=$(a);
 	var b=a.parent().parent()[0].id;
@@ -666,6 +708,7 @@ function chonDiemA(i) {
 	}
 	control_select.activate();
 	// alert(a.attr('id'));
+	 $('#searchPopupContainer').css('display', 'none');
 }
 /*******************************************************************************
  * Neu so feature hien tai == 0, thi them vao binh thuong, dinh dang icon la
@@ -765,7 +808,12 @@ function chonDiemB(i) {
 		var end_point = lop_diem_chon.features[1].geometry.clone();
 		callService(start_point.x, start_point.y, end_point.x, end_point.y);
 	}		
-
+	 $('#searchPopupContainer2').css('display', 'none');
+}
+function chonViTri(i) {	
+	a = $('.result3_' + i);
+	var wkt = a.attr('id');	
+	alert(wkt);
 }
 function clickHuyen(i){
 	a = $('.huyen_' + i);

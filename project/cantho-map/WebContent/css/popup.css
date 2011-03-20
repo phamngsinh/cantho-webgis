@@ -230,13 +230,25 @@
 	padding-left: 20px;
 	background:  url(../map-icon/nganhang16.png) no-repeat; 
 	text-decoration: none;
+	padding-bottom: 10px;
 	}
 .result-div{
-	height: 100px;
-	padding-left: 5px;
-	padding-top: 10px;
-	-moz-border-radius: 5px 5px 5px 5px;
+	font-size: 14px;
+	height: auto;
+	padding: 10px 0px 10px 5px;
 	border-bottom: 1px solid #C1C1C1;
+	}
+.diachi-result{
+	font-size: 12px;
+	padding-left:20px;
+	margin-top:10px;
+	background: url("../images/address.png") no-repeat scroll left top transparent;
+	}
+.sodienthoai-result{
+	font-size: 12px;
+	padding-left:20px;
+	margin-top:10px;
+	background: url("../images/phone.png") no-repeat scroll left top transparent;
 	}
 .result-div:hover{
 	background-color: 	#FDF5E6;
@@ -251,6 +263,7 @@
 	height: 15px;
 	font-size: 12px;
 	vertical-align: middle;
+	width: 100px;
 	}
 .maker-popup-div2 .maker-popup-footer {
     font-size: 12px;

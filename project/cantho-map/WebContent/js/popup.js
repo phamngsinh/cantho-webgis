@@ -55,13 +55,34 @@
              left: (pos.left + width) + 'px',  
              top: pos.top - 5 + 'px'  
          });               
-         if($('.tim-a').val()!='Nhập vào địa danh...'){     	 
+         if($('.tim-a').val()!='Nhập vào địa danh...' && $('.tim-a').val()!=''){     	 
              var ten_dia_diem= $(".tim-a").val();             
              find_Place_By_Text(ten_dia_diem); 
              for(i =1;i<100000;i++){a=5;}
-             container.css('display', 'block');              
+             container.css('display', 'block');   
+             container2.css('display', 'none');
          }       
      });
+     $('.tim-a').keyup(function(e) {
+	     if(e.keyCode == 13) {
+	    	 if (hideTimer)  
+	             clearTimeout(hideTimer);  
+	         var pos = $(this).offset();  
+	         var width = $(this).width();  
+	         container.css({  
+	             left: (pos.left + width) + 'px',  
+	             top: pos.top - 5 + 'px'  
+	         });               
+	         if($('.tim-a').val()!='Nhập vào địa danh...' && $('.tim-a').val()!=''){     	   	 
+	             var ten_dia_diem= $(".tim-a").val();             
+	             find_Place_By_Text(ten_dia_diem); 
+	             for(i =1;i<100000;i++){a=5;}
+	             container.css('display', 'block');     
+	             container2.css('display', 'none');
+	         }       
+	     	}
+     });
+     
      $('.searchB').live('click', function()  {  
          if (hideTimer2)  
              clearTimeout(hideTimer2);  
@@ -71,12 +92,32 @@
              left: (pos.left + width) + 'px',  
              top: pos.top - 5 + 'px'  
          });       
-         if($('.tim-b').val()!='Nhập vào địa danh...'){
+         if($('.tim-b').val()!='Nhập vào địa danh...' && $('.tim-b').val()!=''){     	
              var ten_dia_diem2= $(".tim-b").val();             
              find_Place_By_Text2(ten_dia_diem2);  
              for(i =1;i<100000;i++){a=5;}
              container2.css('display', 'block'); 
+             container.css('display', 'none');
          }
+     });  
+     $('.tim-b').keyup(function(e) {
+	     if(e.keyCode == 13) { 
+	         if (hideTimer2)  
+	             clearTimeout(hideTimer2);  
+	         var pos = $(this).offset();  
+	         var width = $(this).width();  
+	         container2.css({  
+	             left: (pos.left + width) + 'px',  
+	             top: pos.top - 5 + 'px'  
+	         });       
+	         if($('.tim-b').val()!='Nhập vào địa danh...' && $('.tim-b').val()!=''){
+	             var ten_dia_diem2= $(".tim-b").val();             
+	             find_Place_By_Text2(ten_dia_diem2);  
+	             for(i =1;i<100000;i++){a=5;}
+	             container2.css('display', 'block'); 
+	             container.css('display', 'none');
+	         }
+	     }
      });  
      $('.searchA').live('mouseout', function()  {  
          if (hideTimer)  
