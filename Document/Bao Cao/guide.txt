@@ -1,0 +1,6 @@
+-du lieu: 
+1. Liet ke danh sach cac lop xay dung
+2. cac buoc thuc hien
+3. Dac ta phan mem
+4. Mo hinh tong the cua he thong
+5. Trinh bay cac phuong phap xay dung he thong
