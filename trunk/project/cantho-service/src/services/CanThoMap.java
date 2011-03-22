@@ -26,7 +26,7 @@ public class CanThoMap {
 			List<Canh> edges = new ArrayList<Canh>();
 			List<Nut> nodes = new ArrayList<Nut>();			
 			// lay ra danh sach cac dinh
-			String sql_nut = "SELECT id, ST_AsText(the_geom) As the_geom FROM vertices_tmp Order By id";
+			String sql_nut = "SELECT id, ST_AsText(the_geom) As the_geom FROM dinh Order By id";
 			rs_nut = s.executeQuery(sql_nut);
 			while (rs_nut.next()) {
 				Nut node = new Nut(rs_nut.getString("id"), rs_nut.getString("id")+ "_" + rs_nut.getString("the_geom"));
@@ -45,7 +45,7 @@ public class CanThoMap {
 			 */			
 			/** Duyet qua tung canh trong danh sach de them vao do thi ****/
 			/*** Lay ds canh tu du lieu ***/
-			String sql3 = "SELECT gid As id, ma_duong, ten_duong, mot_chieu, source, target,length,"
+			String sql3 = "SELECT gid As id, ma_duong, ten_duong, mot_chieu, nut_nguon, nut_dich, chieu_dai,"
 					+ " ST_AsText(the_geom) as the_geom "
 					+ " FROM giaothong"
 					+ " Order By id";
@@ -53,15 +53,15 @@ public class CanThoMap {
 			/**Duyet qua tung mau tin de them canh vao danh sach canh**/
 			while (rs_canh.next()) {
 				String current_id = rs_canh.getString("id");
-				int source = rs_canh.getInt("source") - 1;
-				int target = rs_canh.getInt("target") - 1;
+				int source = rs_canh.getInt("nut_nguon") - 1;
+				int target = rs_canh.getInt("nut_dich") - 1;
 				String ten_duong = rs_canh.getString("ten_duong");
 				if (ten_duong == null) {
 					ten_duong = "Duong Khong Ten";
 				}
 				int mot_chieu = rs_canh.getInt("mot_chieu");
 				String the_geom = rs_canh.getString("the_geom");
-				Double chieu_dai = rs_canh.getDouble("length");			
+				Double chieu_dai = rs_canh.getDouble("chieu_dai");			
 						
 				Canh edge = new Canh(current_id, nodes.get(source),nodes.get(target), chieu_dai, the_geom, ten_duong,mot_chieu);
 				edges.add(edge);
@@ -209,7 +209,7 @@ public class CanThoMap {
 				/********BAT DAU TRUONG HOP HAI NAM TREN HAI CANH KHAC NHAU*******/
 				
 				int id_nut_moi = 0;
-				rs_nut_moi = s.executeQuery("SELECT MAX(id) As id_nut_max FROM VERTICES_TMP");
+				rs_nut_moi = s.executeQuery("SELECT MAX(id) As id_nut_max FROM dinh");
 				while (rs_nut_moi.next()) {
 					id_nut_moi = rs_nut_moi.getInt("id_nut_max");
 				}		
