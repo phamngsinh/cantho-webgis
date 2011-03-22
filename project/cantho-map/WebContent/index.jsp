@@ -149,7 +149,7 @@
 		<tr><td><a style="background:url('map-icon/congty.png') no-repeat scroll left center" id = "congty"              href="javascript:getLopDiaDiem('congty')"            class="right-item congty"       onmouseover= "blinklink_congty()"      onmouseout= "stoptimer_congty()"      >Công Ty</a>		</td></tr>		
 		<tr><td><a style="background:url('map-icon/giaitri16.png') no-repeat scroll left center" id = "giaitri"         href="javascript:getLopDiaDiem('giaitri')"           class="right-item giaitri"      onmouseover= "blinklink_giaitri()"     onmouseout= "stoptimer_giaitri()"     >Giải Trí</a>	</td></tr>			
 		<tr><td><a style="background:url('map-icon/denchua16.png') no-repeat scroll left center" id = "denchua"         href="javascript:getLopDiaDiem('denchua')"           class="right-item denchua"      onmouseover= "blinklink_denchua()"     onmouseout= "stoptimer_denchua()"     >Đền Chùa</a>	</td></tr>			
-		<tr><td><a style="background:url('map-icon/truyenthong16.png') no-repeat scroll left center" id = "truyenthong" href="javascript:getLopDiaDiem('truyenhinhbaochi')"  class="right-item truyenthong"  onmouseover= "blinklink_truyenthong()" onmouseout= "stoptimer_truyenthong()" >Truyền Thông</a></td></tr>				
+		<tr><td><a style="background:url('map-icon/truyenthong16.png') no-repeat scroll left center" id = "truyenthong" href="javascript:getLopDiaDiem('buudien')"           class="right-item truyenthong"  onmouseover= "blinklink_truyenthong()" onmouseout= "stoptimer_truyenthong()" >Bưu Điện</a></td></tr>				
 		<tr><td><a style="background:url('map-icon/nganhang16.png') no-repeat scroll left center" id = "nganhang"       href="javascript:getLopDiaDiem('nganhang')"          class="right-item nganhang"     onmouseover= "blinklink_nganhang()"    onmouseout= "stoptimer_nganhang()"    >Ngân Hàng</a>	</td></tr>			
    		<tr><td><a style="background:url('map-icon/congvien16.png') no-repeat scroll left center" id = "congvien"       href="javascript:getLopDiaDiem('congvien')"          class="right-item congvien"     onmouseover= "blinklink_congvien()"    onmouseout= "stoptimer_congvien()"    >Công Viên</a>	</td></tr>			
    		<tr><td><a style="background:url('map-icon/cau.png') no-repeat scroll left center" id = "cau"                 href="javascript:getLopDiaDiem('cau')"               class="right-item cau"          onmouseover= "blinklink_cau()"         onmouseout= "stoptimer_cau()"         >Cầu</a>			</td></tr>	
@@ -161,7 +161,7 @@
 			<td class = 'tim-duong not-clicked'> <a href="javascript:timDuong()"   class="menu_taskbar">Tìm đường</a></td>			
 			<!-- td class = 'in-ban-do not-clicked'> <a href="javascript:inBanDo()"  class="menu_taskbar">In bản đồ</a></td-->		
 			<td class = 'do-khoang-cach not-clicked'> <a href="javascript:doKhoangCach()" class="menu_taskbar">Đo khoảng cách</a></td>			
-		    <!-- td class = 'chon-vung not-clicked'> <a href="javascript:getQuanHuyen()"  class="menu_taskbar">Chọn vùng</a></td-->
+		    <td class = 'chon-vung not-clicked'> <a href="javascript:printMap()"  class="menu_taskbar">Print</a></td>
 			</tr></table>	
 	</div>
 <!--  label>Tim Duong</label>

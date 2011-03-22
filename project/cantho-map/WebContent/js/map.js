@@ -468,3 +468,20 @@ function zoomChanged() {
 		}
 	}
 }
+function printMap()
+{
+	var lop_diem_chon=map.getLayersByName("lop_diem_chon")[0];
+	var num_point=lop_diem_chon.features.length;
+	var x1;
+	var y1;
+	var x2;
+	var y2;
+	if(num_point==2){
+		x1= lop_diem_chon.features[0].geometry.x;
+		y1= lop_diem_chon.features[0].geometry.y;
+		x2= lop_diem_chon.features[1].geometry.x;
+		y2= lop_diem_chon.features[1].geometry.y;
+		window.open("printmap.jsp?x1="+x1+"&y1="+y1+"&x2="+x2+"&y2="+y2+"", null,"height = 768,width = 1024,status=true,resizable=no" );
+	}
+}
+
