@@ -134,10 +134,10 @@ CREATE OR REPLACE FUNCTION split_multilinestring(gid_a integer, point_click geom
 		--return start_point;
 		--return end_point;
 		IF start_point=astext(point_click) THEN
-			result_id:= id FROM vertices_tmp WHERE astext(the_geom)=start_point;
+			result_id:= id FROM dinh WHERE astext(the_geom)=start_point;
 			return '_$'||result_id;
 		ELSIF end_point=astext(point_click) THEN
-			result_id:= id FROM vertices_tmp where astext(the_geom)=end_point;
+			result_id:= id FROM dinh where astext(the_geom)=end_point;
 			return '_$'||result_id;			
 		ELSE
 		   FOR j IN 1 .. num_of_point LOOP	
@@ -188,8 +188,8 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 --select split_multilinestring(850,ST_GeomFromText('POINT(582323.84913511 1109302.67514772)',4326))
 --select ST_NumPoints(the_geom) FROM giaothong where gid=140;
 --select astext(PointN(the_geom,3)) from giaothong where gid=140;
---select id FROM vertices_tmp where astext(the_geom)='POINT(586547.939464075 1109940.46882983)';
---Select astext(the_geom) from vertices_tmp where id=105;
+--select id FROM dinh where astext(the_geom)='POINT(586547.939464075 1109940.46882983)';
+--Select astext(the_geom) from dinh where id=105;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --Tim canh gan nhat cua 1 diem duoc click tren ban do, tach canh ra lam 2 doan neu diem gan nhat ko trung voi 1 trong 2 dinh cua canh gan nhat do
@@ -251,7 +251,7 @@ CREATE OR REPLACE FUNCTION split_multilinestring2(gid_a integer, point1 geometry
 		id2 integer;
 		result text;
 	    BEGIN	
-		id1:=Max(id) from vertices_tmp;
+		id1:=Max(id) from dinh ;
 		id1:=id1+1;
 		id2:=id1+1;
 		a1:='';
