@@ -6,3 +6,4 @@ OK: 5. Giao dien tim xung quanh
 6. Them sdt trong lop cho
 7. Bo sdt trong lop cong vien
 8. Sua lop truyenthongbaochi thanh lop buudien
+9. Bo lop trungtam
