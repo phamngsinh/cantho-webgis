@@ -7,3 +7,4 @@ OK: 5. Giao dien tim xung quanh
 7. Bo sdt trong lop cong vien
 8. Sua lop truyenthongbaochi thanh lop buudien
 9. Bo lop trungtam
+10. Khi click vao mot lop menu ben phai thi phai tat di popup dang hien
