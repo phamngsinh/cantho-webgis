@@ -50,21 +50,20 @@ $BODY$
 	point_temp text;
 	BEGIN
 	    point_temp:='POINT(' || x || ' ' || y ||  ')';
-	    result= diachi from coquan           where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from truong           where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from benhvien         where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from cho              where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from ben              where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from khachsan         where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from congty           where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from giaitri          where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from denchua          where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from truyenhinhbaochi where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from nganhang         where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from congvien         where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from cau              where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from thuvien          where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
-	    result= diachi from trungtam         where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from coquan     where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from truong     where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from benhvien   where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from cho        where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from ben        where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from khachsan   where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from congty     where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from giaitri    where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from denchua    where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from buudien    where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from nganhang   where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from congvien   where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from cau        where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
+	    result= diachi from thuvien    where astext(the_geom)=point_temp order by gid limit 1; if result is not null then return result;	end if;
 	    return 'nodata';
 	END;	
 $BODY$
@@ -503,7 +502,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		--4  cho
 		ten1:= ten       from cho where Astext(the_geom)= t; 
 		diachi1:= diachi from cho where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
-		sdt1:= '';
+		sdt1:= sdt       from cho where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
 			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 		end if;
@@ -546,10 +545,10 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		if(ten1 is not null) then 
 			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 		end if;
-		--10   truyenhinhbaochi
-		ten1:= ten       from truyenhinhbaochi where Astext(the_geom)= t; 
-		diachi1:= diachi from truyenhinhbaochi where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
-		sdt1:= sdt       from truyenhinhbaochi where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
+		--10   buudien
+		ten1:= ten       from buudien where Astext(the_geom)= t; 
+		diachi1:= diachi from buudien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
+		sdt1:= sdt       from buudien where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
 			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 		end if;
@@ -581,13 +580,6 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		if(ten1 is not null) then 
 			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 		end if;
-		--15 trungtam
-		ten1:= ten       from trungtam where Astext(the_geom)= t; 
-		diachi1:= diachi from trungtam where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
-		sdt1:= sdt       from trungtam where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
-		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
-		end if;
 		return 'nodata$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 	END;
 	$BODY$
@@ -610,18 +602,17 @@ RETURNS SETOF coquan AS
 	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--1
 	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--2
 	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,sdt,the_geom         FROM cho              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--4
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--5
 	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--6
 	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--7
 	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--8
 	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM buudien          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--10
 	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--15
 	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
@@ -645,18 +636,17 @@ CREATE OR REPLACE FUNCTION find_place_around_point(x text, y text, t text, radiu
 	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--1
 	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--2
 	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,sdt,the_geom         FROM cho              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--4
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--5
 	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--6
 	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--7
 	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--8
 	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM buudien where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--10
 	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--11
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--12
+	    FOR r IN SELECT gid,ma,ten,diachi, sdt as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
 	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
@@ -676,18 +666,17 @@ RETURNS SETOF coquan AS
 	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--1
 	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--2
 	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,sdt,the_geom         FROM cho              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--4
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--5
 	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--6
 	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--7
 	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--8
 	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM buudien where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--10
 	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
 	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
@@ -704,18 +693,17 @@ RETURNS SETOF coquan AS
 	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--1
 	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--2
 	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--3
-	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--4
+	    FOR r IN SELECT gid,ma,ten,diachi,sdt,the_geom         FROM cho              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--4
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--5
 	    FOR r IN SELECT *                       		   FROM khachsan         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--6
 	    FOR r IN SELECT *                       		   FROM congty           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--7
 	    FOR r IN SELECT *                       		   FROM giaitri          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--8
 	    FOR r IN SELECT *                       		   FROM denchua          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT *                       		   FROM truyenhinhbaochi where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT *                       		   FROM buudien where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--10
 	    FOR r IN SELECT *                       		   FROM nganhang         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--15
 	    FOR r IN SELECT *                       		   FROM thuvien          where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--14
-	    FOR r IN SELECT *                       		   FROM trungtam         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--15
 	    RETURN;
 	END
 	$BODY$
@@ -737,18 +725,17 @@ RETURNS SETOF coquan AS
 	    if lop='coquan'           then FOR r IN SELECT *                       		  FROM coquan           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--1
 	    if lop='truong'           then FOR r IN SELECT *                       		  FROM truong           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--2
 	    if lop='benhvien'         then FOR r IN SELECT *                       		  FROM benhvien         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--3
-	    if lop='cho'              then FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cho              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--4
+	    if lop='cho'              then FOR r IN SELECT gid,ma,ten,diachi,sdt,the_geom         FROM cho              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--4
 	    if lop=' ben'             then FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM ben              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--5
 	    if lop='khachsan'         then FOR r IN SELECT *                       		  FROM khachsan         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--6
 	    if lop='congty'           then FOR r IN SELECT *                       		  FROM congty           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--7
 	    if lop='giaitri'          then FOR r IN SELECT *                       		  FROM giaitri          where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--8
 	    if lop='denchua'          then FOR r IN SELECT *                       		  FROM denchua          where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--9
-	    if lop='truyenhinhbaochi' then FOR r IN SELECT *                       		  FROM truyenhinhbaochi where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--10
+	    if lop='buudien'          then FOR r IN SELECT *                       		  FROM buudien          where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--10
 	    if lop='nganhang'         then FOR r IN SELECT *                       		  FROM nganhang         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--11
 	    if lop='congvien'         then FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM congvien         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--12
 	    if lop='cau'              then FOR r IN SELECT gid,ma,ten,diachi,null as sdt,the_geom FROM cau              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--15
 	    if lop='thuvien'          then FOR r IN SELECT *                       		  FROM thuvien          where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--14
-	    if lop='trungtam'         then FOR r IN SELECT *                       		  FROM trungtam         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--15
 	    RETURN;
 	END
 	$BODY$
