@@ -556,7 +556,7 @@ public class CanThoMap {
 		String sdt = "";
 		ArrayList ds_dia_diem = new ArrayList();
 		//System.out.println("-"+ten_lop+"-");		
-		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") ||ten_lop.equalsIgnoreCase("cho") ||ten_lop.equalsIgnoreCase("ben")){
+		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") ||ten_lop.equalsIgnoreCase("ben")){
 			
 			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom From " + ten_lop ;
 			rs = s.executeQuery(sql_1);
