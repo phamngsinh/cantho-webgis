@@ -620,7 +620,7 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " dia diem.</div>" +
+	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +
@@ -660,7 +660,7 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " dia diem.</div>" +
+	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +
@@ -752,7 +752,7 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " dia diem.</div>" +
+	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +

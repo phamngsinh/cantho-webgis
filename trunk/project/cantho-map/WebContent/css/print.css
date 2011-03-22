@@ -1,0 +1,22 @@
+#map{
+	top:0;
+	right:120px;
+	left:0;
+	right:0;
+	position:fixed;
+	z-index: -1;
+	bottom: 0;
+}
+.inbando{
+	top:10px;
+	right: 20px;
+	position: fixed;
+	}
+.inbando1{
+	top:10px;
+	left: 20px;
+	position: fixed;
+	}
+#all{
+	overflow-y:visible;
+}
