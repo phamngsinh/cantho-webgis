@@ -1,5 +1,8 @@
-1. Tim Vi Tri (hoan thien giao dien, goi ham co doi so la geometry cua diem)
-2. Giao dien duong di
-3. Hoan thanh du lieu Truyen Thong
-4. Su Kien Enter cua cac o nhap lieu
-5. Giao dien tim xung quanh
+OK: 1. Tim Vi Tri (hoan thien giao dien, goi ham co doi so la geometry cua diem)
+OK: 2. Giao dien duong di
+OK: 3. Hoan thanh du lieu Truyen Thong
+OK: 4. Su Kien Enter cua cac o nhap lieu
+OK: 5. Giao dien tim xung quanh
+6. Them sdt trong lop cho
+7. Bo sdt trong lop cong vien
+8. Sua lop truyenthongbaochi thanh lop buudien
