@@ -53,7 +53,7 @@
 			<!--Khoang cach toi da co the dich chuyen khi bi overlap-->
 			<!--<VendorOption name="maxDisplacement">700</VendorOption>-->
 			<!--Khong cho overlap trong ban kinh 10 pixels-->
-			<VendorOption name="spaceAround">10</VendorOption>
+			<VendorOption name="spaceAround">50</VendorOption>
 	 	  </TextSymbolizer>
         </Rule>
       </FeatureTypeStyle>
