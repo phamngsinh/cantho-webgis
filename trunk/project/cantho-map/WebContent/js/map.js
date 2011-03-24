@@ -472,6 +472,7 @@ function printMap()
 {
 	var lop_diem_chon=map.getLayersByName("lop_diem_chon")[0];
 	var num_point=lop_diem_chon.features.length;
+	var bound;
 	var x1;
 	var y1;
 	var x2;
@@ -482,6 +483,11 @@ function printMap()
 		x2= lop_diem_chon.features[1].geometry.x;
 		y2= lop_diem_chon.features[1].geometry.y;
 		window.open("printmap.jsp?x1="+x1+"&y1="+y1+"&x2="+x2+"&y2="+y2+"", null,"height = 768,width = 1024,status=true,resizable=no" );
+	}
+	else{
+		bound=map.getExtent();
+		alert(bound.toBBOX());
+		
 	}
 }
 
