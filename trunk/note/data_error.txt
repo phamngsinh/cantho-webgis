@@ -2,3 +2,4 @@ coquan:
 1. Cong An Nhan Dan (Duong Tran Phu, nam sai duong)
 2. Cho Trung Nhat chua danh tieng viet co dau
 3. Nha may Ca An Do Duong thanh tieng viet co dau
+4. Co mot duong 'Ngo Quyuen' bi sai chinh ta
