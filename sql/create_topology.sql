@@ -7,6 +7,7 @@ ALTER TABLE giaothong ADD COLUMN chieu_dai double precision;
 --ALTER TABLE giaothong ADD COLUMN rcost double precision;
 
 SELECT assign_vertex_id('giaothong', 0.000001, 'the_geom', 'gid');
+--SELECT assign_vertex_id('giaothong', 0.00001, 'the_geom', 'gid');
 
 UPDATE giaothong SET chieu_dai=length(the_geom);
 /*
