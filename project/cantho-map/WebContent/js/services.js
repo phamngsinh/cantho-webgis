@@ -794,9 +794,6 @@ function callBack_getQuanHuyen(xml_result, status){
 	var wkt = "";
 	var id = "";
 	var ten = "";
-	var dien_tich = 0;
-	var dan_so = 0;
-	var so_phuong_xa = 0;
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_quan_huyen = map.getLayersByName('lop_quan_huyen')[0];
 	var result="";
@@ -807,11 +804,6 @@ function callBack_getQuanHuyen(xml_result, status){
 		//lop_quan_huyen.addFeatures(wkt_format.read(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue));
 		id = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
-		dien_tich = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
-		dan_so = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
-		so_phuong_xa = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;		
-		//lop_quan_huyen.addFeatures(wkt_format.read(wkt));
-		//alert(ten);
 		result="<div class='dTreeNode'>" +
 				"<input value='"+id+"' type='checkbox' class='check-item'> " +
 				"<a value='"+id+"'  name='"+ten+"' class = 'tenhuyen-item huyen_"+i+"' href='javascript:clickHuyen("+i+");'>"+ten+"</a>" +
@@ -826,15 +818,11 @@ function callBack_getXaPhuong(xml_result, status){
 	var wkt = "";
 	var id = "";
 	var ten = "";
-	var dien_tich = 0;
-	var dan_so = 0;
 	var result="";
 	var html="";
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		id = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
-		dien_tich = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
-		dan_so = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		result="<div class='dTreeNode'>" +
 				"<input name='check"+i+"' value='"+id+"' type='checkbox' class='check-item check"+i+"'> " +
 				"<a value='"+id+"'  name='"+ten+"' class = 'tenxa-item xa_"+i+"' href='javascript:clickXa("+i+");'>"+ten+"</a>" +
