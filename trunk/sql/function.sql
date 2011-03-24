@@ -655,14 +655,14 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 --select * from find_place_around_point(586712.97138,1110501.66355,'caN tho',1000);
 
-CREATE OR REPLACE FUNCTION find_place_by_text_and_huyen( t text,ma integer)
+CREATE OR REPLACE FUNCTION find_place_by_text_and_huyen( t text,m integer)
 RETURNS SETOF coquan AS
 	$BODY$
 	DECLARE
 	    r coquan%rowtype;
 	    geom_qh geometry;
 	BEGIN
-	    geom_qh:=the_geom from quanhuyen where id=ma;
+	    geom_qh:=the_geom from quanhuyen where ma=m;
 	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--1
 	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--2
 	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--3
@@ -682,14 +682,14 @@ RETURNS SETOF coquan AS
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 
-CREATE OR REPLACE FUNCTION find_place_by_text_and_xa( t text,ma integer)
+CREATE OR REPLACE FUNCTION find_place_by_text_and_xa( t text,m integer)
 RETURNS SETOF coquan AS
 	$BODY$
 	DECLARE
 	    r coquan%rowtype;
 	    geom_xp geometry;
 	BEGIN
-	    geom_xp:=the_geom from xaphuong where id=ma;
+	    geom_xp:=the_geom from xaphuong where ma=m;
 	    FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--1
 	    FOR r IN SELECT *                       		   FROM truong           where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--2
 	    FOR r IN SELECT *                       		   FROM benhvien         where lower(ten )like '%'||lower(t)||'%' and  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;--3
@@ -712,15 +712,15 @@ LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 --select * from xaphuong;
 --select * from quanhuyen
 --cap co hai gia tri la huyen hay xa
-CREATE OR REPLACE FUNCTION find_place_by_text_and_lop(ma integer, lop text, cap text)
+CREATE OR REPLACE FUNCTION find_place_by_text_and_lop(m integer, lop text, cap text)
 RETURNS SETOF coquan AS
 	$BODY$
 	DECLARE
 	    r coquan%rowtype;
 	    geom_xp geometry;
 	BEGIN
-	    if cap='xa' then geom_xp:=the_geom from xaphuong where id=ma; end if;
-	    if cap='huyen' then geom_xp:=the_geom from quanhuyen where id=ma; end if;
+	    if cap='xa' then geom_xp:=the_geom from xaphuong where ma=m; end if;
+	    if cap='huyen' then geom_xp:=the_geom from quanhuyen where ma=m; end if;
 	    
 	    if lop='coquan'           then FOR r IN SELECT *                       		  FROM coquan           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--1
 	    if lop='truong'           then FOR r IN SELECT *                       		  FROM truong           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--2
