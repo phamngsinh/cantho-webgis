@@ -208,7 +208,7 @@ function init() {
 	var sketchSymbolizers = {
 		"Point" : {
 			pointRadius : 4,
-			graphicName : "square",
+			graphicName : "circle",
 			fillColor : "white",
 			fillOpacity : 1,
 			strokeWidth : 1,
@@ -218,7 +218,7 @@ function init() {
 		"Line" : {
 			strokeWidth : 3,
 			strokeOpacity : 1,
-			strokeColor : "#666666",
+			strokeColor : "#51A9FF",
 			strokeDashstyle : "dash"
 		}
 	};
