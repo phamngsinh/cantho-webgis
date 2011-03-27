@@ -23,7 +23,7 @@ public class Dijkstra {
 		this.ds_nut = new ArrayList<Nut>(g.getDanhSachSNut());
 		this.ds_canh = new ArrayList<Canh>(g.getDanhSachCanh());
 	}
-	public void executeDijkstra(Nut start) {
+	public void executeDijkstra(Nut start, Nut end) {
 		settledNodes = new HashSet<Nut>();
 		unSettledNodes = new HashSet<Nut>();
 		distance = new HashMap<Nut, Double>();
@@ -39,8 +39,13 @@ public class Dijkstra {
 			settledNodes.add(nut);
 			//xoa nut nay ra khoi tap hop cac nut chua duoc xet
 			unSettledNodes.remove(nut);
+			//Neu nut nay trung voi nut dich thi dung tai day			
+			if (nut.equals(end)){
+				System.out.println("Break tai nut: "+nut.getName());
+				break;				
+			}			
 			//xet nut nay va cap nhat chi phi va nut cha cho cac nut ke voi nut nay
-			findMinDistances(nut);
+			findMinDistances(nut);//O(n^2)		
 		}
 	}
 	//Lay ra nut co chi phi thap nhat trong tap hop cac nut chua duoc xet
