@@ -378,7 +378,7 @@ public class CanThoMap {
 		    //System.out.print(nodes.get(3));		
 			DoThi g=new DoThi(nodes,edges);
 			Dijkstra dijkstra=new Dijkstra(g);
-			dijkstra.executeDijkstra(nodes.get(start_point-1));
+			dijkstra.executeDijkstra(nodes.get(start_point-1), nodes.get(end_point-1));
 			LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point-1));
 			System.out.println("Size path: "+path.size());
 			//ton tai duong di			
