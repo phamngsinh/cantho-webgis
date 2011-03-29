@@ -469,7 +469,7 @@ public class TestData {
 		//System.out.println("End_point: "+end_point);
 		DoThi g = new DoThi(nodes, edges);
 		Dijkstra dijkstra = new Dijkstra(g);
-		dijkstra.executeDijkstra(nodes.get(start_point - 1));
+		dijkstra.executeDijkstra(nodes.get(start_point - 1),nodes.get(end_point - 1));
 		
 		LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point-1));
 		System.out.println("Size path: " + path.size());
