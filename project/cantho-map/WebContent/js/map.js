@@ -83,7 +83,7 @@ function init() {
 		}))
 	});
 	/** Lop chua quan huyen* */
-	// var lop_quan_huyen = new OpenLayers.Layer.Vector("lop_quan_huyen");
+	/*
 	var lop_quan_huyen = new OpenLayers.Layer.Vector("lop_quan_huyen", {
 		strategies : [ new OpenLayers.Strategy.BBOX() ],
 		protocol : new OpenLayers.Protocol.WFS({
@@ -92,6 +92,7 @@ function init() {
 			featureNS : "http://opengeo.org/ws_cantho"
 		})
 	});
+	*/
 	/** Lop chua co quan* */
 	var style_co_quan = new OpenLayers.StyleMap({
 		"default" : {
@@ -137,10 +138,10 @@ function init() {
 	});
 	// kiem tra neu Zoomlevel == 5 thi hien thi lop_co_quan
 	// Them cac lop vua tao vao ban do
-	map.addLayers([ lop_co_quan, lop_benh_vien, lop_duong_di, lop_quan_huyen,
+	map.addLayers([ lop_co_quan, lop_benh_vien, lop_duong_di,
 			lop_dia_diem, lop_diem_chon ]);
 	// hide lop_quan_huyen di
-	lop_quan_huyen.setVisibility(false);
+	//lop_quan_huyen.setVisibility(false);
 
 	/** tao control DrawFeature ve start_point va end_point* */
 	control_ve_diem = new OpenLayers.Control.DrawFeature(lop_diem_chon,
@@ -156,7 +157,7 @@ function init() {
 	});
 	/** Tao control SelectFeature de chon cac diem tren lop_dia_diem* */
 	control_select = new OpenLayers.Control.SelectFeature([ lop_co_quan,
-			lop_benh_vien, lop_dia_diem, lop_quan_huyen, lop_diem_chon ], {
+			lop_benh_vien, lop_dia_diem, lop_diem_chon ], {
 		onSelect : onSelectFeature,// kick hoat khi click chuot tren feature
 		onUnSelect : onUnSelectFeature,
 		clickout : true,
@@ -173,6 +174,7 @@ function init() {
 		}
 	});
 	/** Tao control SelectFeature tren lop_quan_huyen* */
+	/*
 	control_select_quan_huyen = new OpenLayers.Control.SelectFeature(
 			[ lop_quan_huyen ], {
 				clickout : true,
@@ -198,9 +200,10 @@ function init() {
 			alert("Unselecte: " + feature.attributes.ten);
 		}
 	});
+	*/
 	/** Them cac controls vua tao vao ban do* */
 	map.addControls([ control_drag, control_ve_diem, control_hover,
-			control_select, control_select_quan_huyen ]);
+			control_select ]);
 	control_hover.activate();
 	control_select.activate();
 	/** ************************ Style cho lop controlmeasure******************* */
@@ -442,13 +445,14 @@ function feature_Out(feature) {
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	lop_dia_diem.drawFeature(feature, out_style);
 }
-
+/*
 function onSelectQuanHuyen(feature) {
 	alert("Select quan huyen" + feature.attributes.ten);
 }
 function onUnSelectQuanHuyen(feature) {
 	alert("UnSelect quan huyen" + feature.attributes.ten);
 }
+*/
 // Xay ra khi zoom_level thay doi
 function zoomChanged() {
 	var zoom_level = map.getZoom();
