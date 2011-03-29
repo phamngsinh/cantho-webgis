@@ -799,7 +799,7 @@ function callBack_getQuanHuyen(xml_result, status){
 	var result="";
 	var html="";
 	// xoa di cac feature hien tai tren lop duong di
-	lop_quan_huyen.destroyFeatures();
+	//lop_quan_huyen.destroyFeatures();
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		//lop_quan_huyen.addFeatures(wkt_format.read(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue));
 		id = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;

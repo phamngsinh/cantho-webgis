@@ -152,7 +152,7 @@ function huongDan() {
 function inBanDo() {
 	alert("In ban do");
 }
-
+/*
 function chonVung() {
 	//An/ hien lop_quan_huyen cho nguoi dung chon
 	var lop_quan_huyen = map.getLayersByName('lop_quan_huyen')[0];
@@ -173,7 +173,7 @@ function chonVung() {
 	//alert("gidfeature[0] : "+lop_quan_huyen.features[0].attributes.id);
 	//alert("Area feature[0] : "+lop_quan_huyen.features[0].geometry.getArea());	
 }
-
+*/
 function doKhoangCach() {
 	timduong_clicked = 0;
 	dokhoangcach_clicked = 1;
