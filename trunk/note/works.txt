@@ -3,8 +3,9 @@ OK: 2. Giao dien duong di
 OK: 3. Hoan thanh du lieu Truyen Thong
 OK: 4. Su Kien Enter cua cac o nhap lieu
 OK: 5. Giao dien tim xung quanh
-6. Them sdt trong lop cho
-7. Bo sdt trong lop cong vien
-8. Sua lop truyenthongbaochi thanh lop buudien
-9. Bo lop trungtam
-10. Khi click vao mot lop menu ben phai thi phai tat di popup dang hien
+OK 6. Them sdt trong lop cho
+OK 7. Bo sdt trong lop cong vien
+OK 8. Sua lop truyenthongbaochi thanh lop buudien
+OK 9. Bo lop trungtam
+OK 10. Khi click vao mot lop menu ben phai thi phai tat di popup dang hien
+11. Chinh lai giao dien tim xung quanh (them phan vi du)
