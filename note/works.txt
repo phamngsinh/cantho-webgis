@@ -11,3 +11,4 @@ OK 10. Khi click vao mot lop menu ben phai thi phai tat di popup dang hien
 11. Chinh lai giao dien tim xung quanh (them phan vi du)
 12. Chinh lai nut nhan toggle ben duoi
 13. Huong dan
+14. Loi: Tim theo vung( khi click len CanTho>"NinhKieu")
