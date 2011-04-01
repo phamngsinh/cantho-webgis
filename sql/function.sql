@@ -741,3 +741,32 @@ RETURNS SETOF coquan AS
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 --select * from find_place_by_text_and_lop(1,'cho','huyen');
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
+---Ham tim dia chi xaphuong, quahuyen cua mot diem bat ky
+CREATE OR REPLACE FUNCTION find_address_xp_qh(x text , y text)
+	RETURNS text AS
+$BODY$
+	DECLARE
+	result text;
+	point_geometry geometry;
+	point_temp text;
+	ten_xa text;
+	ma_h integer;
+	ten_huyen text;
+	BEGIN
+	    point_temp:='POINT(' || x || ' ' || y ||  ')';
+	    point_geometry= GeometryFromText(point_temp, 4326);
+	    ten_xa= ten from xaphuong where st_contains(the_geom,point_geometry) order by ma limit 1;
+	    ma_h= ma_huyen from xaphuong where st_contains(the_geom,point_geometry) order by ma_huyen limit 1;
+	    ten_huyen= ten from quanhuyen where ma= ma_h;
+	    result= ten_xa || ', ' || ten_huyen;
+            return result;	 
+	END;	
+$BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+-----------------------OK---------------------------------
+-----------------------OK---------------------------------
+--select * from quanhuyen order by ma desc;
+--select astext(the_geom), * from coquan;
+--select find_address_xp_qh('558787.613965348' ,'1106633.97221794');
