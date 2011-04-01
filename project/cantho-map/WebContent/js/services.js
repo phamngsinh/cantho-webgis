@@ -202,6 +202,54 @@ function find_Place_Around_Point(x, y, chuoi, bankinh) {
 		data : soapMessage
 	});
 }
+function find_Address_XP_QH_A(x,y){
+	//alert("x= "+x+"- y= "+y);
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:find_address_xp_qh>";	        
+	soapMessage += "         <ser:x>"+x+"</ser:x>";
+	soapMessage += "         <ser:y>"+y+"</ser:y>";
+	soapMessage += "      </ser:find_address_xp_qh>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_Find_Address_XP_QH_A,
+		error : error_Find_Address_XP_QH_A,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
+function find_Address_XP_QH_B(x,y){
+	//alert("x= "+x+"- y= "+y);
+	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
+	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+	soapMessage += "   <soapenv:Header/>";
+	soapMessage += "   <soapenv:Body>";
+	soapMessage += "      <ser:find_address_xp_qh>";	        
+	soapMessage += "         <ser:x>"+x+"</ser:x>";
+	soapMessage += "         <ser:y>"+y+"</ser:y>";
+	soapMessage += "      </ser:find_address_xp_qh>";
+	soapMessage += "   </soapenv:Body>";
+	soapMessage += "</soapenv:Envelope>";
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_Find_Address_XP_QH_B,
+		error : error_Find_Address_XP_QH_B,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
 /*********Goi Dich Vu Tra Ve Danh Sach Cac Dia Diem Theo Ten Lop************/
 function getLopDiaDiem(ten_lop) {
 	// alert(ten_lop);
@@ -888,4 +936,20 @@ function callBack_getLopBenhVien(xml_result, status) {
 function error_getLopBenhVien(xml_result) {
 	//loi khong tim thay du lieu
 	alert("Error: Webservice - error_getLopBenhVien");
+}
+function callBack_Find_Address_XP_QH_A(xml_result, status){
+	var diachi = xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
+	$(".tim-a").val(diachi);	
+}
+function error_Find_Address_XP_QH_A(xml_result) {
+	//loi khong tim thay du lieu
+	alert("Error: Webservice - error_Find_Address_XP_QH_A");
+}
+function callBack_Find_Address_XP_QH_B(xml_result, status){
+	var diachi = xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
+	$(".tim-b").val(diachi);
+}
+function error_Find_Address_XP_QH_B(xml_result) {
+	//loi khong tim thay du lieu
+	alert("Error: Webservice - error_Find_Address_XP_QH_B");
 }

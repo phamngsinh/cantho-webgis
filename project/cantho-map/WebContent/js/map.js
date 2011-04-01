@@ -272,15 +272,17 @@ function init() {
  * lop_diem_chon*********
  */
 function point_Added(point) {
-	// alert("Diem da duoc ve ! ");
+	// alert("Diem da duoc ve ! ");	
 	// kiem tra neu da chon du hai diem thi goi webservice de lay duong di
 	var wkt_format = new OpenLayers.Format.WKT();
 	var list_layer_diem_chon = map.getLayersByName('lop_diem_chon');
-	// dinh nghia type moi cho diem chon
+	// dinh nghia type moi cho diem chon		
 	var lop_diem_chon = list_layer_diem_chon[0];
 	num_points = lop_diem_chon.features.length;
-
+	
 	if (num_points == 1) {
+		//Goi dich vu tra ve dia chi cua diem duoc ve
+		find_Address_XP_QH_A(point.geometry.x,point.geometry.y);
 		/** *tao icon cho start_point*** */
 		// tao symbolizer tu stylemap cua lop_diem_chon
 		var symbolizer = point.layer.styleMap.createSymbolizer(point);
@@ -289,10 +291,16 @@ function point_Added(point) {
 		// set the unique style to the feature
 		point.style = symbolizer;
 		// ve lai diem voi style moi
-		point.layer.drawFeature(point, point.style);
+		point.layer.drawFeature(point, point.style);				
 	}
 	/** *tao icon cho end_point*** */
 	if (num_points == 2) {
+		/*Tim dia chi cho diem A va B*/
+		var a_point = lop_diem_chon.features[0].geometry.clone();
+		var b_point = lop_diem_chon.features[1].geometry.clone();
+		find_Address_XP_QH_A(a_point.x,a_point.y);
+		find_Address_XP_QH_B(b_point.x,b_point.y);
+		/*Ket Thuc Tim dia chi cho diem A va B*/
 		if (flag_end == 1) {
 			// lay diem dau tien ra
 			var wkt_point_end = lop_diem_chon.features[0].geometry;
@@ -362,6 +370,7 @@ function point_Added(point) {
 		// control_select.setLayer(lop_dia_diem);
 		getDuongDi();
 	}
+	
 	// control_hover.activate();
 }
 /** ********Su kien cac feature tren lop_diem_chon duoc drag********* */
@@ -373,13 +382,21 @@ function Draging() {
 	alert("Dang drag");
 }
 
-function drag_Completed() {
+function drag_Completed(point) {
 	// alert("Hoan thanh drag");
-	// goi webservice o day
-	list_layer_diem_chon = map.getLayersByName('lop_diem_chon');
-	lop_diem_chon = list_layer_diem_chon[0];
+	// goi webservice o day	
+	lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	num_points = lop_diem_chon.features.length;
-	if (num_points == 2) {
+	if (num_points == 1){
+		//Cap nhat dia chi		
+		find_Address_XP_QH_A(point.geometry.x,point.geometry.y);
+	}else if (num_points == 2) {		
+		/*Tim dia chi cho diem A va B*/
+		var a_point = lop_diem_chon.features[0].geometry.clone();
+		var b_point = lop_diem_chon.features[1].geometry.clone();
+		find_Address_XP_QH_A(a_point.x,a_point.y);
+		find_Address_XP_QH_B(b_point.x,b_point.y);
+		/*Ket Thuc Tim dia chi cho diem A va B*/
 		getDuongDi();
 	}
 }
