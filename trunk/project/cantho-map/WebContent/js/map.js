@@ -27,7 +27,7 @@ function init() {
 	var options = {
 		controls : [],
 		maxExtent : bounds,
-		maxResolution : 305.84301171874995,
+		maxResolution : 250,
 		projection : "EPSG:4326",
 		units : 'm',
 		isBaselayer : 'true',
@@ -43,7 +43,7 @@ function init() {
 				styles : '',
 				srs : 'EPSG:4326',
 				format : format,
-				tiled : 'false',
+				tiled : 'true',
 				transparent : 'true',
 				tilesOrigin : map.maxExtent.left + ',' + map.maxExtent.bottom
 			}, {

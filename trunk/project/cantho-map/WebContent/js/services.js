@@ -208,6 +208,7 @@ function getLopDiaDiem(ten_lop) {
 	//Kiem tra xem nguoi dung co chon vung hay chua
 	//neu co chon vung thi chi tim trong vung ma nguoi dung chon
 	//Lay ra danh sach cac vung duoc chon
+	$("#chicken").hide();
 	var ds_ma="";
 	var cap ="";
 	$(".dTreeNode").each(function(){
