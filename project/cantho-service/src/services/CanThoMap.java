@@ -451,6 +451,61 @@ public class CanThoMap {
 
 			ArrayList ds_canh = new ArrayList();
 			if (path.size() > 0) {
+				//lay ra nut dau tien
+				Nut source = new Nut(path.get(0).getId(), path.get(0).getName());
+				// System.out.println(current.getName());
+				// duyet qua cac nut con lai
+				int so_nut = path.size();	
+				String canh_truoc = " ";
+				String canh_sau = " ";
+				for (int i = 1; i < so_nut; i++) {
+					// System.out.println(path.get(i).getName());
+					// tao mot mang de luu cac thuoc tinh cua duong
+					String[] arr = new String[4];
+					Nut target = new Nut(path.get(i).getId(), path.get(i).getName());
+					arr[0] = g.getCanh(source, target).getTheGeom();
+					//System.out.println("canh "+i+" : "+g.getCanh(source, target).getTheGeom());
+					arr[1] = g.getCanh(source, target).getName();
+					arr[2] = g.getCanh(source, target).getWeight() + "";
+					arr[3] = " ";
+					/***Direction***/									
+					if (i ==  1){
+						//lay canh dau tien	
+						canh_truoc = g.getCanh(source, target).getTheGeom();						
+					}
+					if (i > 1 ){
+						//lay ra canh hien tai, so sanh voi canh truoc do
+						canh_sau = g.getCanh(source, target).getTheGeom();
+						//System.out.println(i+"- canh_truoc : "+canh_truoc);
+						//System.out.println(i+"- canh_sau   : "+canh_sau);						
+						rs = s.executeQuery("Select get_bearing('"+canh_truoc+"','"+canh_sau+"') As result");
+						//gan lai canh_truoc = canh_sau
+						while (rs.next()){					
+							//System.out.println("direction: "+rs.getString("result"));
+							arr[3] = rs.getString("result");
+						}
+						
+						canh_truoc = canh_sau;
+					}
+					/***End Direction***/
+					ds_canh.add(arr);/* Them ngay: 23/02/2011 */
+					source = target;
+				}				
+			}
+
+=======
+
+			// System.out.print(nodes.get(3));
+			DoThi g = new DoThi(nodes, edges);
+			Dijkstra dijkstra = new Dijkstra(g);
+			dijkstra.executeDijkstra(nodes.get(start_point - 1),
+					nodes.get(end_point - 1));
+			LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point - 1));
+			System.out.println("Size path: " + path.size());
+			// ton tai duong di
+
+			ArrayList ds_canh = new ArrayList();
+			if (path.size() > 0) {
 				Nut source = new Nut(path.get(0).getId(), path.get(0).getName());// lay
 																					// ra
 																					// nut
@@ -472,7 +527,17 @@ public class CanThoMap {
 				}
 			}
 
+
 			for (Nut vertex : path) {
+
+				System.out.println(vertex.getName());
+			}
+			Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
+			this.closeConnection();
+			// System.out.println("Integer.MAX_VALUE = "+Integer.MAX_VALUE);
+			return ds_canh;/* Them ngay: 23/02/2011 */
+
+
 				System.out.println(vertex.getName());
 			}
 			Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
@@ -480,6 +545,7 @@ public class CanThoMap {
 			this.closeConnection();
 			// System.out.println("Integer.MAX_VALUE = "+Integer.MAX_VALUE);
 			return ds_canh;/* Them ngay: 23/02/2011 */
+
 
 		} catch (SQLException e) {
 			System.out.print("Error - getDuongDi function: " + e.getMessage());
