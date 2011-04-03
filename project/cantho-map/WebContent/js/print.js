@@ -128,12 +128,18 @@ function init() {
 	//};
 	//map.addControl(ovControl);
 	map.zoomToMaxExtent(bounds);
+	layDuong();
 }
-//function print(){
-	//alert(queryString("a"));
-	//document.getElementById('all').focus(); 
-	//document.getElementById('all').contentWindow.print();
-//}
+$(document).ready(function(){
+	$('.inbando').click(function(){				
+		$( ".all" ).print();
+		//alert("dsf");
+		return( false );
+	});
+});
+function printAll(){
+	$( "#all" ).print();
+}
 function queryString(parameter) { 
 	  var loc = location.search.substring(1, location.search.length);
 	  var param_value = false;
@@ -152,17 +158,34 @@ function queryString(parameter) {
 	      return false; //Here determine return if no parameter is found
 	  }
 }
-function check(){
-	var x1=queryString("x1");
-	var y1=queryString("x2");
-	var x2=queryString("y1");
-	var y2=queryString("y2");
-	//alert(x1);
+function layDuong(){
+	x1=parseFloat(queryString("x1"));
+	y1=parseFloat(queryString("y1"));
+	x2=parseFloat(queryString("x2"));
+	y2=parseFloat(queryString("y2"));
 	callService(x1, y1, x2, y2);
+	var wkt1 = "POINT("+x1+" "+ y1 +" )"	;
+	var wkt2 = "POINT("+x2+" "+ y2 +" )"	;
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
+	var point1 = wkt_format.read(wkt1);
+	var point2 = wkt_format.read(wkt2);
+	lop_diem_chon.addFeatures(point1);
+	lop_diem_chon.addFeatures(point2);
+	
+	var t_point = lop_diem_chon.features[0];
+	var symbolizer = t_point.layer.styleMap.createSymbolizer(t_point);
+	symbolizer['externalGraphic'] = 'images/tuday.png';
+	t_point.style = symbolizer;
+	t_point.layer.drawFeature(t_point);
+	
+	var e_point = lop_diem_chon.features[1];
+	var symbolizer = e_point.layer.styleMap.createSymbolizer(e_point);
+	symbolizer['externalGraphic'] = 'images/denday.png';
+	e_point.style = symbolizer;
+	e_point.layer.drawFeature(e_point);
 }
 var url = 'http://localhost:8888/cantho-service/services/CanThoMap?wsdl';
-
-
 function callService(x1, y1, x2, y2) {
 	/*
 	 * x1 = 586406.15289; y1 = 1110178.56230; x2 = 586424.03201; y2 =
@@ -195,15 +218,6 @@ function callService(x1, y1, x2, y2) {
 }
 
 function callBackGetDuongDi(xml_result, status) {
-	//var wkt1 = "POINT("+x1+" "+ y1 +" )"	;
-	//var wkt2 = "POINT("+x2+" "+ y2 +" )"	;
-	//var wkt_format = new OpenLayers.Format.WKT();
-	//var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
-	//var point1 = wkt_format.read(wkt1);
-	//var point2 = wkt_format.read(wkt2);
-	//	lop_diem_chon.addFeatures(point1);
-	//	lop_diem_chon.addFeatures(point2);
-	// list_lop_duong = map.getLayersByName('lop_duong_di');
 	lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	// xoa cac feature cu tren lop duong di
 	lop_duong_di.destroyFeatures();// xoa di cac feature hien tai tren lop

@@ -503,7 +503,7 @@ function printMap()
 		y1= lop_diem_chon.features[0].geometry.y;
 		x2= lop_diem_chon.features[1].geometry.x;
 		y2= lop_diem_chon.features[1].geometry.y;
-		window.open("printmap.jsp?x1="+x1+"&y1="+y1+"&x2="+x2+"&y2="+y2+"", null,"height = 768,width = 1024,status=true,resizable=no" );
+		window.open("printmap.jsp?x1="+x1+"&y1="+y1+"&x2="+x2+"&y2="+y2+"", null,"scrollbars=yes,status=true,resizable=yes,width=1000,height=800");
 	}
 	else{
 		bound=map.getExtent();

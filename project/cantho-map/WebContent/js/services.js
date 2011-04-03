@@ -423,6 +423,7 @@ function callBackGetDuongDi(xml_result, status) {
 	var tenduong;
 	var dodai;
 	var tongdodai = 0;
+	var direction="";
 	var li;
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		// alert(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue);
@@ -430,12 +431,13 @@ function callBackGetDuongDi(xml_result, status) {
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		tenduong = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		dodai = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		direction = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		tongdodai = (tongdodai * 1) + (dodai * 1);
 		lop_duong_di.addFeatures(wkt_format.read(wkt));
 		li= li+ "<li id='li' class='result-path-item'>" + "<a>" +(i+1)+ ".</a>"+
 					"<span class='instruction'>" + 
 						"<span>" +
-							"<pan class='instructionKeyword'>" + tenduong +"</span>" +
+							"<pan class='instructionKeyword'>" + direction + " "  + tenduong +"</span>" +
 						"</span" +
 					"</span" +
 					"<span class='distance'>"+ Math.round(dodai)+" m</span>" +
