@@ -785,12 +785,12 @@ $BODY$
 		goc1=ST_Azimuth(ST_MakePoint(x1,y1), ST_MakePoint(x2,y2))/(pi())*180; 
 		goc2=ST_Azimuth(ST_MakePoint(x3,y3), ST_MakePoint(x4,y4))/(pi())*180; 
 		del = goc2-goc1;
-		if ((del>15 and del<=180) or(del>-345 and del<=-180)) then
+		if ((del>5 and del<=180) or(del>-355 and del<=-180)) then
 			result:= 'rephai';
-		elsif(del>180 and del<345) or (del>-180 and del<-15)then
+		elsif(del>180 and del<355) or (del>-180 and del<-5)then
 			result:= 'retrai';
 		else    
-			result:='dithang';
+			result:='nodata';
 		end if;
 		return result;			
 	END;

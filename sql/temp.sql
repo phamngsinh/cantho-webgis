@@ -76,15 +76,16 @@ $BODY$
 			y4:=ST_Y(temp2);
 			result = get_direction(x1,y1,x2,y2,x3,y3,x4,y4) ;
 		end if;
+		--return x1||'_'||y1||'_'||x2||'_'||y2||'_'||x3||'_'||y3||'_'||x4||'_'||y4;
 		return result;			
 	END;
 	
 $BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
-select get_bearing('MULTILINESTRING((0 0,9 9,1 0))','MULTILINESTRING((0 0,0 1,9 8))');
+select get_bearing('MULTILINESTRING((0 0,1 0))','MULTILINESTRING((1 0,0 1,9 8))');
 
 
-select ST_Azimuth(ST_MakePoint(0,0), ST_MakePoint(-1,1))/(pi())*180; 
+--select ST_Azimuth(ST_MakePoint(0,0), ST_MakePoint(-1,1))/(pi())*180; 
 
 CREATE or replace FUNCTION get_direction(x1 float8, y1 float8,x2 float8,y2 float8,x3 float8, y3 float8,x4 float8,y4 float8) 
 RETURNS text AS
