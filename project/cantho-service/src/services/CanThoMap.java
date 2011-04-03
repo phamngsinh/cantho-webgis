@@ -493,59 +493,13 @@ public class CanThoMap {
 				}				
 			}
 
-=======
-
-			// System.out.print(nodes.get(3));
-			DoThi g = new DoThi(nodes, edges);
-			Dijkstra dijkstra = new Dijkstra(g);
-			dijkstra.executeDijkstra(nodes.get(start_point - 1),
-					nodes.get(end_point - 1));
-			LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point - 1));
-			System.out.println("Size path: " + path.size());
-			// ton tai duong di
-
-			ArrayList ds_canh = new ArrayList();
-			if (path.size() > 0) {
-				Nut source = new Nut(path.get(0).getId(), path.get(0).getName());// lay
-																					// ra
-																					// nut
-																					// dau
-																					// tien
-				// System.out.println(current.getName());
-				// duyet qua cac nut con lai
-				for (int i = 1; i < path.size(); i++) {
-					// System.out.println(path.get(i).getName());
-					// tao mot mang de luu cac thuoc tinh cua duong
-					String[] arr = new String[3];
-					Nut target = new Nut(path.get(i).getId(), path.get(i)
-							.getName());
-					arr[0] = g.getCanh(source, target).getTheGeom();
-					arr[1] = g.getCanh(source, target).getName();
-					arr[2] = g.getCanh(source, target).getWeight() + "";
-					ds_canh.add(arr);/* Them ngay: 23/02/2011 */
-					source = target;
-				}
-			}
-
-
 			for (Nut vertex : path) {
-
 				System.out.println(vertex.getName());
 			}
 			Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
 			this.closeConnection();
 			// System.out.println("Integer.MAX_VALUE = "+Integer.MAX_VALUE);
 			return ds_canh;/* Them ngay: 23/02/2011 */
-
-
-				System.out.println(vertex.getName());
-			}
-			Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
-
-			this.closeConnection();
-			// System.out.println("Integer.MAX_VALUE = "+Integer.MAX_VALUE);
-			return ds_canh;/* Them ngay: 23/02/2011 */
-
 
 		} catch (SQLException e) {
 			System.out.print("Error - getDuongDi function: " + e.getMessage());
