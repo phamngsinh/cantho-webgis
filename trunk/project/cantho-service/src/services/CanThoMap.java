@@ -62,7 +62,7 @@ public class CanThoMap {
 				int target = rs_canh.getInt("nut_dich") - 1;
 				String ten_duong = rs_canh.getString("ten_duong");
 				if (ten_duong == null) {
-					ten_duong = "Duong Khong Ten";
+					ten_duong = "Đường không tên";
 				}
 				int mot_chieu = rs_canh.getInt("mot_chieu");
 				String the_geom = rs_canh.getString("the_geom");
@@ -238,16 +238,6 @@ public class CanThoMap {
 							chieu_hien_tai);
 					edges.add(canh_moi);
 				}
-				/*
-				 * for (i=0 ; i<edges.size() ; i++){
-				 * System.out.println("id:"+edges
-				 * .get(i).getId()+" - nguon:"+edges
-				 * .get(i).getSource().getId()+" -dich:"
-				 * +edges.get(i).getDestination
-				 * ().getId()+" -trong luong:"+edges.
-				 * get(i).getWeight()+" -the_geom:"+edges.get(i).getTheGeom());
-				 * }
-				 */
 				/***** KET THUC TRUONG HOP HAI DIEM NAM TREN CUNG MOT CANH ******/
 			} else {
 				// hai diem nam tren hai canh khac nhau
@@ -292,15 +282,6 @@ public class CanThoMap {
 					int i = 0;
 					int j = 0;
 					/** xoa canh gan nhat voi diem 1 ra khoi danh sach edges */
-					/*
-					 * for (Canh canh : edges) { if
-					 * (canh.getId().equals(id_canh_giao)) { // chi lay du lieu
-					 * cua canh (chieu dung) dau tien if (j == 0) {
-					 * chieu_hien_tai = canh.getDirect(); id_nguon =
-					 * Integer.parseInt(canh.getSource().getId()); id_dich =
-					 * Integer.parseInt(canh.getDestination().getId()); ten =
-					 * canh.getName(); } edges.remove(i); j++; } i++; }
-					 */
 					for (i = 0; i < edges.size(); i++) {
 						// System.out.println("Kich thuoc hien tai: "+edges.size());
 						if (edges.get(i).getId().equals(id_canh_giao)) {
@@ -378,15 +359,6 @@ public class CanThoMap {
 					/** xoa canh gan nhat voi diem 2 ra khoi danh sach edges */
 					int i = 0;
 					int j = 0;
-					/*
-					 * for (Canh canh : edges) { if
-					 * (canh.getId().equals(id_canh_giao)) { // chi lay du lieu
-					 * cua canh (chieu dung) dau tien if (j == 0) {
-					 * chieu_hien_tai = canh.getDirect(); id_nguon =
-					 * Integer.parseInt(canh.getSource().getId()); id_dich =
-					 * Integer.parseInt(canh.getDestination().getId()); ten =
-					 * canh.getName(); i--; } edges.remove(i); j++; } i++; }
-					 */
 					for (i = 0; i < edges.size(); i++) {
 						// System.out.println("Kich thuoc hien tai: "+edges.size());
 						if (edges.get(i).getId().equals(id_canh_giao)) {
@@ -480,11 +452,18 @@ public class CanThoMap {
 						//System.out.println(i+"- canh_sau   : "+canh_sau);						
 						rs = s.executeQuery("Select get_bearing('"+canh_truoc+"','"+canh_sau+"') As result");
 						//gan lai canh_truoc = canh_sau
+						String direction = " ";
 						while (rs.next()){					
 							//System.out.println("direction: "+rs.getString("result"));
-							arr[3] = rs.getString("result");
+							direction = rs.getString("result");
+						}	
+						if (direction.equals("rephai")){
+							arr[3] = "Rẽ phải";
+						}else if (direction.equals("retrai")){
+							arr[3] = "Rẽ trái";
+						}else if (direction.equals("nodata")){
+							arr[3] = "Đi thẳng";
 						}
-						
 						canh_truoc = canh_sau;
 					}
 					/***End Direction***/
