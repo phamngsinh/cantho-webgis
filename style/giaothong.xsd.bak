@@ -436,7 +436,7 @@
    		     </Font>
 	 	    <VendorOption name="followLine">true</VendorOption> 	
 			<VendorOption name="maxDisplacement">100</VendorOption>
-			<VendorOption name="repeat">150</VendorOption>
+			<VendorOption name="repeat">250</VendorOption>
 			<!--<VendorOption name="spaceAround">5</VendorOption>-->
 			<VendorOption name="group">yes</VendorOption>
 			<LabelPlacement>
@@ -488,7 +488,7 @@
 		<!--Khong cho overlap trong ban kinh 10 pixels-->
 		<!--<VendorOption name="spaceAround">10</VendorOption>-->
 		<!--Nhom cac nhan co cung ten lai voi nhau-->
-		<VendorOption name="group">yes</VendorOption>
+		<!--<VendorOption name="group">yes</VendorOption>-->
 		<LabelPlacement>
   			<LinePlacement/>
 		</LabelPlacement>
