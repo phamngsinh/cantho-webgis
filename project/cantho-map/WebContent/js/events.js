@@ -940,3 +940,27 @@ function daoChieu(){
 		$('.tim-b').val(temp);
 	}
 }
+function ChuyenChuoi(s){
+	s= "Lýõng Minh Liêm Pha";
+	a= s.replace(/ý/g,"d");
+	b=a.replace(/õ/g, "o");
+	//s.replace(/õ/, 'o');
+	//var a= encode_utf8(s);
+	alert(a);
+	
+}
+function encode_utf8(s){
+	if (window.encodeURIComponent){
+		return unescape(encodeURIComponent(s));
+	}else{
+		return escape(s);
+	}
+}
+
+function decode_utf8(s){
+	if (window.decodeURIComponent){
+		return decodeURIComponent(escape(s));
+	}else{
+	return unescape(s);
+	}
+} 

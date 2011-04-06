@@ -7,6 +7,7 @@
 	border:1px #00CC66 solid;
 	overflow-y: auto; 
 	-moz-box-shadow: 0 0 7px #555555;
+	background: url("../images/right_background.png") bottom right repeat-y;
 	}
 .taskbar_right {
     color: #0066FF;

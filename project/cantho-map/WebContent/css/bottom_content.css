@@ -46,3 +46,14 @@
 .clicked .menu_taskbar{
 	color: white;
 	}
+.taskbar_vip{
+	left:300px;
+	right:122px;
+	height:24px;
+	position: absolute;
+	padding-top:2px;
+	font-style: italic;
+	}
+.bottom_content table{
+	position: absolute;
+	}
