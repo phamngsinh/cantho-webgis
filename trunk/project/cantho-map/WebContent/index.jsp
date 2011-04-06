@@ -161,8 +161,15 @@
 			<td class = 'tim-duong not-clicked'> <a href="javascript:timDuong()"   class="menu_taskbar">Tìm đường</a></td>			
 			<!-- td class = 'in-ban-do not-clicked'> <a href="javascript:inBanDo()"  class="menu_taskbar">In bản đồ</a></td-->		
 			<td class = 'do-khoang-cach not-clicked'> <a href="javascript:doKhoangCach()" class="menu_taskbar">Đo khoảng cách</a></td>			
-		    <td class = 'chon-vung not-clicked'> <a href="javascript:printMap()"  class="menu_taskbar">Print</a></td>
-			</tr></table>	
+		    <td class = 'chon-vung not-clicked'> <a href="javascript:ChuyenChuoi()"  class="menu_taskbar">Print</a></td>
+			</tr></table>
+			<div class="taskbar_vip">
+				<div>
+				<marquee scrollamount="3" behavior="scroll" onmouseout="this.start();" onmouseover="this.stop();">
+				<a title="" href="http://www.cit.ctu.edu.vn"> Lương Minh Liêm Pha - Trần Văn Hoàng - Luận Văn Tốt Nghiệp Đại Học. </a>
+				</marquee>
+				</div>
+			</div>	
 	</div>
 <!--  label>Tim Duong</label>
 <input id="chk_timduong" type="checkbox" />

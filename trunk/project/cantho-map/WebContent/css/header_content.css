@@ -6,7 +6,7 @@
     width: 100%;
     left:0;
     z-index: 5;
-    background: #F8F8FF;
+     background: url("../images/header_background.gif") repeat-x scroll right top transparent;
 }
 #search {
     left: 340px;
