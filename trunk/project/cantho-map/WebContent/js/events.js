@@ -187,6 +187,7 @@ function doKhoangCach() {
 	$(".tim-duong").addClass("not-clicked");
 	$(".do-khoang-cach").removeClass("not-clicked");
 	$(".do-khoang-cach").addClass("clicked");
+	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
 	if($(".kq-doKC").css("right").replace("px","")<0){
 		$(".kq-doKC").stop().animate({right:115},350,"linear");
 		$(".tong-kc-m").html("0 km");
@@ -946,27 +947,17 @@ function daoChieu(){
 		$('.tim-b').val(temp);
 	}
 }
-function ChuyenChuoi(s){
-	s= "Lýõng Minh Liêm Pha";
-	a= s.replace(/ý/g,"d");
-	b=a.replace(/õ/g, "o");
-	//s.replace(/õ/, 'o');
-	//var a= encode_utf8(s);
+function dvLoTrinh(){
+	$(".kq-doKC").stop().animate({right:-199},350,"linear");
+	if($(".div-dv-lt").css("right").replace("px","")<0){
+		$(".div-dv-lt").stop().animate({right:115},350,"linear");
+		}
+	else{
+		$(".div-dv-lt").stop().animate({right:-199},350,"linear");
+	}
+}
+function timDichVuLoTrinh(){
+	a= $("#txt_ten_lt").val();
+	b= $("#txt_bk_lt").val();
 	alert(a);
-	
 }
-function encode_utf8(s){
-	if (window.encodeURIComponent){
-		return unescape(encodeURIComponent(s));
-	}else{
-		return escape(s);
-	}
-}
-
-function decode_utf8(s){
-	if (window.decodeURIComponent){
-		return decodeURIComponent(escape(s));
-	}else{
-	return unescape(s);
-	}
-} 

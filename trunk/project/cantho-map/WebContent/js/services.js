@@ -954,9 +954,3 @@ function error_Find_Address_XP_QH_B(xml_result) {
 	//loi khong tim thay du lieu
 	alert("Error: Webservice - error_Find_Address_XP_QH_B");
 }
-function timDichVuLoTrinh(){
-	a= $("#txt_ten_lt").val();
-	b= $("#txt_bk_lt").val();
-	alert(a);
-	
-}
