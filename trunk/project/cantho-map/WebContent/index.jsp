@@ -112,6 +112,7 @@
 				<td   class = 'bankinh' ><input id='txt_bk_lt' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> m </td>
 			</tr>
 		</table>
+		<input class = 'tim' name='buttonTim' type='button' value='Tìm' onclick='timDichVuLoTrinh()'/>
 </div>
 <div class = "map" id = "map">
  </div>
