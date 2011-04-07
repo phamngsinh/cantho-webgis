@@ -1101,6 +1101,54 @@ public class CanThoMap {
 		this.closeConnection();
 		return address;
 	}
+	public ArrayList find_Place_Around_Street(String street,String text,float radius) throws SQLException, ClassNotFoundException{
+		this.openConnection();
+		ArrayList ds_dia_diem = new ArrayList();
+		String the_geom = " ";
+		String ten = " ";
+		String diachi = " ";
+		String sdt = " ";
+		String sql = "";
+		if (is_SignedString(text) == false){
+			//chuoi khong dau
+			sql = "SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+")";
+		}else{
+			//chuoi co dau
+			sql = "SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street('"+ street +"','"+text+"',"+radius+")";
+		}
+		rs = s.executeQuery(sql);
+		while (rs.next()) {
+			String[] arr = new String[4];
+			if (rs.getString("the_geom") == null) {
+				the_geom = " ";
+			} else {
+				the_geom = rs.getString("the_geom");
+			}
+			if (rs.getString("ten") == null) {
+				ten = " ";
+			} else {
+				ten = rs.getString("ten");
+			}
+			if (rs.getString("diachi") == null) {
+				diachi = " ";
+			} else {
+				diachi = rs.getString("diachi");
+			}
+			if (rs.getString("sdt") == null) {
+				sdt = " ";
+			} else {
+				sdt = rs.getString("sdt");
+			}
+
+			arr[0] = the_geom;
+			arr[1] = ten;
+			arr[2] = diachi;
+			arr[3] = sdt;
+			ds_dia_diem.add(arr);
+		}
+		this.closeConnection();
+		return ds_dia_diem;
+	}
 	public boolean is_SignedString(String text){
 		boolean result = false;	
 		String regexp = "[áảãạóòỏõọéèẻẽẹúùủũụíìỉĩịýỳỷỹỵưứừửữựơớờởỡợôốồổỗộăắằẳẵặâấầẩẫậêếềểễệđ]";
