@@ -62,3 +62,18 @@
 	position: absolute;
 	top:50px;
 	}
+.div-dv-lt{
+	background: url("../images/image-overlay.png") no-repeat scroll center bottom transparent;
+    height: 90px;
+    position: fixed;
+    /* right: 115px;*/
+    right: 115px;
+    top: 87px;
+    width: 175px;
+    z-index: 0;
+    font-size: 12px;
+    padding: 15px 5px 5px 15px;
+	}
+.dv-content tr{
+	height: 30px;
+	}

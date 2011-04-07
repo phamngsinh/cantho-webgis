@@ -71,6 +71,12 @@ $(document).ready(function() {
 		var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 		lop_dia_diem.destroyFeatures();
      });
+	$('#txt_bk_lt').bind("keypress",function (e) {
+        //if the letter is not digit then display error and don't type anything
+        if( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) {
+            return false;
+        }
+	});	
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/

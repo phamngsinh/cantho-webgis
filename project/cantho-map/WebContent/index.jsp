@@ -94,12 +94,24 @@
 <div id="location"></div>
 <div id="scale"></div>
 <div class="kq-doKC" >
-<div class="kq-doKC-content" >
-	<!-- label class= "kc-hienhanh">Khoang cach hien hanh : 0m</label-->
-	<label class= "tong-kc">Tổng khoảng cách: </label>
-	<label class= "tong-kc-m">0 km</label>
-	<label class= "note-kc">Nhấp đúp để kết thúc việc đo.</label>
+	<div class="kq-doKC-content" >
+		<!-- label class= "kc-hienhanh">Khoang cach hien hanh : 0m</label-->
+		<label class= "tong-kc">Tổng khoảng cách: </label>
+		<label class= "tong-kc-m">0 km</label>
+		<label class= "note-kc">Nhấp đúp để kết thúc việc đo.</label>
+	</div>
 </div>
+<div class="div-dv-lt" >
+		<table class="dv-content"> 
+			<tr>
+				<td>Tên</td>
+				<td   class = 'tendv'><input id='txt_ten_lt' class = 'maker-popup-textdichvu' name='textdichvu' type='text' value='' /></td>
+			</tr>
+			<tr>
+				<td>Bán kính</td>
+				<td   class = 'bankinh' ><input id='txt_bk_lt' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> m </td>
+			</tr>
+		</table>
 </div>
 <div class = "map" id = "map">
  </div>
@@ -124,12 +136,11 @@
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
 								<a onclick="" class="del-timduongb" style="display: block;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
 							</div>
-					</div>
+							<a class="dv-lo-trinh" title="" href="javascript:dvLoTrinh()">Tìm dịch vụ trên đoạn này.</a>
+					</div>	
 					<div class="search-result"></div>
 				</div>
 				<div id="tab_content2" class= "panes-div">
-				    
-				
 				</div>
 				<div class= "panes-div"></div>
 			</div>	
