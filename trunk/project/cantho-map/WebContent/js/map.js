@@ -69,7 +69,7 @@ function init() {
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			strokeColor : "#FF000B",
-			strokeWidth : 3,
+			strokeWidth : 4.5,
 			strokeOpacity : 0.7
 		}))
 	});

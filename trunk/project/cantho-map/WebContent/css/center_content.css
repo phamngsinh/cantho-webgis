@@ -93,3 +93,16 @@
 .tim:hover{
 	background:  url(../images/lblue-h.png) no-repeat;  
 	}
+	
+.textdichvu{
+	height: 15px;
+	font-size: 12px;
+	vertical-align: middle;
+	width: 100px;
+	}
+.textbankinh{
+	height: 15px;
+	font-size: 12px;
+	vertical-align: middle;
+	width: 100px;
+	}

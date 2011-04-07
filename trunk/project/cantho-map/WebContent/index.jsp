@@ -105,11 +105,11 @@
 		<table class="dv-content"> 
 			<tr>
 				<td>Tên</td>
-				<td   class = 'tendv'><input id='txt_ten_lt' class = 'maker-popup-textdichvu' name='textdichvu' type='text' value='' /></td>
+				<td   class = 'tendv'><input id='txt_ten_lt' class = 'textdichvu' name='textdichvu' type='text' value='' /></td>
 			</tr>
 			<tr>
 				<td>Bán kính</td>
-				<td   class = 'bankinh' ><input id='txt_bk_lt' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> m </td>
+				<td   class = 'bankinh' ><input id='txt_bk_lt' maxlength='10' class = 'textbankinh' name='textbankinh' type='text' value='' /> m </td>
 			</tr>
 		</table>
 		<input class = 'tim' name='buttonTim' type='button' value='Tìm' onclick='timDichVuLoTrinh()'/>
