@@ -842,7 +842,7 @@ function chonViTri(i) {
 	var y = point_geometry.geometry.y;
 	//alert(point_geometry.geometry.x);
 	var lonlat = new OpenLayers.LonLat(x,y);
-	map.setCenter(lonlat , false, false);
+	//map.setCenter(lonlat , false, false);
 	/*****Hien thi Popup, cho biet thong tin cua vi tri duoc chon****/
 	//tao noi dung cho popup
 	var content= "<div class = 'maker-popup-ten'>" + ten +"</div>" + 	
@@ -890,7 +890,7 @@ function clickHuyen(i){
 	var mahuyen=a.attr("value");
 	getXaPhuong(mahuyen);
 	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Can Tho</a> " +
-			 "&gt <a id='path_huyen' value='"+mahuyen+"' href='javascript:clickHuyen("+i+")'>"+a.attr("name")+"</a>";
+			 "&gt <label id='path_huyen' value='"+mahuyen+">"+a.attr("name")+"</label>";
 	$("#map_path_div").attr("name","xa");
 	$("#map_path_div").html(html);
 }
@@ -957,7 +957,16 @@ function dvLoTrinh(){
 	}
 }
 function timDichVuLoTrinh(){
-	a= $("#txt_ten_lt").val();
-	b= $("#txt_bk_lt").val();
-	alert(a);
+	var text = $("#txt_ten_lt").val();
+	var radius = $("#txt_bk_lt").val();	
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	//xoa cac dia diem hien co
+	lop_dia_diem.destroyFeatures();
+	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
+	var num_segment = lop_duong_di.features.length;
+	for (var i=0; i<num_segment ; i++ ){
+		//alert(lop_duong_di.features[i].geometry.clone());
+		var seg = lop_duong_di.features[i].geometry.clone();
+		find_Place_Around_Streeet(seg, text, radius);
+	}
 }
