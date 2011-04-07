@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
+import java.util.regex.Pattern;
 
 import org.postgis.*;
 import org.postgresql.*;
@@ -697,14 +698,20 @@ public class CanThoMap {
 
 		ArrayList ds_dia_diem = new ArrayList();
 		String the_geom = " ";
-		String ten = " ";
+		String ten = " "; 
 		String diachi = " ";
 		String sdt = " ";
-
+		String sql = ""; 
 		this.openConnection();
-
-		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"
-				+ text + "')");
+		if (is_SignedString(text) == false){
+			//chuoi khong dau
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_unsigned('"+ text + "')";
+		}else{
+			//chuoi co dau
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text + "')";
+		}		
+		rs = s.executeQuery(sql);
+		
 		while (rs.next()) {
 			String[] arr = new String[4];
 			if (rs.getString("the_geom") == null) {
@@ -746,9 +753,18 @@ public class CanThoMap {
 		String diachi = "";
 		String sdt = "";
 		this.openConnection();
-		rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point('"
-				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")");
-		// System.out.println("So mau tin hien tai(find_Place_Around_Point): ");
+		String sql = "";
+		if (is_SignedString(chuoi) == false){
+			//chuoi khong dau
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point_unsigned('"
+				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")";
+		}else{
+			//chuoi co dau
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point('"
+				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")";
+		}
+		rs = s.executeQuery(sql);
+		//System.out.println("So mau tin hien tai(find_Place_Around_Point): ");
 		while (rs.next()) {
 			String[] arr = new String[4];
 			if (rs.getString("the_geom") == null) {
@@ -866,10 +882,17 @@ public class CanThoMap {
 		int ma = 0;
 		String[] temp;
 		this.openConnection();
+		String sql = "";		
 		temp = str_id.split("\\$");
 		if (str_id == "") {
-			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"
-					+ text + "')");
+			if (is_SignedString(text) == false){
+				//chuoi khong dau
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_unsigned('"+ text + "')";
+			}else{
+				//chuoi co dau
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text + "')";
+			}
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				String[] arr = new String[4];
 				if (rs.getString("the_geom") == null) {
@@ -906,9 +929,16 @@ public class CanThoMap {
 			} else {
 				ma = Integer.parseInt(temp[i]);
 			}
-
-			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_huyen('"
-					+ text + "'," + ma + ")");
+			if (is_SignedString(text) == false){
+				//chuoi khong dau
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_huyen_unsigned('"
+					+ text + "'," + ma + ")";
+			}else{
+				//chuoi co dau
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_huyen('"
+					+ text + "'," + ma + ")";
+			}
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				String[] arr = new String[4];
 				if (rs.getString("the_geom") == null) {
@@ -954,6 +984,7 @@ public class CanThoMap {
 		int ma = 0;
 		String[] temp;
 		this.openConnection();
+		String sql = "";
 		temp = str_id.split("\\$");
 		for (int i = 0; i < temp.length; i++) {
 			// System.out.println("temp["+i+"] :"+temp[i]);
@@ -962,9 +993,14 @@ public class CanThoMap {
 			} else {
 				ma = Integer.parseInt(temp[i]);
 			}
-
-			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_xa('"
-					+ text + "'," + ma + ")");
+			if (is_SignedString(text) == false){
+				//chuoi khong dau
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_xa_unsigned('"+ text + "'," + ma + ")";
+			}else{
+				//chuoi co dau
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_xa('"+ text + "'," + ma + ")";
+			}
+			rs = s.executeQuery(sql);
 			while (rs.next()) {
 				String[] arr = new String[4];
 				if (rs.getString("the_geom") == null) {
@@ -1065,6 +1101,19 @@ public class CanThoMap {
 		this.closeConnection();
 		return address;
 	}
+	public boolean is_SignedString(String text){
+		boolean result = false;	
+		String regexp = "[áảãạóòỏõọéèẻẽẹúùủũụíìỉĩịýỳỷỹỵưứừửữựơớờởỡợôốồổỗộăắằẳẵặâấầẩẫậêếềểễệđ]";
+		Pattern pattern = Pattern.compile(regexp);
+		text = text.toLowerCase();
+		for (int i = 0; i< text.length() ; i++){			
+			result = pattern.matcher(text.charAt(i)+"").matches();
+			if (result == true){
+				return true;
+			}
+		}		
+		return false;
+	}
 	private void openConnection() throws SQLException, ClassNotFoundException {
 		conn = null;
 		if (conn == null) {
@@ -1092,5 +1141,6 @@ public class CanThoMap {
 		// obj.getLop("ben");
 		// obj.find_Place_By_Text("can tho");
 		// String coquan_gml=obj.getDiaDiem("coquan","can tho");
+		System.out.println("Ket qua: "+obj.is_SignedString(" TRẦN VĂN HOÀNG "));
 	}
 }
