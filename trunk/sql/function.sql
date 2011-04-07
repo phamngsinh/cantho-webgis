@@ -644,7 +644,7 @@ RETURNS SETOF coquan AS
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 
-select * from find_place_by_text_unsigned('ninh kiêu');
+--select * from find_place_by_text_unsigned('ninh kiêu');
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --SELECT * FROM find_place_by_text('CAN THO');
