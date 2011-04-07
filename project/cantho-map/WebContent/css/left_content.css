@@ -293,9 +293,10 @@ ol, ul {
 	margin-top: 5px;
 	margin-left:10px;
 	}
-.dv-lo-trinh {
+.btn-lo-trinh{
     left: 40px;
     position: absolute;
     width: 200px;
     z-index: 3;
+    display: none;
 }
