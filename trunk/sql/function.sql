@@ -644,7 +644,7 @@ RETURNS SETOF coquan AS
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 
-select * from find_place_by_text_unsigned('sieu thi dien may');
+select * from find_place_by_text_unsigned('ninh kiêu');
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
 --SELECT * FROM find_place_by_text('CAN THO');
@@ -875,8 +875,23 @@ $BODY$
 	ten_xa text;
 	ma_h integer;
 	ten_huyen text;
+	ten_dia_diem text;
 	BEGIN
 	    point_temp:='POINT(' || x || ' ' || y ||  ')';
+	    ten_dia_diem:= ten from coquan   where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from truong   where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from benhvien where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from cho      where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from ben      where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from khachsan where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from congty   where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from giaitri  where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from denchua  where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from buudien  where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from nganhang where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from congvien where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from cau      where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
+	    ten_dia_diem:= ten from thuvien  where Astext(the_geom)= point_temp; if ten_dia_diem is not null then return ten_dia_diem; end if;
 	    point_geometry= GeometryFromText(point_temp, 4326);
 	    ten_xa= ten from xaphuong where st_contains(the_geom,point_geometry) order by ma limit 1;
 	    ma_h= ma_huyen from xaphuong where st_contains(the_geom,point_geometry) order by ma_huyen limit 1;
@@ -1065,5 +1080,5 @@ CREATE OR REPLACE FUNCTION find_place_around_street_unsigned(str text, t text, r
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
-
+select * from quanhuyen;
 
