@@ -72,8 +72,24 @@
     width: 175px;
     z-index: 0;
     font-size: 12px;
-    padding: 15px 5px 5px 15px;
+    padding: 5px 5px 10px 15px;
 	}
 .dv-content tr{
-	height: 30px;
+	height: 27px;
+	}
+.tim{
+	width: 94px ;
+	height: 25px;
+	background:  url(../images/lblue.png) no-repeat;  
+	border: none;
+	cursor: pointer;
+	font-size: 11px;
+	color: white;
+	font-weight: bold;
+	vertical-align:middle;
+	font-family:"Times New Roman", Times, serif;
+	margin-left: 50px;
+	}
+.tim:hover{
+	background:  url(../images/lblue-h.png) no-repeat;  
 	}
