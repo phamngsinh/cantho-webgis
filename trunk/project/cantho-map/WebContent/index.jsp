@@ -137,7 +137,7 @@
 								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
 								<a onclick="" class="del-timduongb" style="display: block;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
 							</div>
-							<a class="dv-lo-trinh" title="" href="javascript:dvLoTrinh()">Tìm dịch vụ trên đoạn này.</a>
+							<a class="btn-lo-trinh" title="" href="javascript:dvLoTrinh()">Tìm dịch vụ trên đoạn này.</a>
 					</div>	
 					<div class="search-result"></div>
 				</div>

@@ -457,6 +457,7 @@ function callBackGetDuongDi(xml_result, status) {
 	 * xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
 	 * var gml_format = new OpenLayers.Format.GML();
 	 */
+	 $('.btn-lo-trinh').show();
 }
 /*******************************************************************************
  * Khi co loi xay ra: tao duong thang noi truc tiep giua start_point va
