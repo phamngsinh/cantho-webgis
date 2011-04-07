@@ -584,8 +584,7 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
         if( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) {
             return false;
         }
-	});
-	
+	});	
 }
 function errorGetDiaDiemTheoViTri(xml_error) {
 	alert("Loi find_Info_Of_Point");
