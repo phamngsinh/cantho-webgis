@@ -13,7 +13,7 @@ CREATE OR REPLACE FUNCTION find_place_around_street_unsigned(mult_str text, t te
 	    a:= string_to_array(mult_str,'$');
 	    n:=array_upper(a,1);
 	    FOR i IN 1 .. n LOOP
-		str:= a[n];
+		str:= a[i];
 		t2:= signed_to_unsigned(lower(t));
 		str_geometry := ST_GeomFromText(str,4326);
 		FOR r IN SELECT *                       		   FROM coquan           where lower(ten )like '%'||t2||'%'  and ST_Distance(str_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--1
