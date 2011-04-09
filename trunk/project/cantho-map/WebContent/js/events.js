@@ -964,9 +964,14 @@ function timDichVuLoTrinh(){
 	lop_dia_diem.destroyFeatures();
 	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	var num_segment = lop_duong_di.features.length;
+	var seg = '';
 	for (var i=0; i<num_segment ; i++ ){
 		//alert(lop_duong_di.features[i].geometry.clone());
-		var seg = lop_duong_di.features[i].geometry.clone();
-		find_Place_Around_Streeet(seg, text, radius);
+		if (i == 0){
+			seg = lop_duong_di.features[i].geometry.clone();
+		}else{
+			seg += '$' + lop_duong_di.features[i].geometry.clone();
+		}		
 	}
+	find_Place_Around_Streeet(seg, text, radius);
 }
