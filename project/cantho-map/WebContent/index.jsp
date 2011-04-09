@@ -86,6 +86,13 @@
                 	</div>
                 </div>
             </div>
+    <div class = "flash">
+		<object type="application/x-shockwave-flash"  data="images/header.swf" width="100%" height="100%">
+                <param name="movie" value="images/chu.swf" />
+                <param name="quality" value="high"/>
+                <param name="wmode" value="transparent"/>
+            </object>
+  </div>
 </div>
 
 
