@@ -969,7 +969,7 @@ $BODY$
 		result text;
 		d float;--dung de luu khoang cach;
 	BEGIN
-		result:='nodata';
+		result:='nodata2';
 		geom1:=ST_GeomFromText(line1,4326);
 		geom2:=ST_GeomFromText(line2,4326);
 		n1:=ST_NumPoints(geom1); p1:=PointN(geom1,1);p2:=PointN(geom1,n1);t1:=Astext(p1);t2:=Astext(p2);	
@@ -1023,6 +1023,7 @@ $BODY$
 			x1:=ST_X(temp1);
 			y1:=ST_Y(temp1);
 			x2:=ST_X(p2);
+
 			y2:=ST_Y(p2);
 			x3:=ST_X(p4);
 			y3:=ST_Y(p4);
