@@ -1111,11 +1111,12 @@ public class CanThoMap {
 		String sql = "";
 		if (is_SignedString(text) == false){
 			//chuoi khong dau
-			sql = "SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+")";
+			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+")";
 		}else{
 			//chuoi co dau
-			sql = "SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street('"+ street +"','"+text+"',"+radius+")";
+			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street('"+ street +"','"+text+"',"+radius+")";
 		}
+		System.out.println(sql);
 		rs = s.executeQuery(sql);
 		while (rs.next()) {
 			String[] arr = new String[4];
