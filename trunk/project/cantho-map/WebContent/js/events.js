@@ -77,6 +77,13 @@ $(document).ready(function() {
             return false;
         }
 	});	
+	/**10-04-2010 : WaterMark cho cac textbox**/
+	$(".tim-a").Watermark("Nhập tên điểm A...");
+	$(".tim-b").Watermark("Nhập tên điểm B ...");
+	$("#mapinput").Watermark("Nhập tên địa điểm ...");
+	$("#txt_ten_lt").Watermark("Ví dụ: Khách sạn ...");
+	$("#txt_bk_lt").Watermark("200");
+	/**10-04-2010 : WaterMark cho cac textbox**/
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
@@ -245,6 +252,7 @@ function showLeftContent2(){
 	$("#tab2").click();
 	$("#clearSearchResultText").css("display","block");
 }
+/*
 function OnblurTextBoxAB(a){
 	a=$(a);
 	var b=a.parent().parent()[0].id;
@@ -258,7 +266,7 @@ function OnforcusTextBoxAB(a){
 			a.val("");
 			prev_selectedResAB_Text=selectedResAB_Text=a.val();
 }
-
+*/
 /************POPUP EVENTS****************/
 /*
 function popup_TuDay(x,y){
@@ -974,4 +982,7 @@ function timDichVuLoTrinh(){
 		}		
 	}
 	find_Place_Around_Streeet(seg, text, radius);
+}
+function hello(){
+	alert("hello");
 }
