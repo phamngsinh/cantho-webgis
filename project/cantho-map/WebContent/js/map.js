@@ -23,7 +23,8 @@ function init() {
 		s1.style.left = "300px";
 
 	}
-	var bounds = new OpenLayers.Bounds(533665, 1099901, 586361, 1141760);
+	//var bounds = new OpenLayers.Bounds(533665, 1099901, 586361, 1141760);
+	var bounds = new OpenLayers.Bounds(524847.24, 1097030.63, 592626.076, 1142071.805);
 	var options = {
 		controls : [],
 		maxExtent : bounds,
@@ -60,7 +61,7 @@ function init() {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : '',
 			graphicWidth : 30,
-			graphicHeight : 35
+			graphicHeight : 35			
 		// strokeOpacity: 0.6
 		}))
 	});
@@ -79,7 +80,7 @@ function init() {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			externalGraphic : anh_dia_diem,
 			graphicWidth : 25,
-			graphicHeight : 25
+			graphicHeight : 25			
 		}))
 	});
 	/** Lop chua quan huyen* */
