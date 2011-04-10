@@ -9,6 +9,7 @@
 <script type="text/javascript" src="libs/jquery/jquery-1.4.4.js"></script>
 <script src="libs/jquery/jquery-1.4.4.js" language="javascript"></script>
 <script src="libs/jquery/jquery.tools.min.js" language="javascript"></script>
+<script src="libs/jquery/jquery.watermark.js" language="javascript"></script>
 <script type="text/javascript" src="js/styles.js"></script>
 <script type="text/javascript" src="js/map.js"></script>
 <script type="text/javascript" src="js/events.js"></script>
@@ -28,7 +29,6 @@
 </head>
 <body onload="init();javascript:getQuanHuyen();">
 <div class="header" id="header">
-	<a class= 'a-logo' href='http://localhost:8888/cantho-map/index.jsp'><img class='image-logo' src="images/logo.png" /></a>
 	<div id="search" style="z-index: 916;">            	
 		    <div class="SLeft" style="z-index: 914;"></div>
             <div class="SCenter" style="z-index: 912;">
@@ -86,7 +86,7 @@
                 	</div>
                 </div>
             </div>
-    <div class = "flash">
+    <div class = "flash-header">
 		<object type="application/x-shockwave-flash"  data="images/header.swf" width="100%" height="100%">
                 <param name="movie" value="images/chu.swf" />
                 <param name="quality" value="high"/>
@@ -135,13 +135,13 @@
 					<div id="listDirection">
 							<div class="swrap-timduong">
 								<span class="a-z">a</span>
-								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
+								<input type="text"  onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
 								<a onclick="" class="del-timduonga" style="display: block;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
 							</div>
 							<a onclick="" title="Click vào đây để đảo chiều đường đi." class="btn-refresh" href="javascript:daoChieu()" style="display: block;">dc</a>
 							<div class="swrap-timduong">
 								<span class="a-z">b</span>
-								<input type="text" value="Nhập vào địa danh..." onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
+								<input type="text"  onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
 								<a onclick="" class="del-timduongb" style="display: block;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
 							</div>
 							<a class="btn-lo-trinh" title="" href="javascript:dvLoTrinh()">Tìm dịch vụ trên đoạn này.</a>
@@ -182,13 +182,20 @@
 			<td class = 'do-khoang-cach not-clicked'> <a href="javascript:doKhoangCach()" class="menu_taskbar">Đo khoảng cách</a></td>			
 		    <td class = 'chon-vung not-clicked'> <a href="javascript:ChuyenChuoi()"  class="menu_taskbar">Print</a></td>
 			</tr></table>
-			<div class="taskbar_vip">
+			<div class = "flash-footer">
+				<object type="application/x-shockwave-flash"  data="images/footer.swf" width="100%" height="100%">
+                	<param name="movie" value="images/footer.swf" />
+                	<param name="quality" value="high"/>
+                	<param name="wmode" value="transparent"/>
+            	</object>
+ 	       </div>
+			<!--  div class="taskbar_vip">
 				<div>
 				<marquee scrollamount="3" behavior="scroll" onmouseout="this.start();" onmouseover="this.stop();">
 				<a title="" href="http://www.cit.ctu.edu.vn"> Lương Minh Liêm Pha - Trần Văn Hoàng - Luận Văn Tốt Nghiệp Đại Học. </a>
 				</marquee>
 				</div>
-			</div>	
+			</div-->	
 	</div>
 <!--  label>Tim Duong</label>
 <input id="chk_timduong" type="checkbox" />
