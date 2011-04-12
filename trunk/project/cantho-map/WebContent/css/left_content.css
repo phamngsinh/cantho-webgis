@@ -5,7 +5,7 @@
 	left:0;
 	top:86px;
 	border:1px #00CC66 solid;
-	background-color: #CCFFCC;
+	background-color:	#B0E0E6;
 	z-index:4;
 	-moz-box-shadow: 0 0 7px #555555;
 }
@@ -15,7 +15,7 @@
     height: 100%;
     right: 0;
     position: absolute;
-    width: 9px;
+    width: 4px;
 	vertical-align:middle;
 	z-index:10;
 }
@@ -35,7 +35,7 @@
 .moveicon {
     background: url(../images/moveicon.png) no-repeat scroll right top transparent;
     height: 35px;
-    left: 4px;
+    left: 0px;
     position: absolute;
     width: 18px;
 	z-index:10;
