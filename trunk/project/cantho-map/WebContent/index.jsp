@@ -34,15 +34,10 @@
             <div class="SCenter" style="z-index: 912;">
               	<div class="SBox" style="z-index: 910;">
                     <div class="SBoxLeft" style="z-index: 908;"></div>
-                      <script src="js/Avim.js" type="text/javascript"></script>	
-                     <input type="text" onblur="" onfocus="" 
-					            value="" id="mapinput"
+                     <input type="text" onblur="" onfocus="" value="" id="mapinput"
 					            class="SText keyboardInput" name="mapinput">
-						<img class="keyboardInputInitiator" src="images/keyboard.png" style="z-index: 906;">
-                        <div class="SHelpClose" id="s-help" style="z-index: 904;"><a onclick="LoadHelp()">Ví dụ</a></div>
                         <input id = "btnTim" type="submit" value="Tìm" class="SButton">
                     </div>
-                    <div class="SHelpDiv" onclick="clickHelp()" id="HelpDiv" style="z-index: 902;"><a onclick="UnLoadHelp()" class="close">Close</a></div>
                 </div>
                 <div class="SRight" style="z-index: 888;"></div>
                 <div onclick="" class="SWTrans" style="z-index: 886;">
@@ -88,7 +83,7 @@
             </div>
     <div class = "flash-header">
 		<object type="application/x-shockwave-flash"  data="images/header.swf" width="100%" height="100%">
-                <param name="movie" value="images/chu.swf" />
+                <param name="movie" value="images/header.swf" />
                 <param name="quality" value="high"/>
                 <param name="wmode" value="transparent"/>
             </object>
@@ -135,13 +130,13 @@
 					<div id="listDirection">
 							<div class="swrap-timduong">
 								<span class="a-z">a</span>
-								<input type="text"  onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-a">
+								<input type="text"  onblur="" onfocus="" onkeydown="" class="boxtimduong tim-a">
 								<a onclick="" class="del-timduonga" style="display: block;"> Xóa</a><a class="btn-timduong searchA" id="">Tìm</a>
 							</div>
 							<a onclick="" title="Click vào đây để đảo chiều đường đi." class="btn-refresh" href="javascript:daoChieu()" style="display: block;">dc</a>
 							<div class="swrap-timduong">
 								<span class="a-z">b</span>
-								<input type="text"  onblur="OnblurTextBoxAB(this)" onfocus="OnforcusTextBoxAB(this)" onkeydown="" class="boxtimduong tim-b">
+								<input type="text"  onblur="" onfocus="" onkeydown="" class="boxtimduong tim-b">
 								<a onclick="" class="del-timduongb" style="display: block;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
 							</div>
 							<a class="btn-lo-trinh" title="" href="javascript:dvLoTrinh()">Tìm dịch vụ trên đoạn này.</a>
@@ -158,7 +153,7 @@
             <a onclick="moveIconClick()" class="moveicon" id="moveicon"></a>        </div>
 	</div>
 <div class = "right_content"  id = "right_content">
-		<table cellpadding="0" cellspacing="0"> 					
+		<!--  table cellpadding="0" cellspacing="0"> 					
 		<tr><td><a style="background:url('map-icon/coquan16.png') no-repeat scroll left center" id = "coquan"           href="javascript:getLopDiaDiem('coquan')"            class="right-item coquan"       onmouseover= "blinklink_coquan()"      onmouseout= "stoptimer_coquan()"      >Cơ Quan</a>	    </td></tr>		
 		<tr><td><a style="background:url('map-icon/truonghoc.png') no-repeat scroll left center" id = "truonghoc"           href="javascript:getLopDiaDiem('truong')"            class="right-item truonghoc"    onmouseover= "blinklink_truonghoc()"   onmouseout= "stoptimer_truonghoc()"   >Trường Học</a>	</td></tr>			
 		<tr><td><a style="background:url('map-icon/benhvien16.png') no-repeat scroll left center" id = "benhvien"       href="javascript:getLopDiaDiem('benhvien')"          class="right-item benhvien"     onmouseover= "blinklink_benhvien()"    onmouseout= "stoptimer_benhvien()"    >Bệnh Viện</a>	</td></tr>			
@@ -173,7 +168,12 @@
    		<tr><td><a style="background:url('map-icon/congvien16.png') no-repeat scroll left center" id = "congvien"       href="javascript:getLopDiaDiem('congvien')"          class="right-item congvien"     onmouseover= "blinklink_congvien()"    onmouseout= "stoptimer_congvien()"    >Công Viên</a>	</td></tr>			
    		<tr><td><a style="background:url('map-icon/cau.png') no-repeat scroll left center" id = "cau"                 href="javascript:getLopDiaDiem('cau')"               class="right-item cau"          onmouseover= "blinklink_cau()"         onmouseout= "stoptimer_cau()"         >Cầu</a>			</td></tr>	
 		<tr><td><a style="background:url('map-icon/thuvien16.png')   no-repeat scroll left center" id = "thuvien"       href="javascript:getLopDiaDiem('thuvien')"           class="right-item thuvien"      onmouseover= "blinklink_thuvien()"     onmouseout= "stoptimer_thuvien()"     >Thư Viện</a>	</td></tr>
-   		</table>
+   		</table-->
+   		<object type="application/x-shockwave-flash"  data="images/left.swf" width="100%" height="100%">
+                <param name="movie" value="images/left.swf" />
+                <param name="quality" value="high"/>
+                <param name="wmode" value="transparent"/>
+            </object>
 </div>
 <div class = "bottom_content" class = "bottom_content">	
 			<table><tr>
