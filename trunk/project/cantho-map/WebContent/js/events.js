@@ -81,8 +81,8 @@ $(document).ready(function() {
 	$(".tim-a").Watermark("Nhập tên điểm A...");
 	$(".tim-b").Watermark("Nhập tên điểm B ...");
 	$("#mapinput").Watermark("Nhập tên địa điểm ...");
-	$("#txt_ten_lt").Watermark("Ví dụ: Khách sạn ...");
-	$("#txt_bk_lt").Watermark("200");
+	$("#txt_ten_lt").Watermark("ví dụ: khách sạn ...");
+	$("#txt_bk_lt").Watermark("100");
 	/**10-04-2010 : WaterMark cho cac textbox**/
 });
 
