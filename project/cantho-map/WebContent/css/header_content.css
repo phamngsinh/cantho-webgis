@@ -28,7 +28,7 @@
 .SBox {
     background: url("../images/bg-SBox.png") repeat-x scroll 0 0 transparent;
     height: 27px;
-    width: 403px;
+    width: 353px;
 }
 .SBoxLeft {
     background: url("../images/SBoxLeft.png") no-repeat scroll 0 0 transparent;
@@ -132,7 +132,7 @@
     display: inline-block;
     overflow: hidden;
     position: relative;
-    width: 409px;
+    width: 359px;
 }
 #Tree {
     background: -moz-linear-gradient(center top , #F6F6F6, #FFFFFF) repeat scroll 0 0 #F6F6F6;
@@ -141,7 +141,7 @@
     font-family: Tahoma,Verdana,Geneva,sans-serif;
     height: 0;
     overflow: hidden;
-    width: 393px;
+    width: 343px;
 }
 .SWRight-bgShadow {
     background: url("../images/s-shadow.png") no-repeat scroll right bottom transparent;
@@ -152,7 +152,7 @@
     background: url("../images/SWRight-bg.png") no-repeat scroll right bottom transparent;
     display: inline-block;
     height: 10px;
-    width: 425px;
+    width: 375px;
 }
 .SWCenter-bg {
     background: url("../images/SWCenter-bg.png") repeat-x scroll center bottom transparent;
