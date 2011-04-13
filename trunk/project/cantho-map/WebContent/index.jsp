@@ -69,7 +69,7 @@
                                         <div class="SWContent" style="z-index: 868;">
                                             <div class="SWBut" style="z-index: 866;"><a onclick="LoadTree()">Tìm ở</a></div>
                                             <div id="TreeFilter" style="z-index: 864;">
-												<div style="display: inline; white-space: normal; z-index: 862;" id="map_path_div"><a onclick="TreeBinding.NavigatorClick(event,0,'Việt Nam','VN')">Cần Thơ</a></div>	
+												<div style="display: inline; white-space: normal; z-index: 862;" id="map_path_div2"><a onclick="getQuanHuyen()">Cần Thơ</a></div>	
 											</div>
                                             <br style="clear: both;">
                                         </div>

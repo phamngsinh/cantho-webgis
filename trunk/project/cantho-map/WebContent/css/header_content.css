@@ -218,6 +218,11 @@ a {
     color: #FFFFFF;
     font-size: 11px;
 }
+#TreeFilter label {
+    -moz-user-select: none;
+    color: #FFFFFF;
+    font-size: 11px;
+}
 .SWCloseArea {
     background: url("../images/closeArea.png") no-repeat scroll 0 0 transparent;
     display: block;
@@ -271,6 +276,7 @@ a {
 #path_huyen{
 	text-decoration: none;
 	cursor: default;
+	color: blue;
 	}
 .div-TreeClose {
     bottom: 27px;
