@@ -14,7 +14,7 @@
 		  <MinScaleDenominator>13000000000</MinScaleDenominator>
           <PolygonSymbolizer>
             <Fill>
-		 		<CssParameter name="fill">#F5F5DC</CssParameter>
+		 		<CssParameter name="fill">#DCDCDC</CssParameter>
 		 		<CssParameter name="fill-opacity">1</CssParameter>
 		    </Fill>        
 			<Stroke>
@@ -28,9 +28,9 @@
 	 			<ogc:PropertyName>ten</ogc:PropertyName>
 	 	    </Label>
 			<Font>
-				<CssParameter name="font-family">Arial</CssParameter>
+				<CssParameter name="font-family">Times New Roman</CssParameter>
 				<CssParameter name="font-size">12</CssParameter>
-				<CssParameter name="font-style">normal</CssParameter>					
+				<CssParameter name="font-style">italic</CssParameter>				
 			</Font>
 			<Fill>
 		 		<CssParameter name="fill">#000000</CssParameter>	
@@ -63,7 +63,7 @@
 		  <MaxScaleDenominator>13000000000</MaxScaleDenominator>
           <PolygonSymbolizer>
             <Fill>
-		 		<CssParameter name="fill">#F5F5DC</CssParameter>
+		 		<CssParameter name="fill">#DCDCDC</CssParameter>
 		 		<CssParameter name="fill-opacity">1</CssParameter>
 		    </Fill>        
 			<Stroke>
@@ -77,13 +77,13 @@
 	 			<ogc:PropertyName>ten</ogc:PropertyName>
 	 	    </Label>
 			<Font>
-				<CssParameter name="font-family">Arial</CssParameter>
+				<CssParameter name="font-family">Times New Roman</CssParameter>
 				<CssParameter name="font-size">17</CssParameter>
-				<CssParameter name="font-style">normal</CssParameter>					
+				<CssParameter name="font-style">italic</CssParameter>					
 			</Font>
 			<Fill>
 		 		<CssParameter name="fill">#000000</CssParameter>	
-				<CssParameter name="fill-opacity">0.7</CssParameter>	
+				<CssParameter name="fill-opacity">0.5</CssParameter>	
 				<CssParameter name="font-weight">bold</CssParameter> 		
 		    </Fill>
 	 	    <Halo>
