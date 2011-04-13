@@ -272,14 +272,17 @@ a {
 	text-decoration: none;
 	cursor: default;
 	}
-.div-TreeClose{
-	bottom: 15px;
+.div-TreeClose {
+    bottom: 27px;
     float: right;
     position: absolute;
-    right: 30px;
-	}
+    right: 43px;
+}
 .TreeClose{
-	font-size: 10px;
+	background: url("../images/close.png") no-repeat scroll;
+	width:16px;
+	height: 16px;
+	position: absolute;
 	}
 .flash-header{
 	position: absolute;
