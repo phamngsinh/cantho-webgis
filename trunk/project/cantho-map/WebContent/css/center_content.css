@@ -106,3 +106,11 @@
 	vertical-align: middle;
 	width: 100px;
 	}
+.close-dv-lt{
+	position: absolute;
+	top:1px;
+	right:7px;
+	background: url("../images/close.png") no-repeat scroll;
+	width:16px;
+	height: 16px;
+	}
