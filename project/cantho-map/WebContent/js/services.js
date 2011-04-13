@@ -516,7 +516,9 @@ function errorGetDuongDi(xml_error) {
 		lop_duong_di.addFeatures(wkt_format.read(line_string));
 		// tinh do dai cua chuoi line string vua tao
 		var do_dai = line_string.getLength();
-		alert("Do dai duong di: " + do_dai + " m");
+		//alert("Do dai duong di: " + do_dai + " m");
+		$('.btn-lo-trinh').hide();
+		$('.search-result').html("&nbsp&nbsp Không tìm được đường đi trên đoạn này.");
 	}
 }
 function callBackGetDiaDiem(xml_result, status) {

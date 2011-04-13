@@ -114,6 +114,7 @@
 				<td   class = 'bankinh' ><input id='txt_bk_lt' maxlength='10' class = 'textbankinh' name='textbankinh' type='text' value='' /> m </td>
 			</tr>
 		</table>
+		<a href="javascript:closeDVLT()" class="close-dv-lt" style="display: block;"></a>
 		<input class = 'tim' name='buttonTim' type='button' value='Tìm' onclick='timDichVuLoTrinh()'/>
 </div>
 <div class = "map" id = "map">

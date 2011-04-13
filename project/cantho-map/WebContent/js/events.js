@@ -964,6 +964,9 @@ function dvLoTrinh(){
 		$(".div-dv-lt").stop().animate({right:-199},350,"linear");
 	}
 }
+function closeDVLT(){
+		$(".div-dv-lt").stop().animate({right:-199},350,"linear");
+}
 function timDichVuLoTrinh(){
 	var text = $("#txt_ten_lt").val();
 	var radius = $("#txt_bk_lt").val();	
