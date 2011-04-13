@@ -57,7 +57,7 @@
 						   </div>
 					   </div>
 					</div>
-	               	 <div class="div-TreeClose"><a title="Đóng" onclick="HideMapList()" class="TreeClose">X</a></div>
+	               	 <div class="div-TreeClose"><a title="Đóng" onclick="HideMapList()" class="TreeClose"></a></div>
 	                <div class="SW-img" style="z-index: 880;"></div>
 	              </div>
 
