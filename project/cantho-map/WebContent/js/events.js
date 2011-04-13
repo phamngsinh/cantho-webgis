@@ -78,10 +78,10 @@ $(document).ready(function() {
         }
 	});	
 	/**10-04-2010 : WaterMark cho cac textbox**/
-	$(".tim-a").Watermark("Nhập tên điểm A...");
-	$(".tim-b").Watermark("Nhập tên điểm B ...");
-	$("#mapinput").Watermark("Nhập tên địa điểm ...");
-	$("#txt_ten_lt").Watermark("ví dụ: khách sạn ...");
+	$(".tim-a").Watermark("Nháº­p tĂªn Ä‘iá»ƒm A...");
+	$(".tim-b").Watermark("Nháº­p tĂªn Ä‘iá»ƒm B ...");
+	$("#mapinput").Watermark("Nháº­p tĂªn Ä‘á»‹a Ä‘iá»ƒm ...");
+	$("#txt_ten_lt").Watermark("vĂ­ dá»¥: khĂ¡ch sáº¡n ...");
 	$("#txt_bk_lt").Watermark("100");
 	/**10-04-2010 : WaterMark cho cac textbox**/
 });
@@ -602,11 +602,21 @@ function popup_Tim(x,y){
 	//An popup 
 	$("#chicken").hide();	
 }
+var show="no";
 function HideMapList(){
 	$("#boundTree").hide();
+	show="no";
 }
 function LoadTree(){
-	$("#boundTree").show();
+	if(show=="no"){
+		$("#boundTree").show();
+		show="yes";
+	}	
+	else{
+		$("#boundTree").hide();
+		show="no";
+	} 
+		
 }
 /** **********END POPUP EVENTS*************** */
 
@@ -897,10 +907,11 @@ function clickHuyen(i){
 	a = $('.huyen_' + i);
 	var mahuyen=a.attr("value");
 	getXaPhuong(mahuyen);
-	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Can Tho</a> " +
+	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Cần Thơ</a> " +
 			 "&gt <label id='path_huyen' value='"+mahuyen+">"+a.attr("name")+"</label>";
 	$("#map_path_div").attr("name","xa");
 	$("#map_path_div").html(html);
+	$("#map_path_div2").html(html);
 }
 function clickXa(i){
 	if($('input[name=check'+i +']').attr('checked')==true){
