@@ -29,6 +29,8 @@ $(document).ready(function() {
 				}
 			}
 			HideMapList();
+			$("#chicken").hide();
+			//alert("hide");
 		}
 	});
 	$('#mapinput').keyup(function(e) {
