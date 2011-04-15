@@ -463,10 +463,7 @@ public class CanThoMap {
 						}else if (direction.equals("retrai")){
 							arr[3] = "Rẽ trái";
 						}else if (direction.equals("nodata")){
-							arr[3] = "Đi tiếp";
-						}
-						else if (direction.equals("nodata2")){
-							arr[3] = "Đi tiếp";
+							arr[3] = "Đi thẳng";
 						}
 						canh_truoc = canh_sau;
 					}
@@ -622,12 +619,9 @@ public class CanThoMap {
 		String sdt = "";
 		ArrayList ds_dia_diem = new ArrayList();
 		// System.out.println("-"+ten_lop+"-");
-		if (ten_lop.equalsIgnoreCase("cau")
-				|| ten_lop.equalsIgnoreCase("congvien")
-				|| ten_lop.equalsIgnoreCase("ben")) {
+		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") || ten_lop.equalsIgnoreCase("ben")) {
 
-			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom From "
-					+ ten_lop;
+			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom From " + ten_lop;
 			rs = s.executeQuery(sql_1);
 			sdt = " ";
 			while (rs.next()) {
@@ -705,18 +699,19 @@ public class CanThoMap {
 		String diachi = " ";
 		String sdt = " ";
 		String sql = ""; 
+		String ma = "";
 		this.openConnection();
 		if (is_SignedString(text) == false){
 			//chuoi khong dau
-			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_unsigned('"+ text + "')";
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_unsigned('"+ text + "')";
 		}else{
 			//chuoi co dau
-			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text + "')";
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text('"+ text + "')";
 		}		
 		rs = s.executeQuery(sql);
 		
 		while (rs.next()) {
-			String[] arr = new String[4];
+			String[] arr = new String[5];
 			if (rs.getString("the_geom") == null) {
 				the_geom = " ";
 			} else {
@@ -737,11 +732,16 @@ public class CanThoMap {
 			} else {
 				sdt = rs.getString("sdt");
 			}
-
+			if (rs.getString("ma") == null) {
+				ma = " ";
+			} else {
+				ma = rs.getString("ma");
+			}
 			arr[0] = the_geom;
 			arr[1] = ten;
 			arr[2] = diachi;
 			arr[3] = sdt;
+			arr[4] = ma;
 			ds_dia_diem.add(arr);
 		}
 		this.closeConnection();
@@ -755,21 +755,22 @@ public class CanThoMap {
 		String ten = "";
 		String diachi = "";
 		String sdt = "";
+		String ma = "";
 		this.openConnection();
 		String sql = "";
 		if (is_SignedString(chuoi) == false){
 			//chuoi khong dau
-			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point_unsigned('"
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_point_unsigned('"
 				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")";
 		}else{
 			//chuoi co dau
-			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_point('"
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_point('"
 				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")";
 		}
 		rs = s.executeQuery(sql);
 		//System.out.println("So mau tin hien tai(find_Place_Around_Point): ");
 		while (rs.next()) {
-			String[] arr = new String[4];
+			String[] arr = new String[5];
 			if (rs.getString("the_geom") == null) {
 				the_geom = " ";
 			} else {
@@ -790,11 +791,17 @@ public class CanThoMap {
 			} else {
 				sdt = rs.getString("sdt");
 			}
+			if (rs.getString("ma") == null) {
+				ma = " ";
+			} else {
+				ma = rs.getString("ma");
+			}
 			// System.out.println(ten);
 			arr[0] = the_geom;
 			arr[1] = ten;
 			arr[2] = diachi;
 			arr[3] = sdt;
+			arr[4] = ma;
 			ds_dia_diem.add(arr);
 		}
 		this.closeConnection();
@@ -882,6 +889,7 @@ public class CanThoMap {
 		String ten = " ";
 		String diachi = " ";
 		String sdt = " ";
+		String ma_dia_diem = " ";
 		int ma = 0;
 		String[] temp;
 		this.openConnection();
@@ -897,7 +905,7 @@ public class CanThoMap {
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
-				String[] arr = new String[4];
+				String[] arr = new String[5];
 				if (rs.getString("the_geom") == null) {
 					the_geom = " ";
 				} else {
@@ -918,10 +926,16 @@ public class CanThoMap {
 				} else {
 					sdt = rs.getString("sdt");
 				}
+				if (rs.getString("ma") == null) {
+					ma_dia_diem = " ";
+				} else {
+					ma_dia_diem = rs.getString("ma");
+				}
 				arr[0] = the_geom;
 				arr[1] = ten;
 				arr[2] = diachi;
 				arr[3] = sdt;
+				arr[4] = ma_dia_diem;
 				ds_dia_diem.add(arr);
 			}
 		}
@@ -934,16 +948,16 @@ public class CanThoMap {
 			}
 			if (is_SignedString(text) == false){
 				//chuoi khong dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_huyen_unsigned('"
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_huyen_unsigned('"
 					+ text + "'," + ma + ")";
 			}else{
 				//chuoi co dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_huyen('"
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_huyen('"
 					+ text + "'," + ma + ")";
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
-				String[] arr = new String[4];
+				String[] arr = new String[5];
 				if (rs.getString("the_geom") == null) {
 					the_geom = " ";
 				} else {
@@ -964,11 +978,17 @@ public class CanThoMap {
 				} else {
 					sdt = rs.getString("sdt");
 				}
+				if (rs.getString("ma") == null) {
+					ma_dia_diem = " ";
+				} else {
+					ma_dia_diem = rs.getString("ma");
+				}
 
 				arr[0] = the_geom;
 				arr[1] = ten;
 				arr[2] = diachi;
 				arr[3] = sdt;
+				arr[4] = ma_dia_diem;
 				ds_dia_diem.add(arr);
 			}
 		}
@@ -984,6 +1004,7 @@ public class CanThoMap {
 		String ten = " ";
 		String diachi = " ";
 		String sdt = " ";
+		String ma_dia_diem = " ";
 		int ma = 0;
 		String[] temp;
 		this.openConnection();
@@ -998,14 +1019,14 @@ public class CanThoMap {
 			}
 			if (is_SignedString(text) == false){
 				//chuoi khong dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_xa_unsigned('"+ text + "'," + ma + ")";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_xa_unsigned('"+ text + "'," + ma + ")";
 			}else{
 				//chuoi co dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_xa('"+ text + "'," + ma + ")";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_xa('"+ text + "'," + ma + ")";
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
-				String[] arr = new String[4];
+				String[] arr = new String[5];
 				if (rs.getString("the_geom") == null) {
 					the_geom = " ";
 				} else {
@@ -1026,11 +1047,17 @@ public class CanThoMap {
 				} else {
 					sdt = rs.getString("sdt");
 				}
+				if (rs.getString("ma") == null) {
+					ma_dia_diem = " ";
+				} else {
+					ma_dia_diem = rs.getString("ma");
+				}
 
 				arr[0] = the_geom;
 				arr[1] = ten;
 				arr[2] = diachi;
 				arr[3] = sdt;
+				arr[4] = ma_dia_diem;
 				ds_dia_diem.add(arr);
 			}
 		}
@@ -1112,17 +1139,18 @@ public class CanThoMap {
 		String diachi = " ";
 		String sdt = " ";
 		String sql = "";
+		String ma = " ";
 		if (is_SignedString(text) == false){
 			//chuoi khong dau
-			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+")";
+			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+")";
 		}else{
 			//chuoi co dau
-			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_around_street('"+ street +"','"+text+"',"+radius+")";
+			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_street('"+ street +"','"+text+"',"+radius+")";
 		}
-		System.out.println(sql);
+		//System.out.println(sql);
 		rs = s.executeQuery(sql);
 		while (rs.next()) {
-			String[] arr = new String[4];
+			String[] arr = new String[5];
 			if (rs.getString("the_geom") == null) {
 				the_geom = " ";
 			} else {
@@ -1143,11 +1171,18 @@ public class CanThoMap {
 			} else {
 				sdt = rs.getString("sdt");
 			}
+			if (rs.getString("ma") == null) {
+				ma = " ";
+			} else {
+				ma = rs.getString("ma");
+			}
+
 
 			arr[0] = the_geom;
 			arr[1] = ten;
 			arr[2] = diachi;
 			arr[3] = sdt;
+			arr[4] = ma;
 			ds_dia_diem.add(arr);
 		}
 		this.closeConnection();
