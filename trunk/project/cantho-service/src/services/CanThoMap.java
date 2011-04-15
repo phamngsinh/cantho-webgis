@@ -463,7 +463,7 @@ public class CanThoMap {
 						}else if (direction.equals("retrai")){
 							arr[3] = "Rẽ trái";
 						}else if (direction.equals("nodata")){
-							arr[3] = "Đi thẳng";
+							arr[3] = "Đi tiếp";
 						}
 						canh_truoc = canh_sau;
 					}
