@@ -632,7 +632,7 @@ RETURNS SETOF coquan AS
 	    FOR r IN SELECT gid,'nganhang' as ma,ten,diachi,sdt,the_geom         FROM nganhang         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,'congvien' as ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,'cau'      as ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM thuvien          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT gid,'thuvien'   as ma,ten,diachi,sdt,the_geom         FROM thuvien          where lower(ten )like '%'||lower(t)||'%' LOOP RETURN NEXT r; END LOOP;--14
 	    RETURN;
 	END
 	$BODY$
@@ -658,7 +658,7 @@ RETURNS SETOF coquan AS
 	    FOR r IN SELECT gid,'nganhang' as ma,ten,diachi,sdt,the_geom         FROM nganhang         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,'congvien' as ma,ten,diachi,null as sdt,the_geom FROM congvien         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,'cau'      as ma,ten,diachi,null as sdt,the_geom FROM cau              where signed_to_unsigned(lower(ten )) like '%'||t2||'%' LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM thuvien          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT gid,'thuvien'   as ma,ten,diachi,sdt,the_geom         FROM thuvien          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' LOOP RETURN NEXT r; END LOOP;--14
 	    RETURN;
 	END
 	$BODY$
@@ -679,6 +679,7 @@ CREATE OR REPLACE FUNCTION find_place_around_point(x text, y text, t text, radiu
 	    point_text text;
 	    point_geometry geometry;
 	BEGIN
+	
 	    point_text:='POINT(' || x || ' ' || y ||  ')';
 	    point_geometry := ST_GeomFromText(point_text,4326);
 	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM coquan           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--1
