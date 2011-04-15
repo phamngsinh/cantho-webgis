@@ -653,7 +653,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
-				"<a name='"+ten+"' class = 'popup-result result_"+i+" popup-result-"+ma+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
+				"<a name='"+ten+"' class = 'popup-result result_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -689,6 +689,7 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
@@ -699,7 +700,7 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 			map.setCenter(lonlat);
 		}
 		ten = "<div class= 'result-div'>" +
-		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -730,6 +731,7 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
@@ -740,7 +742,7 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 			map.setCenter(lonlat);
 		}
 		ten = "<div class= 'result-div'>" +
-		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -778,10 +780,11 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
-				"<a name='"+ten+"' class = 'popup-result result2_"+i+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
+				"<a name='"+ten+"' class = 'popup-result result2_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";		
 		sodienthoai = "<div class= 'sodienthoai-result'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -830,11 +833,12 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
+		ma=xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
-		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -873,6 +877,7 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
@@ -1030,10 +1035,11 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
-		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
