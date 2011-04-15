@@ -682,19 +682,19 @@ CREATE OR REPLACE FUNCTION find_place_around_point(x text, y text, t text, radiu
 	    point_text:='POINT(' || x || ' ' || y ||  ')';
 	    point_geometry := ST_GeomFromText(point_text,4326);
 	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM coquan           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--1
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM truong           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--2
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM benhvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--3
+	    FOR r IN SELECT gid,'truong'   as ma,ten,diachi,sdt,the_geom         FROM truong           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--2
+	    FOR r IN SELECT gid,'benhvien' as ma,ten,diachi,sdt,the_geom         FROM benhvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--3
 	    FOR r IN SELECT gid,'cho'      as ma,ten,diachi,sdt,the_geom         FROM cho              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--4
 	    FOR r IN SELECT gid,'ben'      as ma,ten,diachi,null as sdt,the_geom FROM ben              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--5
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM khachsan         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--6
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM congty           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--7
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM giaitri          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--8
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM denchua          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM buudien          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--10
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM nganhang         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--11
+	    FOR r IN SELECT gid,'khachsan' as ma,ten,diachi,sdt,the_geom         FROM khachsan         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--6
+	    FOR r IN SELECT gid,'congty'   as ma,ten,diachi,sdt,the_geom         FROM congty           where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--7
+	    FOR r IN SELECT gid,'giaitri'  as ma,ten,diachi,sdt,the_geom         FROM giaitri          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--8
+	    FOR r IN SELECT gid,'denchua'  as ma,ten,diachi,sdt,the_geom         FROM denchua          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--9
+	    FOR r IN SELECT gid,'buudien'  as ma,ten,diachi,sdt,the_geom         FROM buudien          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT gid,'nganhang' as ma,ten,diachi,sdt,the_geom         FROM nganhang         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,'congvien' as ma,ten,diachi,null as sdt,the_geom FROM congvien         where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,'cau'      as ma,ten,diachi,null as sdt,the_geom FROM cau              where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM thuvien          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT gid,'thuvien'  as ma,ten,diachi,sdt,the_geom         FROM thuvien          where lower(ten )like '%'||lower(t)||'%'  and ST_Distance(point_geometry,the_geom) <=radius LOOP RETURN NEXT r; END LOOP;--14
 	    RETURN;
 	END
 	$BODY$
@@ -771,20 +771,20 @@ RETURNS SETOF coquan AS
 	BEGIN
 	     t2:= signed_to_unsigned(lower(t));
 	    geom_qh:=the_geom from quanhuyen where ma=m;
-	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom                       		   FROM coquan           where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--1
-	    FOR r IN SELECT gid,'truong'   as ma,ten,diachi,sdt,the_geom                        		   FROM truong           where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--2
-	    FOR r IN SELECT gid,'benhvien' as ma,ten,diachi,sdt,the_geom                        		   FROM benhvien         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--3
+	    FOR r IN SELECT gid,'coquan'   as ma,ten,diachi,sdt,the_geom         FROM coquan           where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--1
+	    FOR r IN SELECT gid,'truong'   as ma,ten,diachi,sdt,the_geom         FROM truong           where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--2
+	    FOR r IN SELECT gid,'benhvien' as ma,ten,diachi,sdt,the_geom         FROM benhvien         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--3
 	    FOR r IN SELECT gid,'cho'      as ma,ten,diachi,sdt,the_geom         FROM cho              where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--4
 	    FOR r IN SELECT gid,'ben'      as ma,ten,diachi,null as sdt,the_geom FROM ben              where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--5
-	    FOR r IN SELECT gid,'khachsan' as ma,ten,diachi,sdt,the_geom                        		   FROM khachsan         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--6
-	    FOR r IN SELECT gid,'congty'   as ma,ten,diachi,sdt,the_geom                        		   FROM congty           where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--7
-	    FOR r IN SELECT gid,'giaitri'  as ma,ten,diachi,sdt,the_geom                        		   FROM giaitri          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--8
-	    FOR r IN SELECT gid,'denchua'  as ma,ten,diachi,sdt,the_geom                        		   FROM denchua          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--9
-	    FOR r IN SELECT gid,'buudien'  as ma,ten,diachi,sdt,the_geom                        		   FROM buudien          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--10
-	    FOR r IN SELECT gid,'nganhang' as ma,ten,diachi,sdt,the_geom                        		   FROM nganhang         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--11
+	    FOR r IN SELECT gid,'khachsan' as ma,ten,diachi,sdt,the_geom         FROM khachsan         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--6
+	    FOR r IN SELECT gid,'congty'   as ma,ten,diachi,sdt,the_geom         FROM congty           where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--7
+	    FOR r IN SELECT gid,'giaitri'  as ma,ten,diachi,sdt,the_geom         FROM giaitri          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--8
+	    FOR r IN SELECT gid,'denchua'  as ma,ten,diachi,sdt,the_geom         FROM denchua          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--9
+	    FOR r IN SELECT gid,'buudien'  as ma,ten,diachi,sdt,the_geom         FROM buudien          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--10
+	    FOR r IN SELECT gid,'nganhang' as ma,ten,diachi,sdt,the_geom         FROM nganhang         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--11
 	    FOR r IN SELECT gid,'congvien' as ma,ten,diachi,null as sdt,the_geom FROM congvien         where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--12
 	    FOR r IN SELECT gid,'cau'      as ma,ten,diachi,null as sdt,the_geom FROM cau              where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--15
-	    FOR r IN SELECT gid,'thuvien'  as ma,ten,diachi,sdt,the_geom                        		   FROM thuvien          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--14
+	    FOR r IN SELECT gid,'thuvien'  as ma,ten,diachi,sdt,the_geom         FROM thuvien          where signed_to_unsigned(lower(ten )) like '%'||t2||'%' and  st_contains(geom_qh, the_geom) LOOP RETURN NEXT r; END LOOP;--14
 	    RETURN;
 	END
 	$BODY$
