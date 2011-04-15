@@ -441,7 +441,7 @@ public class CanThoMap {
 					arr[1] = g.getCanh(source, target).getName();
 					arr[2] = g.getCanh(source, target).getWeight() + "";
 					arr[3] = " ";
-					/***Direction***/									
+					/***Begin Direction***/									
 					if (i ==  1){
 						//lay canh dau tien	
 						canh_truoc = g.getCanh(source, target).getTheGeom();						
@@ -474,7 +474,7 @@ public class CanThoMap {
 			}
 
 			for (Nut vertex : path) {
-				System.out.println(vertex.getName());
+				//System.out.println(vertex.getName());
 			}
 			Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
 			this.closeConnection();
@@ -703,10 +703,10 @@ public class CanThoMap {
 		this.openConnection();
 		if (is_SignedString(text) == false){
 			//chuoi khong dau
-			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_unsigned('"+ text + "')";
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_unsigned('"+ text + "') ORDER BY ten";
 		}else{
 			//chuoi co dau
-			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text('"+ text + "')";
+			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text('"+ text + "') ORDER BY ten";
 		}		
 		rs = s.executeQuery(sql);
 		
@@ -761,11 +761,11 @@ public class CanThoMap {
 		if (is_SignedString(chuoi) == false){
 			//chuoi khong dau
 			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_point_unsigned('"
-				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")";
+				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ") ORDER BY ten";
 		}else{
 			//chuoi co dau
 			sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_point('"
-				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ")";
+				+ x + "','" + y + "','" + chuoi + "'," + bankinh + ") ORDER BY ten";
 		}
 		rs = s.executeQuery(sql);
 		//System.out.println("So mau tin hien tai(find_Place_Around_Point): ");
@@ -898,10 +898,10 @@ public class CanThoMap {
 		if (str_id == "") {
 			if (is_SignedString(text) == false){
 				//chuoi khong dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_unsigned('"+ text + "')";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_unsigned('"+ text + "') ORDER BY ten";
 			}else{
 				//chuoi co dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text + "')";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text + "') ORDER BY ten";
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
@@ -949,11 +949,11 @@ public class CanThoMap {
 			if (is_SignedString(text) == false){
 				//chuoi khong dau
 				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_huyen_unsigned('"
-					+ text + "'," + ma + ")";
+					+ text + "'," + ma + ")  ORDER BY ten";
 			}else{
 				//chuoi co dau
 				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_huyen('"
-					+ text + "'," + ma + ")";
+					+ text + "'," + ma + ")  ORDER BY ten";
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
@@ -1019,10 +1019,10 @@ public class CanThoMap {
 			}
 			if (is_SignedString(text) == false){
 				//chuoi khong dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_xa_unsigned('"+ text + "'," + ma + ")";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_xa_unsigned('"+ text + "'," + ma + ") ORDER BY ten";
 			}else{
 				//chuoi co dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_xa('"+ text + "'," + ma + ")";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_xa('"+ text + "'," + ma + ") ORDER BY ten";
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
@@ -1085,7 +1085,7 @@ public class CanThoMap {
 				ma = Integer.parseInt(temp[i]);
 			}
 			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_lop("
-					+ ma + ",'" + ten_lop + "','" + cap + "')");
+					+ ma + ",'" + ten_lop + "','" + cap + "') ORDER BY ten");
 			while (rs.next()) {
 				String[] arr = new String[4];
 				if (rs.getString("the_geom") == null) {
@@ -1142,10 +1142,10 @@ public class CanThoMap {
 		String ma = " ";
 		if (is_SignedString(text) == false){
 			//chuoi khong dau
-			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+")";
+			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_street_unsigned('"+ street +"','"+text+"',"+radius+") ORDER BY ten";
 		}else{
 			//chuoi co dau
-			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_street('"+ street +"','"+text+"',"+radius+")";
+			sql = "SELECT DISTINCT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_around_street('"+ street +"','"+text+"',"+radius+") ORDER BY ten";
 		}
 		//System.out.println(sql);
 		rs = s.executeQuery(sql);
