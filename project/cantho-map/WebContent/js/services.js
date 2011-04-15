@@ -630,7 +630,8 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	var wkt="";
 	var ten = "";
 	var diachi = "";
-	var sodienthoai = "";	
+	var sodienthoai = "";
+	var ma="";
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
 			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
@@ -648,10 +649,11 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
 		if(diachi==" " || diachi==null) {diachi = "Dang cap nhat.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Dang cap nhat.";}
 		ten = "<div class= 'result-div'>" +
-				"<a name='"+ten+"' class = 'popup-result result_"+i+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
+				"<a name='"+ten+"' class = 'popup-result result_"+i+" popup-result-"+ma+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -676,6 +678,7 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 	var diachi = "";
 	var sodienthoai = "";
 	var result = "";
+	var ma="";
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
@@ -716,6 +719,7 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 	var diachi = "";
 	var sodienthoai = "";
 	var result = "";
+	var ma="";
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
 	lop_dia_diem.destroyFeatures();
@@ -755,6 +759,7 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 	var ten = "";
 	var diachi = "";
 	var sodienthoai = "";	
+	var ma="";
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
 			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>B</span>" + "</div>"
@@ -814,6 +819,7 @@ function callBack_getLopDiaDiem(xml_result, status) {
 	var diachi = "";
 	var sodienthoai = "";
 	var result ="";
+	var ma="";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
@@ -856,6 +862,7 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 	var diachi = "";
 	var sodienhoai = "";
 	var result = "";
+	var ma="";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];	
 	// xoa di cac feature hien tai tren lop duong di
@@ -1013,6 +1020,7 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 	var diachi = "";
 	var sodienthoai = "";	
 	var result = "";
+	var ma="";
 	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 	// xoa di cac feature hien tai tren lop duong di
 	//lop_dia_diem.destroyFeatures();

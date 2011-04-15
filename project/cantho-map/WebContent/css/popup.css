@@ -232,6 +232,48 @@
 	text-decoration: none;
 	padding-bottom: 10px;
 	}
+.popup-result-coquan{
+	background:  url(../map-icon/coquan16.png) no-repeat !important; 
+	}
+.popup-result-truong{
+	background:  url(../map-icon/truong16.png) no-repeat !important; 
+	}
+.popup-result-benhvien{
+	background:  url(../map-icon/benhvien16.png) no-repeat !important; 
+	}
+.popup-result-cho{
+	background:  url(../map-icon/cho16.png) no-repeat !important; 
+	}
+.popup-result-ben{
+	background:  url(../map-icon/ben16.png) no-repeat !important; 
+	}
+.popup-result-khachsan{
+	background:  url(../map-icon/khachsan16.png) no-repeat !important; 
+	}
+.popup-result-congty{
+	background:  url(../map-icon/congty16.png) no-repeat !important; 
+	}
+.popup-result-giaitri{
+	background:  url(../map-icon/giaitri16.png) no-repeat !important; 
+	}
+.popup-result-denchua{
+	background:  url(../map-icon/denchua16.png) no-repeat !important; 
+	}
+.popup-result-buudien{
+	background:  url(../map-icon/buudien16.png) no-repeat !important; 
+	}
+.popup-result-nganhang{
+	background:  url(../map-icon/nganhang16.png) no-repeat !important; 
+	}
+.popup-result-congvien{
+	background:  url(../map-icon/congvien16.png) no-repeat !important; 
+	}
+.popup-result-coquan{
+	background:  url(../map-icon/cau16.png) no-repeat !important; 
+	}
+.popup-result-thuvien{
+	background:  url(../map-icon/thuvien16.png) no-repeat !important; 
+	}
 .result-div{
 	font-size: 14px;
 	height: auto;
