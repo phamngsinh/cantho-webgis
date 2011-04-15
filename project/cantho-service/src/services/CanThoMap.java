@@ -497,14 +497,14 @@ public class CanThoMap {
 	public ArrayList getDiaDiem(String lop, String ten) throws SQLException,
 			ClassNotFoundException {
 		this.openConnection();
-		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt FROM "
+		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt, 'coquan' as ma FROM "
 				+ lop + " WHERE ten LIKE '%" + ten + "%'";
 		rs = s.executeQuery(sql);
 		ArrayList ds_diadiem = new ArrayList();
 
 		while (rs.next()) {
 
-			String[] arr = new String[4];
+			String[] arr = new String[5];
 			// neu chuoi lay ra la null thi gan gia tri la chuoi rong
 			if (rs.getString("the_geom") == null) {
 				arr[0] = " ";
@@ -525,6 +525,11 @@ public class CanThoMap {
 				arr[3] = " ";
 			} else {
 				arr[3] = rs.getString("sdt");
+			}
+			if (rs.getString("ma") == null) {
+				arr[4] = " ";
+			} else {
+				arr[4] = rs.getString("ma");
 			}
 			ds_diadiem.add(arr);
 		}
@@ -617,15 +622,16 @@ public class CanThoMap {
 		String ten = "";
 		String diachi = "";
 		String sdt = "";
+		String ma = "";
 		ArrayList ds_dia_diem = new ArrayList();
 		// System.out.println("-"+ten_lop+"-");
 		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") || ten_lop.equalsIgnoreCase("ben")) {
 
-			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom From " + ten_lop;
+			String sql_1 = "Select ten, diachi, ST_Astext(the_geom) As the_geom,'"+ten_lop+"' as ma From " + ten_lop;
 			rs = s.executeQuery(sql_1);
 			sdt = " ";
 			while (rs.next()) {
-				String[] arr_1 = new String[4];
+				String[] arr_1 = new String[5];
 
 				if (rs.getString("ten") == null) {
 					ten = " ";
@@ -642,21 +648,27 @@ public class CanThoMap {
 				} else {
 					the_geom = rs.getString("the_geom");
 				}
+				if (rs.getString("ma") == null) {
+					ma = " ";
+				} else {
+					ma = rs.getString("ma");
+				}
 				// System.out.println("1-Ten: "+ten);
 				arr_1[0] = the_geom;
 				arr_1[1] = ten;
 				arr_1[2] = diachi;
 				arr_1[3] = sdt;
+				arr_1[4] = ma;
 				ds_dia_diem.add(arr_1);
 			}
 		} else {
 			// System.out.println("Kiem tra dung");
 
-			String sql_2 = "Select ten, diachi, sdt, ST_Astext(the_geom) As the_geom From "
+			String sql_2 = "Select ten, diachi, sdt, ST_Astext(the_geom) As the_geom,'"+ten_lop+"' as ma From "
 					+ ten_lop;
 			rs = s.executeQuery(sql_2);
 			while (rs.next()) {
-				String[] arr_2 = new String[4];
+				String[] arr_2 = new String[5];
 
 				if (rs.getString("ten") == null) {
 					ten = " ";
@@ -678,11 +690,17 @@ public class CanThoMap {
 				} else {
 					the_geom = rs.getString("the_geom");
 				}
+				if (rs.getString("ma") == null) {
+					ma = " ";
+				} else {
+					ma = rs.getString("ma");
+				}
 				// System.out.println("2-Ten: "+ten);
 				arr_2[0] = the_geom;
 				arr_2[1] = ten;
 				arr_2[2] = diachi;
 				arr_2[3] = sdt;
+				arr_2[4] = ma;
 				ds_dia_diem.add(arr_2);
 			}
 		}
