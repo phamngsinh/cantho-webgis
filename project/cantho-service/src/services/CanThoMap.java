@@ -1276,7 +1276,17 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_dia_diem;
 	}
-	
+	public ArrayList get_Street_By_Id(String ma) throws SQLException, ClassNotFoundException{
+		this.openConnection();
+		ArrayList ds_doan_duong = new ArrayList();
+		String sql = "SELECT ST_Astext(the_geom) AS the_geom FROM giaothong WHERE ma_duong = '"+ma+"'";
+		rs = s.executeQuery(sql);
+		while (rs.next()){
+			ds_doan_duong.add(rs.getString("the_geom"));
+		}
+		this.closeConnection();
+		return ds_doan_duong;
+	}
 	
 	public boolean is_SignedString(String text){
 		boolean result = false;	
