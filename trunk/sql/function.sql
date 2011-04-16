@@ -1131,11 +1131,13 @@ CREATE OR REPLACE FUNCTION find_street_by_ma(ma text) -- NEW-- -- NEW-- -- NEW--
 	BEGIN
 	    geom:= the_geom from giaothong where ma_duong = ma limit 1;
 	    geom_point:=PointN(geom,1);
-	    return result;	
+	    x:=ST_X(geom_point)||'';
+	    y:=ST_Y(geom_point)||'';
+	    return x||'$'||y;	
 	END;
 	$BODY$
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
---select find_street_by_ma('07');
+select find_street_by_ma('07');
 --select * from giaothong where ma_duong='07';
 
 
