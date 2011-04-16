@@ -1104,7 +1104,7 @@ function callBack_Find_Street_By_Name(xml_result, status){
 		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Đường " + ten + "</a></div> ";
 	}
 	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-	"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	"<a class='link' id='clearSearchResultText2' title='Xoa ket qua'>Xoa ket qua</a>" +
 	"<div class='result-duongdi'>" +
 	result +"</div>";
 	$("#tab_content3").html(result);

@@ -285,6 +285,17 @@ ol, ul {
     display: none;
     margin-top: 5px;
 }
+#clearSearchResultText2{
+    background: url("../images/Icons.png") no-repeat scroll -2px -192px transparent;
+    display: block;
+    height: 16px;
+    padding: 0 0 2px;
+    text-indent: -9999px;
+    width: 16px;
+    float: right;
+    display: none;
+    margin-top: 5px;
+}
 .sodiadiem{
 	font-size: 14px;
 	position: absolute;
