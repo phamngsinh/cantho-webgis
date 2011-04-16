@@ -115,16 +115,26 @@
 			</tr>
 		</table>
 		<a href="javascript:closeDVLT()" class="close-dv-lt" style="display: block;"></a>
-		<input class = 'tim' name='buttonTim' type='button' value='Tìm' onclick='timDichVuLoTrinh()'/>
+		<input class = 'btn-tim-dv' name='buttonTim' type='button' value='Tìm' onclick='timDichVuLoTrinh()'/>
+</div>
+<div class="div-tim-con-duong" >
+		<table class="timcd-content"> 
+			<tr>
+				<td>Tên đường</td>
+				<td   class = 'tencd'><input id='txt_ten_cd' class = 'textconduong' name='textconduong' type='text' value='' /></td>
+			</tr>
+		</table>
+		<a href="javascript:closeTimConDuong()" class="close-tim-con-duong" style="display: block;"></a>
+		<input class = 'btn-tim-duong' name='buttonTim' type='button' value='Tìm' onclick='timConDuongTheoTen()'/>
 </div>
 <div class = "map" id = "map">
  </div>
 <div class = "left_content"  id = "left_content"> 
 		<div class = "left_top_content" id = "left_top_content">	
 			<ul class="tabs">
-				<li><a id="tab1" href="#">Tìm đường</a></li>
+				<li><a id="tab1" href="#">Tìm đường đi</a></li>
 				<li><a id="tab2" href="#">Tìm vị trí</a></li>
-				<li><a id="tab3" href="#">Hướng dẫn</a></li>
+				<li><a id="tab3" href="#">Tìm đường</a></li>
 			</ul>
 			<div class="panes">
 				<div class= "panes-div body-find-path">
@@ -178,10 +188,10 @@
 </div>
 <div class = "bottom_content" class = "bottom_content">	
 			<table><tr>
-			 <td class = 'chon-vung not-clicked'> <a href="javascript:ChuyenChuoi()"  class="menu_taskbar">Tìm con đường</a></td>	
+			 <td class = 'chon-vung not-clicked'> <a href="javascript:timConDuong()"  class="menu_taskbar">Tìm con đường</a></td>	
 			<!-- td class = 'in-ban-do not-clicked'> <a href="javascript:inBanDo()"  class="menu_taskbar">In bản đồ</a></td-->		
 			<td class = 'do-khoang-cach not-clicked'> <a href="javascript:doKhoangCach()" class="menu_taskbar">Đo khoảng cách</a></td>
-			<td class = 'tim-duong not-clicked'> <a href="javascript:timDuong()"   class="menu_taskbar">Chọn A =&gt B</a></td>					
+			<td class = 'tim-duong not-clicked'> <a href="javascript:timDuong()"   class="menu_taskbar">Chọn điểm A,B</a></td>					
 			</tr></table>
 			<div class = "flash-footer">
 				<object type="application/x-shockwave-flash"  data="images/footer.swf" width="100%" height="100%">
