@@ -481,7 +481,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from coquan where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from coquan where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--2 truong
@@ -490,7 +490,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from truong where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from truong where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--3 benhvien
@@ -499,7 +499,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from benhvien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from benhvien where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--4  cho
@@ -508,7 +508,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from cho where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from cho where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--5  ben
@@ -517,7 +517,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from ben where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= '';
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 
 		--6  khachsan
@@ -526,7 +526,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from khachsan where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from khachsan where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--7  congty
@@ -535,7 +535,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from congty where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from congty where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--8   giaitri
@@ -544,7 +544,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from giaitri where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from giaitri where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--9   denchua
@@ -553,7 +553,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from denchua where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from denchua where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--10   buudien
@@ -562,7 +562,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from buudien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from buudien where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--11  nganhang
@@ -571,7 +571,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from nganhang where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from nganhang where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--12    congvien
@@ -580,7 +580,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from congvien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= '';
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--13   cau
@@ -589,7 +589,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from cau where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= '';
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		
 		--14   thuvien
@@ -598,7 +598,7 @@ CREATE OR REPLACE FUNCTION find_info_of_point( t text)
 		diachi1:= diachi from thuvien where Astext(the_geom)= t; if diachi1 is null then diachi1='';end if;
 		sdt1:= sdt       from thuvien where Astext(the_geom)= t; if sdt1 is null then sdt1='';end if;
 		if(ten1 is not null) then 
-			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
+			return ten1||'$'||diachi1||'$'||sdt1 ||'$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326))||'$'||ma1;
 		end if;
 		return 'nodata$'||X(ST_GeomFromText(t,4326))||'$'||Y(ST_GeomFromText(t,4326));
 	END;
