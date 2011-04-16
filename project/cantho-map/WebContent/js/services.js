@@ -907,7 +907,7 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		ten = "<div class= 'result-div'>" +
-		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
+		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
@@ -1100,7 +1100,7 @@ function callBack_Find_Street_By_Name(xml_result, status){
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		result= result + "<div class='result-duong-item'> <a class = 'duongdi-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Đường " + ten + "</a></div> ";
+		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Đường " + ten + "</a></div> ";
 	}
 	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 	"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
