@@ -497,14 +497,14 @@ public class CanThoMap {
 	public ArrayList getDiaDiem(String lop, String ten) throws SQLException,
 			ClassNotFoundException {
 		this.openConnection();
-		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt FROM "
+		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt, '"+lop+"' as ma FROM "
 				+ lop + " WHERE ten LIKE '%" + ten + "%'";
 		rs = s.executeQuery(sql);
 		ArrayList ds_diadiem = new ArrayList();
 
 		while (rs.next()) {
 
-			String[] arr = new String[4];
+			String[] arr = new String[5];
 			// neu chuoi lay ra la null thi gan gia tri la chuoi rong
 			if (rs.getString("the_geom") == null) {
 				arr[0] = " ";
@@ -525,6 +525,11 @@ public class CanThoMap {
 				arr[3] = " ";
 			} else {
 				arr[3] = rs.getString("sdt");
+			}
+			if (rs.getString("ma") == null) {
+				arr[4] = " ";
+			} else {
+				arr[4] = rs.getString("ma");
 			}
 			ds_diadiem.add(arr);
 		}
