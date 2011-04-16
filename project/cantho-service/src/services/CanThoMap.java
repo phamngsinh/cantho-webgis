@@ -1228,18 +1228,20 @@ public class CanThoMap {
 		String sql = " ";
 		if (is_SignedString(ten_duong)==false){
 			//chuoi khong dau
-			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE signed_to_unsigned(lower(ten_duong )) LIKE '%"+ ten_duong.toLowerCase() +"%' ORDER BY ten_duong";			
+			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE signed_to_unsigned(lower(ten_duong )) LIKE lower('%"+ten_duong+"%') ORDER BY ten_duong";			
 		}else{
 			//chuoi co dau
-			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE lower(ten_duong ) LIKE '%"+ ten_duong.toLowerCase() +"%' ORDER BY ten_duong";
+			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE lower(ten_duong ) LIKE lower('%"+ ten_duong +"%') ORDER BY ten_duong";
 		}
 		rs = s.executeQuery(sql);
 		int num_rows = rs.getRow();
 		ArrayList temp_ma = new ArrayList();
 		ArrayList temp_ten = new ArrayList();
 		while (rs.next()){
-			temp_ma.add(rs.getString("ma_duong"));
-			temp_ten.add(rs.getString("ten_duong"));
+			if (rs.getString("ma_duong") != null){
+				temp_ma.add(rs.getString("ma_duong"));
+				temp_ten.add(rs.getString("ten_duong"));	
+			}			
 		}
 		
 		for (int i = 0; i < temp_ma.size(); i++ ){
