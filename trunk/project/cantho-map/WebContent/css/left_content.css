@@ -320,3 +320,7 @@ ol, ul {
 	padding: 10px 0px 10px 5px;
 	border-bottom: 1px solid #C1C1C1;
 	}
+.tenduong-result{
+	padding: 0px 0px 0px 20px;
+	background: url("../images/street.png") no-repeat scroll transparent;
+}
