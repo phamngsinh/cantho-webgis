@@ -121,6 +121,8 @@
 		<table class="timcd-content"> 
 			<tr>
 				<td>Tên đường</td>
+			</tr>
+			<tr>
 				<td   class = 'tencd'><input id='txt_ten_cd' class = 'textconduong' name='textconduong' type='text' value='' /></td>
 			</tr>
 		</table>
@@ -156,7 +158,7 @@
 				</div>
 				<div id="tab_content2" class= "panes-div">
 				</div>
-				<div class= "panes-div"></div>
+				<div id="tab_content3" class= "panes-div"></div>
 			</div>	
 		</div>	
 		<div class = "left_bottom_content" id = "left_bottom_content">		</div>
