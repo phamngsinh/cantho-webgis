@@ -1035,7 +1035,11 @@ function timDichVuLoTrinh(){
 }
 function timConDuongTheoTen(){
 	var text = $("#txt_ten_cd").val();
-	alert(text);
+	if (text == ""){
+		return;
+	}
+	//goi dich vu
+	find_Street_By_Name(text);
 }
 function hello(){
 	alert("hello");

@@ -438,6 +438,30 @@ function find_Place_Around_Streeet(street, text, radius) {
 	});
 }
 
+function find_Street_By_Name(text) {			
+	var soapMessage  = "<\?xml version='1.0' encoding='utf-8'\?>";
+		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+		soapMessage += "   <soapenv:Header/>";
+		soapMessage += "   <soapenv:Body>";
+		soapMessage += "      <ser:find_Street_By_Name>";
+		soapMessage += "         <ser:ten_duong>"+text+"</ser:ten_duong>";
+		soapMessage += "      </ser:find_Street_By_Name>";
+		soapMessage += "   </soapenv:Body>";
+		soapMessage += "</soapenv:Envelope>";
+		//alert(soapMessage);	
+	//alert("Bat dau goi dich vu...");
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_Find_Street_By_Name,
+		error : error_Find_Street_By_Name,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
 
 function callBackGetDuongDi(xml_result, status) {
 
@@ -518,7 +542,7 @@ function errorGetDuongDi(xml_error) {
 		var do_dai = line_string.getLength();
 		//alert("Do dai duong di: " + do_dai + " m");
 		$('.btn-lo-trinh').hide();
-		$('.search-result').html("&nbsp&nbsp Không tìm được đường đi trên đoạn này.");
+		$('.search-result').html("&nbsp&nbsp KhÃ´ng tÃ¬m Ä‘Æ°á»£c Ä‘Æ°á»�ng Ä‘i trÃªn Ä‘oáº¡n nÃ y.");
 	}
 }
 function callBackGetDiaDiem(xml_result, status) {
@@ -572,22 +596,22 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
 	ma = xml_result.getElementsByTagName('ns:return')[5].childNodes[0].nodeValue;
-	if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+	if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 	//tao noi dung cho popup
 	var content= "<div class = 'maker-popup-ten "+ma+"'>" + ten +"</div>" + 	
 	"<div class='maker-popup-div1'> " +
 		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
 		"<div class = 'maker-popup-footer' > " +
-			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Từ đây</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Đến đây</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phóng to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tìm xung quanh</a>" +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tá»« Ä‘Ã¢y</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Ä�áº¿n Ä‘Ã¢y</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>PhÃ³ng to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>TÃ¬m xung quanh</a>" +
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
-		"<!--div  class  = 'maker-popup-timdv'>Tìm dịch vụ ở gần vị trí này</div-->" +
+		"<!--div  class  = 'maker-popup-timdv'>TÃ¬m dá»‹ch vá»¥ á»Ÿ gáº§n vá»‹ trÃ­ nÃ y</div-->" +
 		"<table>" +
 			"<tr>" +
 				"<td>Ten</td>" +
@@ -651,8 +675,8 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";
@@ -691,8 +715,8 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -733,8 +757,8 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -782,8 +806,8 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result2_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";		
@@ -836,16 +860,16 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		ma=xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>Tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
-			"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
+	result= "<div class='sodiadiem'>TÃ¬m tháº¥y: "+ (xml_result.getElementsByTagName('ns:return').length) + " káº¿t quáº£.</div>" +
+			"<a class='link' id='clearSearchResultText' title='XÃ³a káº¿t quáº£'>XÃ³a káº¿t quáº£</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -879,8 +903,8 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
@@ -927,8 +951,8 @@ function callBack_getQuanHuyen(xml_result, status){
 	}
 	$('#tree_Huyen').html(html);
 	$("#map_path_div").attr("name","huyen");
-	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cần Thơ</a>");
-	$("#map_path_div2").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cần Thơ</a>");
+	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cáº§n ThÆ¡</a>");
+	$("#map_path_div2").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cáº§n ThÆ¡</a>");
 }
 function callBack_getXaPhuong(xml_result, status){
 	var wkt = "";
@@ -1037,8 +1061,8 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
+		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
@@ -1061,4 +1085,16 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 }
 function error_Find_Place_Around_Street(xml_result, status){
 	alert("Error: Find_Place_Around_Street "+xml_result);
+}
+function callBack_Find_Street_By_Name(xml_result, status){
+	var wkt = "";
+	var ten = "";
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		alert(ten+"-"+wkt);
+	}	
+}
+function error_Find_Street_By_Name(xml_result, status){
+	alert("Error: Find_Street_By_Name "+xml_result);
 }
