@@ -197,6 +197,7 @@ function doKhoangCach() {
 	$(".do-khoang-cach").removeClass("not-clicked");
 	$(".do-khoang-cach").addClass("clicked");
 	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
+	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	if($(".kq-doKC").css("right").replace("px","")<0){
 		$(".kq-doKC").stop().animate({right:115},350,"linear");
 		$(".tong-kc-m").html("0 km");
@@ -970,6 +971,7 @@ function daoChieu(){
 }
 function dvLoTrinh(){
 	$(".kq-doKC").stop().animate({right:-199},350,"linear");
+	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	if($(".div-dv-lt").css("right").replace("px","")<0){
 		$(".div-dv-lt").stop().animate({right:115},350,"linear");
 		}
@@ -979,6 +981,20 @@ function dvLoTrinh(){
 }
 function closeDVLT(){
 		$(".div-dv-lt").stop().animate({right:-199},350,"linear");
+}
+
+function timConDuong(){
+	$(".kq-doKC").stop().animate({right:-199},350,"linear");
+	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
+	if($(".div-tim-con-duong").css("right").replace("px","")<0){
+		$(".div-tim-con-duong").stop().animate({right:115},350,"linear");
+		}
+	else{
+		$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
+	}
+}
+function closeTimConDuong(){
+	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 }
 function timDichVuLoTrinh(){
 	var text = $("#txt_ten_lt").val();
@@ -998,6 +1014,10 @@ function timDichVuLoTrinh(){
 		}		
 	}
 	find_Place_Around_Streeet(seg, text, radius);
+}
+function timConDuongTheoTen(){
+	var text = $("#txt_ten_cd").val();
+	alert(text);
 }
 function hello(){
 	alert("hello");
