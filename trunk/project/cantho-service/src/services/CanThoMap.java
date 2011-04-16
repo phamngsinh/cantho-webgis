@@ -1245,7 +1245,7 @@ public class CanThoMap {
 		}
 		
 		for (int i = 0; i < temp_ma.size(); i++ ){
-			String[] arr = new String[2];
+			String[] arr = new String[3];
 			//lay ra ten duong va ma duong
 			ma = temp_ma.get(i).toString();
 			ten = temp_ten.get(i).toString();
@@ -1253,14 +1253,19 @@ public class CanThoMap {
 			while (rs.next()){
 				the_geom = rs.getString("result");
 			}
-			if (ten.equalsIgnoreCase("")){
-				ten = " ";
-			}
+			
 			if (the_geom.equalsIgnoreCase("")){
 				the_geom =" ";
 			}
+			if (ma.equalsIgnoreCase("")){
+				ma =" ";
+			}
+			if (ten.equalsIgnoreCase("")){
+				ten = " ";
+			}
 			arr[0] = the_geom;
-			arr[1] = ten;
+			arr[1] = ma;
+			arr[2] = ten;
 			ds_dia_diem.add(arr);
 		}
 		this.closeConnection();
