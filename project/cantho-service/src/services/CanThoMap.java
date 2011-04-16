@@ -1089,7 +1089,7 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_dia_diem;
 	}
-
+	/**Tim dia diem theo tung lop trong vung (quan/ xa)**/
 	public ArrayList find_place_by_text_and_lop(String str_id, String ten_lop,
 			String cap) throws SQLException, ClassNotFoundException {
 
@@ -1098,6 +1098,7 @@ public class CanThoMap {
 		String ten = " ";
 		String diachi = " ";
 		String sdt = " ";
+		String ma_dia_diem = " ";
 		int ma = 0;
 		String[] temp;
 		this.openConnection();
@@ -1109,10 +1110,10 @@ public class CanThoMap {
 			} else {
 				ma = Integer.parseInt(temp[i]);
 			}
-			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_and_lop("
+			rs = s.executeQuery("SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_and_lop("
 					+ ma + ",'" + ten_lop + "','" + cap + "') ORDER BY ten");
 			while (rs.next()) {
-				String[] arr = new String[4];
+				String[] arr = new String[5];
 				if (rs.getString("the_geom") == null) {
 					the_geom = " ";
 				} else {
@@ -1133,11 +1134,16 @@ public class CanThoMap {
 				} else {
 					sdt = rs.getString("sdt");
 				}
-
+				if (rs.getString("ma") == null) {
+					ma_dia_diem = " ";
+				} else {
+					ma_dia_diem = rs.getString("ma");
+				}
 				arr[0] = the_geom;
 				arr[1] = ten;
 				arr[2] = diachi;
 				arr[3] = sdt;
+				arr[4] = ma_dia_diem;
 				ds_dia_diem.add(arr);
 			}
 		}
