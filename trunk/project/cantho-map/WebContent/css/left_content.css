@@ -300,3 +300,23 @@ ol, ul {
     z-index: 3;
     display: none;
 }
+
+.result-duongdi {
+    border-bottom: 1px solid #FFFFFF;
+    border-top: 1px solid #FFFFFF;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    right: 0;
+    top: 30px;
+}
+
+.result-duong-item{
+	font-size: 14px;
+	height: auto;
+	padding: 10px 0px 10px 5px;
+	border-bottom: 1px solid #C1C1C1;
+	}

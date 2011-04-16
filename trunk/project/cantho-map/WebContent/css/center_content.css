@@ -99,12 +99,16 @@
 	font-size: 12px;
 	vertical-align: middle;
 	width: 100px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #C1C1C1;
 	}
 .textbankinh{
 	height: 15px;
 	font-size: 12px;
 	vertical-align: middle;
 	width: 100px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #C1C1C1;
 	}
 .close-dv-lt{
 	position: absolute;
@@ -135,6 +139,8 @@
 	font-size: 12px;
 	vertical-align: middle;
 	width: 156px;
+	-moz-border-radius: 5px 5px 5px 5px;
+	border: 1px solid #C1C1C1;
 	}
 .close-tim-con-duong{
 	position: absolute;
