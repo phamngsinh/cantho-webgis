@@ -549,13 +549,14 @@ function errorGetDuongDi(xml_error) {
 function callBackGetDiaDiem(xml_result, status) {
 	var ten = "";
 	var diachi = "";
-	var sodienthoai = "";	
+	var sodienthoai = "";
+	var ma="";
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
 			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem </h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
-	// alert("getDiaDiem thanh cong");
+	//alert("getDiaDiem thanh cong");
 	list_lop_dia_diem = map.getLayersByName('lop_dia_diem');
 	lop_dia_diem = list_lop_dia_diem[0];
 	// xoa di cac feature hien tai tren lop duong di
