@@ -1120,5 +1120,20 @@ CREATE OR REPLACE FUNCTION find_place_around_street_unsigned(mult_str text, t te
 LANGUAGE 'plpgsql' IMMUTABLE STRICT;
 -----------------------OK---------------------------------
 -----------------------OK---------------------------------
---select * from quanhuyen;
+CREATE OR REPLACE FUNCTION find_street_by_ma(ma text) -- NEW-- -- NEW-- -- NEW-- -- NEW-- -- NEW-- -- NEW-- -- NEW-- 
+ RETURNS text AS
+	$BODY$
+	DECLARE
+	    result text;
+	    geom geometry;
+	BEGIN
+	    geom:= the_geom from giaothong where ma_duong = ma limit 1;
+	    result:=astext(PointN(geom,1));
+	    return result;	
+	END;
+	$BODY$
+LANGUAGE 'plpgsql' IMMUTABLE STRICT;
+--select find_street_by_ma('07');
+--select * from giaothong where ma_duong='07';
+
 
