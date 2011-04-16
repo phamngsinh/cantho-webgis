@@ -1124,11 +1124,13 @@ CREATE OR REPLACE FUNCTION find_street_by_ma(ma text) -- NEW-- -- NEW-- -- NEW--
  RETURNS text AS
 	$BODY$
 	DECLARE
-	    result text;
+	    geom_point geometry;
 	    geom geometry;
+	    x text;
+	    y text;
 	BEGIN
 	    geom:= the_geom from giaothong where ma_duong = ma limit 1;
-	    result:=astext(PointN(geom,1));
+	    geom_point:=PointN(geom,1);
 	    return result;	
 	END;
 	$BODY$
