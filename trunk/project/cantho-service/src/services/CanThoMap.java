@@ -497,14 +497,14 @@ public class CanThoMap {
 	public ArrayList getDiaDiem(String lop, String ten) throws SQLException,
 			ClassNotFoundException {
 		this.openConnection();
-		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt, 'coquan' as ma FROM "
+		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt FROM "
 				+ lop + " WHERE ten LIKE '%" + ten + "%'";
 		rs = s.executeQuery(sql);
 		ArrayList ds_diadiem = new ArrayList();
 
 		while (rs.next()) {
 
-			String[] arr = new String[5];
+			String[] arr = new String[4];
 			// neu chuoi lay ra la null thi gan gia tri la chuoi rong
 			if (rs.getString("the_geom") == null) {
 				arr[0] = " ";
@@ -525,11 +525,6 @@ public class CanThoMap {
 				arr[3] = " ";
 			} else {
 				arr[3] = rs.getString("sdt");
-			}
-			if (rs.getString("ma") == null) {
-				arr[4] = " ";
-			} else {
-				arr[4] = rs.getString("ma");
 			}
 			ds_diadiem.add(arr);
 		}
@@ -1219,6 +1214,58 @@ public class CanThoMap {
 		this.closeConnection();
 		return ds_dia_diem;
 	}
+	/***Tim duong di dua theo ten duong
+	 * return: diem bat ky nam tren duong
+	 * @throws ClassNotFoundException 
+	 * @throws SQLException 
+	 * **/
+	public ArrayList find_Street_By_Name(String ten_duong) throws SQLException, ClassNotFoundException{
+		this.openConnection();
+		ArrayList ds_dia_diem = new ArrayList();
+		String the_geom = " ";
+		String ten = " ";
+		String ma = " ";		
+		String sql = " ";
+		if (is_SignedString(ten_duong)==false){
+			//chuoi khong dau
+			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE signed_to_unsigned(lower(ten_duong )) LIKE '%"+ ten_duong.toLowerCase() +"%' ORDER BY ten_duong";			
+		}else{
+			//chuoi co dau
+			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE lower(ten_duong ) LIKE '%"+ ten_duong.toLowerCase() +"%' ORDER BY ten_duong";
+		}
+		rs = s.executeQuery(sql);
+		int num_rows = rs.getRow();
+		ArrayList temp_ma = new ArrayList();
+		ArrayList temp_ten = new ArrayList();
+		while (rs.next()){
+			temp_ma.add(rs.getString("ma_duong"));
+			temp_ten.add(rs.getString("ten_duong"));
+		}
+		
+		for (int i = 0; i < temp_ma.size(); i++ ){
+			String[] arr = new String[2];
+			//lay ra ten duong va ma duong
+			ma = temp_ma.get(i).toString();
+			ten = temp_ten.get(i).toString();
+			rs = s.executeQuery("SELECT find_street_by_ma('"+ma+"') AS result");
+			while (rs.next()){
+				the_geom = rs.getString("result");
+			}
+			if (ten.equalsIgnoreCase("")){
+				ten = " ";
+			}
+			if (the_geom.equalsIgnoreCase("")){
+				the_geom =" ";
+			}
+			arr[0] = the_geom;
+			arr[1] = ten;
+			ds_dia_diem.add(arr);
+		}
+		this.closeConnection();
+		return ds_dia_diem;
+	}
+	
+	
 	public boolean is_SignedString(String text){
 		boolean result = false;	
 		String regexp = "[áảãạóòỏõọéèẻẽẹúùủũụíìỉĩịýỳỷỹỵưứừửữựơớờởỡợôốồổỗộăắằẳẵặâấầẩẫậêếềểễệđ]";
@@ -1231,7 +1278,7 @@ public class CanThoMap {
 			}
 		}		
 		return false;
-	}
+	}	
 	private void openConnection() throws SQLException, ClassNotFoundException {
 		conn = null;
 		if (conn == null) {
