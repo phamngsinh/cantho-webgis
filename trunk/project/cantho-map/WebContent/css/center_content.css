@@ -125,13 +125,16 @@
     width: 175px;
     z-index: 0;
     font-size: 12px;
-    padding: 25px 5px 10px 15px;
+    padding: 18px 5px 10px 15px;
+	}
+.div-tim-con-duong tr td{
+	text-align: center;
 	}
 .textconduong{
 	height: 15px;
 	font-size: 12px;
 	vertical-align: middle;
-	width: 100px;
+	width: 156px;
 	}
 .close-tim-con-duong{
 	position: absolute;
@@ -141,19 +144,19 @@
 	width:16px;
 	height: 16px;
 	}
-.btn-tim-duong{
-	width: 94px ;
-	height: 25px;
-	background:  url(../images/lblue.png) no-repeat;  
-	border: none;
-	cursor: pointer;
-	font-size: 11px;
-	color: white;
-	font-weight: bold;
-	vertical-align:middle;
-	font-family:"Times New Roman", Times, serif;
-	margin:10px 0px 0px 50px;
-	}
+.btn-tim-duong {
+    background: url("../images/lblue.png") no-repeat scroll 0 0 transparent;
+    border: medium none;
+    color: white;
+    cursor: pointer;
+    font-family: "Times New Roman",Times,serif;
+    font-size: 11px;
+    font-weight: bold;
+    height: 25px;
+    margin: 5px 0 0 45px;
+    vertical-align: middle;
+    width: 94px;
+}
 .btn-tim-duong:hover{
 	background:  url(../images/lblue-h.png) no-repeat;  
 	}

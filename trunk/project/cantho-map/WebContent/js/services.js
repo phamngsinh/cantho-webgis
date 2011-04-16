@@ -510,6 +510,7 @@ function callBackGetDuongDi(xml_result, status) {
 	 * var gml_format = new OpenLayers.Format.GML();
 	 */
 	 $('.btn-lo-trinh').show();
+	 showLeftContent1();
 }
 /*******************************************************************************
  * Khi co loi xay ra: tao duong thang noi truc tiep giua start_point va
@@ -1089,11 +1090,14 @@ function error_Find_Place_Around_Street(xml_result, status){
 function callBack_Find_Street_By_Name(xml_result, status){
 	var wkt = "";
 	var ten = "";
+	var result = "";
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
-		alert(ten+"-"+wkt);
+		result= result + " <a class = 'duongdi-result duongdi_"+i+"' id ='" + wkt + "' href='javascript:chonConDuong("+i+");' >" + ten + "</a> ";
 	}	
+	$("#tab_content3").html(result);
+	showLeftContent3();
 }
 function error_Find_Street_By_Name(xml_result, status){
 	alert("Error: Find_Street_By_Name "+xml_result);

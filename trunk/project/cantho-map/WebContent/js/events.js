@@ -255,6 +255,12 @@ function showLeftContent2(){
 	$("#tab2").click();
 	$("#clearSearchResultText").css("display","block");
 }
+function showLeftContent3(){
+	$("#left_content").stop().animate({left:0},350,"linear");
+	$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
+	$(".olControlScaleLine").stop().animate({left:305},350,"linear");
+	$("#tab3").click();
+}
 /*
 function OnblurTextBoxAB(a){
 	a=$(a);
@@ -1040,6 +1046,12 @@ function timConDuongTheoTen(){
 	}
 	//goi dich vu
 	find_Street_By_Name(text);
+}
+function chonConDuong(i){
+	var a = $('.duongdi_' + i);
+	//var wkt = a.attr('id');	
+	var ten = a.html();
+	alert(ten);
 }
 function hello(){
 	alert("hello");
