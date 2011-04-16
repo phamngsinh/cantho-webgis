@@ -544,6 +544,7 @@ public class CanThoMap {
 		String ten = "";
 		String diachi = "";
 		String sodienthoai = "";
+		String ma="";
 		String x = "";
 		String y = "";
 		rs = s.executeQuery("Select find_info_of_point('" + wkt_point
@@ -558,7 +559,7 @@ public class CanThoMap {
 		 * 'nodata$x$y'
 		 **/
 		// tien hanh tach chuoi dua tren ky tu dac biet $
-		String[] temp = new String[5];
+		String[] temp = new String[6];
 		temp = result.split("\\$");
 		/*
 		 * for (int i=0;i<temp.length;i++){
@@ -602,12 +603,18 @@ public class CanThoMap {
 			} else {
 				y = temp[4];
 			}
+			if (temp[5].equals("")) {
+				ma = " ";
+			} else {
+				ma = temp[5];
+			}
 		}
 		arr.add(ten);
 		arr.add(diachi);
 		arr.add(sodienthoai);
 		arr.add(x);
 		arr.add(y);
+		arr.add(ma);
 		// System.out.println("result: "+result);
 		this.closeConnection();
 		return arr;
