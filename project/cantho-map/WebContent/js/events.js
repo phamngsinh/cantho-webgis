@@ -1057,9 +1057,17 @@ function timConDuongTheoTen(){
 }
 function chonConDuong(i){
 	var a = $('.duongdi_' + i);
-	var wkt = a.attr('id');	
+	var str = a.attr('id');	
 	var ten = a.html();
-	alert(wkt);
+	var temp = str.split("$");
+	//alert("hii"+temp[0]);
+	var ma = temp [0];
+	var x = temp [1];
+	var y = temp [2];
+	var lonlat = new OpenLayers.LonLat(x,y);
+	map.setCenter(lonlat,false,false);
+	//goi dich vu hien thi con duong
+	get_Street_By_Id(ma);
 }
 function hello(){
 	alert("hello");

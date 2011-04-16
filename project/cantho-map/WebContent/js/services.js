@@ -463,6 +463,31 @@ function find_Street_By_Name(text) {
 	});
 }
 
+function get_Street_By_Id(id) {			
+	var soapMessage  = "<\?xml version='1.0' encoding='utf-8'\?>";
+		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
+		soapMessage += "   <soapenv:Header/>";
+		soapMessage += "   <soapenv:Body>";
+		soapMessage += "      <ser:get_Street_By_Id>";
+		soapMessage += "         <ser:ma>"+ id +"</ser:ma>";
+		soapMessage += "      </ser:get_Street_By_Id>";
+		soapMessage += "   </soapenv:Body>";
+		soapMessage += "</soapenv:Envelope>";
+		//alert(soapMessage);	
+	//alert("Bat dau goi dich vu...");
+	$.ajax({
+		type : 'POST',
+		url : url,
+		cache : false,
+		success : callBack_Get_Street_By_Id,
+		error : error_Get_Street_By_Id,
+		dataType : 'xml',// kieu du lieu tra ve (response)
+		contentType : 'text/xml; charset=\"utf-8\"', // kieu du lieu gui di
+		// (request)
+		data : soapMessage
+	});
+}
+
 function callBackGetDuongDi(xml_result, status) {
 
 	// list_lop_duong = map.getLayersByName('lop_duong_di');
@@ -1112,4 +1137,17 @@ function callBack_Find_Street_By_Name(xml_result, status){
 }
 function error_Find_Street_By_Name(xml_result, status){
 	alert("Error: Find_Street_By_Name "+xml_result);
+}
+function callBack_Get_Street_By_Id(xml_result, status){
+	var wkt = "";
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_con_duong = map.getLayersByName('lop_con_duong')[0];
+	//lop_dia_diem.destroyFeatures();
+	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
+		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].nodeValue;
+		lop_con_duong.addFeatures(wkt_format.read(wkt));		
+	}
+}
+function error_Get_Street_By_Id(xml_result, status){
+	alert("Error: Get_Street_By_Id "+xml_result);
 }

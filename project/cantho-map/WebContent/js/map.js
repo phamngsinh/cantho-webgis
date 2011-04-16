@@ -65,7 +65,15 @@ function init() {
 		// strokeOpacity: 0.6
 		}))
 	});
-
+	/** Lop hien thi duong di: 16-04-2011 * */
+	var lop_con_duong = new OpenLayers.Layer.Vector("lop_con_duong",{
+		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
+			strokeColor : "#FF000B",
+			strokeWidth : 4.5,
+			strokeOpacity : 0.7
+		}))
+	});
+	
 	/** Lop hien thi duong duong di ngan nhat* */
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
@@ -139,7 +147,7 @@ function init() {
 	});
 	// kiem tra neu Zoomlevel == 5 thi hien thi lop_co_quan
 	// Them cac lop vua tao vao ban do
-	map.addLayers([ lop_co_quan, lop_benh_vien, lop_duong_di,
+	map.addLayers([ lop_con_duong, lop_co_quan, lop_benh_vien, lop_duong_di,
 			lop_dia_diem, lop_diem_chon ]);
 	// hide lop_quan_huyen di
 	//lop_quan_huyen.setVisibility(false);
