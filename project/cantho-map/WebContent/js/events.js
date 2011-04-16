@@ -73,6 +73,13 @@ $(document).ready(function() {
 		var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
 		lop_dia_diem.destroyFeatures();
      });
+	$('#clearSearchResultText2').live('click', function()  {  
+		$("#tab_content3").html("");
+		//xoa cac features tren lop_dia_diem khi nhan len nut X
+		//var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+		//lop_dia_diem.destroyFeatures();
+		alert("Nam o dong 77 cua event.js");
+     });
 	$('#txt_bk_lt').bind("keypress",function (e) {
         //if the letter is not digit then display error and don't type anything
         if( e.which!=8 && e.which!=0 && (e.which<48 || e.which>57)) {
@@ -260,6 +267,7 @@ function showLeftContent3(){
 	$(".olControlPanZoomBar").stop().animate({left:300},350,"linear");
 	$(".olControlScaleLine").stop().animate({left:305},350,"linear");
 	$("#tab3").click();
+	$("#clearSearchResultText2").css("display","block");
 }
 /*
 function OnblurTextBoxAB(a){
