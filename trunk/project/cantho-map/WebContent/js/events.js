@@ -76,9 +76,8 @@ $(document).ready(function() {
 	$('#clearSearchResultText2').live('click', function()  {  
 		$("#tab_content3").html("");
 		//xoa cac features tren lop_dia_diem khi nhan len nut X
-		//var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
-		//lop_dia_diem.destroyFeatures();
-		alert("Nam o dong 77 cua event.js");
+		var lop_con_duong = map.getLayersByName('lop_con_duong')[0];
+		lop_con_duong.destroyFeatures();		
      });
 	$('#txt_bk_lt').bind("keypress",function (e) {
         //if the letter is not digit then display error and don't type anything
