@@ -1049,9 +1049,9 @@ function timConDuongTheoTen(){
 }
 function chonConDuong(i){
 	var a = $('.duongdi_' + i);
-	//var wkt = a.attr('id');	
+	var wkt = a.attr('id');	
 	var ten = a.html();
-	alert(ten);
+	alert(wkt);
 }
 function hello(){
 	alert("hello");
