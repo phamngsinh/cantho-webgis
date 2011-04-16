@@ -625,11 +625,11 @@ public class CanThoMap {
 			ClassNotFoundException {
 		// Cac lop khong co sdt: cau, congvien, cho, ben
 		this.openConnection();
-		String the_geom = "";
-		String ten = "";
-		String diachi = "";
-		String sdt = "";
-		String ma = "";
+		String the_geom = " ";
+		String ten = " ";
+		String diachi = " ";
+		String sdt = " ";
+		String ma = " ";
 		ArrayList ds_dia_diem = new ArrayList();
 		// System.out.println("-"+ten_lop+"-");
 		if (ten_lop.equalsIgnoreCase("cau") || ten_lop.equalsIgnoreCase("congvien") || ten_lop.equalsIgnoreCase("ben")) {
@@ -923,10 +923,10 @@ public class CanThoMap {
 		if (str_id == "") {
 			if (is_SignedString(text) == false){
 				//chuoi khong dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text_unsigned('"+ text + "') ORDER BY ten";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text_unsigned('"+ text + "') ORDER BY ten";
 			}else{
 				//chuoi co dau
-				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom FROM find_place_by_text('"+ text + "') ORDER BY ten";
+				sql ="SELECT ten, diachi, sdt, ST_Astext(the_geom) As the_geom, ma FROM find_place_by_text('"+ text + "') ORDER BY ten";
 			}
 			rs = s.executeQuery(sql);
 			while (rs.next()) {
