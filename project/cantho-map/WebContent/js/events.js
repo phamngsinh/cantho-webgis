@@ -851,6 +851,21 @@ function chonViTri(i) {
 	var a = $('.result3_' + i);
 	var class_dc = $('.diachi_'+i);
 	var class_sdt = $('.sodienthoai_'+i);
+	var ma;
+	if(a.hasClass("coquan")){ma="coquan";}
+	else if(a.hasClass("truong")){ma="truong";}
+	else if(a.hasClass("benhvien")){ma="benhvien";}
+	else if(a.hasClass("cho")){ma="cho";}
+	else if(a.hasClass("ben")){ma="ben";}
+	else if(a.hasClass("khachsan")){ma="khachsan";}
+	else if(a.hasClass("congty")){ma="congty";}
+	else if(a.hasClass("giaitri")){ma="giaitri";}
+	else if(a.hasClass("denchua")){ma="denchua";}
+	else if(a.hasClass("buudien")){ma="buudien";}
+	else if(a.hasClass("nganhang")){ma="nganhang";}
+	else if(a.hasClass("congvien")){ma="congvien";}
+	else if(a.hasClass("cau")){ma="cau";}
+	else if(a.hasClass("thuvien")){ma="thuvien";}
 	//Lay noi dung cua cac thanh phan element
 	var wkt = a.attr('id');	
 	var ten = a.html();
@@ -866,7 +881,7 @@ function chonViTri(i) {
 	//map.setCenter(lonlat , false, false);
 	/*****Hien thi Popup, cho biet thong tin cua vi tri duoc chon****/
 	//tao noi dung cho popup
-	var content= "<div class = 'maker-popup-ten'>" + ten +"</div>" + 	
+	var content= "<div class = 'maker-popup-ten "+ma+"'>" + ten +"</div>" + 	
 	"<div class='maker-popup-div1'> " +
 		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
@@ -905,6 +920,9 @@ function chonViTri(i) {
             return false;
         }
 	});	
+	$("#left_content").stop().animate({left:-295},350,"linear");
+	$(".olControlPanZoomBar").stop().animate({left:5},350,"linear");
+	$(".olControlScaleLine").stop().animate({left:10},350,"linear");
 }
 function clickHuyen(i){
 	a = $('.huyen_' + i);

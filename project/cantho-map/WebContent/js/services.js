@@ -571,22 +571,23 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	sodienthoai = xml_result.getElementsByTagName('ns:return')[2].childNodes[0].nodeValue;
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
+	ma = xml_result.getElementsByTagName('ns:return')[5].childNodes[0].nodeValue;
 	if(diachi==" " || diachi==null) {diachi = "Không có thông tin.";}
 	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin.";}
 	//tao noi dung cho popup
-	var content= "<div class = 'maker-popup-ten'>" + ten +"</div>" + 	
+	var content= "<div class = 'maker-popup-ten "+ma+"'>" + ten +"</div>" + 	
 	"<div class='maker-popup-div1'> " +
 		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
 		"<div class = 'maker-popup-footer' > " +
-			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Từ đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Đến đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phóng to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tìm xung quanh</a>" +
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
-		"<!--div  class  = 'maker-popup-timdv'>Tim dich vu o gan vi tri nay</div-->" +
+		"<!--div  class  = 'maker-popup-timdv'>Tìm dịch vụ ở gần vị trí này</div-->" +
 		"<table>" +
 			"<tr>" +
 				"<td>Ten</td>" +
@@ -843,8 +844,8 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result= "<div class='sodiadiem'>Tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
