@@ -555,7 +555,7 @@ public class CanThoMap {
 			result = rs.getString("result");
 		}
 		/**
-		 * Ket qua tra ve: ten$diachi$sdt$x$y Neu ko tim thay tra ve
+		 * Ket qua tra ve: ten$diachi$sdt$x$y$ma Neu ko tim thay tra ve
 		 * 'nodata$x$y'
 		 **/
 		// tien hanh tach chuoi dua tren ky tu dac biet $
