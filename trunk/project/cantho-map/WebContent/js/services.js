@@ -478,7 +478,7 @@ function callBackGetDuongDi(xml_result, status) {
 	var direction="";
 	var li;
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
-		// alert(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue);
+		//alert(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue);
 		li = "";
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		tenduong = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
@@ -1089,11 +1089,17 @@ function error_Find_Place_Around_Street(xml_result, status){
 }
 function callBack_Find_Street_By_Name(xml_result, status){
 	var wkt = "";
+	var ma = "";
 	var ten = "";
 	var result = "";
+	var wkt_format = new OpenLayers.Format.WKT();
+	var lop_dia_diem = map.getLayersByName('lop_dia_diem')[0];
+	lop_dia_diem.destroyFeatures();
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
-		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
+		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
+		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		result= result + "<div class='result-duong-item'> <a class = 'duongdi-result duongdi_"+i+"' id ='" + wkt + "' href='javascript:chonConDuong("+i+");' >Đường " + ten + "</a></div> ";
 	}
 	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
