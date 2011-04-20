@@ -865,7 +865,7 @@ RETURNS SETOF coquan AS
 	    if lop='truong'           then FOR r IN SELECT gid,'truong'   as ma,ten,diachi,sdt,the_geom         FROM truong           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--2
 	    if lop='benhvien'         then FOR r IN SELECT gid,'benhvien' as ma,ten,diachi,sdt,the_geom         FROM benhvien         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--3
 	    if lop='cho'              then FOR r IN SELECT gid,'cho'      as ma,ten,diachi,sdt,the_geom         FROM cho              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--4
-	    if lop='ben'             then FOR r IN SELECT gid,'ban'      as ma,ten,diachi,null as sdt,the_geom FROM ben              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--5
+	    if lop='ben'              then FOR r IN SELECT gid,'ban'      as ma,ten,diachi,null as sdt,the_geom FROM ben              where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--5
 	    if lop='khachsan'         then FOR r IN SELECT gid,'khachsan' as ma,ten,diachi,sdt,the_geom         FROM khachsan         where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--6
 	    if lop='congty'           then FOR r IN SELECT gid,'congty'   as ma,ten,diachi,sdt,the_geom         FROM congty           where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--7
 	    if lop='giaitri'          then FOR r IN SELECT gid,'giaitri'  as ma,ten,diachi,sdt,the_geom         FROM giaitri          where  st_contains(geom_xp, the_geom) LOOP RETURN NEXT r; END LOOP;end if;--8
