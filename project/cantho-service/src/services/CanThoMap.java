@@ -497,14 +497,14 @@ public class CanThoMap {
 	public ArrayList getDiaDiem(String lop, String ten) throws SQLException,
 			ClassNotFoundException {
 		this.openConnection();
-		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt, '"+lop+"' as ma FROM "
+		String sql = "SELECT  ST_Astext(the_geom) As the_geom, ten, diachi, sdt FROM "
 				+ lop + " WHERE ten LIKE '%" + ten + "%'";
 		rs = s.executeQuery(sql);
 		ArrayList ds_diadiem = new ArrayList();
 
 		while (rs.next()) {
 
-			String[] arr = new String[5];
+			String[] arr = new String[4];
 			// neu chuoi lay ra la null thi gan gia tri la chuoi rong
 			if (rs.getString("the_geom") == null) {
 				arr[0] = " ";
@@ -525,11 +525,6 @@ public class CanThoMap {
 				arr[3] = " ";
 			} else {
 				arr[3] = rs.getString("sdt");
-			}
-			if (rs.getString("ma") == null) {
-				arr[4] = " ";
-			} else {
-				arr[4] = rs.getString("ma");
 			}
 			ds_diadiem.add(arr);
 		}
@@ -844,7 +839,7 @@ public class CanThoMap {
 		rs = s.executeQuery(sql);
 
 		while (rs.next()) {
-			String[] arr = new String[3];
+			String[] arr = new String[2];
 			if (rs.getString("ma") == null) {
 				id = " ";
 			} else {
@@ -855,14 +850,16 @@ public class CanThoMap {
 			} else {
 				ten = rs.getString("ten");
 			}
+			/*
 			if (rs.getString("the_geom") == null) {
 				the_geom = " ";
 			} else {
 				the_geom = rs.getString("the_geom");
 			}
+			*/
 			arr[0] = id;
 			arr[1] = ten;
-			arr[2] = the_geom;
+			//arr[2] = the_geom;
 			ds_quanhuyen.add(arr);
 		}
 		this.closeConnection();
@@ -1231,6 +1228,9 @@ public class CanThoMap {
 		String ten = " ";
 		String ma = " ";		
 		String sql = " ";
+		if (ten_duong.equals(" ")){
+			return ds_dia_diem;
+		}
 		if (is_SignedString(ten_duong)==false){
 			//chuoi khong dau
 			sql = "SELECT DISTINCT ma_duong,ten_duong FROM giaothong WHERE signed_to_unsigned(lower(ten_duong )) LIKE lower('%"+ten_duong+"%') ORDER BY ten_duong";			
