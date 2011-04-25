@@ -68,9 +68,9 @@ function init() {
 	/** Lop hien thi duong di: 16-04-2011 * */
 	var lop_con_duong = new OpenLayers.Layer.Vector("lop_con_duong",{
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
-			strokeColor : "#FF000B",
-			strokeWidth : 4.5,
-			strokeOpacity : 0.7
+			strokeColor : "#8A2BE2",
+			strokeWidth : 6,
+			strokeOpacity : 1
 		}))
 	});
 	
@@ -78,8 +78,8 @@ function init() {
 	var lop_duong_di = new OpenLayers.Layer.Vector("lop_duong_di", {
 		styleMap : new OpenLayers.StyleMap(new OpenLayers.Style({
 			strokeColor : "#FF000B",
-			strokeWidth : 4.5,
-			strokeOpacity : 0.7
+			strokeWidth : 5,
+			strokeOpacity : 0.9
 		}))
 	});
 
