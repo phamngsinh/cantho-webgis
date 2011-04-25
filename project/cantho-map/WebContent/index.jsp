@@ -130,6 +130,9 @@
 		<input class = 'btn-tim-duong' name='buttonTim' type='button' value='Tìm' onclick='timConDuongTheoTen()'/>
 </div>
 <div class = "map" id = "map">
+	<div class = "loader-map" id = "loader_map">
+
+ </div>
  </div>
 <div class = "left_content"  id = "left_content"> 
 		<div class = "left_top_content" id = "left_top_content">	
