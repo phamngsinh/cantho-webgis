@@ -33,9 +33,7 @@ public class CanThoMap {
 			String sql_nut = "SELECT id, ST_AsText(the_geom) As the_geom FROM dinh Order By id";
 			rs_nut = s.executeQuery(sql_nut);
 			while (rs_nut.next()) {
-				Nut node = new Nut(rs_nut.getString("id"),
-						rs_nut.getString("id") + "_"
-								+ rs_nut.getString("the_geom"));
+				Nut node = new Nut(rs_nut.getString("id"), rs_nut.getString("id") + "_"	+ rs_nut.getString("the_geom"));
 				nodes.add(node);
 			}
 			// System.out.print(nodes.get(1));
@@ -63,29 +61,24 @@ public class CanThoMap {
 				int target = rs_canh.getInt("nut_dich") - 1;
 				String ten_duong = rs_canh.getString("ten_duong");
 				if (ten_duong == null) {
-					ten_duong = "Đường không tên";
+					ten_duong = "Duong khong ten";
 				}
 				int mot_chieu = rs_canh.getInt("mot_chieu");
 				String the_geom = rs_canh.getString("the_geom");
 				Double chieu_dai = rs_canh.getDouble("chieu_dai");
 
-				Canh edge = new Canh(current_id, nodes.get(source),
-						nodes.get(target), chieu_dai, the_geom, ten_duong,
-						mot_chieu);
+				Canh edge = new Canh(current_id, nodes.get(source),	nodes.get(target), chieu_dai, the_geom, ten_duong,mot_chieu);
 				edges.add(edge);
 				// neu duong hai chieu add them chieu nguoc lai
 				if (mot_chieu == 0) {
-					Canh edge_r = new Canh(current_id, nodes.get(target),
-							nodes.get(source), chieu_dai, the_geom, ten_duong,
-							mot_chieu);
+					Canh edge_r = new Canh(current_id, nodes.get(target), nodes.get(source), chieu_dai, the_geom, ten_duong, mot_chieu);
 					edges.add(edge_r);
 				}
 			}
 			/** Ket thuc Duyet qua tung mau tin de them canh vao danh sach canh **/
 
 			/**** Lay du lieu giao cua Diem 1 ***********/
-			String sql1 = "SELECT split_multi_from_any_point('" + x1 + "','"
-					+ y1 + "') AS result";
+			String sql1 = "SELECT split_multi_from_any_point('" + x1 + "','" + y1 + "') AS result";
 			rs_1 = s.executeQuery(sql1);
 			String[] temp1;
 			String result1 = "";
@@ -94,13 +87,9 @@ public class CanThoMap {
 				break;
 			}
 			temp1 = result1.split("\\$");
-			for (int i = 0; i < temp1.length; i++) {
-				// System.out.println(temp1[i]);
-			}
 			/**** Ket thuc lay du lieu giao cua Diem 1 ***********/
 			/**** Lay du lieu giao cua Diem 2 ***********/
-			String sql2 = "SELECT split_multi_from_any_point('" + x2 + "','"
-					+ y2 + "') AS result";
+			String sql2 = "SELECT split_multi_from_any_point('" + x2 + "','" + y2 + "') AS result";
 			rs_2 = s.executeQuery(sql2);
 			String[] temp2;
 			String result2 = "";
@@ -109,9 +98,6 @@ public class CanThoMap {
 				break;
 			}
 			temp2 = result2.split("\\$");
-			for (int i = 0; i < temp2.length; i++) {
-				// System.out.println(temp2[i]);
-			}
 			/**** Ket thuc lay du lieu giao cua Diem 2 ***********/
 			/****/
 			int start_point = 0;// nut bat dau trong thuat toan Dijkstra
@@ -127,9 +113,7 @@ public class CanThoMap {
 			 * <id_nut_moi>$<multilinestring_2>$<do_dai_2
 			 * >$<id_nut_moi>$<multilinestring_3>$<do_dai_3>
 			 * **/
-			rs = s.executeQuery("SELECT split_multi_from_two_point('" + x1
-					+ "' , '" + y1 + "' , '" + x2 + "' , '" + y2
-					+ "' ) As result");
+			rs = s.executeQuery("SELECT split_multi_from_two_point('" + x1 + "' , '" + y1 + "' , '" + x2 + "' , '" + y2	+ "' ) As result");
 
 			/**
 			 * Bat dau kiem tra tung diem giao de tach canh, neu diem giao khong
@@ -142,12 +126,9 @@ public class CanThoMap {
 			// Kiem tra xem hai diem co cung nam tren mot canh giao hay khong?
 			if (!result.equals("0")) {
 				/***** BAT DAU TRUONG HOP HAI DIEM NAM TREN CUNG MOT CANH ******/
-				System.out.println("Ket qua: Trung - result= " + result);
+				//System.out.println("Ket qua: Trung - result= " + result);
 				String[] temp;
 				temp = result.split("\\$");
-				for (int i = 0; i < temp.length; i++) {
-					System.out.println("temp[" + i + "]=" + temp[i]);
-				}
 				String mult1 = temp[0];
 				double len1 = Double.parseDouble(temp[1]);
 				int id_nut_moi_1 = Integer.parseInt(temp[2]);
@@ -164,15 +145,12 @@ public class CanThoMap {
 					start_point = id_nut_moi_2;
 					end_point = id_nut_moi_1;
 				}
-				Nut node = new Nut(start_point + "", start_point
-						+ "_POINT(Nut Moi Start Point)");
+				Nut node = new Nut(start_point + "", start_point + "_POINT(Nut Moi Start Point)");
 				nodes.add(node);
-				node = new Nut(end_point + "", end_point
-						+ "_POINT(Nut Moi End Point)");
+				node = new Nut(end_point + "", end_point + "_POINT(Nut Moi End Point)");
 				nodes.add(node);
 				// lay ra id canh giao
-				rs = s.executeQuery("SELECT find_id_nearest_edge( '" + x2
-						+ "' , '" + y2 + "' ) As edges_id");
+				rs = s.executeQuery("SELECT find_id_nearest_edge( '" + x2 + "' , '" + y2 + "' ) As edges_id");
 				String id_canh_giao = "";
 				while (rs.next()) {
 					id_canh_giao = rs.getString("edges_id");
@@ -210,33 +188,19 @@ public class CanThoMap {
 				}
 				// System.out.println("id_nguon: "+id_nguon+" -id_dich: "+id_dich+" -ten: "+ten+" -chieu: "+chieu_hien_tai);
 				/**** Them ba canh moi *****/
-				Canh canh_moi = new Canh(id_canh_giao, nodes.get(id_nguon - 1),
-						nodes.get(id_nut_moi_1 - 1), len1, mult1, ten,
-						chieu_hien_tai);
+				Canh canh_moi = new Canh(id_canh_giao, nodes.get(id_nguon - 1),	nodes.get(id_nut_moi_1 - 1), len1, mult1, ten, chieu_hien_tai);
 				edges.add(canh_moi);
-				canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi_1 - 1),
-						nodes.get(id_nut_moi_2 - 1), len2, mult2, ten,
-						chieu_hien_tai);
+				canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi_1 - 1), nodes.get(id_nut_moi_2 - 1), len2, mult2, ten, chieu_hien_tai);
 				edges.add(canh_moi);
-				canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi_2 - 1),
-						nodes.get(id_dich - 1), len3, mult3, ten,
-						chieu_hien_tai);
+				canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi_2 - 1), nodes.get(id_dich - 1), len3, mult3, ten, chieu_hien_tai);
 				edges.add(canh_moi);
 				// neu hai chieu thi them lan nua
 				if (chieu_hien_tai == 0) {
-					canh_moi = new Canh(id_canh_giao, nodes.get(id_dich - 1),
-							nodes.get(id_nut_moi_2 - 1), len3, mult3, ten,
-							chieu_hien_tai);
+					canh_moi = new Canh(id_canh_giao, nodes.get(id_dich - 1), nodes.get(id_nut_moi_2 - 1), len3, mult3, ten, chieu_hien_tai);
 					edges.add(canh_moi);
-					canh_moi = new Canh(id_canh_giao,
-							nodes.get(id_nut_moi_2 - 1),
-							nodes.get(id_nut_moi_1 - 1), len2, mult2, ten,
-							chieu_hien_tai);
+					canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi_2 - 1), nodes.get(id_nut_moi_1 - 1), len2, mult2, ten, chieu_hien_tai);
 					edges.add(canh_moi);
-					canh_moi = new Canh(id_canh_giao,
-							nodes.get(id_nut_moi_1 - 1),
-							nodes.get(id_nguon - 1), len1, mult1, ten,
-							chieu_hien_tai);
+					canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi_1 - 1), nodes.get(id_nguon - 1), len1, mult1, ten, chieu_hien_tai);
 					edges.add(canh_moi);
 				}
 				/***** KET THUC TRUONG HOP HAI DIEM NAM TREN CUNG MOT CANH ******/
@@ -246,8 +210,7 @@ public class CanThoMap {
 				/******** BAT DAU TRUONG HOP HAI NAM TREN HAI CANH KHAC NHAU *******/
 
 				int id_nut_moi = 0;
-				rs_nut_moi = s
-						.executeQuery("SELECT MAX(id) As id_nut_max FROM dinh");
+				rs_nut_moi = s.executeQuery("SELECT MAX(id) As id_nut_max FROM dinh");
 				while (rs_nut_moi.next()) {
 					id_nut_moi = rs_nut_moi.getInt("id_nut_max");
 				}
@@ -288,10 +251,8 @@ public class CanThoMap {
 						if (edges.get(i).getId().equals(id_canh_giao)) {
 							if (j == 0) {
 								chieu_hien_tai = edges.get(i).getDirect();
-								id_nguon = Integer.parseInt(edges.get(i)
-										.getSource().getId());
-								id_dich = Integer.parseInt(edges.get(i)
-										.getDestination().getId());
+								id_nguon = Integer.parseInt(edges.get(i).getSource().getId());
+								id_dich = Integer.parseInt(edges.get(i).getDestination().getId());
 								ten = edges.get(i).getName();
 							}
 							edges.remove(i);
@@ -304,30 +265,19 @@ public class CanThoMap {
 					}
 					/** Them nut moi **/
 					id_nut_moi++;
-					Nut nut_moi = new Nut(id_nut_moi + "", id_nut_moi
-							+ "_POINT(Nut Moi Bat Dau)");
+					Nut nut_moi = new Nut(id_nut_moi + "", id_nut_moi + "_POINT(Nut Moi Bat Dau)");
 					nodes.add(nut_moi);
 					// System.out.println("1-Sau khi them nut moi ban dau: id_nut_moi="+id_nut_moi+"-kich thuoc nodes= "+nodes.size());
 					/**** Them hai canh moi *****/
-					Canh canh_moi = new Canh(id_canh_giao,
-							nodes.get(id_nguon - 1), nodes.get(id_nut_moi - 1),
-							len1, mult1, ten, chieu_hien_tai);
+					Canh canh_moi = new Canh(id_canh_giao, nodes.get(id_nguon - 1), nodes.get(id_nut_moi - 1), len1, mult1, ten, chieu_hien_tai);
 					edges.add(canh_moi);
-					canh_moi = new Canh(id_canh_giao,
-							nodes.get(id_nut_moi - 1), nodes.get(id_dich - 1),
-							len2, mult2, ten, chieu_hien_tai);
+					canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi - 1), nodes.get(id_dich - 1), len2, mult2, ten, chieu_hien_tai);
 					edges.add(canh_moi);
 					// neu hai chieu thi them lan nua
 					if (chieu_hien_tai == 0) {
-						canh_moi = new Canh(id_canh_giao,
-								nodes.get(id_dich - 1),
-								nodes.get(id_nut_moi - 1), len2, mult2, ten,
-								chieu_hien_tai);
+						canh_moi = new Canh(id_canh_giao, nodes.get(id_dich - 1), nodes.get(id_nut_moi - 1), len2, mult2, ten, chieu_hien_tai);
 						edges.add(canh_moi);
-						canh_moi = new Canh(id_canh_giao,
-								nodes.get(id_nut_moi - 1),
-								nodes.get(id_nguon - 1), len1, mult1, ten,
-								chieu_hien_tai);
+						canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi - 1), nodes.get(id_nguon - 1), len1, mult1, ten, chieu_hien_tai);
 						edges.add(canh_moi);
 					}
 					start_point = id_nut_moi;
@@ -381,29 +331,18 @@ public class CanThoMap {
 					}
 					/** Them nut moi **/
 					id_nut_moi++;
-					Nut nut_moi = new Nut(id_nut_moi + "", id_nut_moi
-							+ "_POINT(Nut moi ket thuc)");
+					Nut nut_moi = new Nut(id_nut_moi + "", id_nut_moi + "_POINT(Nut moi ket thuc)");
 					nodes.add(nut_moi);
 					/**** Them hai canh moi *****/
-					Canh canh_moi = new Canh(id_canh_giao,
-							nodes.get(id_nguon - 1), nodes.get(id_nut_moi - 1),
-							len1, mult1, ten, chieu_hien_tai);
+					Canh canh_moi = new Canh(id_canh_giao, nodes.get(id_nguon - 1), nodes.get(id_nut_moi - 1), len1, mult1, ten, chieu_hien_tai);
 					edges.add(canh_moi);
-					canh_moi = new Canh(id_canh_giao,
-							nodes.get(id_nut_moi - 1), nodes.get(id_dich - 1),
-							len2, mult2, ten, chieu_hien_tai);
+					canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi - 1), nodes.get(id_dich - 1), len2, mult2, ten, chieu_hien_tai);
 					edges.add(canh_moi);
 					// neu hai chieu thi them lan nua
 					if (chieu_hien_tai == 0) {
-						canh_moi = new Canh(id_canh_giao,
-								nodes.get(id_dich - 1),
-								nodes.get(id_nut_moi - 1), len2, mult2, ten,
-								chieu_hien_tai);
+						canh_moi = new Canh(id_canh_giao, nodes.get(id_dich - 1), nodes.get(id_nut_moi - 1), len2, mult2, ten, chieu_hien_tai);
 						edges.add(canh_moi);
-						canh_moi = new Canh(id_canh_giao,
-								nodes.get(id_nut_moi - 1),
-								nodes.get(id_nguon - 1), len1, mult1, ten,
-								chieu_hien_tai);
+						canh_moi = new Canh(id_canh_giao, nodes.get(id_nut_moi - 1), nodes.get(id_nguon - 1), len1, mult1, ten, chieu_hien_tai);
 						edges.add(canh_moi);
 					}
 					end_point = id_nut_moi;
@@ -413,14 +352,10 @@ public class CanThoMap {
 
 			/************ BAT DAU THUAT TOAN Dijkstra ********************/
 
-			// System.out.print(nodes.get(3));
 			DoThi g = new DoThi(nodes, edges);
 			Dijkstra dijkstra = new Dijkstra(g);
-			dijkstra.executeDijkstra(nodes.get(start_point - 1),
-					nodes.get(end_point - 1));
+			dijkstra.executeDijkstra(nodes.get(start_point - 1), nodes.get(end_point - 1));
 			LinkedList<Nut> path = dijkstra.getPath(nodes.get(end_point - 1));
-			System.out.println("Size path: " + path.size());
-			// ton tai duong di
 
 			ArrayList ds_canh = new ArrayList();
 			if (path.size() > 0) {
@@ -440,7 +375,7 @@ public class CanThoMap {
 					//System.out.println("canh "+i+" : "+g.getCanh(source, target).getTheGeom());
 					arr[1] = g.getCanh(source, target).getName();
 					arr[2] = g.getCanh(source, target).getWeight() + "";
-					arr[3] = " ";
+					arr[3] = " ";					
 					/***Begin Direction***/									
 					if (i ==  1){
 						//lay canh dau tien	
@@ -472,11 +407,7 @@ public class CanThoMap {
 					source = target;
 				}				
 			}
-
-			for (Nut vertex : path) {
-				//System.out.println(vertex.getName());
-			}
-			Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
+			//Double chi_phi = dijkstra.getCost(nodes.get(end_point - 1));
 			this.closeConnection();
 			// System.out.println("Integer.MAX_VALUE = "+Integer.MAX_VALUE);
 			return ds_canh;/* Them ngay: 23/02/2011 */
@@ -1328,6 +1259,6 @@ public class CanThoMap {
 		// obj.getLop("ben");
 		// obj.find_Place_By_Text("can tho");
 		// String coquan_gml=obj.getDiaDiem("coquan","can tho");
-		System.out.println("Ket qua: "+obj.is_SignedString(" TRẦN VĂN HOÀNG "));
+		System.out.println("Ket qua: "+obj.is_SignedString(" Tran Van Hoang "));
 	}
 }
