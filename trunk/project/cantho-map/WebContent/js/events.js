@@ -86,12 +86,13 @@ $(document).ready(function() {
         }
 	});	
 	/**10-04-2010 : WaterMark cho cac textbox**/
-	$(".tim-a").Watermark("Nháº­p tĂªn Ä‘iá»ƒm A...");
-	$(".tim-b").Watermark("Nháº­p tĂªn Ä‘iá»ƒm B ...");
-	$("#mapinput").Watermark("Nháº­p tĂªn Ä‘á»‹a Ä‘iá»ƒm ...");
-	$("#txt_ten_lt").Watermark("vĂ­ dá»¥: khĂ¡ch sáº¡n ...");
+	$(".tim-a").Watermark("Nhap vao diem A...");
+	$(".tim-b").Watermark("Nhap vao diem B ...");
+	$("#mapinput").Watermark("Nhap ten dia diem ...");
+	$("#txt_ten_lt").Watermark("Vi du: Khach san ...");
 	$("#txt_bk_lt").Watermark("100");
 	/**10-04-2010 : WaterMark cho cac textbox**/
+	$("#loader_map").hide();
 });
 
 /*******************DINH NGHIA CHO CAC SU KIEN NHAN TREN CAC NUT TREN BOTTOM BAR*******************/
@@ -941,7 +942,7 @@ function clickHuyen(i){
 	a = $('.huyen_' + i);
 	var mahuyen=a.attr("value");
 	getXaPhuong(mahuyen);
-	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Cần Thơ</a> " +
+	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Can Tho</a> " +
 			 "&gt <label id='path_huyen' value='"+mahuyen+">"+a.attr("name")+"</label>";
 	$("#map_path_div").attr("name","xa");
 	$("#map_path_div").html(html);

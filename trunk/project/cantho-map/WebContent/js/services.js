@@ -10,6 +10,7 @@ function callService(x1, y1, x2, y2) {
 	 * 1110974.18319;
 	 */
 	// var url1 = "http://localhost:8888/axis2/services/CanThoMap?wsdl";
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -22,6 +23,7 @@ function callService(x1, y1, x2, y2) {
 	soapMessage += "      </ser:getDuongDi>";
 	soapMessage += "   </soapenv:Body>";
 	soapMessage += "</soapenv:Envelope>";
+	
 	$.ajax({
 		type : 'POST',
 		url : url,
@@ -36,6 +38,7 @@ function callService(x1, y1, x2, y2) {
 }
 function getDiaDiem(ten_lop, ten_diadiem) {
 	// alert("tenlop: "+ten_lop+"- ten_diadiem: "+ten_diadiem);
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -61,7 +64,7 @@ function getDiaDiem(ten_lop, ten_diadiem) {
 }
 
 function getDiaDiemTheoViTri(the_geom_point) {
-
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -85,6 +88,7 @@ function getDiaDiemTheoViTri(the_geom_point) {
 }
 
 function find_Place_By_Text(ten_dia_diem) {
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -94,6 +98,7 @@ function find_Place_By_Text(ten_dia_diem) {
 	soapMessage += "      </ser:find_Place_By_Text>";
 	soapMessage += "   </soapenv:Body>";
 	soapMessage += "</soapenv:Envelope>";
+	
 	$.ajax({
 		type : 'POST',
 		url : url,
@@ -107,6 +112,7 @@ function find_Place_By_Text(ten_dia_diem) {
 	});
 }
 function find_Place_By_Text_And_Huyen(ten_dia_diem,ds_ma) {
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -130,6 +136,7 @@ function find_Place_By_Text_And_Huyen(ten_dia_diem,ds_ma) {
 	});
 }
 function find_Place_By_Text_And_Xa(ten_dia_diem,ds_ma) {
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -154,6 +161,7 @@ function find_Place_By_Text_And_Xa(ten_dia_diem,ds_ma) {
 }
 
 function find_Place_By_Text2(ten_dia_diem) {
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 	soapMessage += "   <soapenv:Header/>";
@@ -176,7 +184,8 @@ function find_Place_By_Text2(ten_dia_diem) {
 	});
 }
 
-function find_Place_Around_Point(x, y, chuoi, bankinh) {			
+function find_Place_Around_Point(x, y, chuoi, bankinh) {	
+	$("#loader_map").show();
 	var soapMessage = "<\?xml version='1.0' encoding='utf-8'\?>";
 	soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";	
 	soapMessage += "   <soapenv:Header/>";
@@ -256,6 +265,7 @@ function getLopDiaDiem(ten_lop) {
 	//Kiem tra xem nguoi dung co chon vung hay chua
 	//neu co chon vung thi chi tim trong vung ma nguoi dung chon
 	//Lay ra danh sach cac vung duoc chon
+	$("#loader_map").show();
 	$("#chicken").hide();
 	var ds_ma="";
 	var cap ="";
@@ -411,7 +421,8 @@ function getLopBenhVien() {
 	});
 }
 
-function find_Place_Around_Streeet(street, text, radius) {			
+function find_Place_Around_Streeet(street, text, radius) {		
+	$("#loader_map").show();
 	var soapMessage  = "<\?xml version='1.0' encoding='utf-8'\?>";
 		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 		soapMessage += "<soapenv:Header/>";
@@ -439,6 +450,7 @@ function find_Place_Around_Streeet(street, text, radius) {
 }
 
 function find_Street_By_Name(text) {			
+	$("#loader_map").show();
 	var soapMessage  = "<\?xml version='1.0' encoding='utf-8'\?>";
 		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 		soapMessage += "   <soapenv:Header/>";
@@ -463,7 +475,8 @@ function find_Street_By_Name(text) {
 	});
 }
 
-function get_Street_By_Id(id) {			
+function get_Street_By_Id(id) {		
+	$("#loader_map").show();
 	var soapMessage  = "<\?xml version='1.0' encoding='utf-8'\?>";
 		soapMessage += "<soapenv:Envelope xmlns:soapenv='http://schemas.xmlsoap.org/soap/envelope/' xmlns:ser='http://services'>";
 		soapMessage += "   <soapenv:Header/>";
@@ -559,6 +572,7 @@ function callBackGetDuongDi(xml_result, status) {
 	 */
 	 $('.btn-lo-trinh').show();
 	 showLeftContent1();
+	 $("#loader_map").hide();
 }
 /*******************************************************************************
  * Khi co loi xay ra: tao duong thang noi truc tiep giua start_point va
@@ -567,6 +581,7 @@ function callBackGetDuongDi(xml_result, status) {
  ******************************************************************************/
 function errorGetDuongDi(xml_error) {	
 	// lay ra hai diem duoc chon
+	/*
 	lop_diem_chon = map.getLayersByName("lop_diem_chon")[0];
 	// lop_diem_chon = list_lop_diem_chon[0];
 	num_points = lop_diem_chon.features.length;
@@ -591,8 +606,12 @@ function errorGetDuongDi(xml_error) {
 		var do_dai = line_string.getLength();
 		//alert("Do dai duong di: " + do_dai + " m");
 		$('.btn-lo-trinh').hide();
-		$('.search-result').html("&nbsp&nbsp KhÃ´ng tÃ¬m Ä‘Æ°á»£c Ä‘Æ°á»�ng Ä‘i trÃªn Ä‘oáº¡n nÃ y.");
+		$('.search-result').html("&nbsp&nbsp Khong tim thay duong di giua hai diem nay.");
 	}
+	*/
+	$('.btn-lo-trinh').hide();
+	$('.search-result').html("&nbsp&nbsp Khong tim thay duong di giua hai diem nay.");
+	$("#loader_map").hide();
 }
 function callBackGetDiaDiem(xml_result, status) {
 	var ten = "";
@@ -632,10 +651,11 @@ function callBackGetDiaDiem(xml_result, status) {
 	$('#searchPopupContent').html(result);
 
 	// dong controlDrawFeature va control DragFeature, setDuongDi, xoa duong di cu
-	
+	$("#loader_map").hide();
 }
 function errorGetDiaDiem(xml_error) {
 	alert("Loi getDiaDiem");
+	$("#loader_map").hide();
 }
 
 function callBackGetDiaDiemTheoViTri(xml_result, status) {
@@ -646,18 +666,18 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
 	ma = xml_result.getElementsByTagName('ns:return')[5].childNodes[0].nodeValue;
-	if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+	if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 	//tao noi dung cho popup
 	var content= "<div class = 'maker-popup-ten "+ma+"'>" + ten +"</div>" + 	
 	"<div class='maker-popup-div1'> " +
 		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
 		"<div class = 'maker-popup-footer' > " +
-			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tá»« Ä‘Ã¢y</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Ä�áº¿n Ä‘Ã¢y</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>PhÃ³ng to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>TÃ¬m xung quanh</a>" +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
@@ -691,9 +711,11 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
             return false;
         }
 	});	
+	$("#loader_map").hide();
 }
 function errorGetDiaDiemTheoViTri(xml_error) {
 	alert("Loi find_Info_Of_Point");
+	$("#loader_map").hide();
 }
 /*
 function chonDiemA(d) {
@@ -725,8 +747,8 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";
@@ -744,7 +766,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	result = result + " </div>";
 	$('#searchPopupContent').html(result);
 	// dong controlDrawFeature va control DragFeature, setDuongDi, xoa duong di cu
-	
+	$("#loader_map").hide();
 }
 function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 	//alert("Thanh cong");	
@@ -765,8 +787,8 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -787,6 +809,7 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 			"</div>";
 	$("#tab_content2").html(result);
 	showLeftContent2();
+	$("#loader_map").hide();
 }
 function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 	//alert("Thanh cong");	
@@ -807,8 +830,8 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -829,6 +852,7 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 			"</div>";
 	$("#tab_content2").html(result);
 	showLeftContent2();
+	$("#loader_map").hide();
 }
 function callBack_Find_Place_By_Text2(xml_result,status){
 	//alert("Thanh cong");	
@@ -856,8 +880,8 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result2_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";		
@@ -875,19 +899,23 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 	result = result + " </div>";
 	$('#searchPopupContent2').html(result);
 	// dong controlDrawFeature va control DragFeature, setDuongDi, xoa duong di cu
-	
+	$("#loader_map").hide();
 }
 function error_Find_Place_By_Text(xml_result){
 	alert("Loi: error_Find_Place_By_Text");
+	$("#loader_map").hide();
 }
 function error_Find_Place_By_Text_And_Huyen(xml_result){
 	alert("Loi: error_Find_Place_By_Text_And_Huyen");
+	$("#loader_map").hide();
 }
 function error_Find_Place_By_Text_And_Xa(xml_result){
 	alert("Loi: error_Find_Place_By_Text_And_Xa");
+	$("#loader_map").hide();
 }
 function error_Find_Place_By_Text2(xml_result){
 	alert("Loi: error_Find_Place_By_Text2");
+	$("#loader_map").hide();
 }
 
 
@@ -910,16 +938,16 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		ma=xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>TÃ¬m tháº¥y: "+ (xml_result.getElementsByTagName('ns:return').length) + " káº¿t quáº£.</div>" +
-			"<a class='link' id='clearSearchResultText' title='XÃ³a káº¿t quáº£'>XÃ³a káº¿t quáº£</a>" +
+	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " káº¿t quáº£.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -931,9 +959,12 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		var lonlat = new OpenLayers.LonLat(first_feature.x,first_feature.y);
 		map.setCenter(lonlat);
 	}
+	$("#loader_map").hide();
 }
 function error_getLopDiaDiem(xml_result) {
 	//loi khong tim thay du lieu
+	alert("Eror: getLopDiaDiem()");
+	$("#loader_map").hide();
 }
 function callBack_Find_Place_Around_Point(xml_result, status){
 	var wkt = "";
@@ -953,8 +984,8 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
@@ -968,16 +999,13 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 			"</div>";
 	$("#tab_content2").html(result);
 	showLeftContent2();
+	$("#loader_map").hide();
 }
-
-
-
-
-
 
 
 function error_Find_Place_Around_Point(xml_result, status){
 	alert("Find_Place_Around_Point "+xml_result);
+	$("#loader_map").hide();
 }
 function callBack_getQuanHuyen(xml_result, status){
 	var wkt = "";
@@ -1001,8 +1029,8 @@ function callBack_getQuanHuyen(xml_result, status){
 	}
 	$('#tree_Huyen').html(html);
 	$("#map_path_div").attr("name","huyen");
-	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cáº§n ThÆ¡</a>");
-	$("#map_path_div2").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cáº§n ThÆ¡</a>");
+	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Can Tho</a>");
+	$("#map_path_div2").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Can Tho</a>");
 }
 function callBack_getXaPhuong(xml_result, status){
 	var wkt = "";
@@ -1111,8 +1139,8 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "KhÃ´ng cÃ³ thÃ´ng tin.";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "KhÃ´ng cÃ³ thÃ´ng tin.";}
+		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
@@ -1132,9 +1160,11 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 	result +"</div>";
 	$("#tab_content2").html(result);
 	showLeftContent2();
+	$("#loader_map").hide();
 }
 function error_Find_Place_Around_Street(xml_result, status){
 	alert("Error: Find_Place_Around_Street "+xml_result);
+	$("#loader_map").hide();
 }
 function callBack_Find_Street_By_Name(xml_result, status){
 	var wkt = "";
@@ -1157,9 +1187,11 @@ function callBack_Find_Street_By_Name(xml_result, status){
 	result +"</div>";
 	$("#tab_content3").html(result);
 	showLeftContent3();
+	$("#loader_map").hide();
 }
 function error_Find_Street_By_Name(xml_result, status){
 	alert("Error: Find_Street_By_Name "+xml_result);
+	$("#loader_map").hide();
 }
 function callBack_Get_Street_By_Id(xml_result, status){
 	var wkt = "";
@@ -1170,7 +1202,9 @@ function callBack_Get_Street_By_Id(xml_result, status){
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].nodeValue;
 		lop_con_duong.addFeatures(wkt_format.read(wkt));		
 	}
+	$("#loader_map").hide();
 }
 function error_Get_Street_By_Id(xml_result, status){
 	alert("Error: Get_Street_By_Id "+xml_result);
+	$("#loader_map").hide();
 }
