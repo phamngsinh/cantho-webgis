@@ -489,43 +489,66 @@ function get_Street_By_Id(id) {
 }
 
 function callBackGetDuongDi(xml_result, status) {
-
-	// list_lop_duong = map.getLayersByName('lop_duong_di');
 	lop_duong_di = map.getLayersByName('lop_duong_di')[0];
-	// xoa cac feature cu tren lop duong di
-	lop_duong_di.destroyFeatures();// xoa di cac feature hien tai tren lop
-	// duong di
+	lop_duong_di.destroyFeatures();
 	var wkt_format = new OpenLayers.Format.WKT();
-	var result = " <ol class='stepsList'>";
-	var tenduong;
-	var dodai;
+	var result = " <ol class='stepsList'>";var li="";
+	var tenduong; var dodai;var direction="";
 	var tongdodai = 0;
-	var direction="";
-	var li;
-	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
-		//alert(xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue);
-		li = "";
+	var truoc="";var chiduongtruoc="";var tong=0;
+	wkt = xml_result.getElementsByTagName('ns:return')[0].childNodes[0].childNodes[0].nodeValue;
+	tenduong = xml_result.getElementsByTagName('ns:return')[0].childNodes[1].childNodes[0].nodeValue;
+	dodai = xml_result.getElementsByTagName('ns:return')[0].childNodes[2].childNodes[0].nodeValue;
+	direction = xml_result.getElementsByTagName('ns:return')[0].childNodes[3].childNodes[0].nodeValue;
+	lop_duong_di.addFeatures(wkt_format.read(wkt));
+	//alert(tenduong);
+	tongdodai = (tongdodai * 1) + (dodai * 1);
+	var chiso = 1;
+	tong=dodai*1;
+	truoc=tenduong;
+	chiduongtruoc=direction;
+	var n=xml_result.getElementsByTagName('ns:return').length;
+	for (i = 1; i < n; i++) {
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		tenduong = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		dodai = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		direction = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		tongdodai = (tongdodai * 1) + (dodai * 1);
 		lop_duong_di.addFeatures(wkt_format.read(wkt));
-		li= li+ "<li id='li' class='result-path-item'>" + "<a>" +(i+1)+ ".</a>"+
-					"<span class='instruction'>" + 
-						"<span>" +
-							"<pan class='instructionKeyword'>" + direction + " "  + tenduong +"</span>" +
-						"</span" +
-					"</span" +
-					"<span class='distance'>"+ Math.round(dodai)+" m</span>" +
-				"</li>";	
-		result= result + li;
+		//alert(tenduong);
+		if(tenduong==truoc){
+			tong = tong + dodai;
+			//alert(tenduong);
+		}else{
+			li="<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
+			"<span class='instruction'>" + 
+				"<span>" +
+					"<pan class='instructionKeyword'>" + chiduongtruoc + " "  + truoc +"</span>" +
+				"</span" +
+			"</span" +
+			"<span class='distance'>"+ Math.round(tong)+" m</span>" +
+			"</li>";
+			result= result + li;
+			tong=dodai;
+			truoc=tenduong;
+			chiduongtruoc=direction;
+			chiso=chiso+1;
+		}
 	}
-	
+	//Lay dong cuoi ra
+		li= "<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
+		"<span class='instruction'>" + 
+			"<span>" +
+				"<pan class='instructionKeyword'>" + chiduongtruoc + " "  + truoc +"</span>" +
+			"</span" +
+		"</span" +
+		"<span class='distance'>"+ Math.round(tong)+" m</span>" +
+		"</li>";
+		result= result + li;
 	result= result + "</ol>";
 	tongdodai= "<div class='sumary'>" +
 			"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
-			"<div class='sumary-item'>Di qua: "+ (xml_result.getElementsByTagName('ns:return').length) + " con duong.</div>" +
+			"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
 			"</div>";
 	result=tongdodai+result;
 	$('.search-result').html(result);

@@ -166,3 +166,13 @@
 .btn-tim-duong:hover{
 	background:  url(../images/lblue-h.png) no-repeat;  
 	}
+.loader-map{
+	width: 32px;
+	height: 32px;
+	background:  url(../images/loader.gif) no-repeat; 
+	position: absolute;
+	left: 50%;
+	top:45%;
+	z-index: 100000;
+	
+	}
