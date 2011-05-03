@@ -92,7 +92,7 @@
 	background:url("../images/lh.png") no-repeat;
 }
 .swrap-timduong {
-    padding: 5px 8px 0;
+    padding: 5px 3px 0;
 	height:30px;
 }
 .a-z {
@@ -116,13 +116,13 @@
     background: url("../images/bg_s_top.png") repeat-x scroll 0 -1px transparent;
     border: 1px solid #C1C1C1;
     color: #333333;
-    font-family: Tahoma,Verdana,Arial,Geneva,sans-serif;
+    font-family: times New Roman;
     font-size: 12px;
     height: 16px;
-    left: 40px;
+    left: 30px;
     padding: 3px 20px 4px 6px;
     position: absolute;
-    width: 180px;
+    width: 190px;
 }
 .boxtimduong:HOVER{
 	-moz-box-shadow: 0 0 8px #F5DEB3;
