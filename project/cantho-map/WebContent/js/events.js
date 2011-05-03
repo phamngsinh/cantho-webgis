@@ -99,20 +99,26 @@ $(document).ready(function() {
 /*******Do Khoang Do Nguoi Duong Ve: ControlMeasure**********/
 function timDuong(){
 	//alert("Bat dau tim duong");
-	timduong_clicked =1;
-	dokhoangcach_clicked=0;
 	$(".kq-doKC").stop().animate({right:-199},350,"linear");
-	$(".tim-duong").removeClass("not-clicked");
-	$(".do-khoang-cach").removeClass("clicked");
-	$(".tim-duong").addClass("clicked");
-	$(".do-khoang-cach").addClass("not-clicked");
+	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	var num_points = lop_diem_chon.features.length;
 	if (num_points == 2){
 		lop_duong_di.destroyFeatures();
 		lop_diem_chon.destroyFeatures();
-	}	
+		$(".tim-duong").addClass("not-clicked");
+		$(".tim-duong").removeClass("clicked");
+		
+		
+	}else{
+		$(".tim-duong").addClass("clicked");
+		$(".tim-duong").removeClass("not-clicked");
+		$(".do-khoang-cach").addClass("not-clicked");
+		$(".do-khoang-cach").removeClass("clicked");
+		$(".chon-vung").addClass("not-clicked");
+		$(".chon-vung").removeClass("clicked");
+	}
 	if (control_ve_diem.active) {		
 		//alert("Deactivate olDrawFeature, Activate olNavigation");
 		//Xoa duong di va cac diem duoc ve tren lop_duong_di va lop_diem_chon
@@ -197,17 +203,18 @@ function chonVung() {
 }
 */
 function doKhoangCach() {
-	timduong_clicked = 0;
-	dokhoangcach_clicked = 1;
-	$(".tim-duong").removeClass("clicked");
-	$(".tim-duong").addClass("not-clicked");
-	$(".do-khoang-cach").removeClass("not-clicked");
-	$(".do-khoang-cach").addClass("clicked");
 	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
 	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	if($(".kq-doKC").css("right").replace("px","")<0){
 		$(".kq-doKC").stop().animate({right:115},350,"linear");
 		$(".tong-kc-m").html("0 km");
+		$(".do-khoang-cach").addClass("clicked");
+		$(".do-khoang-cach").removeClass("not-clicked");
+		$(".tim-duong").addClass("not-clicked");
+		$(".tim-duong").removeClass("clicked");
+		$(".chon-vung").addClass("not-clicked");
+		$(".chon-vung").removeClass("clicked");
+		
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
@@ -1020,9 +1027,19 @@ function timConDuong(){
 	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
 	if($(".div-tim-con-duong").css("right").replace("px","")<0){
 		$(".div-tim-con-duong").stop().animate({right:115},350,"linear");
+		$(".chon-vung").addClass("clicked");
+		$(".chon-vung").removeClass("not-clicked");
+		$(".do-khoang-cach").removeClass("clicked");
+		$(".do-khoang-cach").addClass("not-clicked");
+		$(".tim-duong").removeClass("clicked");
+		$(".tim-duong").addClass("not-clicked");
 		}
 	else{
 		$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
+		$(".chon-vung").addClass("not-clicked");
+		$(".chon-vung").removeClass("clicked");
+		
+		
 	}
 }
 function closeTimConDuong(){

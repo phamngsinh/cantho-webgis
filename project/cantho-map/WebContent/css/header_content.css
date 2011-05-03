@@ -54,6 +54,7 @@
     text-decoration: none;
     width: 262px;
     border: none;
+    font-family: times New Roman;
 }
 .keyboardInputInitiator {
     cursor: pointer;
@@ -138,7 +139,7 @@
     background: -moz-linear-gradient(center top , #F6F6F6, #FFFFFF) repeat scroll 0 0 #F6F6F6;
     color: #333333;
     display: none;
-    font-family: Tahoma,Verdana,Geneva,sans-serif;
+    font-family: times New Roman;
     height: 0;
     overflow: hidden;
     width: 343px;

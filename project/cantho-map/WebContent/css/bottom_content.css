@@ -17,9 +17,9 @@
     margin-left: 10px;
 }
 .menu_taskbar {
-    color: red;	
+    color: white;	
 }
-.menu_taskbar:hover {
+.menu_taskbar {
     color: white;
 }
 .not-clicked{
