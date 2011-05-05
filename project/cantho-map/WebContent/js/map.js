@@ -378,6 +378,10 @@ function point_Added(point) {
 		control_select.activate();
 		// control_select.setLayer(lop_dia_diem);
 		getDuongDi();
+		/*Them ngay: 05-05-2011*/
+		$(".tim-duong").addClass("not-clicked");
+                $(".tim-duong").removeClass("clicked");
+		/*End Them ngay: 05-05-2011*/
 	}
 	
 	// control_hover.activate();
