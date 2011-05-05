@@ -1,8 +1,6 @@
 /**
  * 
  */
-var timduong_clicked = 0;
-var dokhoangcach_clicked = 0;
 var flag_end = 0;// kiem tra: truong hop da co mot diem tren lop_diem_chon la
 // start hay end
 $(document).ready(function() {  
@@ -107,10 +105,6 @@ function timDuong(){
 	if (num_points == 2){
 		lop_duong_di.destroyFeatures();
 		lop_diem_chon.destroyFeatures();
-		$(".tim-duong").addClass("not-clicked");
-		$(".tim-duong").removeClass("clicked");
-		
-		
 	}else{
 		$(".tim-duong").addClass("clicked");
 		$(".tim-duong").removeClass("not-clicked");
