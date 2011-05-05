@@ -508,6 +508,8 @@ function callBackGetDuongDi(xml_result, status) {
 	var result = " <ol class='stepsList'>";var li="";
 	var tenduong; var dodai;var direction="";
 	var tongdodai = 0;
+	var tong=0;
+	var dodai=0;
 	var truoc="";var chiduongtruoc="";var tong=0;
 	wkt = xml_result.getElementsByTagName('ns:return')[0].childNodes[0].childNodes[0].nodeValue;
 	tenduong = xml_result.getElementsByTagName('ns:return')[0].childNodes[1].childNodes[0].nodeValue;
@@ -517,7 +519,7 @@ function callBackGetDuongDi(xml_result, status) {
 	//alert(tenduong);
 	tongdodai = (tongdodai * 1) + (dodai * 1);
 	var chiso = 1;
-	tong=dodai*1;
+	tong= dodai*1;
 	truoc=tenduong;
 	chiduongtruoc=direction;
 	var n=xml_result.getElementsByTagName('ns:return').length;
@@ -530,8 +532,8 @@ function callBackGetDuongDi(xml_result, status) {
 		lop_duong_di.addFeatures(wkt_format.read(wkt));
 		//alert(tenduong);
 		if(tenduong==truoc){
-			tong = tong + dodai;
-			//alert(tenduong);
+			tong = (tong*1) + (dodai*1);
+			//alert(dodai);
 		}else{
 			li="<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
 			"<span class='instruction'>" + 
@@ -555,9 +557,10 @@ function callBackGetDuongDi(xml_result, status) {
 				"<pan class='instructionKeyword'>" + chiduongtruoc + " "  + truoc +"</span>" +
 			"</span" +
 		"</span" +
-		"<span class='distance'>"+ Math.round(tong)+" m</span>" +
+		"<span class='distance'>"+ Math.round(tong*1)+" m</span>" +
 		"</li>";
 		result= result + li;
+		
 	result= result + "</ol>";
 	tongdodai= "<div class='sumary'>" +
 			"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
