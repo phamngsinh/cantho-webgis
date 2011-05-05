@@ -538,7 +538,7 @@ function callBackGetDuongDi(xml_result, status) {
 			li="<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
 			"<span class='instruction'>" + 
 				"<span>" +
-					"<pan class='instructionKeyword'>" + chiduongtruoc + " "  + truoc +"</span>" +
+					"<pan class='instructionKeyword'>"  + truoc +"</span>" +
 				"</span" +
 			"</span" +
 			"<span class='distance'>"+ Math.round(tong)+" m</span>" +
@@ -554,7 +554,7 @@ function callBackGetDuongDi(xml_result, status) {
 		li= "<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
 		"<span class='instruction'>" + 
 			"<span>" +
-				"<pan class='instructionKeyword'>" + chiduongtruoc + " "  + truoc +"</span>" +
+				"<pan class='instructionKeyword'>"  + truoc +"</span>" +
 			"</span" +
 		"</span" +
 		"<span class='distance'>"+ Math.round(tong*1)+" m</span>" +
