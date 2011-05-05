@@ -380,7 +380,7 @@ function point_Added(point) {
 		getDuongDi();
 		/*Them ngay: 05-05-2011*/
 		$(".tim-duong").addClass("not-clicked");
-                $(".tim-duong").removeClass("clicked");
+        $(".tim-duong").removeClass("clicked");
 		/*End Them ngay: 05-05-2011*/
 	}
 	
