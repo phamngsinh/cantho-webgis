@@ -211,7 +211,7 @@
     background: -moz-linear-gradient(center top , #FFF9D7, #FFF3B0) repeat scroll 0 0 #FFF3B0;
     */
     -moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
-    background: url("../images/bg-cantho-map.png") repeat scroll 0 0 transparent;
+    background: url("../images/hover.png") repeat scroll 0 0 transparent;
 }
 .SelectPlaceCloseBut {
     background: url("../images/Icons.png") no-repeat scroll -2px -192px transparent;
@@ -249,7 +249,7 @@ ol, ul {
 }
 .sumary:hover{
 	-moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
-    background: url("../images/bg-cantho-map.png") repeat scroll 0 0 transparent;
+    background: url("../images/hover.png") repeat scroll 0 0 transparent;
 	}
 .sumary-item{
 	height: 25px;
