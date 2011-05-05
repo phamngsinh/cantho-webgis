@@ -295,7 +295,8 @@
 	background: url("../images/phone.png") no-repeat scroll left top transparent;
 	}
 .result-div:hover{
-	background-color: 	#FDF5E6;
+	-moz-box-shadow: 0 -5px 0 #FFF3B0 inset, 0 -5px 35px #FFF3B0 inset, 0 3px 10px #FFF9D7 inset, 0 2px 8px rgba(200, 200, 200, 0.3);
+    background: url("../images/hover.png") repeat scroll 0 0 transparent;
 	}
 
 .maker-popup-textdichvu{
