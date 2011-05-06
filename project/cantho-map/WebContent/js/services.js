@@ -523,6 +523,7 @@ function callBackGetDuongDi(xml_result, status) {
 	truoc=tenduong;
 	chiduongtruoc=direction;
 	var n=xml_result.getElementsByTagName('ns:return').length;
+	var temp = 0;
 	for (i = 1; i < n; i++) {
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].childNodes[0].nodeValue;
 		tenduong = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
@@ -535,14 +536,27 @@ function callBackGetDuongDi(xml_result, status) {
 			tong = (tong*1) + (dodai*1);
 			//alert(dodai);
 		}else{
-			li="<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
-			"<span class='instruction'>" + 
-				"<span>" +
-					"<pan class='instructionKeyword'>"  + truoc +"</span>" +
+			if (Math.round(tong) < 1000){
+				li="<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
+				"<span class='instruction'>" + 
+					"<span>" +
+						"<pan class='instructionKeyword'>"  + truoc +"</span>" +
+					"</span" +
 				"</span" +
-			"</span" +
-			"<span class='distance'>"+ Math.round(tong)+" m</span>" +
-			"</li>";
+				"<span class='distance'>"+ Math.round(tong)+" m</span>" +
+				"</li>";
+			}else{
+				temp = Math.round(tong)/1000;
+				li="<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
+				"<span class='instruction'>" + 
+					"<span>" +
+						"<pan class='instructionKeyword'>"  + truoc +"</span>" +
+					"</span" +
+				"</span" +
+				"<span class='distance'>"+ temp+" km</span>" +
+				"</li>";
+			}
+						
 			result= result + li;
 			tong=dodai;
 			truoc=tenduong;
@@ -551,6 +565,7 @@ function callBackGetDuongDi(xml_result, status) {
 		}
 	}
 	//Lay dong cuoi ra
+	if (Math.round(tong*1) < 1000){
 		li= "<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
 		"<span class='instruction'>" + 
 			"<span>" +
@@ -559,13 +574,33 @@ function callBackGetDuongDi(xml_result, status) {
 		"</span" +
 		"<span class='distance'>"+ Math.round(tong*1)+" m</span>" +
 		"</li>";
-		result= result + li;
+	}else{
+		temp = Math.round(tong*1)/1000;
+		li= "<li id='li' class='result-path-item'>" + "<a>" +chiso+ ".</a>"+
+		"<span class='instruction'>" + 
+			"<span>" +
+				"<pan class='instructionKeyword'>"  + truoc +"</span>" +
+			"</span" +
+		"</span" +
+		"<span class='distance'>"+ temp +" km</span>" +
+		"</li>";
+	}
 		
+	result= result + li;
 	result= result + "</ol>";
-	tongdodai= "<div class='sumary'>" +
-			"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
-			"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
-			"</div>";
+	if ( Math.round(tongdodai)< 1000){
+		tongdodai= "<div class='sumary'>" +
+		"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
+		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
+		"</div>";
+	}else{
+		temp = Math.round(tongdodai)/1000;
+		tongdodai= "<div class='sumary'>" +
+		"<div class='sumary-item'>Tong do dai: "+ temp + " km</div>" +
+		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
+		"</div>";
+	}	
+	
 	result=tongdodai+result;
 	$('.search-result').html(result);
 	/*
@@ -684,7 +719,7 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
-		"<!--div  class  = 'maker-popup-timdv'>TÃ¬m dá»‹ch vá»¥ á»Ÿ gáº§n vá»‹ trÃ­ nÃ y</div-->" +
+		"<!--div  class  = 'maker-popup-timdv'>TÃƒÂ¬m dÃ¡Â»â€¹ch vÃ¡Â»Â¥ Ã¡Â»Å¸ gÃ¡ÂºÂ§n vÃ¡Â»â€¹ trÃƒÂ­ nÃƒÂ y</div-->" +
 		"<table>" +
 			"<tr>" +
 				"<td>Ten</td>" +
@@ -949,7 +984,7 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " káº¿t quáº£.</div>" +
+	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " kÃ¡ÂºÂ¿t quÃ¡ÂºÂ£.</div>" +
 			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +
@@ -1182,7 +1217,7 @@ function callBack_Find_Street_By_Name(xml_result, status){
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Đường " + ten + "</a></div> ";
+		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Ä�Æ°á»�ng " + ten + "</a></div> ";
 	}
 	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 	"<a class='link' id='clearSearchResultText2' title='Xoa ket qua'>Xoa ket qua</a>" +
