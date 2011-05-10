@@ -1218,7 +1218,7 @@ function callBack_Find_Street_By_Name(xml_result, status){
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Ä�Æ°á»�ng " + ten + "</a></div> ";
+		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");'>" + ten + "</a></div> ";
 	}
 	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 	"<a class='link' id='clearSearchResultText2' title='Xoa ket qua'>Xoa ket qua</a>" +
