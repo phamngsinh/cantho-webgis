@@ -590,14 +590,16 @@ function callBackGetDuongDi(xml_result, status) {
 	result= result + "</ol>";
 	if ( Math.round(tongdodai)< 1000){
 		tongdodai= "<div class='sumary'>" +
-		"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
-		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
+		"<div class='sumary-item'>- Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
+		"<div class='sumary-item'>- Di qua: "+ chiso + " con duong.</div>" +
+		"<a class='btn-lo-trinh' title='' href='javascript:dvLoTrinh()'>- Tim dich vu tren doan nay</a>" +
 		"</div>";
 	}else{
 		temp = Math.round(tongdodai)/1000;
 		tongdodai= "<div class='sumary'>" +
-		"<div class='sumary-item'>Tong do dai: "+ temp + " km</div>" +
-		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
+		"<div class='sumary-item'>- Tong do dai: "+ temp + " km</div>" +
+		"<div class='sumary-item'>- Di qua: "+ chiso + " con duong.</div>" +
+		"<a class='btn-lo-trinh' title='' href='javascript:dvLoTrinh()'>- Tim dich vu tren doan nay</a>" +
 		"</div>";
 	}	
 	
@@ -608,7 +610,6 @@ function callBackGetDuongDi(xml_result, status) {
 	 * xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
 	 * var gml_format = new OpenLayers.Format.GML();
 	 */
-	 $('.btn-lo-trinh').show();
 	 showLeftContent1();
 	 $("#loader_map").hide();
 }

@@ -212,6 +212,8 @@ function doKhoangCach() {
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
+		$(".do-khoang-cach").addClass("not-clicked");
+		$(".do-khoang-cach").removeClass("clicked");
 	}
 	if (control_measure.active) {
 		// alert("da duoc active");

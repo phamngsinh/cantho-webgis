@@ -155,7 +155,6 @@
 								<input type="text"  onblur="" onfocus="" onkeydown="" class="boxtimduong tim-b">
 								<a onclick="" class="del-timduongb" style="display: block;">Xóa</a><a class="btn-timduong searchB" id="">Tìm</a>
 							</div>
-							<a class="btn-lo-trinh" title="" href="javascript:dvLoTrinh()">Tìm dịch vụ trên đoạn này.</a>
 					</div>	
 					<div class="search-result"></div>
 				</div>
