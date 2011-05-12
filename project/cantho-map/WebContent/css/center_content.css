@@ -101,6 +101,7 @@
 	width: 100px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	border: 1px solid #C1C1C1;
+	font-family: times New Roman;
 	}
 .textbankinh{
 	height: 15px;
@@ -109,6 +110,7 @@
 	width: 100px;
 	-moz-border-radius: 5px 5px 5px 5px;
 	border: 1px solid #C1C1C1;
+	font-family: times New Roman;
 	}
 .close-dv-lt{
 	position: absolute;
