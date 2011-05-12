@@ -97,6 +97,7 @@ $(document).ready(function() {
 /*******Do Khoang Do Nguoi Duong Ve: ControlMeasure**********/
 function timDuong(){
 	//alert("Bat dau tim duong");
+	control_ve_diem.deactivate();
 	$(".kq-doKC").stop().animate({right:-199},350,"linear");
 	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
@@ -197,6 +198,7 @@ function chonVung() {
 }
 */
 function doKhoangCach() {
+	control_ve_diem.deactivate();
 	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
 	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	if($(".kq-doKC").css("right").replace("px","")<0){
@@ -212,8 +214,6 @@ function doKhoangCach() {
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
-		$(".do-khoang-cach").addClass("not-clicked");
-		$(".do-khoang-cach").removeClass("clicked");
 	}
 	if (control_measure.active) {
 		// alert("da duoc active");
@@ -1019,6 +1019,8 @@ function closeDVLT(){
 }
 
 function timConDuong(){
+	control_ve_diem.deactivate();
+	control_measure.deactivate();
 	$(".kq-doKC").stop().animate({right:-199},350,"linear");
 	$(".div-dv-lt").stop().animate({right:-199},350,"linear");
 	if($(".div-tim-con-duong").css("right").replace("px","")<0){
