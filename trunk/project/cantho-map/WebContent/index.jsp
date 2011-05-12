@@ -5,6 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Bản Đồ Thành Phố Cần Thơ</title>
+<link rel="icon" type="image/x-icon" href="images/icon-map.gif" />
 <script type="text/javascript" src="libs/openlayers/OpenLayers.js"></script>
 <script type="text/javascript" src="libs/jquery/jquery-1.4.4.js"></script>
 <script src="libs/jquery/jquery-1.4.4.js" language="javascript"></script>
