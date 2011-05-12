@@ -107,6 +107,8 @@ function timDuong(){
 		lop_duong_di.destroyFeatures();
 		lop_diem_chon.destroyFeatures();
 	}else{
+		$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
+		$(".kq-doKC").stop().animate({right:-199},350,"linear");
 		$(".tim-duong").addClass("clicked");
 		$(".tim-duong").removeClass("not-clicked");
 		$(".do-khoang-cach").addClass("not-clicked");
