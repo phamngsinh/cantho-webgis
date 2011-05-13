@@ -590,16 +590,14 @@ function callBackGetDuongDi(xml_result, status) {
 	result= result + "</ol>";
 	if ( Math.round(tongdodai)< 1000){
 		tongdodai= "<div class='sumary'>" +
-		"<div class='sumary-item'>- Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
-		"<div class='sumary-item'>- Di qua: "+ chiso + " con duong.</div>" +
-		"<a class='btn-lo-trinh' title='' href='javascript:dvLoTrinh()'>- Tim dich vu tren doan nay</a>" +
+		"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
+		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
 		"</div>";
 	}else{
 		temp = Math.round(tongdodai)/1000;
 		tongdodai= "<div class='sumary'>" +
-		"<div class='sumary-item'>- Tong do dai: "+ temp + " km</div>" +
-		"<div class='sumary-item'>- Di qua: "+ chiso + " con duong.</div>" +
-		"<a class='btn-lo-trinh' title='' href='javascript:dvLoTrinh()'>- Tim dich vu tren doan nay</a>" +
+		"<div class='sumary-item'>Tong do dai: "+ temp + " km</div>" +
+		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
 		"</div>";
 	}	
 	
@@ -610,6 +608,7 @@ function callBackGetDuongDi(xml_result, status) {
 	 * xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
 	 * var gml_format = new OpenLayers.Format.GML();
 	 */
+	 $('.btn-lo-trinh').show();
 	 showLeftContent1();
 	 $("#loader_map").hide();
 }
@@ -985,7 +984,7 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " kÃ¡ÂºÂ¿t quÃ¡ÂºÂ£.</div>" +
+	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
 			"<div class='result-diadiem'>" +
 			result +
@@ -1218,7 +1217,7 @@ function callBack_Find_Street_By_Name(xml_result, status){
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");'>" + ten + "</a></div> ";
+		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Ä�Æ°á»�ng " + ten + "</a></div> ";
 	}
 	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
 	"<a class='link' id='clearSearchResultText2' title='Xoa ket qua'>Xoa ket qua</a>" +
@@ -1236,6 +1235,7 @@ function callBack_Get_Street_By_Id(xml_result, status){
 	var wkt = "";
 	var wkt_format = new OpenLayers.Format.WKT();
 	var lop_con_duong = map.getLayersByName('lop_con_duong')[0];
+	lop_con_duong.destroyFeatures();
 	//lop_dia_diem.destroyFeatures();
 	for (i = 0; i < xml_result.getElementsByTagName('ns:return').length; i++) {
 		wkt = xml_result.getElementsByTagName('ns:return')[i].childNodes[0].nodeValue;
