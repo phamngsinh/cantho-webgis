@@ -766,7 +766,7 @@ public class CanThoMap {
 		String the_geom = " ";
 
 		this.openConnection();
-		String sql = "Select ma, ten,ST_Astext(the_geom) As the_geom From quanhuyen";
+		String sql = "Select ma, ten,ST_Astext(the_geom) As the_geom From quanhuyen Order By ten";
 		rs = s.executeQuery(sql);
 
 		while (rs.next()) {
@@ -805,7 +805,7 @@ public class CanThoMap {
 		String the_geom = " ";
 		this.openConnection();
 		String sql = "Select ma, ten, ST_Astext(the_geom) As the_geom From xaphuong where ma_huyen ="
-				+ mahuyen + "";
+				+ mahuyen + " Order By ten";
 		rs = s.executeQuery(sql);
 
 		while (rs.next()) {
