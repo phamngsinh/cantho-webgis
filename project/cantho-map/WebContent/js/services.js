@@ -590,14 +590,16 @@ function callBackGetDuongDi(xml_result, status) {
 	result= result + "</ol>";
 	if ( Math.round(tongdodai)< 1000){
 		tongdodai= "<div class='sumary'>" +
-		"<div class='sumary-item'>Tong do dai: "+ Math.round(tongdodai) + " m</div>" +
-		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
+		"<div class='sumary-item'>- Tổng độ dài: "+ Math.round(tongdodai) + " m</div>" +
+		"<div class='sumary-item'>- Đi qua: "+ chiso + " con đường.</div>" +
+		"<a class='btn-lo-trinh' title='' href='javascript:dvLoTrinh()'>- Tìm địa điểm trên đoạn này</a>" +
 		"</div>";
 	}else{
 		temp = Math.round(tongdodai)/1000;
 		tongdodai= "<div class='sumary'>" +
-		"<div class='sumary-item'>Tong do dai: "+ temp + " km</div>" +
-		"<div class='sumary-item'>Di qua: "+ chiso + " con duong.</div>" +
+		"<div class='sumary-item'>- Tổng độ dài: "+ temp + " km</div>" +
+		"<div class='sumary-item'>- Đi qua: "+ chiso + " con đường.</div>" +
+		"<a class='btn-lo-trinh' title='' href='javascript:dvLoTrinh()'>- Tìm địa điểm trên đoạn này</a>" +
 		"</div>";
 	}	
 	
@@ -608,7 +610,6 @@ function callBackGetDuongDi(xml_result, status) {
 	 * xml_result.getElementsByTagName('ns:return')[0].childNodes[0].nodeValue;
 	 * var gml_format = new OpenLayers.Format.GML();
 	 */
-	 $('.btn-lo-trinh').show();
 	 showLeftContent1();
 	 $("#loader_map").hide();
 }
@@ -648,7 +649,7 @@ function errorGetDuongDi(xml_error) {
 	}
 	*/
 	$('.btn-lo-trinh').hide();
-	$('.search-result').html("&nbsp&nbsp Khong tim thay duong di giua hai diem nay.");
+	$('.search-result').html("&nbsp&nbsp Không tìm thấy đường đi giữa hai vị trí này.");
 	$("#loader_map").hide();
 }
 function callBackGetDiaDiem(xml_result, status) {
@@ -657,7 +658,7 @@ function callBackGetDiaDiem(xml_result, status) {
 	var sodienthoai = "";
 	var ma="";
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem </h3>"
+			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm </h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -704,35 +705,35 @@ function callBackGetDiaDiemTheoViTri(xml_result, status) {
 	x = xml_result.getElementsByTagName('ns:return')[3].childNodes[0].nodeValue;
 	y = xml_result.getElementsByTagName('ns:return')[4].childNodes[0].nodeValue;
 	ma = xml_result.getElementsByTagName('ns:return')[5].childNodes[0].nodeValue;
-	if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+	if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+	if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 	//tao noi dung cho popup
 	var content= "<div class = 'maker-popup-ten "+ma+"'>" + ten +"</div>" + 	
 	"<div class='maker-popup-div1'> " +
 		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
 		"<div class = 'maker-popup-footer' > " +
-			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Từ đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Đến đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phóng to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tìm xung quanh</a>" +
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
 		"<!--div  class  = 'maker-popup-timdv'>TÃƒÂ¬m dÃ¡Â»â€¹ch vÃ¡Â»Â¥ Ã¡Â»Å¸ gÃ¡ÂºÂ§n vÃ¡Â»â€¹ trÃƒÂ­ nÃƒÂ y</div-->" +
 		"<table>" +
 			"<tr>" +
-				"<td>Ten</td>" +
+				"<td>Tên</td>" +
 				"<td   class = 'maker-popup-tendv'><input class = 'maker-popup-textdichvu' name='textdichvu' type='text' value='' /></td>" +
 			"</tr>" +
 			"<tr>" +
-				"<td>Ban kinh</td>" +
+				"<td>Bán kính</td>" +
 				"<td   class = 'maker-popup-bankinh' ><input id='txt_bk' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> met </td>" +
 			"</tr>" +
 		"</table>" +
 		"<div class = 'maker-popup-footer' >" +
-			"<input class = 'maker-popup-quaylai' name='buttonquaylai'     type='button' value='Quai lai' onclick='popup_QuayLai()' />" +
-			"<input class = 'maker-popup-tim'     name='buttonTim'         type='button' value='Tim' onclick='popup_Tim("+ x +","+ y +")'/>" +
+			"<input class = 'maker-popup-quaylai' name='buttonquaylai'     type='button' value='Quay lại' onclick='popup_QuayLai()' />" +
+			"<input class = 'maker-popup-tim'     name='buttonTim'         type='button' value='Tìm' onclick='popup_Tim("+ x +","+ y +")'/>" +
 		"</div>" +
 	"</div>" ;
 	var lonlat = new OpenLayers.LonLat(x, y);
@@ -768,7 +769,7 @@ function callBack_Find_Place_By_Text(xml_result,status){
 	var sodienthoai = "";
 	var ma="";
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem</h3>"
+			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>A</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent' class='SelectPlaceContent' >";
@@ -785,8 +786,8 @@ function callBack_Find_Place_By_Text(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemA("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";
@@ -825,8 +826,8 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -840,8 +841,8 @@ function callBack_Find_Place_By_Text_And_Huyen(xml_result,status){
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result="<div class='sodiadiem'> Đã tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -868,8 +869,8 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));	
 		if (lop_dia_diem.features.length >0 ){
 			//di chuyen diem dau tien ve trung tam cua ban do	
@@ -883,8 +884,8 @@ function callBack_Find_Place_By_Text_And_Xa(xml_result,status){
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result="<div class='sodiadiem'>Đã tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -900,7 +901,7 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 	var sodienthoai = "";	
 	var ma="";
 	var result = "<div class='SelectPlaceTitle' style='z-index: 848;'>"
-			+ "<h3 class='SPTitText'>Hay chon vi tri cho diem</h3>"
+			+ "<h3 class='SPTitText'>Hãy chọn vị trí cho điểm</h3>"
 			+ "<span class='idiem-a-icon TitFlag'>B</span>" + "</div>"
 			+ "<br/> "
 			+ "<div id='SelectPlaceContent2' class='SelectPlaceContent2' >";
@@ -918,8 +919,8 @@ function callBack_Find_Place_By_Text2(xml_result,status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		ten = "<div class= 'result-div'>" +
 				"<a name='"+ten+"' class = 'popup-result result2_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonDiemB("+i+");' >" + ten + "</a>";		
 		diachi = "<div class= 'diachi-result'>" + diachi + "</div>";		
@@ -976,16 +977,16 @@ function callBack_getLopDiaDiem(xml_result, status) {
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;		
 		ma=xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;		
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}		
-	result= "<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result= "<div class='sodiadiem'>Đã tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -1022,16 +1023,16 @@ function callBack_Find_Place_Around_Point(xml_result, status){
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		lop_dia_diem.addFeatures(wkt_format.read(wkt));
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
 		sodienthoai = "<div class= 'sodienthoai-result sodienthoai_"+i+"'>" + sodienthoai + "</div>";
 		result = result + ten + diachi + sodienthoai + "</div>";
 	}
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-			"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result="<div class='sodiadiem'>Đã tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+			"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
 			"<div class='result-diadiem'>" +
 			result +
 			"</div>";
@@ -1067,8 +1068,8 @@ function callBack_getQuanHuyen(xml_result, status){
 	}
 	$('#tree_Huyen').html(html);
 	$("#map_path_div").attr("name","huyen");
-	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Can Tho</a>");
-	$("#map_path_div2").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Can Tho</a>");
+	$("#map_path_div").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cần Thơ</a>");
+	$("#map_path_div2").html("<a class = 'cantho'  href='javascript:getQuanHuyen()'>Cần Thơ</a>");
 }
 function callBack_getXaPhuong(xml_result, status){
 	var wkt = "";
@@ -1177,8 +1178,8 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 		diachi = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		sodienthoai = xml_result.getElementsByTagName('ns:return')[i].childNodes[3].childNodes[0].nodeValue;
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[4].childNodes[0].nodeValue;
-		if(diachi==" " || diachi==null) {diachi = "Khong tim thay thong tin";}
-		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Khong tim thay thong tin";}
+		if(diachi==" " || diachi==null) {diachi = "Không có thông tin";}
+		if(sodienthoai==" " || sodienthoai==null){ sodienthoai = "Không có thông tin";}
 		ten = "<div class= 'result-div'>" +
 		"<a name='"+ten+"' class = 'popup-result result3_"+i+" "+ma+"' id ='" + wkt + "' href='javascript:chonViTri("+i+");' >" + ten + "</a>";		
 		diachi =      "<div class= 'diachi-result diachi_"+i+"'>" + diachi + "</div>";
@@ -1192,8 +1193,8 @@ function callBack_Find_Place_Around_Street(xml_result, status){
 			map.setCenter(lonlat);
 		}
 	}	
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-	"<a class='link' id='clearSearchResultText' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result="<div class='sodiadiem'>Đã tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+	"<a class='link' id='clearSearchResultText' title='Xóa kết quả'>Xóa kết quả</a>" +
 	"<div class='result-diadiem'>" +
 	result +"</div>";
 	$("#tab_content2").html(result);
@@ -1217,10 +1218,10 @@ function callBack_Find_Street_By_Name(xml_result, status){
 		ma = xml_result.getElementsByTagName('ns:return')[i].childNodes[1].childNodes[0].nodeValue;
 		ten = xml_result.getElementsByTagName('ns:return')[i].childNodes[2].childNodes[0].nodeValue;
 		//lop_dia_diem.addFeatures(wkt_format.read(wkt));
-		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");' >Ä�Æ°á»�ng " + ten + "</a></div> ";
+		result= result + "<div class='result-duong-item'> <a class = 'tenduong-result duongdi_"+i+"' id ='" + ma + "$"+ wkt + "' href='javascript:chonConDuong("+i+");'>" + ten + "</a></div> ";
 	}
-	result="<div class='sodiadiem'>Tim thay: "+ (xml_result.getElementsByTagName('ns:return').length) + " ket qua.</div>" +
-	"<a class='link' id='clearSearchResultText2' title='Xoa ket qua'>Xoa ket qua</a>" +
+	result="<div class='sodiadiem'>Đã tìm thấy: "+ (xml_result.getElementsByTagName('ns:return').length) + " kết quả.</div>" +
+	"<a class='link' id='clearSearchResultText2' title='Xóa kết quả'>Xóa kết quả</a>" +
 	"<div class='result-duongdi'>" +
 	result +"</div>";
 	$("#tab_content3").html(result);

@@ -84,10 +84,10 @@ $(document).ready(function() {
         }
 	});	
 	/**10-04-2010 : WaterMark cho cac textbox**/
-	$(".tim-a").Watermark("Nhap vao diem A...");
-	$(".tim-b").Watermark("Nhap vao diem B ...");
-	$("#mapinput").Watermark("Nhap ten dia diem ...");
-	$("#txt_ten_lt").Watermark("Vi du: Khach san ...");
+	$(".tim-a").Watermark("Nhập vào điểm A...");
+	$(".tim-b").Watermark("Nhạp vào điểm B ...");
+	$("#mapinput").Watermark("Nhập tên địa điểm ...");
+	$("#txt_ten_lt").Watermark("Ví dụ: khách sạn ...");
 	$("#txt_bk_lt").Watermark("100");
 	/**10-04-2010 : WaterMark cho cac textbox**/
 	$("#loader_map").hide();
@@ -98,8 +98,6 @@ $(document).ready(function() {
 function timDuong(){
 	//alert("Bat dau tim duong");
 	control_ve_diem.deactivate();
-	$(".kq-doKC").stop().animate({right:-199},350,"linear");
-	$(".div-tim-con-duong").stop().animate({right:-199},350,"linear");
 	var lop_duong_di = map.getLayersByName('lop_duong_di')[0];
 	var lop_diem_chon = map.getLayersByName('lop_diem_chon')[0];
 	var num_points = lop_diem_chon.features.length;
@@ -216,6 +214,8 @@ function doKhoangCach() {
 		}
 	else{
 		$(".kq-doKC").stop().animate({right:-199},350,"linear");
+		$(".do-khoang-cach").addClass("not-clicked");
+		$(".do-khoang-cach").removeClass("clicked");
 	}
 	if (control_measure.active) {
 		// alert("da duoc active");
@@ -905,27 +905,27 @@ function chonViTri(i) {
 		"<div class = 'maker-popup-diachi'>"+ diachi + "</div>"+
 		"<div class = 'maker-popup-sdt'>"+ sodienthoai + "</div>" +
 		"<div class = 'maker-popup-footer' > " +
-			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Tu day</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Den day</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phong to</a>&nbsp&nbsp&nbsp" +
-			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tim xung quanh</a>" +
+			"<a class='maker-popup-tuday' href='javascript:popup_TuDay("+ x +","+ y +")'>Từ đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-denday' href='javascript:popup_DenDay("+ x +","+ y +")'>Đến đây</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-phongto' href='javascript:popup_PhongTo("+ x +","+ y +")'>Phóng to</a>&nbsp&nbsp&nbsp" +
+			"<a class='maker-popup-timxungquanh' href='javascript:popup_TimXungQuanh()'>Tìm xung quanh</a>" +
 		"</div>"+
 	"</div> " +
 	"<div class='maker-popup-div2'> " +
-		"<!--div  class  = 'maker-popup-timdv'>Tim dich vu o gan vi tri nay</div-->" +
+		"<!--div  class  = 'maker-popup-timdv'>Tìm địa điểm ở gần vị trí này</div-->" +
 		"<table>" +
 			"<tr>" +
-				"<td>Ten</td>" +
+				"<td>Tên</td>" +
 				"<td   class = 'maker-popup-tendv'><input class = 'maker-popup-textdichvu' name='textdichvu' type='text' value='' /></td>" +
 			"</tr>" +
 			"<tr>" +
-				"<td>Ban kinh</td>" +
+				"<td>Bán kính</td>" +
 				"<td   class = 'maker-popup-bankinh' ><input id='txt_bk' maxlength='10' class = 'maker-popup-textbankinh' name='textbankinh' type='text' value='' /> met </td>" +
 			"</tr>" +
 		"</table>" +
 		"<div class = 'maker-popup-footer' >" +
-			"<input class = 'maker-popup-quaylai' name='buttonquaylai'     type='button' value='Quai lai' onclick='popup_QuayLai()' />" +
-			"<input class = 'maker-popup-tim'     name='buttonTim'         type='button' value='Tim' onclick='popup_Tim("+ x +","+ y +")'/>" +
+			"<input class = 'maker-popup-quaylai' name='buttonquaylai'     type='button' value='Quay lại' onclick='popup_QuayLai()' />" +
+			"<input class = 'maker-popup-tim'     name='buttonTim'         type='button' value='Tìm' onclick='popup_Tim("+ x +","+ y +")'/>" +
 		"</div>" +
 	"</div>" ;
 	//Tao popup voi noi dung tren
@@ -947,7 +947,7 @@ function clickHuyen(i){
 	a = $('.huyen_' + i);
 	var mahuyen=a.attr("value");
 	getXaPhuong(mahuyen);
-	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Can Tho</a> " +
+	var html="    <a  class = 'cantho' href='javascript:getQuanHuyen()'>Cần Thơ</a> " +
 			 "&gt <label id='path_huyen' value='"+mahuyen+">"+a.attr("name")+"</label>";
 	$("#map_path_div").attr("name","xa");
 	$("#map_path_div").html(html);
