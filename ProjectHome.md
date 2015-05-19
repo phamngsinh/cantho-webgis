@@ -1,0 +1,1 @@
+Build digital map of Can Tho city. It provides some functions for users to find shortest path and interested places in Can Tho city.
